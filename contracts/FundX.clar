@@ -125,3 +125,8 @@
     (/ (* amount platform-fee-percent) fee-denominator)
 )
 
+;; ============================================
+;; PUBLIC FUNCTIONS
+;; ============================================
+;; These functions can be called by users and modify the blockchain state
+
