@@ -42,3 +42,38 @@
 ;; This is the stablecoin used for all donations
 (define-constant usdcx-token 'SP3DX3H4FEYZJZ586MFBS25ZW3HZDMEW92260R2PR.Wrapped-USD)
 
+;; ============================================
+;; DATA MAPS - Like database tables
+;; ============================================
+
+;; Stores all campaign information
+;; Key: campaign ID (a number)
+;; Value: all the campaign details
+(define-map campaigns
+    uint  ;; Campaign ID
+    {
+        creator: principal,      ;; Wallet address of who created the campaign
+        goal: uint,              ;; Target amount to raise (in USDCx)
+        deadline: uint,          ;; Block height when campaign ends
+        total-raised: uint,      ;; How much has been donated so far
+        withdrawn: bool,         ;; Has the creator withdrawn the funds?
+        active: bool            ;; Is the campaign still accepting donations?
+    }
+)
+
+;; Tracks how much each person donated to each campaign
+;; Key: combination of campaign ID and donor address
+;; Value: total amount donated by that person
+(define-map donations
+    { campaign-id: uint, donor: principal }
+    uint  ;; Amount donated
+)
+
+;; Tracks which people have donated to which campaigns
+;; Key: combination of campaign ID and donor address
+;; Value: true if they've donated, otherwise entry doesn't exist
+(define-map campaign-donors
+    { campaign-id: uint, donor: principal }
+    bool
+)
+
