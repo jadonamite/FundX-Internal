@@ -40,10 +40,10 @@
 ;; Starts at 0, increments by 1 for each new campaign
 (define-data-var campaign-nonce uint u0)
 
-;; USDCx token contract address on Stacks
 ;; NOTE: Replace this with the actual USDCx SIP-010 token contract principal
 ;; This is the stablecoin used for all donations
-(define-constant usdcx-token 'SP3DX3H4FEYZJZ586MFBS25ZW3HZDMEW92260R2PR.Wrapped-USD)
+;; USDCx token contract address on Stacks testnet
+(define-constant usdcx-token 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.usdcx)
 
 ;; ============================================
 ;; DATA MAPS - Like database tables
