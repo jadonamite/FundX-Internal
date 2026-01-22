@@ -1,0 +1,37 @@
+---
+id: 0
+name: Testnet deployment
+network: testnet
+stacks-node: "https://api.testnet.hiro.so"
+bitcoin-node: "http://blockstack:blockstacksystem@bitcoind.testnet.stacks.co:18332"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - requirement-publish:
+            contract-id: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.sip-010-trait-ft-standard
+            remap-sender: ST267C6MQJHPR7297033Z8VSKTJM7M62V3784NDT5
+            remap-principals:
+              ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM: ST267C6MQJHPR7297033Z8VSKTJM7M62V3784NDT5
+            cost: 8400
+            path: "./.cache/requirements/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.sip-010-trait-ft-standard.clar"
+            clarity-version: 3
+      epoch: "3.1"
+    - id: 1
+      transactions:
+        - requirement-publish:
+            contract-id: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.usdcx
+            remap-sender: ST267C6MQJHPR7297033Z8VSKTJM7M62V3784NDT5
+            remap-principals:
+              ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM: ST267C6MQJHPR7297033Z8VSKTJM7M62V3784NDT5
+            cost: 79150
+            path: "./.cache/requirements/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.usdcx.clar"
+            clarity-version: 3
+        - contract-publish:
+            contract-name: FundX-test
+            expected-sender: ST267C6MQJHPR7297033Z8VSKTJM7M62V3784NDT5
+            cost: 157070
+            path: contracts/FundX.clar
+            anchor-block-only: true
+            clarity-version: 3
+      epoch: "3.3"
