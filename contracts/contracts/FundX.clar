@@ -42,7 +42,7 @@
 
 ;; USDCx token contract address on Stacks testnet
 ;; NOTE: Replace with actual deployed USDCx contract address before deploying
-(define-constant usdcx-token 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.usdcx)
+(define-constant usdcx-token 'ST3GAYKCWBD2PTNR77WGYWCPPR102C5E0C9V1H9ZX.usdcx)
 
 ;; ============================================
 ;; DATA MAPS - Like database tables

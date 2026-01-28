@@ -10,9 +10,9 @@ plan:
       transactions:
         - requirement-publish:
             contract-id: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.sip-010-trait-ft-standard
-            remap-sender: ST267C6MQJHPR7297033Z8VSKTJM7M62V3784NDT5
+            remap-sender: ST3GAYKCWBD2PTNR77WGYWCPPR102C5E0C9V1H9ZX
             remap-principals:
-              ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM: ST267C6MQJHPR7297033Z8VSKTJM7M62V3784NDT5
+              ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM: ST3GAYKCWBD2PTNR77WGYWCPPR102C5E0C9V1H9ZX
             cost: 8400
             path: "./.cache/requirements/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.sip-010-trait-ft-standard.clar"
             clarity-version: 3
@@ -21,17 +21,17 @@ plan:
       transactions:
         - requirement-publish:
             contract-id: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.usdcx
-            remap-sender: ST267C6MQJHPR7297033Z8VSKTJM7M62V3784NDT5
+            remap-sender: ST3GAYKCWBD2PTNR77WGYWCPPR102C5E0C9V1H9ZX
             remap-principals:
-              ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM: ST267C6MQJHPR7297033Z8VSKTJM7M62V3784NDT5
+              ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM: ST3GAYKCWBD2PTNR77WGYWCPPR102C5E0C9V1H9ZX
             cost: 79150
             path: "./.cache/requirements/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.usdcx.clar"
             clarity-version: 3
         - contract-publish:
-            contract-name: FundX-test
-            expected-sender: ST267C6MQJHPR7297033Z8VSKTJM7M62V3784NDT5
-            cost: 139460
-            path: contracts/FundX.clar
+            contract-name: FundXv3
+            expected-sender: ST3GAYKCWBD2PTNR77WGYWCPPR102C5E0C9V1H9ZX
+            cost: 70140
+            path: contracts/FundXv3.clar
             anchor-block-only: true
             clarity-version: 3
       epoch: "3.3"

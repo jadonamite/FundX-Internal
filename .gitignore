@@ -10,4 +10,3 @@ coverage
 *.info
 costs-reports.json
 node_modules
-**/deployments/default.testnet-plan.yaml
