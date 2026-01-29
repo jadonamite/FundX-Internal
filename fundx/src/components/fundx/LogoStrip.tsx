@@ -1,22 +1,38 @@
+import Image from "next/image"
+
 export function LogoStrip() {
   return (
-    <div className="w-full border-t border-slate-100 bg-slate-50/50 py-16">
-      <div className="container mx-auto max-w-5xl px-4 text-center">
-        {/* Text Container */}
-        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24">
-            {/* 1. STX */}
-          <span className="text-4xl md:text-5xl font-black tracking-tighter text-slate-300 cursor-default transition-colors duration-300 hover:text-[#5546FF]">
-            STX
-          </span>
-          {/* 2. BITCOIN */}
-          <span className="text-4xl md:text-5xl font-black tracking-tighter text-slate-300 cursor-default transition-colors duration-300 hover:text-[#F7931A]">
-            BITCOIN
-          </span>
+    <div className="w-full border-t border-slate-100 py-20"> {/* No background */}
+      <div className="container mx-auto max-w-5xl px-4">
+        
+        <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32">
+          
+          {/* 1. BITCOIN (Local SVG) */}
+          <div className="relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0">
+             <Image 
+               src="/bitcoin.svg" 
+               alt="Bitcoin" 
+               fill 
+               className="object-contain"
+             />
+          </div>
 
-          {/* 3. USDCX */}
-          <span className="text-4xl md:text-5xl font-black tracking-tighter text-slate-300 cursor-default transition-colors duration-300 hover:text-[#2775CA]">
-            USDCX
-          </span>
+          {/* 2. STACKS (Local PNG) */}
+          <div className="relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0">
+             <Image 
+               src="/stacks.png" 
+               alt="Stacks" 
+               fill 
+               className="object-contain"
+             />
+          </div>
+
+          {/* 3. USDCx (Text - Sea Green Hover) */}
+          <div className="flex items-center justify-center h-12 w-40 cursor-default group">
+            <span className="text-4xl font-black tracking-tighter text-slate-300 transition-colors duration-300 group-hover:text-[#2E8B57]">
+              USDCx
+            </span>
+          </div>
 
         </div>
       </div>
