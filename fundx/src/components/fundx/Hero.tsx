@@ -39,6 +39,14 @@ export function Hero() {
             </span>
             Economy.
           </span>
+          <span className="inline-flex align-middle">
+              
+                  <div className="relative inline-flex items-center cursor-pointer group">
+             <div className="w-24 h-12 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-1 shadow-inner transition-all">
+          <div className="w-10 h-10 bg-white rounded-full shadow-lg translate-x-12 transition-transform duration-300 ease-out" />
+        </div>
+      </div>
+            </span>
         </h1>
 
         <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
