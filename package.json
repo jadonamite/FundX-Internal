@@ -2,7 +2,6 @@
   "dependencies": {
     "@stacks/auth": "^7.3.1",
     "@stacks/connect": "^8.2.4",
-    "@stacks/connect-react": "^23.1.4",
     "@stacks/network": "^7.3.1",
     "@stacks/transactions": "^7.3.1",
     "class-variance-authority": "^0.7.1",
