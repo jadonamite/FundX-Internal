@@ -170,13 +170,14 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                 
                 <div className={`transition-all duration-300 ${!isSignedIn ? "opacity-50 grayscale pointer-events-none" : "opacity-100"}`}>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-lg">STX</span>
+                    {/* Change STX to USDCx */}
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-600 font-bold text-lg">USDCx</span>
                     <Input 
                       type="number" 
                       placeholder="100" 
                       value={donateAmount}
                       onChange={(e) => setDonateAmount(e.target.value)}
-                      className="pl-16 h-14 rounded-xl border-slate-200 bg-slate-50 text-xl font-bold focus-visible:ring-orange-500"
+                      className="pl-24 h-14 rounded-xl border-slate-200 bg-slate-50 text-xl font-bold focus-visible:ring-blue-500"
                     />
                   </div>
                 </div>
