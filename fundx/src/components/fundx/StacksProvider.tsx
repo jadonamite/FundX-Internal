@@ -27,6 +27,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
         const { isConnected, getLocalStorage } = await import("@stacks/connect")
         if (isConnected()) {
           const data = getLocalStorage()
+          // getLocalStorage returns { addresses: { stx: [...], btc: [...] } }
           if (data?.addresses?.stx?.[0]?.address) {
             setWalletData({
               stxAddress: data.addresses.stx[0].address,
@@ -46,12 +47,21 @@ export function StacksProvider({ children }: { children: ReactNode }) {
     try {
       const { connect } = await import("@stacks/connect")
       
+      // connect() returns { addresses: AddressEntry[] } - a flat array
       const response = await connect()
       
-      if (response?.addresses?.stx?.[0]?.address) {
+      // Find the STX address in the array (usually index 2, but safer to search)
+      const stxEntry = response.addresses.find(
+        (addr: any) => addr.address?.startsWith('SP') || addr.address?.startsWith('ST')
+      )
+      const btcEntry = response.addresses.find(
+        (addr: any) => addr.address?.startsWith('bc1') || addr.address?.startsWith('tb1')
+      )
+      
+      if (stxEntry?.address) {
         setWalletData({
-          stxAddress: response.addresses.stx[0].address,
-          btcAddress: response.addresses.btc?.[0]?.address,
+          stxAddress: stxEntry.address,
+          btcAddress: btcEntry?.address,
         })
         setIsSignedIn(true)
       }
