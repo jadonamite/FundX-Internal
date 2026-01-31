@@ -25,8 +25,8 @@ export default function RootLayout({
       <body className={jakarta.variable}>
         {/* Wrap everything in the Provider */}
         <StacksProvider>
-          {children}
-        </StacksProvider>
+  {children}
+</StacksProvider>
       </body>
     </html>
   );
