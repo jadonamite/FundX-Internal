@@ -144,7 +144,6 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
           <div className="relative h-full">
             <div className="sticky top-32 p-8 rounded-[2rem] bg-white border border-slate-200 shadow-xl">
               
-              {/* Progress Bar */}
               <div className="space-y-5 mb-8">
                 <div className="space-y-1">
                    <div className="text-4xl font-black text-slate-900 tracking-tight">${campaign.raised.toLocaleString()}</div>
