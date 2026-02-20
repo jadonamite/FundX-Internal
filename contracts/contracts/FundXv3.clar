@@ -21,6 +21,8 @@
 (define-constant err-invalid-duration (err u108))
 (define-constant err-goal-reached (err u109))
 (define-constant err-already-withdrawn (err u110))
+(define-constant err-refund-not-available (err u111))
+(define-constant err-no-donations (err u112))
 
 (define-constant platform-fee-percent u2)
 (define-constant fee-denominator u100)
@@ -46,7 +48,8 @@
         deadline: uint,
         total-raised: uint,
         withdrawn: bool,
-        active: bool
+        active: bool,
+        refunded: bool
     }
 )
 
@@ -56,6 +59,11 @@
 )
 
 (define-map campaign-donors
+    { campaign-id: uint, donor: principal }
+    bool
+)
+
+(define-map refunds
     { campaign-id: uint, donor: principal }
     bool
 )
@@ -94,6 +102,23 @@
     (/ (* amount platform-fee-percent) fee-denominator)
 )
 
+(define-read-only (can-refund (campaign-id uint) (donor principal))
+    (let
+        (
+            (campaign (unwrap! (map-get? campaigns campaign-id) false))
+            (donation (get-donation campaign-id donor))
+        )
+        (and
+            (>= stacks-block-height (get deadline campaign))
+            (not (get withdrawn campaign))
+            (not (get refunded campaign))
+            (< (get total-raised campaign) (get goal campaign))
+            (> donation u0)
+            (is-none (map-get? refunds { campaign-id: campaign-id, donor: donor }))
+        )
+    )
+)
+
 ;; ============================================
 ;; PUBLIC FUNCTIONS
 ;; ============================================
@@ -114,7 +139,8 @@
                 deadline: deadline,
                 total-raised: u0,
                 withdrawn: false,
-                active: true
+                active: true,
+                refunded: false
             }
         )
         
@@ -137,6 +163,7 @@
         (asserts! (< stacks-block-height (get deadline campaign)) err-campaign-ended)
         (asserts! (< current-raised goal) err-goal-reached)
         (asserts! (> amount u0) err-invalid-amount)
+        (asserts! (not (get refunded campaign)) err-refund-not-available)
         
         ;; TRANSFER
         (if (> actual-donation u0)
@@ -167,6 +194,52 @@
     )
 )
 
+;; NEW: Refund function for donors when campaign fails
+(define-public (request-refund (campaign-id uint))
+    (let
+        (
+            (campaign (unwrap! (map-get? campaigns campaign-id) err-not-found))
+            (donation-amount (get-donation campaign-id tx-sender))
+        )
+        ;; Validation
+        (asserts! (>= stacks-block-height (get deadline campaign)) err-campaign-active)
+        (asserts! (not (get withdrawn campaign)) err-already-withdrawn)
+        (asserts! (not (get refunded campaign)) err-refund-not-available)
+        (asserts! (< (get total-raised campaign) (get goal campaign)) err-goal-reached)
+        (asserts! (> donation-amount u0) err-no-donations)
+        (asserts! (is-none (map-get? refunds { campaign-id: campaign-id, donor: tx-sender })) 
+            err-refund-not-available)
+        
+        ;; Process refund
+        (try! (as-contract (contract-call? 'ST3GAYKCWBD2PTNR77WGYWCPPR102C5E0C9V1H9ZX.usdcx transfer 
+            donation-amount
+            tx-sender
+            tx-sender
+            none)))
+        
+        ;; Mark as refunded
+        (map-set refunds
+            { campaign-id: campaign-id, donor: tx-sender }
+            true
+        )
+        
+        ;; Clear donation
+        (map-set donations
+            { campaign-id: campaign-id, donor: tx-sender }
+            u0
+        )
+        
+        ;; Update campaign total
+        (map-set campaigns campaign-id
+            (merge campaign { 
+                total-raised: (- (get total-raised campaign) donation-amount)
+            })
+        )
+        
+        (ok true)
+    )
+)
+
 (define-public (withdraw (campaign-id uint))
     (let
         (
@@ -177,6 +250,7 @@
         )
         (asserts! (is-eq tx-sender (get creator campaign)) err-unauthorized)
         (asserts! (not (get withdrawn campaign)) err-already-withdrawn)
+        (asserts! (not (get refunded campaign)) err-refund-not-available)
         (asserts! (or 
             (>= total-raised (get goal campaign))
             (>= stacks-block-height (get deadline campaign))
