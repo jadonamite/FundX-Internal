@@ -1,10 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Navbar } from "@/components/fundx/Navbar"
 import { Footer } from "@/components/fundx/Footer"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
+import { ArrowRight, ArrowLeft, CheckCircle2, Save } from "lucide-react"
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
 
@@ -15,6 +15,7 @@ import { LivePreview } from "@/components/create/LivePreview"
 export default function CreateCampaign() {
   const { isSignedIn, authenticate } = useStacks()
   const [step, setStep] = useState(1)
+  const [lastSaved, setLastSaved] = useState(null)
   
   const [formData, setFormData] = useState({
     creatorName: "",
@@ -30,6 +31,40 @@ export default function CreateCampaign() {
     duration: "30",
   })
 
+  // Auto-save functionality
+  useEffect(() => {
+    const savedData = localStorage.getItem("campaignDraft")
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData)
+        setFormData(parsed)
+        setLastSaved(new Date(parsed._timestamp))
+        toast.info("Draft restored", { 
+          description: "Your unsaved campaign has been restored from draft." 
+        })
+      } catch (e) {
+        console.error("Failed to restore draft")
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const dataToSave = {
+        ...formData,
+        _timestamp: new Date().toISOString()
+      }
+      localStorage.setItem("campaignDraft", JSON.stringify(dataToSave))
+      setLastSaved(new Date())
+      toast.success("Draft saved", { 
+        description: "Your progress has been saved locally.",
+        duration: 2000 
+      })
+    }, 3000) // Auto-save after 3 seconds of inactivity
+
+    return () => clearTimeout(timer)
+  }, [formData])
+
   const handleNext = () => setStep(step + 1)
   const handleBack = () => setStep(step - 1)
 
@@ -39,6 +74,8 @@ export default function CreateCampaign() {
       authenticate()
       return
     }
+    // Clear draft after successful submission
+    localStorage.removeItem("campaignDraft")
     toast.success("Deployment Initiated", { 
       description: "Creating USDCx Fundraising Contract on Stacks..." 
     })
@@ -76,6 +113,14 @@ export default function CreateCampaign() {
 
             <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100 min-h-[550px] relative">
               
+              {/* Auto-save indicator */}
+              {lastSaved && (
+                <div className="absolute top-4 right-4 flex items-center gap-2 text-xs text-slate-400">
+                  <Save className="w-3 h-3" />
+                  <span>Saved {lastSaved.toLocaleTimeString()}</span>
+                </div>
+              )}
+
               {/* RENDER STEP MODULE */}
               <WizardSteps step={step} formData={formData} setFormData={setFormData} />
 
