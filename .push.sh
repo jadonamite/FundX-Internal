@@ -7,7 +7,7 @@ git add .
 git commit -m "$msg"
 
 if [ $? -eq 0 ]; then
-  git push $target Paused
+  git push $target main
 else
   echo "❌ Commit failed. Fix issues and retry."
 fi
