@@ -5,11 +5,17 @@ authors = []
 telemetry = false
 cache_dir = './.cache'
 
-[[project.requirements]]
-contract_id = 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.usdcx'
+# [[project.requirements]]
+# contract_id = 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.usdcx'
 
 [contracts.fundx-escrow]
 path = 'contracts/fundx-escrow.clar'
+clarity_version = 2
+epoch = 'latest'
+
+
+[contracts.usdcx]
+path = 'contracts/usdcx-mock.clar'
 clarity_version = 2
 epoch = 'latest'
 
