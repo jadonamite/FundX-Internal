@@ -1,21 +1,26 @@
 [project]
-name = 'contract'
-description = ''
+name = 'fundx'
+description = 'FundX escrow contract powered by USDCx'
 authors = []
 telemetry = false
 cache_dir = './.cache'
 
-[[project.requirements]]
-contract_id = 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.usdcx'
+# [[project.requirements]]
+# contract_id = 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.usdcx'
 
+[contracts.fundx-escrow]
+path = 'contracts/fundx-escrow.clar'
+clarity_version = 2
+epoch = 'latest'
+
+
+[contracts.usdcx]
+path = 'contracts/usdcx-mock.clar'
+clarity_version = 2
+epoch = 'latest'
 
 [repl.analysis]
-passes = [
-    'check_checker',
-    'call_checker',
-]
-
-[repl.analysis.lints]
+passes = ['check_checker', 'call_checker']
 
 [repl.analysis.check_checker]
 strict = false
@@ -26,7 +31,3 @@ callee_filter = false
 [repl.remote_data]
 enabled = false
 api_url = 'https://api.hiro.so'
-[contracts.FundXv3]
-path = 'contracts/FundXv3.clar'
-clarity_version = 3
-epoch = 'latest'
