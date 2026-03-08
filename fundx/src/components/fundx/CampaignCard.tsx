@@ -1,10 +1,11 @@
 import { Card } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 import Link from "next/link"
 
 interface CampaignCardProps {
-  id: string // <--- NEW PROP
+  id: string 
   title: string
   description: string
   raised: number
@@ -19,9 +20,12 @@ export function CampaignCard({ id, title, description, raised, goal, image }: Ca
     <Link href={`/campaigns/${id}`} className="block h-full group">
       <Card className="relative h-full overflow-hidden rounded-3xl border-none bg-white p-6 shadow-soft-md transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-xl">
         <div className="relative mb-6 h-48 w-full overflow-hidden rounded-2xl bg-slate-100">
-           <div className="absolute inset-0 flex items-center justify-center text-slate-300">
-              [Image]
-           </div>
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
+          />
         </div>
 
         <div className="space-y-4">
@@ -39,8 +43,8 @@ export function CampaignCard({ id, title, description, raised, goal, image }: Ca
           </div>
 
           <Button className="w-full rounded-xl bg-slate-900 text-white shadow-lg transition-all duration-500 hover:bg-gradient-tush hover:shadow-glow hover:scale-[1.02] py-6 text-base font-bold">
-  Donate Now
-</Button>
+            Donate Now
+          </Button>
         </div>
       </Card>
     </Link>
