@@ -9,6 +9,7 @@ import { CampaignFan } from "@/components/fundx/CampaignFan"
 
 export default function Home() {
   const deckSlotRef = useRef<HTMLDivElement | null>(null)
+ 
 
   return (
     <main className="min-h-screen bg-slate-50 selection:bg-orange-100 font-sans">

@@ -7,24 +7,16 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Campaign, getHeroCampaign, getSideCampaigns } from "@/lib/data"
 
-// ============================================================
-// Types
-// ============================================================
-
 interface CampaignFanProps {
   deckSlotRef: React.RefObject<HTMLDivElement | null>
 }
 
-interface SideCardProps {
+interface SideCardContentProps {
   campaign: Campaign
   progress: number
 }
 
-// ============================================================
-// Component — SideCard
-// ============================================================
-
-function SideCard({ campaign, progress }: SideCardProps) {
+function SideCardContent({ campaign, progress }: SideCardContentProps) {
   return (
     <>
       <div className="relative h-48 xl:h-1/2 bg-slate-100 overflow-hidden shrink-0">
@@ -57,10 +49,7 @@ function SideCard({ campaign, progress }: SideCardProps) {
               </span>
             </div>
             <Link href={`/campaigns/${campaign.id}`}>
-              <Button
-                size="sm"
-                className="h-10 rounded-xl bg-slate-900 text-white shadow-md hover:bg-primary hover:shadow-glow transition-all px-6"
-              >
+              <Button size="sm" className="h-10 rounded-xl bg-slate-900 text-white shadow-md hover:bg-primary hover:shadow-glow transition-all px-6">
                 Donate
               </Button>
             </Link>
@@ -71,17 +60,12 @@ function SideCard({ campaign, progress }: SideCardProps) {
   )
 }
 
-// ============================================================
-// Component — CenterCard
-// ============================================================
-
-function CenterCard() {
+function CenterCardContent() {
   const hero = getHeroCampaign()
-  const getProgress = (raised: number, goal: number) =>
-    Math.min((raised / goal) * 100, 100)
+  const progress = Math.min((hero.raised / hero.goal) * 100, 100)
 
   return (
-    <div className="w-full max-w-3xl xl:flex-1 relative z-20 shadow-2xl rounded-[2rem] border border-slate-100 bg-white hover:border-orange-200 transition-all duration-300 flex flex-col md:flex-row overflow-hidden group">
+    <>
       <div className="absolute top-4 left-4 z-30 bg-gradient-tush text-white px-4 py-1 rounded-full text-xs font-bold shadow-soft-xl animate-pulse">
         🔥 Top Trending
       </div>
@@ -106,15 +90,13 @@ function CenterCard() {
           <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
             <div
               className="bg-gradient-tush h-full rounded-full shadow-[0_0_15px_rgba(255,107,74,0.4)]"
-              style={{ width: `${getProgress(hero.raised, hero.goal)}%` }}
+              style={{ width: `${progress}%` }}
             />
           </div>
           <div className="flex justify-between items-end">
             <div>
               <p className="text-xs text-slate-400 uppercase font-semibold mb-1">Raised</p>
-              <p className="text-3xl font-bold text-primary">
-                ${hero.raised.toLocaleString()}
-              </p>
+              <p className="text-3xl font-bold text-primary">${hero.raised.toLocaleString()}</p>
             </div>
             <Link href={`/campaigns/${hero.id}`}>
               <Button className="h-12 rounded-xl px-8 bg-slate-900 text-white shadow-lg hover:bg-primary hover:shadow-glow transition-all duration-300">
@@ -124,17 +106,13 @@ function CenterCard() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
-// ============================================================
-// Component — CampaignFan
-// ============================================================
-
 export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [deckOffset, setDeckOffset] = useState(0)
+  const [deckOffset, setDeckOffset] = useState(-600)
 
   const sideCampaigns = getSideCampaigns()
   const leftCard = sideCampaigns[0]
@@ -142,49 +120,52 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
   const getProgress = (raised: number, goal: number) =>
     Math.min((raised / goal) * 100, 100)
 
-  // Measure the distance from the Campaign section to the HeroDeckSlot
+  // Measure exact pixel distance from Campaign container top to HeroDeckSlot
   useEffect(() => {
     function measure() {
       if (!deckSlotRef.current || !containerRef.current) return
       const slotRect = deckSlotRef.current.getBoundingClientRect()
       const containerRect = containerRef.current.getBoundingClientRect()
-      // How far above the container the slot is (negative = above)
-      const distance = slotRect.top - containerRect.top
-      setDeckOffset(distance)
+      // This is negative — the slot is above the container
+      setDeckOffset(slotRect.top - containerRect.top)
     }
-
-    measure()
+    // Wait for layout to settle
+    const t = setTimeout(measure, 100)
     window.addEventListener("resize", measure)
-    return () => window.removeEventListener("resize", measure)
+    return () => {
+      clearTimeout(t)
+      window.removeEventListener("resize", measure)
+    }
   }, [deckSlotRef])
 
-  // Scroll progress tied to the campaign section container
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end end"],
   })
 
-  // ── Phase 1: deck travels from hero slot down to campaign center (0 → 0.45)
-  const deckY = useTransform(scrollYProgress, [0, 0.45], [deckOffset, 0])
-  const deckScale = useTransform(scrollYProgress, [0, 0.45], [0.25, 1])
+  // Deck travels from hero slot (deckOffset) to campaign center (0)
+  const deckY = useTransform(scrollYProgress, [0, 1], [deckOffset, 0])
 
-  // ── Phase 2: pause (0.45 → 0.55) — nothing changes
+  // Deck scales from tiny (0.15) to full size (1)
+  const deckScale = useTransform(scrollYProgress, [0, 1], [0.15, 1])
 
-  // ── Phase 3: fan out (0.55 → 1)
-  const leftX = useTransform(scrollYProgress, [0.55, 1], [0, -490])
-  const leftScale = useTransform(scrollYProgress, [0.55, 1], [1, 0.92])
+  // Left card: peeks out slightly at start (-15px), fans to final position (-315px)
+  const leftX = useTransform(scrollYProgress, [0, 1], [-15, -315])
+  // Left card rotation: slight tilt at start, full tilt at end
+  const leftRotate = useTransform(scrollYProgress, [0, 1], [-3, -6])
 
-  const rightX = useTransform(scrollYProgress, [0.55, 1], [0, 190])
-  const rightScale = useTransform(scrollYProgress, [0.55, 1], [1, 0.92])
+  // Right card: peeks out slightly at start (+15px), fans to final position (+315px)  
+  const rightX = useTransform(scrollYProgress, [0, 1], [15, 315])
+  const rightRotate = useTransform(scrollYProgress, [0, 1], [3, 6])
 
-  // ── Heading fades in during phase 3
-  const headingOpacity = useTransform(scrollYProgress, [0.6, 1], [0, 1])
-  const headingY = useTransform(scrollYProgress, [0.6, 1], [40, 0])
+  // Heading fades in during second half
+  const headingOpacity = useTransform(scrollYProgress, [0.5, 1], [0, 1])
+  const headingY = useTransform(scrollYProgress, [0.5, 1], [40, 0])
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative min-h-[520px]">
 
-      {/* Heading — fades in during phase 3 */}
+      {/* Heading */}
       <motion.div
         style={{ opacity: headingOpacity, y: headingY }}
         className="mb-20 text-center max-w-2xl mx-auto"
@@ -197,32 +178,37 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
         </p>
       </motion.div>
 
-      {/* Deck wrapper — moves as one unit in phases 1 and 2 */}
+      {/* Deck — all three cards absolutely stacked, then fanning out */}
       <motion.div
         style={{ y: deckY, scale: deckScale }}
-        className="flex flex-col xl:flex-row justify-center items-center xl:items-stretch gap-6 h-auto xl:h-[420px]"
+        className="relative flex justify-center items-center h-[420px]"
       >
 
-        {/* Left card — fans out in phase 3 */}
+        {/* Left card — starts peeking behind center, fans left */}
         <motion.div
-          style={{ x: leftX, scale: leftScale, rotate: -6 }}
-          className="w-full xl:w-[300px] bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden group hover:border-orange-200 transition-all duration-500 ease-out flex flex-col hover:z-30"
+          style={{ x: leftX, rotate: leftRotate, zIndex: 10 }}
+          className="absolute w-[300px] h-[420px] bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden group hover:border-orange-200 flex flex-col"
         >
-          <SideCard
+          <SideCardContent
             campaign={leftCard}
             progress={getProgress(leftCard.raised, leftCard.goal)}
           />
         </motion.div>
 
-        {/* Center card — stays put */}
-        <CenterCard />
-
-        {/* Right card — fans out in phase 3 */}
+        {/* Center card — stays centered, always on top */}
         <motion.div
-          style={{ x: rightX, scale: rightScale, rotate: 6 }}
-          className="w-full xl:w-[300px] bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden group hover:border-orange-200 transition-all duration-500 ease-out flex flex-col hover:z-30"
+          style={{ zIndex: 20 }}
+          className="absolute w-[640px] h-[420px] bg-white rounded-[2rem] shadow-2xl border border-slate-100 hover:border-orange-200 flex flex-col md:flex-row overflow-hidden group"
         >
-          <SideCard
+          <CenterCardContent />
+        </motion.div>
+
+        {/* Right card — starts peeking behind center, fans right */}
+        <motion.div
+          style={{ x: rightX, rotate: rightRotate, zIndex: 10 }}
+          className="absolute w-[300px] h-[420px] bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden group hover:border-orange-200 flex flex-col"
+        >
+          <SideCardContent
             campaign={rightCard}
             progress={getProgress(rightCard.raised, rightCard.goal)}
           />
