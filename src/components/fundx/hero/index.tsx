@@ -5,7 +5,6 @@ import { HeroBadge } from "./HeroBadge"
 import { HeroHeadline } from "./HeroHeadline"
 import { HeroCTAs } from "./HeroCTAs"
 import { HeroDeckSlot } from "./HeroDeckSlot"
-import { HeroBackground } from "./HeroBackground"
 import { useScramble } from "./useScramble"
 
 export { HeroDeckSlot }
@@ -62,8 +61,21 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
   }, [])
 
   return (
-    <section className="relative pt-28 pb-24 lg:pt-38 lg:pb-32 overflow-hidden bg-slate-50">
-      <HeroBackground isStacksMode={isStacksMode} />
+ <section className="relative pt-28 pb-24 lg:pt-38 lg:pb-32 overflow-hidden bg-slate-50">
+
+      {/* Background logo */}
+      <div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        aria-hidden="true"
+      >
+        <img
+          src="/LogoFrame.svg"
+          alt=""
+          className="w-[700px] h-[700px] object-contain"
+          style={{ opacity: 0.145 }}
+        />
+      </div>
+
       <div className="container relative z-10 mx-auto max-w-5xl px-4 text-center">
         <HeroBadge />
         <HeroHeadline
@@ -81,6 +93,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
           Programmable escrow. Stable capital. Conditions enforced on-chain — funds release only when your terms are met.
         </p>
         <HeroCTAs />
+        <p>DownLoad CHIRPS, convert to monthly sum rainfall data and reproduce similiar plot in the working with NETCDF in R File from the period 1986-2024 for your own country</p>
       </div>
     </section>
   )

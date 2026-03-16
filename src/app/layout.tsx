@@ -7,10 +7,10 @@ import { Toaster } from "@/components/ui/sonner";
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
 
 export const metadata: Metadata = {
-  title: "FundX | Crowdfunding on Bitcoin",
-  description: "Decentralized crowdfunding platform on Stacks.",
+  title: "FundX | Capital Formation",
+  description: "Decentralized Capital Formation platform on Stacks.",
   icons: {
-    icon: "/Logo(1).png",
+    icon: "/LogoFrame.jpg",
   },
 };
 
