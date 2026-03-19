@@ -6,7 +6,7 @@ export default function Logo({ className }: { className?: string }) {
       src="/Logo.svg"
       alt="FundX Logo"
       width={32}
-      height={32}
+      height={16}
       className={className}
     />
   );

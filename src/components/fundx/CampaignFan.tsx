@@ -95,7 +95,7 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
       const slotPageTop = getPageOffsetTop(deckSlotRef.current)
       const deckPageTop = getPageOffsetTop(deckRef.current)
       const CARD_HEIGHT = 420
-      const INITIAL_SCALE = 0.15
+      const INITIAL_SCALE = 0.20
       const scalingCompensation = (CARD_HEIGHT - CARD_HEIGHT * INITIAL_SCALE) / 2
       const offset = slotPageTop - deckPageTop - scalingCompensation
       setDeckOffset(offset)
@@ -123,17 +123,25 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
 
   // Deck travels from hero slot to campaign center
   const deckY = useTransform(smoothProgress, [0, 1], [deckOffset, 0])
-  const deckScale = useTransform(smoothProgress, [0, 1], [0.15, 1])
+  const deckScale = useTransform(smoothProgress, [0, 1], [0.20, 1])
 
   // Left card — peeks out slightly at start, fans to final flex position
   // At scale 1 the flex layout naturally places left card ~310px left of center
-  const leftX = useTransform(smoothProgress, [0, 1], [-100, 0])
+const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
   const leftRotate = useTransform(smoothProgress, [0, 1], [-6, 0])
   const leftZ = useTransform(smoothProgress, [0, 1], [15, 0])
 
-  const rightX = useTransform(smoothProgress, [0, 1], [100, 0])
+  const rightX = useTransform(smoothProgress, [0, 1], [8, 0])
   const rightRotate = useTransform(smoothProgress, [0, 1], [6, 0])
   const rightZ = useTransform(smoothProgress, [0, 1], [15, 0])
+
+  // Animate gap — at scroll 0 cards have no gap (stacked), at scroll 1 gap is 24px
+  const cardGap = useTransform(smoothProgress, [0, 1], [0, 24])
+    // Pull side cards behind center card at scroll 0 using negative margin
+  // At scale 0.15, center card is ~96px wide, side cards are ~45px wide
+  // Negative margin of -320px pulls side cards almost completely behind center
+  const sideCardMargin = useTransform(smoothProgress, [0, 1], [-200, 0])
+
 
   // Center card sits on top at start (highest z), normalizes at end
   const centerZ = useTransform(smoothProgress, [0, 1], [20, 10])
@@ -159,9 +167,6 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
       </motion.div>
 
       {/* 
-        Deck wrapper — the entire flex layout is wrapped in a motion.div.
-        At scroll 0: tiny, translated up into hero, cards stacked via x/rotate transforms.
-        At scroll 1: full size, natural flex layout, transforms zeroed out.
       */}
       <motion.div
         ref={deckRef}
@@ -169,17 +174,19 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
           y: measured ? deckY : 0,
           scale: deckScale,
           transformOrigin: "center center",
+           gap: cardGap,
         }}
-        className="flex flex-col xl:flex-row justify-center items-center xl:items-stretch gap-6 h-auto xl:h-[420px]"
+        className="flex flex-col xl:flex-row justify-center items-center xl:items-stretch h-auto xl:h-[420px]"
       >
 
         {/* Left card */}
-        <motion.div
+     <motion.div
           style={{
             x: leftX,
             rotate: leftRotate,
             zIndex: leftZ,
             position: "relative",
+            marginRight: sideCardMargin,
           }}
           className="w-full xl:w-[300px] flex-shrink-0"
         >
@@ -242,12 +249,13 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
         </motion.div>
 
         {/* Right card */}
-        <motion.div
+ <motion.div
           style={{
             x: rightX,
             rotate: rightRotate,
             zIndex: rightZ,
             position: "relative",
+            marginLeft: sideCardMargin,
           }}
           className="w-full xl:w-[300px] flex-shrink-0"
         >

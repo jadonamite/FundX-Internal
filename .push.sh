@@ -7,7 +7,8 @@ git add .
 git commit -m "$msg"
 
 if [ $? -eq 0 ]; then
-  git push $target main
+  git push $target Makeover
 else
   echo "❌ Commit failed. Fix issues and retry."
 fi
+
