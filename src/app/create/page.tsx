@@ -114,7 +114,7 @@ export default function CreateCampaign() {
               })}
             </div>
 
-            <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100 min-h-[550px] relative">
+            <div className="bg-white p-8 pb-28 rounded-[2rem] shadow-xl border border-slate-100 min-h-[550px] relative">
               {/* RENDER STEP MODULE */}
               <WizardSteps
                 step={step}
