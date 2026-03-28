@@ -179,7 +179,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
          </div>
        </div>
 
-       {/* 🚨 HERE IS OUR NEW RULE CHOICE DROPDOWN */}
+       {/* 🚨 HERE IS OUR UPDATED RULE CHOICE DROPDOWN */}
        <div className="space-y-2 mt-4">
          <Label>Funding Model</Label>
          <Select
@@ -188,12 +188,23 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
            }
            defaultValue={formData.fundingModel}
          >
-           <SelectTrigger className="h-14 rounded-xl text-lg font-bold text-slate-700">
+           {/* 1. Made the box a bit sleeker (h-12), text smaller (text-sm), and forced a solid white background */}
+           <SelectTrigger className="h-12 rounded-xl text-sm font-semibold text-slate-700 bg-white border-slate-200 shadow-sm">
              <SelectValue />
            </SelectTrigger>
-           <SelectContent>
-             <SelectItem value="0">Flexible (Keep what you raise)</SelectItem>
-             <SelectItem value="1">
+
+           {/* 2. Painted the dropdown solid white (bg-white) with a strong shadow so it's no longer see-through */}
+           <SelectContent className="bg-white border-slate-200 shadow-xl rounded-xl z-50">
+             <SelectItem
+               value="0"
+               className="text-sm font-medium text-slate-700 py-3 cursor-pointer"
+             >
+               Flexible (Keep what you raise)
+             </SelectItem>
+             <SelectItem
+               value="1"
+               className="text-sm font-medium text-slate-700 py-3 cursor-pointer"
+             >
                All-or-Nothing (Refunds if goal fails)
              </SelectItem>
            </SelectContent>
