@@ -24,9 +24,9 @@ export function Navbar() {
           <Link href="/create" className="hover:text-primary transition-colors">Create Campaign</Link>
           <Link href="https://bridge.stacks.co/usdc/eth/stx" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Bridge</Link>
           
-          {/* 🚨 ONLY SHOW IF USER IS CONNECTED */}
+       
           {isSignedIn && (
-            <Link href="/dashboard" className="text-slate-900 font-bold hover:text-primary transition-colors">
+            <Link href="/dashboard" className="hover:text-primary transition-colors">
               Dashboard
             </Link>
           )}
