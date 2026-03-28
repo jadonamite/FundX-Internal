@@ -9,7 +9,7 @@ export function CreatorTab() {
        {/* 1. SUCCESSFUL CAMPAIGN */}
        <div className="bg-white p-6 md:p-8 rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
           
-          {/* 🚨 THE ELEGANT ICON WATERMARK */}
+        
           <CheckCircle2 
              strokeWidth={1} 
              className="absolute -right-16 -bottom-16 w-80 h-80 text-green-500 opacity-5 z-0 pointer-events-none" 
@@ -43,7 +43,7 @@ export function CreatorTab() {
        {/* 2. ACTIVE CAMPAIGN */}
        <div className="bg-white p-6 md:p-8 rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
           
-          {/* 🚨 THE ELEGANT ICON WATERMARK */}
+        
           <Rocket 
              strokeWidth={1} 
              className="absolute -right-12 -bottom-16 w-80 h-80 text-orange-500 opacity-[0.04] z-0 pointer-events-none transform -rotate-12" 
@@ -86,7 +86,7 @@ export function CreatorTab() {
        {/* 3. FAILED CAMPAIGN */}
        <div className="bg-slate-50 p-6 md:p-8 rounded-[2rem] border border-slate-200 shadow-[inset_0_4px_20px_rgba(0,0,0,0.02)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden opacity-80 grayscale-[0.5] hover:grayscale-0 transition-all duration-500">
           
-          {/* 🚨 THE ELEGANT ICON WATERMARK */}
+         
           <XCircle 
              strokeWidth={1} 
              className="absolute -right-16 -bottom-16 w-80 h-80 text-slate-500 opacity-5 z-0 pointer-events-none" 
