@@ -6,9 +6,11 @@ export interface Campaign {
   location: string;
   raised: number;
   goal: number;
+    currency: "USDCx" | "STX";
   image: string;
   creator: string;
   creatorImage: string;
+  creatorBio: string;
   daysLeft: number;
   backers: number;
   isTrending?: boolean; // Used to determine the hero campaign

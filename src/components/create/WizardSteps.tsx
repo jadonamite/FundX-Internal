@@ -93,18 +93,9 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                   <Label>Short Tagline</Label>
                   <Input placeholder="Explain it in one catchy sentence..." className="h-14 rounded-xl" value={formData.tagline} onChange={(e) => setFormData({...formData, tagline: e.target.value})} />
                </div>
-               {/* 🚨 NEW: CAMPAIGN COVER IMAGE INPUT */}
-               {/* <div className="space-y-2">
-                  <Label>Cover Image URL</Label>
-                  <Input 
-                     placeholder="https://example.com/image.png" 
-                     className="h-14 rounded-xl" 
-                     value={formData.image  
-                     onChange={(e) => setFormData({...formData, image: e.target.value})} 
-                  />
-               </div> */}
+    
 
-               {/* 🚨 CLEANED UP COVER IMAGE INPUT */}
+           
                <div className="space-y-2">
                   <Label>Cover Image URL</Label>
                   <Input 
