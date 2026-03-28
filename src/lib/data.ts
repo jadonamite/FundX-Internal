@@ -104,15 +104,24 @@ export const CAMPAIGNS: Campaign[] = [
   {
     id: "bitcoin-city",
     title: "Bitcoin City Initiative",
-    tagline :'Infrastru"'
-    description: "Developing urban infrastructure powered by Bitcoin mining heat recycling. A model for sustainable cities.",
+    tagline: 'Infrastructure for the Bitcoin Economy."
+    description:  "Developing urban infrastructure powered by Bitcoin mining heat recycling. A model for sustainable cities.",
     category: "Social Impact",
+    projectStage: "Idea",
     location: "El Salvador",
-    raised: 125000,
+    raised: 12500,
     goal: 500000,
+    currency: "USDCx",
     image: "/campaign-4.jpg", 
     creator: "CityDAO",
     creatorImage: "https://github.com/shadcn.png",
+    creatorBio: "Renewable energy experts turning stranded solar power into hash rate.",
+    twitter: "@CityDAO",
+    github: "github.com/citydao",
+    portfolio: "citydao.com",
+    videoUrl: "https://vimeo.com/demo",
+    budgetBreakdown: "80% Hardware Procurement, 20% Land Lease",
+    roadmap: "Month 1: Secure Land. Month 2: Install Solar Array. Month 3: Deploy ASICs.",
     daysLeft: 120,
     backers: 450,
     isTrending: false
@@ -120,6 +129,7 @@ export const CAMPAIGNS: Campaign[] = [
   {
     id: "stacks-gaming",
     title: "Polyverse",
+    tagline: "An MMORPG where every item is a Bitcoin NFT. Play, earn, and own your assets on the most secure chain.",
     description: "An MMORPG where every item is a Bitcoin NFT. Play, earn, and own your assets on the most secure chain.",
     category: "Gaming",
     location: "Seoul, South Korea",
