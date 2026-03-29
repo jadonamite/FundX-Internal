@@ -1,10 +1,21 @@
 "use client"
 
-i
+import { useState, useMemo, useEffect } from "react"
+import { Navbar } from "@/components/fundx/Navbar"
+import { Footer } from "@/components/fundx/Footer"
+import { CampaignCard } from "@/components/fundx/CampaignCard"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Search, ArrowUp, Sparkles, Filter } from "lucide-react" // 🚨 ADDED: Filter icon
+import { CAMPAIGNS } from "@/lib/data"
+
+const CATEGORIES = ["All", "DeFi", "Mining", "Gaming", "Social Impact", "Infrastructure"]
+const STATUSES = ["All", "active", "successful", "failed"] // 🚨 ADDED: Status options
+
 export default function ExplorePage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
-  const [statusFilter, setStatusFilter] = useState<"All" | CampaignStatus>("All") // 🚨 New state
+  const [statusFilter, setStatusFilter] = useState("All") // 🚨 ADDED: Status state
   const [visibleCount, setVisibleCount] = useState(3) // Start low to show "Load More"
   const [showScrollTop, setShowScrollTop] = useState(false)
 
@@ -21,7 +32,7 @@ export default function ExplorePage() {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
-  // 2. Filter Logic (🚨 Now includes status matching)
+  // 2. Filter Logic
   const filteredCampaigns = useMemo(() => {
     return CAMPAIGNS.filter((c) => {
       const matchesSearch = 
@@ -30,11 +41,13 @@ export default function ExplorePage() {
       
       const matchesCategory = selectedCategory === "All" || c.category === selectedCategory || (selectedCategory === "DeFi" && c.category.includes("DeFi"))
 
+      // 🚨 ADDED: Status matching logic
       const matchesStatus = statusFilter === "All" || c.status === statusFilter
 
+      // 🚨 ADDED: Include matchesStatus in the return
       return matchesSearch && matchesCategory && matchesStatus
     })
-  }, [searchQuery, selectedCategory, statusFilter])
+  }, [searchQuery, selectedCategory, statusFilter]) // 🚨 ADDED: statusFilter to dependencies
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 3)
@@ -56,7 +69,7 @@ export default function ExplorePage() {
         <div className="mb-12 text-center max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-6 duration-700">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-500 mb-6">
              <Sparkles className="w-3 h-3 text-orange-500" />
-             <span>{CAMPAIGNS.filter(c => c.status === 'active').length} Active Campaigns</span>
+             <span>{CAMPAIGNS.length} Active Campaigns</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6">
             Explore the <span className="bg-gradient-tush bg-clip-text text-transparent">Economy</span>
@@ -68,16 +81,15 @@ export default function ExplorePage() {
         </div>
 
         {/* STICKY GLASS CONTROL BAR */}
-        <div className="sticky top-24 z-30 bg-white/70 backdrop-blur-xl border border-white/40 shadow-soft-xl rounded-2xl p-4 mb-10 transition-all duration-300 ring-1 ring-slate-900/5 space-y-4">
-          
-          {/* Top Row: Search & Categories */}
-          <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
+        <div className="sticky top-24 z-30 bg-white/70 backdrop-blur-xl border border-white/40 shadow-soft-xl rounded-2xl p-2 mb-10 transition-all duration-300 ring-1 ring-slate-900/5">
+          <div className="flex flex-col md:flex-row gap-2 justify-between items-center p-2">
+             
              {/* Search Input */}
              <div className="relative w-full md:w-96 group">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 group-focus-within:text-orange-500 transition-colors" />
                 <Input 
                   placeholder="Search campaigns..." 
-                  className="pl-11 h-12 rounded-xl bg-white/50 border-slate-200 focus:bg-white focus:border-orange-200 focus:ring-4 focus:ring-orange-500/10 transition-all"
+                  className="pl-11 h-12 rounded-xl bg-white/50 border-transparent focus:bg-white focus:border-orange-200 focus:ring-4 focus:ring-orange-500/10 transition-all"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -103,18 +115,18 @@ export default function ExplorePage() {
              </div>
           </div>
 
-          {/* 🚨 Bottom Row: Status Filters */}
-          <div className="flex items-center gap-3 pt-4 border-t border-slate-200/50">
-             <div className="flex items-center gap-2 text-sm font-semibold text-slate-400">
+          {/* 🚨 ADDED: The Status Filters Row (Sits safely below your original flex row) */}
+          <div className="flex items-center gap-3 mt-2 pt-4 pb-2 px-2 border-t border-slate-200/50 overflow-x-auto no-scrollbar">
+             <div className="flex items-center gap-2 text-sm font-semibold text-slate-400 whitespace-nowrap">
                <Filter className="w-4 h-4" /> Status:
              </div>
-             <div className="flex gap-2 overflow-x-auto no-scrollbar">
+             <div className="flex gap-2">
                 {STATUSES.map((status) => (
                   <button
                     key={status}
-                    onClick={() => setStatusFilter(status as any)}
+                    onClick={() => setStatusFilter(status)}
                     className={`
-                      px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-300 border
+                      px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-300 border whitespace-nowrap
                       ${statusFilter === status 
                         ? "bg-orange-50 border-orange-200 text-orange-600 shadow-sm" 
                         : "bg-white border-slate-200 text-slate-400 hover:border-slate-300 hover:text-slate-600"
@@ -135,7 +147,7 @@ export default function ExplorePage() {
             {filteredCampaigns.slice(0, visibleCount).map((campaign, index) => (
               <div 
                 key={campaign.id} 
-                className={`h-[480px] animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-backwards ${campaign.status === 'failed' ? 'opacity-60 grayscale-[0.5] hover:grayscale-0 transition-all' : ''}`}
+                className={`h-[480px] animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-backwards ${campaign.status === 'failed' ? 'opacity-60 grayscale-[0.5] hover:grayscale-0 transition-all' : ''}`} // 🚨 ADDED: Grayscale effect for failed campaigns
                 style={{ animationDelay: `${index * 100}ms` }} // Stagger Effect
               >
                 <CampaignCard 
@@ -145,7 +157,7 @@ export default function ExplorePage() {
                   raised={campaign.raised}
                   goal={campaign.goal}
                   image={campaign.image}
-                  currency={campaign.currency} // 🚨 Passed currency in to match master data
+                  currency={campaign.currency} // 🚨 ADDED: Currency to support multi-asset mock data
                 />
               </div>
             ))}
@@ -159,7 +171,7 @@ export default function ExplorePage() {
              <p className="text-slate-500 mb-6">We couldn't find anything matching your filters.</p>
              <Button 
                 variant="outline"
-                onClick={() => {setSearchQuery(""); setSelectedCategory("All"); setStatusFilter("All")}}
+                onClick={() => {setSearchQuery(""); setSelectedCategory("All"); setStatusFilter("All");}} // 🚨 ADDED: Reset status filter
                 className="rounded-full border-slate-300 hover:bg-slate-50"
              >
                 Clear Filters
