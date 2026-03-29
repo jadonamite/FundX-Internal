@@ -6,7 +6,7 @@ import { ConnectWallet } from "@/components/fundx/ConnectWallet"
 import { useStacks } from "@/components/fundx/StacksProvider"
 
 export function Navbar() {
-  // Pull in the connection status to know if we should show the Dashboard link
+  // Pull in the_ connection status to know if we should show the_ Dashboard link
   const { isSignedIn } = useStacks()
 
   return (
