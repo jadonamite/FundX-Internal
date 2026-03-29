@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useMemo, useEffect } from "react"
 import { Navbar } from "@/components/fundx/Navbar"
-import { Footer } from "@/components/fundx/Footer"
-import { CampaignCard } from "@/components/fundx/CampaignCard"
+import { useState, useMemo, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Search, ArrowUp, Sparkles, Filter } from "lucide-react" // 🚨 ADDED: Filter icon
 import { CAMPAIGNS } from "@/lib/data"
+import { CampaignCard } from "@/components/fundx/CampaignCard"
+import { Search, ArrowUp, Sparkles, Filter } from "lucide-react" // 🚨 ADDED: Filter icon
+import { Footer } from "@/components/fundx/Footer"
 
 const CATEGORIES = ["All", "DeFi", "Mining", "Gaming", "Social Impact", "Infrastructure"]
 const STATUSES = ["All", "active", "successful", "failed"] // 🚨 ADDED: Status options
@@ -166,7 +166,7 @@ export default function ExplorePage() {
 
         {/* RESULTS GRID (Staggered Animation) */}
         {filteredCampaigns.length > 0 ? (
-          <div className="grid md:grid-cols_-2 xl:grid-cols_-3 gap-8">
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
             {filteredCampaigns.slice(0, visibleCount).map((campaign, index) => (
               <div 
                 key={campaign.id} 
