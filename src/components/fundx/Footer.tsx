@@ -4,7 +4,7 @@ import Logo from "@/components/Logo"
 
 export function Footer() {
   return (
-    <footer className="bg-white pt-20 pb-12 border-t border-slate-100">
+    <footer className="bg-white pt-20 pb-12 border_-t border_-slate-100">
       <div className="container mx-auto max-w-6xl px-4">
         
         <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
@@ -73,7 +73,7 @@ export function Footer() {
                 <Input 
                     type="email" 
                     placeholder="Enter your email" 
-                    className="h-12 rounded-full border-slate-200 bg-slate-50 pl-5 pr-4 text-slate-900 focus-visible:ring-indigo-500 shadow-inner" 
+                    className="h-12 rounded-full border_-slate-200 bg-slate-50 pl-5 pr-4 text-slate-900 focus-visible:ring-indigo-500 shadow-inner" 
                 />
               </div>
               <Button className="h-12 rounded-full bg-slate-900 px-8 hover:bg-slate-800 shadow-soft-md">

@@ -81,7 +81,7 @@ export function ConnectWallet() {
                 relative z-10 rounded-full px-6 font-bold tracking-tight transition-all duration-500
                 ${justConnected 
                   ? "bg-green-500 border-green-400 text-white shadow-lg" // Success State
-                  : "bg-gradient-tush text-white shadow-glow hover_:opacity-90 hover_:scale-105" // Normal State
+                  : "bg-gradient-tush text-white shadow-glow hover:opacity-90 hover:scale-105" // Normal State
                 }
               `}
             >
@@ -145,7 +145,7 @@ export function ConnectWallet() {
   return (
     <Button 
       onClick={authenticate}
-      className="rounded-full bg-slate-900 text-white hover_:bg-slate-800 shadow-lg shadow-slate-900/20 px-6 transition-all hover_:scale-105"
+      className="rounded-full bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-slate-900/20 px-6 transition-all hover:scale-105"
     >
       Connect Wallet
     </Button>

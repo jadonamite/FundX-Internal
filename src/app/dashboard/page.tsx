@@ -21,7 +21,7 @@ export default function DashboardPage() {
            <Wallet className="w-16 h-16 text-slate-300 mx-auto mb-6" />
            <h1 className="text-3xl font-bold text-slate-900 mb-4">Connect your wallet</h1>
            <p className="text-slate-500 mb-8">You need to connect your Stacks wallet to view your dashboard.</p>
-           <Button onClick={authenticate} size="lg" className="h-12 px-8 rounded_-xl bg-slate-900 text-white hover:scale-105 transition-transform">
+           <Button onClick={authenticate} size="lg" className="h-12 px-8 rounded-xl bg-slate-900 text-white hover:scale-105 transition-transform">
              Connect Wallet
            </Button>
         </div>
@@ -39,7 +39,7 @@ export default function DashboardPage() {
         
         {/* Header */}
         <div className="flex items-center gap-3 mb-10">
-           <div className="p-3 bg-white rounded_-2xl shadow-sm border border-slate-100">
+           <div className="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
              <LayoutDashboard className="w-6 h-6 text-orange-500" />
            </div>
            <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Capital Hub</h1>
@@ -47,11 +47,11 @@ export default function DashboardPage() {
 
         {/* The Tabs (Creator vs Backer) */}
         <Tabs defaultValue="campaigns" className="w-full">
-          <TabsList className="bg-transparent border-b border-slate-200 rounded_-none w-full justify-start h-auto p-0 mb-8 no-scrollbar">
-            <TabsTrigger value="campaigns" className="rounded_-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:text-orange-600 px-6 py-3 text-base font-bold">
+          <TabsList className="bg-transparent border-b border-slate-200 rounded-none w-full justify-start h-auto p-0 mb-8 no-scrollbar">
+            <TabsTrigger value="campaigns" className="rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:text-orange-600 px-6 py-3 text-base font-bold">
               My Campaigns
             </TabsTrigger>
-            <TabsTrigger value="contributions" className="rounded_-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:text-orange-600 px-6 py-3 text-base font-bold">
+            <TabsTrigger value="contributions" className="rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:text-orange-600 px-6 py-3 text-base font-bold">
               My Contributions
             </TabsTrigger>
           </TabsList>
