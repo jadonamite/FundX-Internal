@@ -36,12 +36,12 @@ export default function ExplorePage() {
   const filteredCampaigns = useMemo(() => {
     // Step 1: Safely Filter
     const filtered = CAMPAIGNS.filter((c) => {
-      const searchTarget = searchQuery.toLowerCase_();
+      const searchTarget = searchQuery.toLowerCase();
       
       // Fallbacks added: (c.title || "") prevents crashes if a field is accidentally left blank
       const matchesSearch = 
-        (c.title || "").toLowerCase_().includes(searchTarget) || 
-        (c.description || "").toLowerCase_().includes(searchTarget);
+        (c.title || "").toLowerCase().includes(searchTarget) || 
+        (c.description || "").toLowerCase().includes(searchTarget);
       
       const matchesCategory = 
         selectedCategory === "All" || 
