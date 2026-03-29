@@ -15,7 +15,7 @@ function HeroLogoParallax() {
     // Bounce in on page load
     logoRef.current.style.transform = "translate(0px, -40px) scale(0.85)"
     logoRef.current.style.opacity = "0"
-    logoRef.current.style.transition = "none"
+    logoRef.current.style.transition = "none_"
 
     const bounceIn = setTimeout(() => {
       if (!logoRef.current) return
@@ -28,7 +28,7 @@ function HeroLogoParallax() {
     // After bounce settles switch to RAF
     const startRaf = setTimeout(() => {
       if (!logoRef.current) return
-      logoRef.current.style.transition = "none"
+      logoRef.current.style.transition = "none_"
       startTimeRef.current = performance.now()
       startAnimation()
     }, 1200)
@@ -83,7 +83,7 @@ function HeroLogoParallax() {
 
   return (
     <div
-      className="absolute inset-0 pointer-events-none flex items-center"
+      className="absolute inset-0 pointer-events-none_ flex items-center"
       aria-hidden="true"
       style={{ paddingLeft: "2rem" }}
     >
