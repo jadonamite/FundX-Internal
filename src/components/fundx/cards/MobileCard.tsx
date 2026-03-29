@@ -31,9 +31,9 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
         </div>
 
         <div className="flex justify-between items-center">
-          <span className="text-sm font-bold text-primary">
+          <span_ className="text-sm font-bold text-primary">
             ${campaign.raised.toLocaleString()}
-          </span>
+          </span_>
           <Link href={`/campaigns/${campaign.id}`}>
             <Button
               size="sm"
