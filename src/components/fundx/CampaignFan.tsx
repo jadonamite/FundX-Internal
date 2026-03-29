@@ -45,7 +45,7 @@ function SideCard({ campaign, progress, tilt }: SideCardProps) {
       </div>
       <div className="p-6 flex flex-col justify-between flex-1 bg-white">
         <div>
-          <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
+          <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors_">
             {campaign.title}
           </h3>
           <p className="text-sm text-slate-500 line-clamp-2">{campaign.description}</p>
@@ -216,7 +216,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
             </div>
             <div className="flex flex-col justify-between p-8 md:w-7/12 h-full bg-white">
               <div className="pt-4">
-                <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-primary transition-colors">
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-primary transition-colors_">
                   {hero.title}
                 </h3>
                 <p className="text-slate-500 leading-relaxed mb-6 text-sm md:text-base">

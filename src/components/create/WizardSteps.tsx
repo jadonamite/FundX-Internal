@@ -32,7 +32,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
               </div>
               <div className="space-y-2">
                  <Label>Email (Private)</Label>
-                 <Input placeholder="you@example_.com" className="h-14 rounded-xl" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
+                 <Input placeholder="you@example.com" className="h-14 rounded-xl" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
               </div>
             </div>
             <div className="grid md:grid-cols-3 gap-5">
@@ -99,7 +99,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                <div className="space-y-2">
                   <Label>Cover Image URL</Label>
                   <Input 
-                     placeholder="https://example_.com/image.png" 
+                     placeholder="https://example.com/image.png" 
                      className="h-14 rounded-xl" 
                      value={formData.image} 
                      onChange={(e) => setFormData({...formData, image: e.target.value})} 
