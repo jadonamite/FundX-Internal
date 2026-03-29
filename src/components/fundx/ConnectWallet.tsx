@@ -1,9 +1,9 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { Button } from "@/components/ui/button"
-import { useStacks } from "@/components/fundx/StacksProvider"
 import { 
+import { Button } from "@/components/ui/button"
+import { ChevronDown, Copy, LogOut, Wallet } from "lucide-react"
+import { useStacks } from "@/components/fundx/StacksProvider"
   DropdownMenu, 
   DropdownMenuContent, 
   DropdownMenuItem, 
@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator, 
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu"
-import { ChevronDown, Copy, LogOut, Wallet } from "lucide-react"
+import { useEffect, useState } from "react"
 import { toast } from "sonner" // <--- Import Toast
 
 export function ConnectWallet() {
@@ -68,7 +68,7 @@ export function ConnectWallet() {
     const isMainnet = addr.startsWith("SP") // SP = Mainnet, ST = Testnet
 
     return (
-      <div className="relative_ inline-flex"> {/* Wrapper for positioning the ping */}
+      <div className="relative inline-flex"> {/* Wrapper for positioning the ping */}
         
         {justConnected && (
            <span className="absolute -inset-1 rounded-full bg-green-500 opacity-75 animate-ping duration-1000" />
@@ -78,7 +78,7 @@ export function ConnectWallet() {
           <DropdownMenuTrigger asChild>
             <Button 
               className={`
-                relative_ z-10 rounded-full px-6 font-bold tracking-tight transition-all duration-500
+                relative z-10 rounded-full px-6 font-bold tracking-tight transition-all duration-500
                 ${justConnected 
                   ? "bg-green-500 border-green-400 text-white shadow-lg" // Success State
                   : "bg-gradient-tush text-white shadow-glow hover:opacity-90 hover:scale-105" // Normal State
