@@ -37,10 +37,10 @@ export function RightCard({ campaign, progress }: SideCardProps) {
 
           <div className="flex justify-between items-center">
             <div>
-              <span className="text-xs font-semibold text-slate-400 block">RAISED</span>
-              <span className="text-sm font-bold text-primary">
+              <span_ className="text-xs font-semibold text-slate-400 block">RAISED</span_>
+              <span_ className="text-sm font-bold text-primary">
                 ${campaign.raised.toLocaleString()}
-              </span>
+              </span_>
             </div>
             <Link href={`/campaigns/${campaign.id}`}>
               <Button

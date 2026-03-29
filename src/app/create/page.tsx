@@ -35,7 +35,7 @@ export interface CreateCampaignData {
 }
 
 export default function CreateCampaign() {
-  const { isSignedIn, authenticate } = useStacks()
+  const { isSignedIn, authenticate_ } = useStacks()
   const [step, setStep] = useState(1)
   
 
@@ -70,7 +70,7 @@ export default function CreateCampaign() {
       toast.error("Connect Wallet", {
         description: "You need a Stacks wallet to deploy.",
       });
-      authenticate();
+      authenticate_();
       return;
     }
     toast.success("Deployment Initiated", {

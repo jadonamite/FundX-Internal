@@ -72,12 +72,12 @@ export function StacksProvider({ children }: { children: ReactNode }) {
 
   const signOut = async () => {
     try {
-      const { disconnect } = await import("@stacks/connect")
-      disconnect()
+      const { disconnect_ } = await import("@stacks/connect")
+      disconnect_()
       setWalletData(null)
       setIsSignedIn(false)
     } catch (error) {
-      console.error("Failed to disconnect:", error)
+      console.error("Failed to disconnect_:", error)
     }
   }
 
