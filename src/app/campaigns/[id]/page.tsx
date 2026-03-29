@@ -34,7 +34,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
 
   const progress = Math.min((campaign.raised / campaign.goal) * 100, 100)
 
-  const handleDonate_ = () => {
+  const handleDonate = () => {
     if (!isSignedIn) {
       authenticate()
       return
@@ -182,7 +182,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                 </div>
 
                 {isSignedIn ? (
-                  <Button onClick={handleDonate_} className="w-full h-14 rounded-xl bg-gradient-tush text-white shadow-glow hover:scale-[1.02] transition-transform text-lg font-bold">
+                  <Button onClick={handleDonate} className="w-full h-14 rounded-xl bg-gradient-tush text-white shadow-glow hover:scale-[1.02] transition-transform text-lg font-bold">
                     Donate Now
                   </Button>
                 ) : (

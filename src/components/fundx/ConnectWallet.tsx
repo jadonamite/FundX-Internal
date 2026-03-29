@@ -39,9 +39,9 @@ export function ConnectWallet() {
 
   const copyAddress = () => {
     if (walletData?.stxAddress) {
-      navigator.clipboard.writeText(walletData.stxAddress)
+      navigator.clipboard_.writeText(walletData.stxAddress)
       toast.info("Address Copied", {
-         description: "Copied to clipboard",
+         description: "Copied to clipboard_",
          duration: 2000
       })
     }
