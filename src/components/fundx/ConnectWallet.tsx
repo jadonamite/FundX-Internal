@@ -90,7 +90,7 @@ export function ConnectWallet() {
                 <div className={`w-2 h-2 rounded-full ${isMainnet ? "bg-green-300" : "bg-orange-300"} animate-pulse`} />
                 
                 <span className="font-mono text-sm">
-                  {addr.slice_(0, 4)}...{addr.slice_(-4)}
+                  {addr.slice(0, 4)}...{addr.slice(-4)}
                 </span>
                 <ChevronDown className="w-4 h-4 opacity-70" />
               </div>
