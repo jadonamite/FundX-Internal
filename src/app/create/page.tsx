@@ -1,15 +1,15 @@
 "use client"
 
-import { useState } from "react"
-import { Navbar } from "@/components/fundx/Navbar"
+import { useStacks } from "@/components/fundx/StacksProvider"
+import { WizardSteps } from "@/components/create/WizardSteps"
 import { Footer } from "@/components/fundx/Footer"
+import { Navbar } from "@/components/fundx/Navbar"
+import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
-import { useStacks } from "@/components/fundx/StacksProvider"
-import { toast } from "sonner"
 
-import { WizardSteps } from "@/components/create/WizardSteps"
 import { LivePreview } from "@/components/create/LivePreview"
+import { useState } from "react"
 
 
 export interface CreateCampaignData {
@@ -99,11 +99,11 @@ export default function CreateCampaign() {
        {/* Steps Indicator */}
             <div className="flex gap-4 mb-8 overflow-x-auto pb-2 no-scrollbar">
                {["Identity", "Bio", "Basics", "Story", "Execute", "Fund"].map((label, idx) => {
-                 const num_ = idx + 1;
+                 const num = idx + 1;
                  
                  // 🚨 Determine the status of the step
-                 const isCompleted = step > num_;
-                 const isCurrent = step === num_;
+                 const isCompleted = step > num;
+                 const isCurrent = step === num;
                  
                  // 🚨 Apply the right colors
                  let circleStyle = "bg-white text-slate-300 border-slate-200"; // Upcoming
@@ -111,9 +111,9 @@ export default function CreateCampaign() {
                  else if (isCurrent) circleStyle = "bg-slate-900 text-white border-slate-900"; // Current (Black)
 
                  return (
-                   <div key={num_} className="flex items-center gap-2 shrink-0">
+                   <div key={num} className="flex items-center gap-2 shrink-0">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2 transition-all ${circleStyle}`}>
-                         {isCompleted ? <CheckCircle2 className="w-8 h-8" /> : num_}
+                         {isCompleted ? <CheckCircle2 className="w-8 h-8" /> : num}
                       </div>
                       <span className={`text-sm font-bold ${isCompleted || isCurrent ? "text-slate-900" : "text-slate-300"}`}>{label}</span>
                    </div>
