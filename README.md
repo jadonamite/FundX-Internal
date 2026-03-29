@@ -1,3 +1,8 @@
+
+* **Smart Contract:** Clarity (Stacks 2.5)
+* **Frontend:** Next.js 14, React, Tailwind CSS
+* **Integration:** Stacks.js, Allbridge Core SDK (Widget)
+* **Testing:** Clarinet, Vitest
 # FundX 
 
 **Stable Crowdfunding on Stacks. Powered by USDCx.**
@@ -16,11 +21,6 @@ FundX is a decentralized fundraising platform that solves the "volatility risk" 
 * **SIP-010 Compatible:** Built to the standard Stacks Fungible Token specification.
 
 ## 🏗 Technical Stack
-* **Smart Contract:** Clarity (Stacks 2.5)
-* **Frontend:** Next.js 14, React, Tailwind CSS
-* **Integration:** Stacks.js, Allbridge Core SDK (Widget)
-* **Testing:** Clarinet, Vitest
-
 ## ⚡ Quick Start
 
 ### 1. Prerequisites
