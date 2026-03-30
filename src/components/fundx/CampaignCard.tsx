@@ -30,7 +30,7 @@ export function CampaignCard({ id, title, description, raised, goal, image, curr
             src={image}
             alt={title}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-700"
+            className="object-cover group-hover:scale_-105 transition-transform duration-700"
           />
         </div>
 
@@ -49,7 +49,7 @@ export function CampaignCard({ id, title, description, raised, goal, image, curr
             <Progress value={percentage} className="h-3 rounded-full bg-slate-100" />
           </div>
 
-          <Button className="w-full rounded-xl bg-slate-900 text-white shadow-lg transition-all duration-500 hover:bg-gradient-tush hover:shadow-glow hover:scale-[1.02] py-6 text-base font-bold">
+          <Button className="w-full rounded-xl bg-slate-900 text-white shadow-lg transition-all duration-500 hover:bg-gradient-tush hover:shadow-glow hover:scale_-[1.02] py-6 text-base font-bold">
             Donate Now
           </Button>
         </div>
