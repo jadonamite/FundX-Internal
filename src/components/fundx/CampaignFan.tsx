@@ -156,7 +156,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
       {/* Heading */}
       <motion.div
         style={{ opacity: headingOpacity, y: headingY }}
-        className="mb-20 text-center max-w-2xl mx-auto"
+        className="mb-20 text-center max_-w-2xl mx-auto"
       >
         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
           Trending Campaigns
@@ -200,7 +200,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
         {/* Center card */}
         <motion.div
           style={{ zIndex: centerZ, position: "relative" }}
-          className="w-full max-w-3xl xl:flex-1"
+          className="w-full max_-w-3xl xl:flex-1"
         >
           <div className="relative z-20 shadow-2xl rounded-[2rem] border border-slate-100 bg-white hover:border-orange-200 transition-all duration-300 flex flex-col md:flex-row overflow-hidden group h-full">
             <div className="absolute top-4 left-4 z-30 bg-gradient-tush text-white px-4 py-1 rounded-full text-xs font-bold shadow-soft-xl animate-pulse">
