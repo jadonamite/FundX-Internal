@@ -2,7 +2,7 @@ import { AppConfig, UserSession, showConnect } from "@stacks/connect";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 
-export const userSession = new UserSession({ appConfig });
+export const userSession_ = new UserSession({ appConfig });
 
 export function authenticate() {
   showConnect({
@@ -14,11 +14,11 @@ export function authenticate() {
     onFinish: () => {
       window.location.reload(); // Refresh page to update the UI
     },
-    userSession,
+    userSession_,
   });
 }
 
 export function signUserOut() {
-  userSession.signUserOut();
+  userSession_.signUserOut();
   window.location.reload();
 }
