@@ -22,7 +22,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
 
   // Check connection status on mount
   useEffect(() => {
-    const checkConnection = async_ () => {
+    const checkConnection = async () => {
       try {
         const { isConnected, getLocalStorage } = await import("@stacks/connect")
         if (isConnected()) {
@@ -43,7 +43,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
     checkConnection()
   }, [])
 
-  const authenticate = async_ () => {
+  const authenticate = async () => {
     try {
       const { connect } = await import("@stacks/connect")
       
@@ -70,7 +70,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  const signOut = async_ () => {
+  const signOut = async () => {
     try {
       const { disconnect } = await import("@stacks/connect")
       disconnect()
