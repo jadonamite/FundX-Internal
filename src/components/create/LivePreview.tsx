@@ -13,7 +13,7 @@ export function LivePreview({ formData }: { formData: any }) {
         <div className="transform scale-110 origin-top">
             <CampaignCard 
                 id="preview"
-                title_={formData.title_ || "Untitled Campaign"}
+                title={formData.title || "Untitled Campaign"}
                 description={formData.tagline || "Your campaign description will appear here..."}
                 raised={0}
                 goal={Number(formData.goal) || 10000}
