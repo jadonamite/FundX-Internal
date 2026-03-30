@@ -1,6 +1,6 @@
-import "./globals.css";
-import { Plus_Jakarta_Sans } from "next/font/google";
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import "./globals.css";
 import { StacksProvider } from "@/components/fundx/StacksProvider";
 import { Toaster } from "@/components/ui/sonner"; 
 
