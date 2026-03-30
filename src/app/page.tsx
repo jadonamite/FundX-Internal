@@ -2,10 +2,10 @@
 
 import { useRef } from "react"
 import { Navbar } from "@/components/fundx/Navbar"
-import { Hero } from "@/components/fundx/hero/index"
 import { LogoStrip } from "@/components/fundx/LogoStrip"
-import { Footer } from "@/components/fundx/Footer"
 import { CampaignFan } from "@/components/fundx/CampaignFan"
+import { Footer } from "@/components/fundx/Footer"
+import { Hero } from "@/components/fundx/hero/index"
 
 export default function Home() {
   const deckSlotRef = useRef<HTMLDivElement | null>(null)

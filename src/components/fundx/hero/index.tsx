@@ -13,7 +13,7 @@ export { HeroDeckSlot }
 
 export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElement | null> }) {
   const [isStacksMode, setIsStacksMode] = useState(false)
-  const [displayStacks, setDisplayStacks] = useState(false)
+  const [displayStacks_, setDisplayStacks] = useState(false)
   const [glitching, setGlitching] = useState(false)
   const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 })
   const [glitchOpacity, setGlitchOpacity] = useState(1)
@@ -71,7 +71,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
       <div className="container relative z-10 mx-auto max-w-5xl px-4 text-center">
         <HeroBadge />
         <HeroHeadline
-          displayStacks={displayStacks}
+          displayStacks_={displayStacks_}
           glitching={glitching}
           glitchOffset={glitchOffset}
           glitchOpacity={glitchOpacity}
