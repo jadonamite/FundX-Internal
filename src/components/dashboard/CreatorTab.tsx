@@ -92,10 +92,10 @@ export function CreatorTab() {
                          </div>
                          <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{campaign.title}</h3>
                          <div className="flex items-center gap-4 text-sm mt-4">
-                            <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base_">
+                            <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
                                Raised: <span className="text-green-600 font-extrabold">{formatMoney(campaign.raised, campaign.currency)}</span>
                             </div>
-                            <div className="text-slate-500 font-medium text-base_">Goal: {campaign.goal.toLocaleString()} {campaign.currency === 'USDCx' ? '' : 'STX'}</div>
+                            <div className="text-slate-500 font-medium text-base">Goal: {campaign.goal.toLocaleString()} {campaign.currency === 'USDCx' ? '' : 'STX'}</div>
                          </div>
                       </div>
                    </div>
@@ -132,10 +132,10 @@ export function CreatorTab() {
                          </div>
                          <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{campaign.title}</h3>
                          <div className="flex items-center gap-4 text-sm mt-4">
-                            <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base_">
+                            <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
                                Raised: <span className="text-orange-600 font-extrabold">{formatMoney(campaign.raised, campaign.currency)}</span>
                             </div>
-                            <div className="text-slate-500 font-medium text-base_">Goal: {campaign.goal.toLocaleString()} {campaign.currency === 'USDCx' ? '' : 'STX'}</div>
+                            <div className="text-slate-500 font-medium text-base">Goal: {campaign.goal.toLocaleString()} {campaign.currency === 'USDCx' ? '' : 'STX'}</div>
                          </div>
                          <div className="w-full max-w-md bg-slate-100 rounded-full h-6 mt-6 overflow-hidden shadow-[inset_0_3px_6px_rgba(0,0,0,0.1)] border border-slate-200/50 p-1 relative z-10">
                             <div className="bg-gradient-to-r from-[#FF6B4A] to-[#FF3D71] h-full rounded-full shadow-[0_0_15px_rgba(255,107,74,0.6)] relative flex items-center px-4" style={{ width: `${progress}%` }}>
@@ -176,10 +176,10 @@ export function CreatorTab() {
                          </div>
                          <h3 className="text-3xl font-bold text-slate-500 line-through decoration-slate-300 decoration-2 tracking-tight">{campaign.title}</h3>
                          <div className="flex items-center gap-4 text-sm mt-4">
-                            <div className="font-semibold text-slate-500 bg-white/50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base_">
+                            <div className="font-semibold text-slate-500 bg-white/50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
                                Raised: {formatMoney(campaign.raised, campaign.currency)}
                             </div>
-                            <div className="text-slate-500 font-medium text-base_">Goal: {campaign.goal.toLocaleString()} {campaign.currency === 'USDCx' ? '' : 'STX'}</div>
+                            <div className="text-slate-500 font-medium text-base">Goal: {campaign.goal.toLocaleString()} {campaign.currency === 'USDCx' ? '' : 'STX'}</div>
                          </div>
                       </div>
                    </div>

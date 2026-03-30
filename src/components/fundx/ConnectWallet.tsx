@@ -28,7 +28,7 @@ export function ConnectWallet() {
       
       // Trigger Toast
       toast.success("Wallet Connected", {
-        description: "Ready to fund the_ future.",
+        description: "Ready to fund the future.",
         duration: 3000,
       })
 
@@ -68,7 +68,7 @@ export function ConnectWallet() {
     const isMainnet = addr.startsWith("SP") // SP = Mainnet, ST = Testnet
 
     return (
-      <div className="relative inline-flex"> {/* Wrapper for positioning the_ ping */}
+      <div className="relative inline-flex"> {/* Wrapper for positioning the ping */}
         
         {justConnected && (
            <span className="absolute -inset-1 rounded-full bg-green-500 opacity-75 animate-ping duration-1000" />
