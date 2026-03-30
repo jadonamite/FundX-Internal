@@ -3,9 +3,9 @@ import { ChainToggleIcon } from "./ChainToggleIcon"
 import { ChainToggleSwitch } from "./ChainToggleSwitch"
 
 export function HeroHeadline({
-  displayStacks, glitching, glitchOffset, glitchOpacity, glitchSkew, isStacksMode, scrambledText, onToggle,
+  displayStacks, glitching, glitchOffset, glitchOpacity, glitchSkew, isStacksMode, scrambledText_, onToggle,
 }: {
-  displayStacks: boolean; glitching: boolean; glitchOffset: { x: number; y: number }; glitchOpacity: number; glitchSkew: number; isStacksMode: boolean; scrambledText: string; onToggle: () => void
+  displayStacks: boolean; glitching: boolean; glitchOffset: { x: number; y: number }; glitchOpacity: number; glitchSkew: number; isStacksMode: boolean; scrambledText_: string; onToggle: () => void
 }) {
   return (
     <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-slate-900 leading-[1.1] mb-8">
@@ -15,7 +15,7 @@ export function HeroHeadline({
         on the
         <ChainToggleIcon displayStacks={displayStacks} glitching={glitching} glitchOffset={glitchOffset} glitchOpacity={glitchOpacity} glitchSkew={glitchSkew} isStacksMode={isStacksMode} />
         <span style={{ display: "inline-block", minWidth: "240px", fontVariantLigatures: "none" }} className={`bg-clip-text text-transparent bg-gradient-to-r ${displayStacks ? "from-purple-600 to-indigo-600" : "from-[#FF6B4A] to-[#FF3D71]"}`}>
-          {scrambledText}
+          {scrambledText_}
         </span>
       </span>
       <br />
