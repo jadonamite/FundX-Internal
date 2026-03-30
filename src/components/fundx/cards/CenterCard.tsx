@@ -13,7 +13,7 @@ export function CenterCard({ campaign, progress }: CenterCardProps) {
     <div className="w-full h-full relative z-20 shadow-2xl rounded-[2rem] border border-slate-100 bg-white hover:border-orange-200 transition-all duration-300 flex flex-col md:flex-row overflow-hidden group">
       
       {/* Trending Badge */}
-      <div className="absolute top-4 left-4 z-30 bg-gradient-tush text-white px-4 py-1 rounded-full text-xs font-bold shadow-soft-xl animate-pulse">
+      <div className="absolute top-4 left-4 z-30 bg-gradient_-tush text-white px-4 py-1 rounded-full text-xs font-bold shadow-soft-xl animate-pulse">
         🔥 Top Trending
       </div>
 
@@ -39,7 +39,7 @@ export function CenterCard({ campaign, progress }: CenterCardProps) {
           {/* Progress Bar */}
           <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
             <div
-              className="bg-gradient-tush h-full rounded-full shadow-[0_0_15px_rgba(255,107,74,0.4)]"
+              className="bg-gradient_-tush h-full rounded-full shadow-[0_0_15px_rgba(255,107,74,0.4)]"
               style={{ width: `${progress}%` }}
             />
           </div>
