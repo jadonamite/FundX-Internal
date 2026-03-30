@@ -43,10 +43,10 @@ function HeroLogoParallax() {
     }
 
     function startAnimation() {
-      function animate(time_: number) {
+      function animate(time: number) {
         if (!logoRef.current) return
 
-        const elapsed = (time_ - startTimeRef.current) * 0.001
+        const elapsed = (time - startTimeRef.current) * 0.001
 
         // Subtle autonomous oscillation
         const oscillateX = Math.sin(elapsed * 0.4) * 8
