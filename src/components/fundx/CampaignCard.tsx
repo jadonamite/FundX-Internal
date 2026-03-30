@@ -8,8 +8,8 @@ interface CampaignCardProps {
   id: string 
   title: string
   description: string
-  raised: number_
-  goal: number_
+  raised: number
+  goal: number
   image: string
   currency?: "USDCx" | "STX" 
 
