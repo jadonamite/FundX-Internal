@@ -1,8 +1,8 @@
-import { StacksProvider } from "@/components/fundx/StacksProvider";
 import "./globals.css";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import { Toaster } from "@/components/ui/sonner"; 
+import { StacksProvider } from "@/components/fundx/StacksProvider";
 import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/sonner"; 
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
 
