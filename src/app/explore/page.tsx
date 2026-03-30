@@ -89,7 +89,7 @@ export default function ExplorePage() {
       <div className="pt-32 pb-20 container mx-auto max-w-7xl px-4 relative z-10">
         
         {/* ANIMATED HEADER */}
-        <div className="mb-12 text-center max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom_-6 duration-700">
+        <div className="mb-12 text-center max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-6 duration-700">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-500 mb-6">
              <Sparkles className="w-3 h-3 text-orange-500" />
              <span>{CAMPAIGNS.length} Active Campaigns</span>
@@ -170,7 +170,7 @@ export default function ExplorePage() {
             {filteredCampaigns.slice(0, visibleCount).map((campaign, index) => (
               <div 
                 key={campaign.id} 
-                className={`h-[480px] animate-in fade-in slide-in-from-bottom_-8 duration-700 fill-mode-backwards ${campaign.status === 'failed' ? 'opacity-60 grayscale-[0.5] hover:grayscale-0 transition-all' : ''}`} // 🚨 ADDED: Grayscale effect for failed campaigns
+                className={`h-[480px] animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-backwards ${campaign.status === 'failed' ? 'opacity-60 grayscale-[0.5] hover:grayscale-0 transition-all' : ''}`} // 🚨 ADDED: Grayscale effect for failed campaigns
                 style={{ animationDelay: `${index * 100}ms` }} // Stagger Effect
               >
                 <CampaignCard 
@@ -204,7 +204,7 @@ export default function ExplorePage() {
 
         {/* LOAD MORE BUTTON */}
         {filteredCampaigns.length > visibleCount && (
-          <div className="mt-16 text-center animate-in fade-in slide-in-from-bottom_-4 duration-1000 delay-500">
+          <div className="mt-16 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
             <Button 
               onClick={handleLoadMore}
               variant="outline" 
@@ -219,7 +219,7 @@ export default function ExplorePage() {
 
       {/* FLOATY BACK TO TOP BUTTON */}
       <div 
-        className={`fixed bottom_-8 right-8 z-50 transition-all duration-500 transform ${showScrollTop ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"}`}
+        className={`fixed bottom-8 right-8 z-50 transition-all duration-500 transform ${showScrollTop ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"}`}
       >
         <Button
           onClick={scrollToTop}
