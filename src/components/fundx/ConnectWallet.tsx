@@ -14,12 +14,10 @@ import {
 import { ChevronDown, Copy, LogOut, Wallet } from "lucide-react"
 import { toast } from "sonner" // <--- Import Toast
 
-  const handleDisconnect = () => {
-    signOut()
-    toast.error("Disconnected", {
-       description: "Session ended securely."
-    })
-  }
+export function ConnectWallet() {
+  const { authenticate, signOut, isSignedIn, walletData } = useStacks()
+  const [mounted, setMounted] = useState(false)
+  const [justConnected, setJustConnected] = useState(false)
 
   // 1. Connection Effect & Toast
   useEffect(() => {
@@ -49,10 +47,12 @@ import { toast } from "sonner" // <--- Import Toast
     }
   }
 
-export function ConnectWallet() {
-  const { authenticate, signOut, isSignedIn, walletData } = useStacks()
-  const [mounted, setMounted] = useState(false)
-  const [justConnected, setJustConnected] = useState(false)
+  const handleDisconnect = () => {
+    signOut()
+    toast.error("Disconnected", {
+       description: "Session ended securely."
+    })
+  }
 
   if (!mounted) {
     return (
