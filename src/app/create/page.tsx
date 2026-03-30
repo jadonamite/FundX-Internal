@@ -11,7 +11,6 @@ import { toast } from "sonner"
 import { WizardSteps } from "@/components/create/WizardSteps"
 import { LivePreview } from "@/components/create/LivePreview"
 
-
 export interface CreateCampaignData {
   creatorName: string;
   creatorBio: string;
@@ -61,10 +60,6 @@ export default function CreateCampaign() {
     currency: "USDCx", // 
   })
 
-  const handleNext = () => setStep(step + 1)
-  const handleBack = () => setStep(step - 1)
-  // ... the rest stays the same!
-
   const handleSubmit = () => {
     if (!isSignedIn) {
       toast.error("Connect Wallet", {
@@ -77,6 +72,10 @@ export default function CreateCampaign() {
       description: "Creating USDCx Fundraising Contract on Stacks...",
     });
   };
+
+  const handleNext = () => setStep(step + 1)
+  const handleBack = () => setStep(step - 1)
+  // ... the rest stays the same!
 
   return (
     <main className="min-h-screen bg-slate-50 font-sans selection:bg-orange-100">
