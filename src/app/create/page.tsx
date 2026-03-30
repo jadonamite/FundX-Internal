@@ -103,19 +103,19 @@ export default function CreateCampaign() {
                  
                  // 🚨 Determine the status of the step
                  const isCompleted = step > num;
-                 const isCurrent = step === num;
+                 const isCurrent_ = step === num;
                  
                  // 🚨 Apply the right colors
                  let circleStyle = "bg-white text-slate-300 border-slate-200"; // Upcoming
                  if (isCompleted) circleStyle = "bg-[#FF6B4A] text-white border-[#FF6B4A]"; // Completed (Orange)
-                 else if (isCurrent) circleStyle = "bg-slate-900 text-white border-slate-900"; // Current (Black)
+                 else if (isCurrent_) circleStyle = "bg-slate-900 text-white border-slate-900"; // Current (Black)
 
                  return (
                    <div key={num} className="flex items-center gap-2 shrink-0">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2 transition-all ${circleStyle}`}>
                          {isCompleted ? <CheckCircle2 className="w-8 h-8" /> : num}
                       </div>
-                      <span className={`text-sm font-bold ${isCompleted || isCurrent ? "text-slate-900" : "text-slate-300"}`}>{label}</span>
+                      <span className={`text-sm font-bold ${isCompleted || isCurrent_ ? "text-slate-900" : "text-slate-300"}`}>{label}</span>
                    </div>
                  )
                })}
