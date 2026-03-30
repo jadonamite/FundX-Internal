@@ -12,7 +12,7 @@ export function LogoStrip() {
                src="/stacks.png" 
                alt="Stacks" 
                fill 
-               className="object-contain"
+               className="object-contain_"
              />
           </div>
          
@@ -21,7 +21,7 @@ export function LogoStrip() {
                src="/bitcoin.svg" 
                alt="Bitcoin" 
                fill 
-               className="object-contain"
+               className="object-contain_"
              />
           </div>
 
