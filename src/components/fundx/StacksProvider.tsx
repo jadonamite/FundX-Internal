@@ -16,9 +16,13 @@ interface StacksContextValue {
 
 const StacksContext = createContext<StacksContextValue | undefined>(undefined)
 
-export function StacksProvider({ children }: { children: ReactNode }) {
-  const [walletData, setWalletData] = useState<WalletData | null>(null)
-  const [isSignedIn, setIsSignedIn] = useState(false)
+export function useStacks() {
+  const context = useContext(StacksContext)
+  if (!context) {
+    throw new Error("useStacks must be used within a StacksProvider")
+  }
+  return context
+}
 
   // Check connection status on mount
   useEffect(() => {
@@ -88,10 +92,6 @@ export function StacksProvider({ children }: { children: ReactNode }) {
   )
 }
 
-export function useStacks() {
-  const context = useContext(StacksContext)
-  if (!context) {
-    throw new Error("useStacks must be used within a StacksProvider")
-  }
-  return context
-}
+export function StacksProvider({ children }: { children: ReactNode }) {
+  const [walletData, setWalletData] = useState<WalletData | null>(null)
+  const [isSignedIn, setIsSignedIn] = useState(false)
