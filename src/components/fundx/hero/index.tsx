@@ -22,7 +22,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
   const isGlitchingRef = useRef(false)
   const isStacksModeRef = useRef(false)
 
-  const { display: scrambledText_, scrambleTo } = useScramble()
+  const { display: scrambledText, scrambleTo } = useScramble()
 
   const runGlitch = (targetIsStacks: boolean) => {
     if (isGlitchingRef.current) return
@@ -77,7 +77,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
           glitchOpacity={glitchOpacity}
           glitchSkew={glitchSkew}
           isStacksMode={isStacksMode}
-          scrambledText_={scrambledText_}
+          scrambledText={scrambledText}
           onToggle={handleManualToggle}
         />
         <HeroDeckSlot slotRef={deckSlotRef} />

@@ -11,9 +11,9 @@ export function ChainToggleIcon({
 }: {
   displayStacks: boolean
   glitching: boolean
-  glitchOffset: { x: number_; y: number_ }
-  glitchOpacity: number_
-  glitchSkew: number_
+  glitchOffset: { x: number; y: number }
+  glitchOpacity: number
+  glitchSkew: number
   isStacksMode: boolean
 }) {
   const glitchStyle = {
