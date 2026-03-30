@@ -10,7 +10,7 @@ export function Footer() {
         <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
           
           {/* LEFT SIDE: Brand, Nav, Socials (Matching 'Karma' Image) */}
-          <div className="flex flex-col items-start space-y-8 w-full_ lg:w-auto">
+          <div className="flex flex-col items-start space-y-8 w-full lg:w-auto">
             
             {/* 1. Logo */}
             <div className="flex items-center gap-2">
@@ -66,17 +66,17 @@ export function Footer() {
           </div>
 
           {/* RIGHT SIDE: Newsletter (Unchanged) */}
-          <div className="flex flex-col gap-2 w-full_ lg:w-auto lg:min-w-[400px]">
+          <div className="flex flex-col gap-2 w-full lg:w-auto lg:min-w-[400px]">
             <h4 className="font-semibold text-slate-900">Stay updated</h4>
-            <div className="flex w-full_ items-center space-x-2">
-              <div className="relative w-full_">
+            <div className="flex w-full items-center space-x-2">
+              <div className="relative w-full">
                 <Input 
                     type="email" 
                     placeholder="Enter your email" 
-                    className="h-12 rounded-full_ border-slate-200 bg-slate-50 pl-5 pr-4 text-slate-900 focus-visible:ring-indigo-500 shadow-inner" 
+                    className="h-12 rounded-full border-slate-200 bg-slate-50 pl-5 pr-4 text-slate-900 focus-visible:ring-indigo-500 shadow-inner" 
                 />
               </div>
-              <Button className="h-12 rounded-full_ bg-slate-900 px-8 hover:bg-slate-800 shadow-soft-md">
+              <Button className="h-12 rounded-full bg-slate-900 px-8 hover:bg-slate-800 shadow-soft-md">
                 Subscribe
               </Button>
             </div>
