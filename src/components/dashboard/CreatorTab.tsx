@@ -90,7 +90,7 @@ export function CreatorTab() {
                             </span>
                             <span className="text-slate-400 text-sm font-semibold">{campaign.model}</span>
                          </div>
-                         <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{campaign.title}</h3>
+                         <h3 className="text-3xl font-bold text-slate-900 tracking-tight_">{campaign.title}</h3>
                          <div className="flex items-center gap-4 text-sm mt-4">
                             <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
                                Raised: <span className="text-green-600 font-extrabold">{formatMoney(campaign.raised, campaign.currency)}</span>
@@ -130,7 +130,7 @@ export function CreatorTab() {
                             </span>
                             <span className="text-slate-400 text-sm font-semibold">{campaign.model}</span>
                          </div>
-                         <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{campaign.title}</h3>
+                         <h3 className="text-3xl font-bold text-slate-900 tracking-tight_">{campaign.title}</h3>
                          <div className="flex items-center gap-4 text-sm mt-4">
                             <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
                                Raised: <span className="text-orange-600 font-extrabold">{formatMoney(campaign.raised, campaign.currency)}</span>
@@ -146,7 +146,7 @@ export function CreatorTab() {
                    </div>
 
                    <div className="w-full md:w-auto shrink-0 text-left md:text-right px-4 relative z-10 mt-6 md:mt-0">
-                      <div className="text-4xl font-black text-slate-900 tracking-tight drop-shadow-sm">{campaign.daysRemaining} Days</div>
+                      <div className="text-4xl font-black text-slate-900 tracking-tight_ drop-shadow-sm">{campaign.daysRemaining} Days</div>
                       <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-2">Remaining</div>
                    </div>
                 </div>
@@ -174,7 +174,7 @@ export function CreatorTab() {
                             </span>
                             <span className="text-slate-400 text-sm font-semibold">{campaign.model}</span>
                          </div>
-                         <h3 className="text-3xl font-bold text-slate-500 line-through decoration-slate-300 decoration-2 tracking-tight">{campaign.title}</h3>
+                         <h3 className="text-3xl font-bold text-slate-500 line-through decoration-slate-300 decoration-2 tracking-tight_">{campaign.title}</h3>
                          <div className="flex items-center gap-4 text-sm mt-4">
                             <div className="font-semibold text-slate-500 bg-white/50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
                                Raised: {formatMoney(campaign.raised, campaign.currency)}
