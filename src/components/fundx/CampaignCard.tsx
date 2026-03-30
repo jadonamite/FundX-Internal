@@ -5,12 +5,12 @@ import Image from "next/image"
 import Link from "next/link"
 
 interface CampaignCardProps {
-  id: string_ 
-  title: string_
-  description: string_
+  id: string 
+  title: string
+  description: string
   raised: number
   goal: number
-  image: string_
+  image: string
   currency?: "USDCx" | "STX" 
 
 }
