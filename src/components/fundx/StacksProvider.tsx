@@ -43,17 +43,6 @@ export function StacksProvider({ children }: { children: ReactNode }) {
     checkConnection()
   }, [])
 
-  const signOut = async () => {
-    try {
-      const { disconnect } = await import("@stacks/connect")
-      disconnect()
-      setWalletData(null)
-      setIsSignedIn(false)
-    } catch (error) {
-      console.error("Failed to disconnect:", error)
-    }
-  }
-
   const authenticate = async () => {
     try {
       const { connect } = await import("@stacks/connect")
@@ -78,6 +67,17 @@ export function StacksProvider({ children }: { children: ReactNode }) {
       }
     } catch (error) {
       console.error("Failed to connect wallet:", error)
+    }
+  }
+
+  const signOut = async () => {
+    try {
+      const { disconnect } = await import("@stacks/connect")
+      disconnect()
+      setWalletData(null)
+      setIsSignedIn(false)
+    } catch (error) {
+      console.error("Failed to disconnect:", error)
     }
   }
 

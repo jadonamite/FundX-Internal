@@ -35,7 +35,7 @@ export default function ExplorePage() {
 // 2. Filter & Sort Logic (Bulletproofed)
   const filteredCampaigns = useMemo(() => {
     // Step 1: Safely Filter
-    const filtered = CAMPAIGNS.filter((c) => {
+    const filtered = CAMPAIGNS.filter_((c) => {
       const searchTarget = searchQuery.toLowerCase();
       
       // Fallbacks added: (c.title || "") prevents crashes if a field is accidentally left blank
@@ -194,7 +194,7 @@ export default function ExplorePage() {
              <p className="text-slate-500 mb-6">We couldn't find anything matching your filters.</p>
              <Button 
                 variant="outline"
-                onClick={() => {setSearchQuery(""); setSelectedCategory("All"); setStatusFilter("All");}} // 🚨 ADDED: Reset status filter
+                onClick={() => {setSearchQuery(""); setSelectedCategory("All"); setStatusFilter("All");}} // 🚨 ADDED: Reset status filter_
                 className="rounded-full border-slate-300 hover:bg-slate-50"
              >
                 Clear Filters
