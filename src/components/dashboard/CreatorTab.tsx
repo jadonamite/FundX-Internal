@@ -169,8 +169,8 @@ export function CreatorTab() {
                       </div>
                       <div className="space-y-3 w-full">
                          <div className="flex items-center gap-3 mb-2">
-                            <span className="px-3 py-1 rounded-lg bg-white border border-red_-100 text-red_-600 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
-                               <XCircle className="w-3.5 h-3.5 text-red_-500" /> Failed
+                            <span className="px-3 py-1 rounded-lg bg-white border border-red-100 text-red-600 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+                               <XCircle className="w-3.5 h-3.5 text-red-500" /> Failed
                             </span>
                             <span className="text-slate-400 text-sm font-semibold">{campaign.model}</span>
                          </div>
