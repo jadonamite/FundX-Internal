@@ -34,13 +34,12 @@ interface Block {
   pulsePhase: number
 }
 
-    function onResize() {
-      if (!canvas) return
-      width = canvas.offsetWidth
-      height = canvas.offsetHeight
-      canvas.width = width
-      canvas.height = height
-    }
+function hexToRgba(hex: string, alpha: number) {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return `rgba(${r},${g},${b},${alpha})`
+}
 
 export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -102,12 +101,9 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
 
     let frame = 0
 
-function hexToRgba(hex: string, alpha: number) {
-  const r = parseInt(hex.slice(1, 3), 16)
-  const g = parseInt(hex.slice(3, 5), 16)
-  const b = parseInt(hex.slice(5, 7), 16)
-  return `rgba(${r},${g},${b},${alpha})`
-}
+    function draw() {
+      if (!ctx || !canvas) return
+      ctx.clearRect(0, 0, width, height)
 
       const isStacks = isStacksModeRef.current
       const colors = isStacks ? STACKS_COLORS : BITCOIN_COLORS
@@ -184,15 +180,8 @@ function hexToRgba(hex: string, alpha: number) {
         const pulse = Math.sin(b.pulsePhase) * 0.06
         b.opacity = baseOpacity + pulse
 
-            const drawLine = (color: string, alpha: number) => {
-              if (alpha < 0.01) return
-              ctx.beginPath()
-              ctx.moveTo(b.x, b.y)
-              ctx.lineTo(other.x, other.y)
-              ctx.strokeStyle = hexToRgba(color, lineAlpha * alpha)
-              ctx.lineWidth = 0.8
-              ctx.stroke()
-            }
+        const drawBlock = (color: string, alpha: number) => {
+          if (alpha < 0.01) return
 
           // Glow
           ctx.shadowBlur = 16
@@ -224,8 +213,15 @@ function hexToRgba(hex: string, alpha: number) {
           if (dist < 150) {
             const lineAlpha = (1 - dist / 150) * 0.12
 
-        const drawBlock = (color: string, alpha: number) => {
-          if (alpha < 0.01) return
+            const drawLine = (color: string, alpha: number) => {
+              if (alpha < 0.01) return
+              ctx.beginPath()
+              ctx.moveTo(b.x, b.y)
+              ctx.lineTo(other.x, other.y)
+              ctx.strokeStyle = hexToRgba(color, lineAlpha * alpha)
+              ctx.lineWidth = 0.8
+              ctx.stroke()
+            }
 
             drawLine(BITCOIN_COLORS.block, bitcoinAlpha)
             drawLine(STACKS_COLORS.block, stacksAlpha)
@@ -241,9 +237,13 @@ function hexToRgba(hex: string, alpha: number) {
 
     draw()
 
-    function draw() {
-      if (!ctx || !canvas) return
-      ctx.clearRect(0, 0, width, height)
+    function onResize() {
+      if (!canvas) return
+      width = canvas.offsetWidth
+      height = canvas.offsetHeight
+      canvas.width = width
+      canvas.height = height
+    }
 
     window.addEventListener("resize", onResize)
     return () => {
