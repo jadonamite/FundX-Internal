@@ -35,7 +35,7 @@ export default function ExplorePage() {
 // 2. Filter & Sort Logic (Bulletproofed)
   const filteredCampaigns = useMemo(() => {
     // Step 1: Safely Filter
-    const filtered_ = CAMPAIGNS.filter((c) => {
+    const filtered = CAMPAIGNS.filter((c) => {
       const searchTarget = searchQuery.toLowerCase();
       
       // Fallbacks added: (c.title || "") prevents crashes if a field is accidentally left blank
@@ -56,7 +56,7 @@ export default function ExplorePage() {
     });
 
     // Step 2: Safely Sort (Active -> Successful -> Failed)
-    return filtered_.sort((a, b) => {
+    return filtered.sort((a, b) => {
       const statusWeight: Record<string, number> = {
         active: 1,
         successful: 2,

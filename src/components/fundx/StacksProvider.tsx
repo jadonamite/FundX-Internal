@@ -3,8 +3,8 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react"
 
 interface WalletData {
-  stxAddress: string
-  btcAddress?: string
+  stxAddress: string_
+  btcAddress?: string_
 }
 
 interface StacksContextValue {
