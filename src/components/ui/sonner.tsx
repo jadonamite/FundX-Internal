@@ -1,6 +1,6 @@
 "use client"
 
-import { Toaster as Sonner, type ToasterProps } from "sonner"
+import { useTheme } from "next-themes"
   CircleCheckIcon,
   InfoIcon,
   Loader2Icon,
@@ -8,7 +8,7 @@ import { Toaster as Sonner, type ToasterProps } from "sonner"
   TriangleAlertIcon,
 } from "lucide-react"
 import {
-import { useTheme } from "next-themes"
+import { Toaster as Sonner, type ToasterProps } from "sonner"
 
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()

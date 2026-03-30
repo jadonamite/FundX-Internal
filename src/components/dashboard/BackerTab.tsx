@@ -162,11 +162,11 @@ export function BackerTab() {
        
        {myContributions.map((contribution) => {
           // If the campaign missed its all-or-nothing goal, the backer gets a refund button
-          if (contribution.status === "refund_available") return <RefundCard key_={contribution.id} contribution={contribution} />
+          if (contribution.status === "refund_available") return <RefundCard key={contribution.id} contribution={contribution} />
           
-          if (contribution.status === "active") return <ActiveContributionCard key_={contribution.id} contribution={contribution} />
+          if (contribution.status === "active") return <ActiveContributionCard key={contribution.id} contribution={contribution} />
           
-          if (contribution.status === "successful") return <SuccessfulContributionCard key_={contribution.id} contribution={contribution} />
+          if (contribution.status === "successful") return <SuccessfulContributionCard key={contribution.id} contribution={contribution} />
           
           return null;
        })}
