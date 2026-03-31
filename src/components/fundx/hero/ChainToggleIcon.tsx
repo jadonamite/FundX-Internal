@@ -29,7 +29,7 @@ export function ChainToggleIcon({
 
   return (
     <span className="inline-flex align-middle">
-      <div_ style={glitchStyle} className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center border border-slate-100 relative overflow-hidden">
+      <div style={glitchStyle} className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center border border-slate-100 relative overflow-hidden">
         <span style={{ position: "absolute", opacity: !displayStacks ? 1 : 0, transition: glitching ? "none" : "opacity 300ms ease" }}>
           <Image src="/bitcoin-btc-logo.svg" alt="Bitcoin" width={50} height={50} className="w-10 h-10 md:w-12 md:h-12 object-contain" />
         </span>
@@ -39,7 +39,7 @@ export function ChainToggleIcon({
             <path fill="currentColor" d="M9.613,12.45l3.197,4.838c.104.169.292.255.464.255h1.121c.203,0,.388-.115.486-.289.101-.18.089-.407-.024-.574h0s-2.87-4.343-2.87-4.343c-.035-.054-.039-.11-.01-.166.035-.06.086-.087.134-.087h4.39c.302,0,.551-.244.551-.558v-.948c0-.3-.235-.558-.551-.558H1.501c-.302,0,.551.244-.551.558v.948c0,.3.235.558.551.558h4.398c.069,0,.107.028.128.075l.004.009c.031.059.025.112-.005.154l-.004.005-2.884,4.359c-.095.158-.123.371-.022.563.097.185.283.302.488.302h1.121c.187,0,.353-.09.454-.244l3.363-5.09c.053-.081.136-.125.236-.125h.423c.095,0,.182.048.239.129l.171.228h0Z" />
           </svg>
         </span>
-      </div_>
+      </div>
     </span>
   )
 }
