@@ -11,7 +11,7 @@ import HeroLogoParallax from "./HeroBackdrop"
 
 export { HeroDeckSlot }
 
-export function Hero({ deckSlotRef_ }: { deckSlotRef_: React.RefObject<HTMLDivElement | null> }) {
+export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElement | null> }) {
   const [isStacksMode, setIsStacksMode] = useState(false)
   const [displayStacks, setDisplayStacks] = useState(false)
   const [glitching, setGlitching] = useState(false)
@@ -80,7 +80,7 @@ export function Hero({ deckSlotRef_ }: { deckSlotRef_: React.RefObject<HTMLDivEl
           scrambledText={scrambledText}
           onToggle={handleManualToggle}
         />
-        <HeroDeckSlot slotRef={deckSlotRef_} />
+        <HeroDeckSlot slotRef={deckSlotRef} />
         <p className="text-xl text-slate-800 max-w-2xl mx-auto leading-relaxed mb-10">
           Programmable escrow. Stable capital. Conditions enforced on-chain — funds release only when your terms are met.
         </p>
