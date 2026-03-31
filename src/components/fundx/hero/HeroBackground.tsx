@@ -136,7 +136,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
           ctx.beginPath()
           ctx.moveTo(s.x, s.y - s.length)
           ctx.lineTo(s.x, s.y)
-          ctx.strokeStyle_ = grad
+          ctx.strokeStyle = grad
           ctx.lineWidth = s.width
           ctx.stroke()
 
@@ -190,7 +190,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
           // Block border
           ctx.beginPath()
           ctx.roundRect(b.x - b.size / 2, b.y - b.size / 2, b.size, b.size, 5)
-          ctx.strokeStyle_ = hexToRgba(color, b.opacity * alpha)
+          ctx.strokeStyle = hexToRgba(color, b.opacity * alpha)
           ctx.lineWidth = 1.2
           ctx.stroke()
 
@@ -218,7 +218,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
               ctx.beginPath()
               ctx.moveTo(b.x, b.y)
               ctx.lineTo(other.x, other.y)
-              ctx.strokeStyle_ = hexToRgba(color, lineAlpha * alpha)
+              ctx.strokeStyle = hexToRgba(color, lineAlpha * alpha)
               ctx.lineWidth = 0.8
               ctx.stroke()
             }
