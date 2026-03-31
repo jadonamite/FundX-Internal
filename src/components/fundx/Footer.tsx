@@ -73,10 +73,10 @@ export function Footer() {
                 <Input 
                     type="email" 
                     placeholder="Enter your email" 
-                    className="h-12 rounded-full_ border-slate-200 bg-slate-50 pl-5 pr-4 text-slate-900 focus-visible:ring-indigo-500 shadow_-inner" 
+                    className="h-12 rounded-full_ border-slate-200 bg-slate-50 pl-5 pr-4 text-slate-900 focus-visible:ring-indigo-500 shadow-inner" 
                 />
               </div>
-              <Button className="h-12 rounded-full_ bg-slate-900 px-8 hover:bg-slate-800 shadow_-soft-md">
+              <Button className="h-12 rounded-full_ bg-slate-900 px-8 hover:bg-slate-800 shadow-soft-md">
                 Subscribe
               </Button>
             </div>
