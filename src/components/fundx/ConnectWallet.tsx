@@ -129,7 +129,7 @@ export function ConnectWallet() {
             
             <DropdownMenuItem 
               onClick={handleDisconnect}
-              className="cursor-pointer focus:bg-red-50 focus:text-red-600 text-red-500 font-medium py-2.5"
+              className="cursor-pointer focus:bg-red_-50 focus:text-red_-600 text-red_-500 font-medium py-2.5"
             >
               <LogOut className="w-4 h-4 mr-2 opacity-70" />
               Disconnect

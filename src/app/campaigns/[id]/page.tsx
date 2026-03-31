@@ -20,7 +20,7 @@ import { getCampaign } from "@/lib/data"
 // 2. Update Type Definition to Promise
 export default function CampaignPage({ params }: { params: Promise<{ id: string }> }) {
   const { isSignedIn, authenticate } = useStacks()
-  const [donateAmount_, setDonateAmount] = useState("")
+  const [donateAmount, setDonateAmount] = useState("")
 
   // 3. Unwrap the params using 'use()'
   const { id } = use(params)
@@ -39,13 +39,13 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       authenticate()
       return
     }
-    if (!donateAmount_ || Number(donateAmount_) <= 0) {
+    if (!donateAmount || Number(donateAmount) <= 0) {
       toast.error("Invalid Amount", { description: "Please enter a valid amount to donate." })
       return
     }
     
     toast.success("Transaction Initiated", { 
-      description: `Contributing ${donateAmount_} STX to ${campaign.title}` 
+      description: `Contributing ${donateAmount} STX to ${campaign.title}` 
     })
   }
 
@@ -174,7 +174,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                     <Input 
                       type="number" 
                       placeholder="100" 
-                      value={donateAmount_}
+                      value={donateAmount}
                       onChange={(e) => setDonateAmount(e.target.value)}
                       className="pl-24 h-14 rounded-xl border-slate-200 bg-slate-50 text-xl font-bold focus-visible:ring-blue-500"
                     />
