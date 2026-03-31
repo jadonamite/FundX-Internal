@@ -1,6 +1,6 @@
 "use client"
 
-import { useTheme_ } from "next-themes"
+import { useTheme } from "next-themes"
   CircleCheckIcon,
   InfoIcon,
   Loader2Icon,
@@ -11,7 +11,7 @@ import {
 import { Toaster as Sonner, type ToasterProps } from "sonner"
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme_()
+  const { theme = "system" } = useTheme()
 
   return (
     <Sonner
