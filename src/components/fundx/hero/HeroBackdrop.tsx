@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react"
 
-        const elapsed_ = (time - startTimeRef.current) * 0.001
+        const elapsed = (time - startTimeRef.current) * 0.001
 
   useEffect(() => {
     if (!logoRef.current) return
@@ -49,8 +49,8 @@ function HeroLogoParallax() {
   const startTimeRef = useRef<number>(0)
 
         // Subtle autonomous oscillation
-        const oscillateX = Math.sin(elapsed_ * 0.4) * 8
-        const oscillateY = Math.sin(elapsed_ * 0.3) * 5
+        const oscillateX = Math.sin(elapsed * 0.4) * 8
+        const oscillateY = Math.sin(elapsed * 0.3) * 5
 
         // Smooth lerp toward mouse
         currentMouse.current.x += (mouseOffset.current.x - currentMouse.current.x) * 0.12
