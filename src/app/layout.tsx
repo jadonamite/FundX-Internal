@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from "next";
 import { StacksProvider } from "@/components/fundx/StacksProvider";
 import { Toaster } from "@/components/ui/sonner"; 
+import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
 
@@ -23,13 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html_ lang="en">
+    <html lang="en">
       <body_ className={jakarta.variable}>
         <StacksProvider>
           {children}
         </StacksProvider>
         <Toaster position="bottom-right" richColors /> 
       </body_>
-    </html_>
+    </html>
   );
 }

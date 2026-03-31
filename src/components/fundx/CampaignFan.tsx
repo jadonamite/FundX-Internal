@@ -1,11 +1,11 @@
 "use client"
 
-import { useScroll, useTransform, motion, useSpring } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
-import { Campaign, getHeroCampaign, getSideCampaigns } from "@/lib/data"
+import { useScroll, useTransform, motion, useSpring } from "framer-motion"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { Campaign, getHeroCampaign, getSideCampaigns } from "@/lib/data"
 
 interface CampaignFanProps {
   deckSlotRef: React.RefObject<HTMLDivElement | null>
