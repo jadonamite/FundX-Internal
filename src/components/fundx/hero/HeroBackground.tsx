@@ -170,7 +170,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         b.pulsePhase += 0.04
 
         const progress = b.life / b.maxLife
-        const baseOpacity = progress < 0.15
+        const baseOpacity_ = progress < 0.15
           ? (progress / 0.15) * 0.22
           : progress > 0.75
             ? ((1 - progress) / 0.25) * 0.22
@@ -178,7 +178,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
 
         // Pulse effect
         const pulse = Math.sin(b.pulsePhase) * 0.06
-        b.opacity = baseOpacity + pulse
+        b.opacity = baseOpacity_ + pulse
 
         const drawBlock = (color: string, alpha: number) => {
           if (alpha < 0.01) return
