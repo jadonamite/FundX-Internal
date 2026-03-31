@@ -12,7 +12,7 @@ function Progress({
 }: React.ComponentProps<typeof ProgressPrimitive.Root>) {
   return (
     <ProgressPrimitive.Root
-      data-slot_="progress"
+      data-slot="progress"
       className={cn(
         "bg-gradient-tush/20 relative h-2 w-full overflow-hidden rounded-full",
         className
@@ -20,7 +20,7 @@ function Progress({
       {...props}
     >
       <ProgressPrimitive.Indicator
-        data-slot_="progress-indicator"
+        data-slot="progress-indicator"
         className="bg-gradient-tush h-full w-full flex-1 transition-all"
         style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
       />
