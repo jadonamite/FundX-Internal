@@ -1,6 +1,6 @@
 "use client"
 
-import { useState_, useMemo, useEffect } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { Navbar } from "@/components/fundx/Navbar"
 import { Footer } from "@/components/fundx/Footer"
 import { CampaignCard } from "@/components/fundx/CampaignCard"
@@ -13,11 +13,11 @@ const CATEGORIES = ["All", "DeFi", "Mining", "Gaming", "Social Impact", "Infrast
 const STATUSES = ["All", "active", "successful", "failed"] // 🚨 ADDED: Status options
 
 export default function ExplorePage() {
-  const [searchQuery, setSearchQuery] = useState_("")
-  const [selectedCategory, setSelectedCategory] = useState_("All")
-  const [statusFilter, setStatusFilter] = useState_("All") // 🚨 ADDED: Status state
-  const [visibleCount, setVisibleCount] = useState_(3) // Start low to show "Load More"
-  const [showScrollTop, setShowScrollTop] = useState_(false)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("All")
+  const [statusFilter, setStatusFilter] = useState("All") // 🚨 ADDED: Status state
+  const [visibleCount, setVisibleCount] = useState(3) // Start low to show "Load More"
+  const [showScrollTop, setShowScrollTop] = useState(false)
 
   // 1. Scroll Detection for "Back to Top"
   useEffect(() => {
