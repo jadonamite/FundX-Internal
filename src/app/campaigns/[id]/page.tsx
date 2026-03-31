@@ -56,14 +56,14 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       <div className="container mx-auto max-w-6xl px-4 pt-32 pb-20">
         
         {/* Back Button */}
-        <Link href="/explore" className="inline-flex items-center text-slate-400 hover:text-slate-900 mb-8 transition-colors text-sm font-medium">
+        <Link href="/explore" className="inline-flex items-center text-slate-400 hover_:text-slate-900 mb-8 transition-colors text-sm font-medium">
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to campaigns
         </Link>
 
         {/* HEADER SECTION */}
         <div className="mb-10 text-center md:text-left">
           <div className="flex flex-wrap gap-3 justify-center md:justify-start mb-4">
-             <Badge variant="secondary" className="text-orange-600 bg-orange-50 hover:bg-orange-100 px-3 py-1 text-sm border border-orange-100">
+             <Badge variant="secondary" className="text-orange-600 bg-orange-50 hover_:bg-orange-100 px-3 py-1 text-sm border border-orange-100">
                {campaign.category}
              </Badge>
              <div className="flex items-center text-slate-500 text-sm font-medium">
@@ -182,11 +182,11 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                 </div>
 
                 {isSignedIn ? (
-                  <Button onClick={handleDonate} className="w-full h-14 rounded-xl bg-gradient-tush text-white shadow-glow hover:scale-[1.02] transition-transform text-lg font-bold">
+                  <Button onClick={handleDonate} className="w-full h-14 rounded-xl bg-gradient-tush text-white shadow-glow hover_:scale-[1.02] transition-transform text-lg font-bold">
                     Donate Now
                   </Button>
                 ) : (
-                  <Button onClick={authenticate} className="w-full h-14 rounded-xl bg-slate-900 text-white shadow-xl hover:bg-slate-800 transition-all text-lg font-bold">
+                  <Button onClick={authenticate} className="w-full h-14 rounded-xl bg-slate-900 text-white shadow-xl hover_:bg-slate-800 transition-all text-lg font-bold">
                     Connect Wallet to Contribute
                   </Button>
                 )}
@@ -199,7 +199,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
 
               {/* Share Button */}
               <div className="mt-8 flex justify-center">
-                 <Button variant="ghost" className="w-full text-slate-500 hover:text-slate-900 hover:bg-slate-50 rounded-xl h-12">
+                 <Button variant="ghost" className="w-full text-slate-500 hover_:text-slate-900 hover_:bg-slate-50 rounded-xl h-12">
                     <Share2 className="w-4 h-4 mr-2" /> Share this campaign
                  </Button>
               </div>
