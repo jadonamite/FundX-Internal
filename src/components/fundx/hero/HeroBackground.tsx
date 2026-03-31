@@ -34,6 +34,38 @@ interface Block {
   pulsePhase: number
 }
 
+function hexToRgba(hex: string, alpha: number) {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return `rgba(${r},${g},${b},${alpha})`
+}
+
+export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const isStacksModeRef = useRef(isStacksMode)
+  const rafRef = useRef<number>(0)
+  const targetOpacityRef = useRef(isStacksMode ? 1 : 0)
+  const currentOpacityRef = useRef(isStacksMode ? 1 : 0)
+
+  useEffect(() => {
+    isStacksModeRef.current = isStacksMode
+  }, [isStacksMode])
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    let width = canvas.offsetWidth
+    let height = canvas.offsetHeight
+    canvas.width = width
+    canvas.height = height
+
+    const streams: Stream[] = []
+    const blocks: Block[] = []
+
     function createStream(startY?: number): Stream {
       return {
         x: Math.random() * width,
@@ -60,34 +92,6 @@ interface Block {
         pulsePhase: Math.random() * Math.PI * 2,
       }
     }
-
-  useEffect(() => {
-    isStacksModeRef.current = isStacksMode
-  }, [isStacksMode])
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
-
-    let width = canvas.offsetWidth
-    let height = canvas.offsetHeight
-    canvas.width = width
-    canvas.height = height
-
-    const streams: Stream[] = []
-    const blocks: Block[] = []
-
-        const drawBlock = (color: string, alpha: number) => {
-          if (alpha < 0.01) return
-
-export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const isStacksModeRef = useRef(isStacksMode)
-  const rafRef = useRef<number>(0)
-  const targetOpacityRef = useRef(isStacksMode ? 1 : 0)
-  const currentOpacityRef = useRef(isStacksMode ? 1 : 0)
 
     // Seed initial streams spread across the canvas
     for (let i = 0; i < 14; i++) {
@@ -176,13 +180,8 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         const pulse = Math.sin(b.pulsePhase) * 0.06
         b.opacity = baseOpacity + pulse
 
-    function onResize() {
-      if (!canvas) return
-      width = canvas.offsetWidth
-      height = canvas.offsetHeight
-      canvas.width = width
-      canvas.height = height
-    }
+        const drawBlock = (color: string, alpha: number) => {
+          if (alpha < 0.01) return
 
           // Glow
           ctx.shadowBlur = 16
@@ -238,12 +237,13 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
 
     draw()
 
-function hexToRgba(hex: string, alpha: number) {
-  const r = parseInt(hex.slice(1, 3), 16)
-  const g = parseInt(hex.slice(3, 5), 16)
-  const b = parseInt(hex.slice(5, 7), 16)
-  return `rgba(${r},${g},${b},${alpha})`
-}
+    function onResize() {
+      if (!canvas) return
+      width = canvas.offsetWidth
+      height = canvas.offsetHeight
+      canvas.width = width
+      canvas.height = height
+    }
 
     window.addEventListener("resize", onResize)
     return () => {
