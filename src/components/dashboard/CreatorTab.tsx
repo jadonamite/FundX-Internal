@@ -61,7 +61,7 @@ export function CreatorTab() {
   };
 
   return (
-    <TabsContent value="campaigns" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <TabsContent value="campaigns" className="space_-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
        
        {/* 🚨 3. MAP OVER THE DATA */}
        {myFetchedCampaigns.map((campaign) => {
@@ -83,7 +83,7 @@ export function CreatorTab() {
                       <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
                          <Image src={campaign.image} alt={campaign.title} fill className="object-cover" />
                       </div>
-                      <div className="space-y-3 w-full">
+                      <div className="space_-y-3 w-full">
                          <div className="flex items-center gap-3 mb-2">
                             <span className="px-3 py-1 rounded-lg bg-green-50 border border-green-100/50 text-green-700 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
                                <CheckCircle2 className="w-3.5 h-3.5 text-green-500" /> Successful
@@ -123,7 +123,7 @@ export function CreatorTab() {
                       <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
                          <Image src={campaign.image} alt={campaign.title} fill className="object-cover" />
                       </div>
-                      <div className="space-y-3 w-full">
+                      <div className="space_-y-3 w-full">
                          <div className="flex items-center gap-3 mb-2">
                             <span className="px-3 py-1 rounded-lg bg-orange-50 border border-orange-100/50 text-orange-600 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
                                <Clock className="w-3.5 h-3.5" /> Active
@@ -167,7 +167,7 @@ export function CreatorTab() {
                       <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-300 shadow-sm group-hover:shadow-md transition-shadow">
                          <Image src={campaign.image} alt={campaign.title} fill className="object-cover" />
                       </div>
-                      <div className="space-y-3 w-full">
+                      <div className="space_-y-3 w-full">
                          <div className="flex items-center gap-3 mb-2">
                             <span className="px-3 py-1 rounded-lg bg-white border border-red-100 text-red-600 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
                                <XCircle className="w-3.5 h-3.5 text-red-500" /> Failed
