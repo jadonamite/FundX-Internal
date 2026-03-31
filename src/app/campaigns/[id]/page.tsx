@@ -1,21 +1,21 @@
 "use client"
 
-import { useState, use } from "react" 
-import { notFound } from "next/navigation"
-import Link from "next/link"
-import { Navbar } from "@/components/fundx/Navbar"
 import { Footer } from "@/components/fundx/Footer"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Navbar } from "@/components/fundx/Navbar"
+import { useStacks } from "@/components/fundx/StacksProvider"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState, use } from "react" 
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Separator } from "@/components/ui/separator"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Clock, Users, ShieldCheck, Share2, MapPin, ArrowLeft } from "lucide-react" 
-import { useStacks } from "@/components/fundx/StacksProvider"
-import { toast } from "sonner"
 import { getCampaign } from "@/lib/data"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { Separator } from "@/components/ui/separator"
+import { toast } from "sonner"
+import { Clock, Users, ShieldCheck, Share2, MapPin, ArrowLeft } from "lucide-react" 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { notFound } from "next/navigation"
 
 // 2. Update Type Definition to Promise
 export default function CampaignPage({ params }: { params: Promise<{ id: string }> }) {
@@ -56,7 +56,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       <div className="container mx-auto max-w-6xl px-4 pt-32 pb-20">
         
         {/* Back Button */}
-        <Link href="/explore" className="inline-flex items-center text-slate-400 hover:text-slate-900 mb-8 transition-colors text-sm font-medium_">
+        <Link href="/explore" className="inline-flex items-center text-slate-400 hover:text-slate-900 mb-8 transition-colors text-sm font-medium">
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to campaigns
         </Link>
 
@@ -66,7 +66,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
              <Badge variant="secondary" className="text-orange-600 bg-orange-50 hover:bg-orange-100 px-3 py-1 text-sm border border-orange-100">
                {campaign.category}
              </Badge>
-             <div className="flex items-center text-slate-500 text-sm font-medium_">
+             <div className="flex items-center text-slate-500 text-sm font-medium">
                <MapPin className="w-3 h-3 mr-1" /> {campaign.location}
              </div>
           </div>
@@ -100,11 +100,11 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                   <AvatarFallback>{campaign.creator.slice(0,2).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="text-sm font-medium_ text-slate-500 uppercase tracking-wide">Organized by</p>
+                  <p className="text-sm font-medium text-slate-500 uppercase tracking-wide">Organized by</p>
                   <p className="font-bold text-slate-900 text-lg">{campaign.creator}</p>
                 </div>
               </div>
-              <div className="flex gap-6 text-slate-600 font-medium_">
+              <div className="flex gap-6 text-slate-600 font-medium">
                  <div className="flex items-center gap-2"><ShieldCheck className="w-5 h-5 text-green-500"/> Verified</div>
                  <div className="flex items-center gap-2"><Users className="w-5 h-5 text-orange-500"/> {campaign.backers} Backers</div>
               </div>
@@ -147,7 +147,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
               <div className="space-y-5 mb-8">
                 <div className="space-y-1">
                    <div className="text-4xl font-black text-slate-900 tracking-tight">${campaign.raised.toLocaleString()}</div>
-                   <div className="text-base font-medium_ text-slate-400">raised of ${campaign.goal.toLocaleString()} goal</div>
+                   <div className="text-base font-medium text-slate-400">raised of ${campaign.goal.toLocaleString()} goal</div>
                 </div>
                 
                 <Progress value={progress} className="h-3 bg-slate-100" />

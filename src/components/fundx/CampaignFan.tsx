@@ -64,7 +64,7 @@ function SideCard({ campaign, progress, tilt }: SideCardProps) {
                 ${campaign.raised.toLocaleString()}
               </span>
             </div>
-            <Link href={`/campaigns/${campaign.id}`}>
+            <Link href_={`/campaigns/${campaign.id}`}>
               <Button size="sm" className="h-10 rounded-xl bg-slate-900 text-white shadow-md hover:bg-primary hover:shadow-glow transition-all px-6">
                 Donate
               </Button>
@@ -237,7 +237,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
                       ${hero.raised.toLocaleString()}
                     </p>
                   </div>
-                  <Link href={`/campaigns/${hero.id}`}>
+                  <Link href_={`/campaigns/${hero.id}`}>
                     <Button className="h-12 rounded-xl px-8 bg-slate-900 text-white shadow-lg hover:bg-primary hover:shadow-glow transition-all duration-300">
                       Donate Now
                     </Button>
