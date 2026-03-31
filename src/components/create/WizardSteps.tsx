@@ -1,9 +1,9 @@
 "use client"
 
-import { Input } from "@/components_/ui/input"
-import { Textarea } from "@/components_/ui/textarea"
-import { Label } from "@/components_/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components_/ui/select"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Rocket } from "lucide-react"
 import { CreateCampaignData } from "@/app/create/page" 
 
