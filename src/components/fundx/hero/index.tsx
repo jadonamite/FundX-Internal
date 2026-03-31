@@ -8,6 +8,7 @@ import { HeroDeckSlot } from "./HeroDeckSlot"
 import { useScramble } from "./useScramble"
 import HeroLogoParallax from "./HeroBackdrop"
 
+
 export { HeroDeckSlot }
 
 export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElement | null> }) {
@@ -22,13 +23,6 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
   const isStacksModeRef = useRef(false)
 
   const { display: scrambledText, scrambleTo } = useScramble()
-
-  const handleManualToggle = () => {
-    if (isGlitchingRef.current) return
-    if (intervalRef.current) clearInterval(intervalRef.current)
-    runGlitch(!isStacksModeRef.current)
-    intervalRef.current = setInterval(() => { if (!isGlitchingRef.current) runGlitch(!isStacksModeRef.current) }, 4500)
-  }
 
   const runGlitch = (targetIsStacks: boolean) => {
     if (isGlitchingRef.current) return
@@ -54,6 +48,13 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
       setTimeout(scheduleFlip, baseDuration + Math.random() * 40 - 20)
     }
     scheduleFlip()
+  }
+
+  const handleManualToggle = () => {
+    if (isGlitchingRef.current) return
+    if (intervalRef.current) clearInterval(intervalRef.current)
+    runGlitch(!isStacksModeRef.current)
+    intervalRef.current = setInterval(() => { if (!isGlitchingRef.current) runGlitch(!isStacksModeRef.current) }, 4500)
   }
 
   useEffect(() => {
