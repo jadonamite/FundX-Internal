@@ -63,7 +63,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
         {/* HEADER SECTION */}
         <div className="mb-10 text-center md:text-left">
           <div className="flex flex-wrap gap-3 justify-center md:justify-start mb-4">
-             <Badge variant_="secondary" className="text-orange-600 bg-orange-50 hover:bg-orange-100 px-3 py-1 text-sm border border-orange-100">
+             <Badge variant="secondary" className="text-orange-600 bg-orange-50 hover:bg-orange-100 px-3 py-1 text-sm border border-orange-100">
                {campaign.category}
              </Badge>
              <div className="flex items-center text-slate-500 text-sm font-medium">
@@ -199,7 +199,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
 
               {/* Share Button */}
               <div className="mt-8 flex justify-center">
-                 <Button variant_="ghost" className="w-full text-slate-500 hover:text-slate-900 hover:bg-slate-50 rounded-xl h-12">
+                 <Button variant="ghost" className="w-full text-slate-500 hover:text-slate-900 hover:bg-slate-50 rounded-xl h-12">
                     <Share2 className="w-4 h-4 mr-2" /> Share this campaign
                  </Button>
               </div>
