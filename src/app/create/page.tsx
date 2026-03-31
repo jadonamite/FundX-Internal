@@ -79,7 +79,7 @@ export default function CreateCampaign() {
   };
 
   return (
-    <main className="min_-h-screen bg-slate-50 font-sans selection:bg-orange-100">
+    <main className="min-h-screen bg-slate-50 font-sans selection:bg-orange-100">
       <Navbar />
 
       <div className="container mx-auto max-w-7xl px-4 pt-32 pb-20">
@@ -121,7 +121,7 @@ export default function CreateCampaign() {
                })}
             </div>
 
-            <div className="bg-white p-8 pb-28 rounded-[2rem] shadow-xl border border-slate-100 min_-h-[550px] relative">
+            <div className="bg-white p-8 pb-28 rounded-[2rem] shadow-xl border border-slate-100 min-h-[550px] relative">
               {/* RENDER STEP MODULE */}
               <WizardSteps
                 step={step}
