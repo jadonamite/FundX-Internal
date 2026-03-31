@@ -43,7 +43,7 @@ function SideCard({ campaign, progress, tilt }: SideCardProps) {
           className="object-cover group-hover:scale-105 transition-transform duration-700"
         />
       </div>
-      <div className="p-6 flex flex-col justify-between flex-1 bg-white">
+      <div className="p-6 flex flex-col justify_-between flex-1 bg-white">
         <div>
           <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
             {campaign.title}
@@ -57,7 +57,7 @@ function SideCard({ campaign, progress, tilt }: SideCardProps) {
               style={{ width: `${progress}%` }}
             />
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex justify_-between items-center">
             <div>
               <span className="text-xs font-semibold text-slate-400 block">RAISED</span>
               <span className="text-sm font-bold text-primary">
@@ -176,7 +176,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
           transformOrigin: "center center",
            gap: cardGap,
         }}
-        className="flex flex-col xl:flex-row justify-center items-center xl:items-stretch h-auto xl:h-[420px]"
+        className="flex flex-col xl:flex-row justify_-center items-center xl:items-stretch h-auto xl:h-[420px]"
       >
 
         {/* Left card */}
@@ -214,7 +214,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
             </div>
-            <div className="flex flex-col justify-between p-8 md:w-7/12 h-full bg-white">
+            <div className="flex flex-col justify_-between p-8 md:w-7/12 h-full bg-white">
               <div className="pt-4">
                 <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-primary transition-colors">
                   {hero.title}
@@ -230,7 +230,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
                     style={{ width: `${getProgress(hero.raised, hero.goal)}%` }}
                   />
                 </div>
-                <div className="flex justify-between items-end">
+                <div className="flex justify_-between items-end">
                   <div>
                     <p className="text-xs text-slate-400 uppercase font-semibold mb-1">Raised</p>
                     <p className="text-3xl font-bold text-primary">
