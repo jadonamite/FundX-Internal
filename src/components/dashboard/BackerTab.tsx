@@ -36,6 +36,87 @@ const formatMoney = (amount: number, currency: string) => {
 // 2. THE PLUG-IN COMPONENTS
 // ==========================================
 
+function RefundCard({ contribution }: { contribution: BackerContribution }) {
+  // For refunds, we use a striking blue to differentiate from the creator's green withdraw button
+  return (
+    <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-blue-200 shadow-[0_12px_28px_-6px_rgba(59,130,246,0.12)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
+       <div className="absolute -right-4 -bottom-10 text-[120px] font-black text-blue-50 opacity-80 z-0 select-none pointer-events-none tracking-tighter leading-none">REFUND</div>
+       <RefreshCcw strokeWidth={1} className="absolute right-10 -bottom-12 w-72 h-72 text-blue-500 opacity-5 z-0 pointer-events-none" />
+       <div className="absolute top-0 left-0 w-2 h-full bg-blue-500 z-10" />
+       
+       <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
+          <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow grayscale-[0.2]">
+             <Image src={contribution.image} alt={contribution.title} fill className="object-cover" />
+          </div>
+          <div className="space-y-3 w-full">
+             <div className="flex items-center gap-3 mb-2">
+                <span className="px-3 py-1 rounded-lg bg-blue-50 border border-blue-100/50 text-blue-700 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+                   <ShieldAlert className="w-3.5 h-3.5 text-blue-500" /> Goal Missed
+                </span>
+                <span className="text-slate-400 text-sm font-semibold">{contribution.model}</span>
+             </div>
+             <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{contribution.title}</h3>
+             <div className="flex items-center gap-4 text-sm mt-4">
+                <div className="font-semibold text-blue-900 bg-blue-50 px-5 py-2.5 rounded-xl border border-blue-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
+                   My Contribution: <span className="text-blue-600 font-extrabold">{formatMoney(contribution.myContribution, contribution.currency)}</span>
+                </div>
+                <div className="text-slate-500 font-medium text-base">Project raised {formatMoney(contribution.totalRaised, contribution.currency)}</div>
+             </div>
+          </div>
+       </div>
+       
+       <div className="w-full md:w-auto shrink-0 relative z-10 mt-6 md:mt-0">
+          <Button className="w-full md:w-auto h-16 px-10 rounded-xl bg-gradient-to-b from-blue-400 to-blue-500 border border-blue-600 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_4px_15px_rgba(59,130,246,0.4)] font-bold text-lg transition-all hover:scale-[1.02] active:scale-95 active:shadow-inner flex items-center gap-2">
+             <RefreshCcw className="w-5 h-5" /> Claim Refund
+          </Button>
+       </div>
+    </div>
+  )
+}
+
+function ActiveContributionCard({ contribution }: { contribution: BackerContribution }) {
+  const progress = Math.min((contribution.totalRaised / contribution.goal) * 100, 100);
+
+  return (
+    <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
+       <div className="absolute -right-4 -bottom-10 text-[130px] font-black text-orange-50 opacity-80 z-0 select-none pointer-events-none tracking-tighter leading-none">ACTIVE</div>
+       <Rocket strokeWidth={1} className="absolute right-10 -bottom-10 w-72 h-72 text-orange-500 opacity-[0.04] z-0 pointer-events-none transform -rotate-12" />
+       <div className="absolute top-0 left-0 w-2 h-full bg-gradient-tush z-10" />
+       
+       <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
+          <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
+             <Image src={contribution.image} alt={contribution.title} fill className="object-cover" />
+          </div>
+          <div className="space-y-3 w-full">
+             <div className="flex items-center gap-3 mb-2">
+                <span className="px-3 py-1 rounded-lg bg-orange-50 border border-orange-100/50 text-orange-600 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+                   <Clock className="w-3.5 h-3.5" /> Funding
+                </span>
+                <span className="text-slate-400 text-sm font-semibold">{contribution.model}</span>
+             </div>
+             <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{contribution.title}</h3>
+             <div className="flex items-center gap-4 text-sm mt-4">
+                <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
+                   My Contribution: <span className="text-orange-600 font-extrabold">{formatMoney(contribution.myContribution, contribution.currency)}</span>
+                </div>
+                <div className="text-slate-500 font-medium text-base">Goal: {contribution.goal.toLocaleString()} {contribution.currency === 'USDCx' ? '' : 'STX'}</div>
+             </div>
+             <div className="w-full max-w-md bg-slate-100 rounded-full h-8 mt-6 overflow-hidden shadow-[inset_0_3px_6px_rgba(0,0,0,0.1)] border border-slate-200/50 p-1 relative z-10">
+                <div className="bg-gradient-to-r from-[#FF6B4A] to-[#FF3D71] h-full rounded-full shadow-[0_0_15px_rgba(255,107,74,0.6)] relative flex items-center px-4" style={{ width: `${progress}%` }}>
+                   <div className="absolute top-0 left-0 w-full h-1/2 bg-white/20 rounded-t-full" />
+                </div>
+             </div>
+          </div>
+       </div>
+
+       <div className="w-full md:w-auto shrink-0 text-left md:text-right px-4 relative z-10 mt-6 md:mt-0">
+          <div className="text-4xl font-black text-slate-900 tracking-tight drop-shadow-sm">{contribution.daysRemaining} Days</div>
+          <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-2">Remaining</div>
+       </div>
+    </div>
+  )
+}
+
 function SuccessfulContributionCard({ contribution }: { contribution: BackerContribution }) {
   return (
     <div className="bg-slate-50 p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[inset_0_4px_20px_rgba(0,0,0,0.02)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden transition-all duration-500">
@@ -89,87 +170,6 @@ export function BackerTab() {
           
           return null;
        })}
-
-  return (
-    <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
-       <div className="absolute -right-4 -bottom-10 text-[130px] font-black text-orange-50 opacity-80 z-0 select-none pointer-events-none tracking-tighter leading-none">ACTIVE</div>
-       <Rocket strokeWidth={1} className="absolute right-10 -bottom-10 w-72 h-72 text-orange-500 opacity-[0.04] z-0 pointer-events-none transform -rotate-12" />
-       <div className="absolute top-0 left-0 w-2 h-full bg-gradient-tush z-10" />
-       
-       <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
-          <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
-             <Image src={contribution.image} alt={contribution.title} fill className="object-cover" />
-          </div>
-          <div className="space-y-3 w-full">
-             <div className="flex items-center gap-3 mb-2">
-                <span className="px-3 py-1 rounded-lg bg-orange-50 border border-orange-100/50 text-orange-600 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
-                   <Clock className="w-3.5 h-3.5" /> Funding
-                </span>
-                <span className="text-slate-400 text-sm font-semibold">{contribution.model}</span>
-             </div>
-             <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{contribution.title}</h3>
-             <div className="flex items-center gap-4 text-sm mt-4">
-                <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
-                   My Contribution: <span className="text-orange-600 font-extrabold">{formatMoney(contribution.myContribution, contribution.currency)}</span>
-                </div>
-                <div className="text-slate-500 font-medium text-base">Goal: {contribution.goal.toLocaleString()} {contribution.currency === 'USDCx' ? '' : 'STX'}</div>
-             </div>
-             <div className="w-full max-w-md bg-slate-100 rounded-full h-8 mt-6 overflow-hidden shadow-[inset_0_3px_6px_rgba(0,0,0,0.1)] border border-slate-200/50 p-1 relative z-10">
-                <div className="bg-gradient-to-r from-[#FF6B4A] to-[#FF3D71] h-full rounded-full shadow-[0_0_15px_rgba(255,107,74,0.6)] relative flex items-center px-4" style={{ width: `${progress}%` }}>
-                   <div className="absolute top-0 left-0 w-full h-1/2 bg-white/20 rounded-t-full" />
-                </div>
-             </div>
-          </div>
-       </div>
-
-       <div className="w-full md:w-auto shrink-0 text-left md:text-right px-4 relative z-10 mt-6 md:mt-0">
-          <div className="text-4xl font-black text-slate-900 tracking-tight drop-shadow-sm">{contribution.daysRemaining} Days</div>
-          <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-2">Remaining</div>
-       </div>
-    </div>
-  )
-}
-
-function RefundCard({ contribution }: { contribution: BackerContribution }) {
-  // For refunds, we use a striking blue to differentiate from the creator's green withdraw button
-  return (
-    <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-blue-200 shadow-[0_12px_28px_-6px_rgba(59,130,246,0.12)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
-       <div className="absolute -right-4 -bottom-10 text-[120px] font-black text-blue-50 opacity-80 z-0 select-none pointer-events-none tracking-tighter leading-none">REFUND</div>
-       <RefreshCcw strokeWidth={1} className="absolute right-10 -bottom-12 w-72 h-72 text-blue-500 opacity-5 z-0 pointer-events-none" />
-       <div className="absolute top-0 left-0 w-2 h-full bg-blue-500 z-10" />
-       
-       <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
-          <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow grayscale-[0.2]">
-             <Image src={contribution.image} alt={contribution.title} fill className="object-cover" />
-          </div>
-          <div className="space-y-3 w-full">
-             <div className="flex items-center gap-3 mb-2">
-                <span className="px-3 py-1 rounded-lg bg-blue-50 border border-blue-100/50 text-blue-700 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
-                   <ShieldAlert className="w-3.5 h-3.5 text-blue-500" /> Goal Missed
-                </span>
-                <span className="text-slate-400 text-sm font-semibold">{contribution.model}</span>
-             </div>
-             <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{contribution.title}</h3>
-             <div className="flex items-center gap-4 text-sm mt-4">
-                <div className="font-semibold text-blue-900 bg-blue-50 px-5 py-2.5 rounded-xl border border-blue-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
-                   My Contribution: <span className="text-blue-600 font-extrabold">{formatMoney(contribution.myContribution, contribution.currency)}</span>
-                </div>
-                <div className="text-slate-500 font-medium text-base">Project raised {formatMoney(contribution.totalRaised, contribution.currency)}</div>
-             </div>
-          </div>
-       </div>
-       
-       <div className="w-full md:w-auto shrink-0 relative z-10 mt-6 md:mt-0">
-          <Button className="w-full md:w-auto h-16 px-10 rounded-xl bg-gradient-to-b from-blue-400 to-blue-500 border border-blue-600 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_4px_15px_rgba(59,130,246,0.4)] font-bold text-lg transition-all hover:scale-[1.02] active:scale-95 active:shadow-inner flex items-center gap-2">
-             <RefreshCcw className="w-5 h-5" /> Claim Refund
-          </Button>
-       </div>
-    </div>
-  )
-}
-
-function ActiveContributionCard({ contribution }: { contribution: BackerContribution }) {
-  const progress = Math.min((contribution.totalRaised / contribution.goal) * 100, 100);
 
     </TabsContent>
   )
