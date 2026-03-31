@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 
 export function HeroCTAs() {
   return (
-    <div_ className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
       <Link href="/create">
         <Button size="lg" className="h-16 px-10 rounded-full text-lg" style={{ transition: "opacity 250ms ease, transform 250ms ease", boxShadow: "0 4px 20px 0 rgba(255,61,113,0.22)" }} onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.025)")} onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")} onMouseDown={e => (e.currentTarget.style.transform = "scale(0.975)")} onMouseUp={e => (e.currentTarget.style.transform = "scale(1.025)")}>
           Start a Campaign
@@ -15,6 +15,6 @@ export function HeroCTAs() {
           Explore Campaigns
         </Button>
       </Link>
-    </div_>
+    </div>
   )
 }
