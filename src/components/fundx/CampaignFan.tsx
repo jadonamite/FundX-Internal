@@ -38,7 +38,7 @@ function SideCard({ campaign, progress, tilt }: SideCardProps) {
       <div className="relative h-48 bg-slate-100 overflow-hidden shrink-0">
         <Image
           src={campaign.image}
-          alt_={campaign.title}
+          alt={campaign.title}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-700"
         />
@@ -209,7 +209,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
             <div className="relative h-64 md:h-full md:w-5/12 bg-slate-100 overflow-hidden">
               <Image
                 src={hero.image}
-                alt_={hero.title}
+                alt={hero.title}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
