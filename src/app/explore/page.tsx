@@ -105,7 +105,7 @@ export default function ExplorePage() {
 
         {/* STICKY GLASS CONTROL BAR */}
         <div className="sticky top-24 z-30 bg-white/70 backdrop-blur-xl border border-white/40 shadow-soft-xl rounded-2xl p-2 mb-10 transition-all duration-300 ring-1 ring-slate-900/5">
-          <div className="flex flex-col md:flex-row gap-2 justify_-between items-center p-2">
+          <div className="flex flex-col md:flex-row gap-2 justify-between items-center p-2">
              
              {/* Search Input */}
              <div className="relative w-full md:w-96 group">
@@ -125,7 +125,7 @@ export default function ExplorePage() {
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
                     className={`
-                      px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-300
+                      px-5 py-2.5 rounded-xl text-sm font-bold whitespace_-nowrap transition-all duration-300
                       ${selectedCategory === cat 
                         ? "bg-slate-900 text-white shadow-lg scale-105" 
                         : "bg-transparent text-slate-500 hover:bg-white hover:text-slate-900"
@@ -140,7 +140,7 @@ export default function ExplorePage() {
 
           {/* 🚨 ADDED: The Status Filters Row (Sits safely below your original flex row) */}
           <div className="flex items-center gap-3 mt-2 pt-4 pb-2 px-2 border-t border-slate-200/50 overflow-x-auto no-scrollbar">
-             <div className="flex items-center gap-2 text-sm font-semibold text-slate-400 whitespace-nowrap">
+             <div className="flex items-center gap-2 text-sm font-semibold text-slate-400 whitespace_-nowrap">
                <Filter className="w-4 h-4" /> Status:
              </div>
              <div className="flex gap-2">
@@ -149,7 +149,7 @@ export default function ExplorePage() {
                     key={status}
                     onClick={() => setStatusFilter(status)}
                     className={`
-                      px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-300 border whitespace-nowrap
+                      px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-300 border whitespace_-nowrap
                       ${statusFilter === status 
                         ? "bg-orange-50 border-orange-200 text-orange-600 shadow-sm" 
                         : "bg-white border-slate-200 text-slate-400 hover:border-slate-300 hover:text-slate-600"
@@ -187,7 +187,7 @@ export default function ExplorePage() {
           </div>
         ) : (
           <div className="text-center py-20 animate-in fade-in zoom-in duration-500">
-             <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify_-center mx-auto mb-6 text-4xl shadow-inner">
+             <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl shadow-inner">
                 🛸
              </div>
              <h3 className="text-2xl font-bold text-slate-900 mb-2">No campaigns found</h3>
