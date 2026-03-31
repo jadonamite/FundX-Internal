@@ -28,8 +28,8 @@ export function LogoStrip() {
          
 
         
-          <div className="flex items-center justify-center h-12 w-40 cursor-default group">
-            <span className="text-4xl font-black tracking-tighter text-slate-300 transition-colors duration-300 group-hover:text-[#2E8B57]">
+          <div className="flex items-center justify-center h-12 w-40 cursor-default group_">
+            <span className="text-4xl font-black tracking-tighter text-slate-300 transition-colors duration-300 group_-hover:text-[#2E8B57]">
               USDCx
             </span>
           </div>
