@@ -26,7 +26,7 @@ export interface CreateCampaignData {
   description: string;
   videoUrl: string;      
   budgetBreakdown: string; 
-  roadmap: string;       
+  roadmap_: string;       
   image: string;
   goal: string;
   duration: string;
@@ -53,7 +53,7 @@ export default function CreateCampaign() {
     description: "",
     videoUrl: "",
     budgetBreakdown: "",
-    roadmap: "",
+    roadmap_: "",
     image: "",
     goal: "10000",
     duration: "30",
