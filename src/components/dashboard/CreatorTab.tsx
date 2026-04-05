@@ -80,7 +80,7 @@ export function CreatorTab() {
                    <div className="absolute top-0 left-0 w-2 h-full bg-green-500 z-10" />
                    
                    <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
-                      <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group_-hover:shadow-md transition-shadow">
+                      <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
                          <Image src={campaign.image} alt={campaign.title} fill className="object-cover" />
                       </div>
                       <div className="space-y-3 w-full">
@@ -120,7 +120,7 @@ export function CreatorTab() {
                    <div className="absolute top-0 left-0 w-2 h-full bg-gradient-tush z-10" />
                    
                    <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
-                      <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group_-hover:shadow-md transition-shadow">
+                      <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
                          <Image src={campaign.image} alt={campaign.title} fill className="object-cover" />
                       </div>
                       <div className="space-y-3 w-full">
@@ -164,7 +164,7 @@ export function CreatorTab() {
                    <div className="absolute top-0 left-0 w-2 h-full bg-slate-300 z-10" />
                    
                    <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
-                      <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-300 shadow-sm group_-hover:shadow-md transition-shadow">
+                      <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-300 shadow-sm group-hover:shadow-md transition-shadow">
                          <Image src={campaign.image} alt={campaign.title} fill className="object-cover" />
                       </div>
                       <div className="space-y-3 w-full">
