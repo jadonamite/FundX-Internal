@@ -9,12 +9,12 @@ export function ChainToggleIcon({
   glitchSkew,
   isStacksMode,
 }: {
-  displayStacks: boolean
-  glitching: boolean
+  displayStacks: boolean_
+  glitching: boolean_
   glitchOffset: { x: number; y: number }
   glitchOpacity: number
   glitchSkew: number
-  isStacksMode: boolean
+  isStacksMode: boolean_
 }) {
   const glitchStyle = {
     backgroundColor: displayStacks ? "#0f172a" : "#ffffff",
