@@ -22,7 +22,7 @@ export interface CreateCampaignData {
   title: string;
   tagline: string;
   category: string;
-  projectStage_: string;
+  projectStage: string;
   description: string;
   videoUrl: string;      
   budgetBreakdown: string; 
@@ -49,7 +49,7 @@ export default function CreateCampaign() {
     title: "",
     tagline: "",
     category: "DeFi",
-    projectStage_: "MVP",
+    projectStage: "MVP",
     description: "",
     videoUrl: "",
     budgetBreakdown: "",
