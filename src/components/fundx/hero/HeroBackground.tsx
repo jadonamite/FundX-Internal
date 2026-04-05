@@ -209,9 +209,9 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         // Chain lines between nearby blocks
         for (let j = i - 1; j >= 0; j--) {
           const other = blocks[j]
-          const dist = Math.hypot(b.x - other.x, b.y - other.y)
-          if (dist < 150) {
-            const lineAlpha = (1 - dist / 150) * 0.12
+          const dist_ = Math.hypot(b.x - other.x, b.y - other.y)
+          if (dist_ < 150) {
+            const lineAlpha = (1 - dist_ / 150) * 0.12
 
             const drawLine = (color: string, alpha: number) => {
               if (alpha < 0.01) return

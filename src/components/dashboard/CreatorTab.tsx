@@ -80,7 +80,7 @@ export function CreatorTab() {
                    <div className="absolute top-0 left-0 w-2 h-full bg-green-500 z-10" />
                    
                    <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
-                      <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
+                      <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink_-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
                          <Image src={campaign.image} alt={campaign.title} fill className="object-cover" />
                       </div>
                       <div className="space-y-3 w-full">
@@ -100,7 +100,7 @@ export function CreatorTab() {
                       </div>
                    </div>
                    
-                   <div className="w-full md:w-auto shrink-0 relative z-10">
+                   <div className="w-full md:w-auto shrink_-0 relative z-10">
                       <Button className="w-full md:w-auto h-16 px-10 rounded-xl bg-gradient-to-b from-green-300 to-green-400 border border-green-500 text-green-950 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_4px_15px_rgba(134,239,172,0.5)] font-bold text-lg transition-all hover:scale-[1.02] active:scale-95 active:shadow-inner">
                          Withdraw Funds
                       </Button>
@@ -120,7 +120,7 @@ export function CreatorTab() {
                    <div className="absolute top-0 left-0 w-2 h-full bg-gradient-tush z-10" />
                    
                    <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
-                      <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
+                      <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink_-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
                          <Image src={campaign.image} alt={campaign.title} fill className="object-cover" />
                       </div>
                       <div className="space-y-3 w-full">
@@ -145,7 +145,7 @@ export function CreatorTab() {
                       </div>
                    </div>
 
-                   <div className="w-full md:w-auto shrink-0 text-left md:text-right px-4 relative z-10 mt-6 md:mt-0">
+                   <div className="w-full md:w-auto shrink_-0 text-left md:text-right px-4 relative z-10 mt-6 md:mt-0">
                       <div className="text-4xl font-black text-slate-900 tracking-tight drop-shadow-sm">{campaign.daysRemaining} Days</div>
                       <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-2">Remaining</div>
                    </div>
@@ -164,7 +164,7 @@ export function CreatorTab() {
                    <div className="absolute top-0 left-0 w-2 h-full bg-slate-300 z-10" />
                    
                    <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
-                      <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-300 shadow-sm group-hover:shadow-md transition-shadow">
+                      <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink_-0 rounded-2xl overflow-hidden border border-slate-300 shadow-sm group-hover:shadow-md transition-shadow">
                          <Image src={campaign.image} alt={campaign.title} fill className="object-cover" />
                       </div>
                       <div className="space-y-3 w-full">
@@ -184,7 +184,7 @@ export function CreatorTab() {
                       </div>
                    </div>
                    
-                   <div className="w-full md:w-auto shrink-0 relative z-10 mt-6 md:mt-0">
+                   <div className="w-full md:w-auto shrink_-0 relative z-10 mt-6 md:mt-0">
                       <Button variant="outline" disabled className="w-full md:w-auto h-16 px-10 rounded-xl bg-slate-100 border-slate-200 text-slate-400 font-bold shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)] cursor-not-allowed text-lg">
                          Goal Not Met
                       </Button>
