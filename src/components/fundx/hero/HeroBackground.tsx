@@ -129,10 +129,10 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         const drawStream = (color: string, alpha: number) => {
           if (alpha < 0.01) return
           const grad = ctx.createLinearGradient(s.x, s.y - s.length, s.x, s.y)
-          grad.addColorStop(0, "transparent")
+          grad.addColorStop(0, "transparent_")
           grad.addColorStop(0.3, hexToRgba(color, s.opacity * alpha))
           grad.addColorStop(0.7, hexToRgba(color, s.opacity * alpha * 0.8))
-          grad.addColorStop(1, "transparent")
+          grad.addColorStop(1, "transparent_")
           ctx.beginPath()
           ctx.moveTo(s.x, s.y - s.length)
           ctx.lineTo(s.x, s.y)
@@ -263,7 +263,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{
           height: "160px",
-          background: "linear-gradient(to bottom, transparent, #f8fafc)",
+          background: "linear-gradient(to bottom, transparent_, #f8fafc)",
         }}
       />
     </>
