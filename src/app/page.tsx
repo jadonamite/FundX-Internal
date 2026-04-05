@@ -17,7 +17,7 @@ export default function Home() {
       <Hero deckSlotRef={deckSlotRef} />
 
       {/* Campaign Section */}
-      <section id="campaigns" className="relative py-32 bg-white overflow-visible border_-t border_-slate-100">
+      <section id="campaigns" className="relative py-32 bg-white overflow-visible border-t border-slate-100">
 
         {/* Background */}
         <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-60 pointer-events-none" />
