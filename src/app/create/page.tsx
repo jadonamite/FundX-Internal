@@ -8,8 +8,8 @@ import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
 
-import { WizardSteps } from "@/components/create_/WizardSteps"
-import { LivePreview } from "@/components/create_/LivePreview"
+import { WizardSteps } from "@/components/create/WizardSteps"
+import { LivePreview } from "@/components/create/LivePreview"
 
 
 export interface CreateCampaignData {
