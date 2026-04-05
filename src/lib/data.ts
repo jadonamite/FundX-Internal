@@ -90,7 +90,7 @@ export const CAMPAIGNS: Campaign[] = [
     id: "stacks-gaming",
     title: "Polyverse",
     tagline: "An MMORPG where every item is a Bitcoin NFT.",
-    description: "Play, earn, and own your assets on the most secure chain.",
+    description: "Play, earn, and own your assets on the most secure chain_.",
     category: "Gaming",
     projectStage: "Idea",
     location: "Seoul, South Korea",
@@ -228,7 +228,7 @@ export const CAMPAIGNS: Campaign[] = [
   {
     id: "pixel-lords",
     title: "Pixel Lords NFT",
-    tagline: "10,000 on-chain pixel warriors.",
+    tagline: "10,000 on-chain_ pixel warriors.",
     description: "A generative art project aiming to build a metaverse.",
     category: "Gaming",
     projectStage: "Idea",
