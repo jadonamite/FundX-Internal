@@ -121,13 +121,13 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                 </TabsTrigger>
               </TabsList>
               
-              <TabsContent value="story" className="prose prose-slate prose-lg max-w-none text-slate-600">
+              <TabsContent value="story" className="prose_ prose_-slate prose_-lg max-w-none text-slate-600">
                 <p>{campaign.description}</p>
                 <p>
                   This is the full story of the campaign. In a real app, this would be rich text content loaded from the database.
                 </p>
                 
-                <div className="bg-orange-50 p-6 rounded-2xl border border-orange-100 my-8 not-prose">
+                <div className="bg-orange-50 p-6 rounded-2xl border border-orange-100 my-8 not-prose_">
                   <h4 className="font-bold text-orange-800 mb-2">Risks & Challenges</h4>
                   <p className="text-orange-700/80 text-sm">
                     All projects involve risk. Please do your own research (DYOR) before contributing.
