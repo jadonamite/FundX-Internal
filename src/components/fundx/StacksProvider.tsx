@@ -17,7 +17,7 @@ interface StacksContextValue {
 const StacksContext = createContext<StacksContextValue | undefined>(undefined)
 
 export function StacksProvider({ children }: { children: ReactNode }) {
-  const [walletData, setWalletData_] = useState<WalletData | null>(null)
+  const [walletData, setWalletData] = useState<WalletData | null>(null)
   const [isSignedIn, setIsSignedIn] = useState(false)
 
   // Check connection status on mount
@@ -29,7 +29,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
           const data = getLocalStorage()
           // getLocalStorage returns { addresses: { stx: [...], btc: [...] } }
           if (data?.addresses?.stx?.[0]?.address) {
-            setWalletData_({
+            setWalletData({
               stxAddress: data.addresses.stx[0].address,
               btcAddress: data.addresses.btc?.[0]?.address,
             })
@@ -59,7 +59,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
       )
       
       if (stxEntry?.address) {
-        setWalletData_({
+        setWalletData({
           stxAddress: stxEntry.address,
           btcAddress: btcEntry?.address,
         })
@@ -74,7 +74,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
     try {
       const { disconnect } = await import("@stacks/connect")
       disconnect()
-      setWalletData_(null)
+      setWalletData(null)
       setIsSignedIn(false)
     } catch (error) {
       console.error("Failed to disconnect:", error)
