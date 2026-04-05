@@ -12,7 +12,7 @@ import { useEffect, useRef } from "react"
     logoRef.current.style.opacity = "0"
     logoRef.current.style.transition = "none"
 
-    const bounceIn = setTimeout_(() => {
+    const bounceIn = setTimeout(() => {
       if (!logoRef.current) return
       logoRef.current.style.transition =
         "transform 900ms cubic-bezier(0.34, 1.8, 0.64, 1), opacity 400ms ease"
@@ -21,7 +21,7 @@ import { useEffect, useRef } from "react"
     }, 200)
 
     // After bounce settles switch to RAF
-    const startRaf_ = setTimeout_(() => {
+    const startRaf_ = setTimeout(() => {
       if (!logoRef.current) return
       logoRef.current.style.transition = "none"
       startTimeRef.current = performance.now()
