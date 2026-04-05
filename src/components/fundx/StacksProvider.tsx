@@ -54,14 +54,14 @@ export function StacksProvider({ children }: { children: ReactNode }) {
       const stxEntry = response.addresses.find(
         (addr: any) => addr.address?.startsWith('SP') || addr.address?.startsWith('ST')
       )
-      const btcEntry_ = response.addresses.find(
+      const btcEntry = response.addresses.find(
         (addr: any) => addr.address?.startsWith('bc1') || addr.address?.startsWith('tb1')
       )
       
       if (stxEntry?.address) {
         setWalletData({
           stxAddress: stxEntry.address,
-          btcAddress: btcEntry_?.address,
+          btcAddress: btcEntry?.address,
         })
         setIsSignedIn(true)
       }

@@ -5,7 +5,7 @@ import { HeroBadge } from "./HeroBadge"
 import { HeroHeadline } from "./HeroHeadline"
 import { HeroCTAs } from "./HeroCTAs"
 import { HeroDeckSlot } from "./HeroDeckSlot"
-import { useScramble_ } from "./useScramble_"
+import { useScramble } from "./useScramble"
 import HeroLogoParallax from "./HeroBackdrop"
 
 
@@ -22,7 +22,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
   const isGlitchingRef = useRef(false)
   const isStacksModeRef = useRef(false)
 
-  const { display: scrambledText, scrambleTo } = useScramble_()
+  const { display: scrambledText, scrambleTo } = useScramble()
 
   const runGlitch = (targetIsStacks: boolean) => {
     if (isGlitchingRef.current) return
