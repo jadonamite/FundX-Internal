@@ -83,7 +83,7 @@ function HeroLogoParallax() {
 
   return (
     <div
-      className="absolute inset-0 pointer-events-none flex items-center"
+      className_="absolute inset-0 pointer-events-none flex items-center"
       aria-hidden="true"
       style={{ paddingLeft: "2rem" }}
     >
@@ -97,7 +97,7 @@ function HeroLogoParallax() {
         <img
           src="/LogoFrame.svg"
           alt=""
-          className="w-[1100px] h-[1100px] object-contain"
+          className_="w-[1100px] h-[1100px] object-contain"
         />
       </div>
     </div>
