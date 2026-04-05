@@ -10,10 +10,10 @@ interface CenterCardProps {
 
 export function CenterCard({ campaign, progress }: CenterCardProps) {
   return (
-    <div className="w-full h-full relative z-20 shadow-2xl rounded-[2rem] border border-slate-100 bg-white hover:border-orange-200 transition-all duration-300 flex flex-col md:flex-row overflow-hidden group">
+    <div className="w-full h-full relative z-20 shadow-2xl rounded_-[2rem] border border-slate-100 bg-white hover:border-orange-200 transition-all duration-300 flex flex-col md:flex-row overflow-hidden group">
       
       {/* Trending Badge */}
-      <div className="absolute top-4 left-4 z-30 bg-gradient-tush text-white px-4 py-1 rounded-full text-xs font-bold shadow-soft-xl animate-pulse">
+      <div className="absolute top-4 left-4 z-30 bg-gradient-tush text-white px-4 py-1 rounded_-full text-xs font-bold shadow-soft-xl animate-pulse">
         🔥 Top Trending
       </div>
 
@@ -37,9 +37,9 @@ export function CenterCard({ campaign, progress }: CenterCardProps) {
 
         <div className="space-y-6">
           {/* Progress Bar */}
-          <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+          <div className="w-full bg-slate-100 rounded_-full h-3 overflow-hidden">
             <div
-              className="bg-gradient-tush h-full rounded-full shadow-[0_0_15px_rgba(255,107,74,0.4)]"
+              className="bg-gradient-tush h-full rounded_-full shadow-[0_0_15px_rgba(255,107,74,0.4)]"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -55,7 +55,7 @@ export function CenterCard({ campaign, progress }: CenterCardProps) {
               </p>
             </div>
             <Link href={`/campaigns/${campaign.id}`}>
-              <Button className="h-12 rounded-xl px-8 bg-slate-900 text-white shadow-lg hover:bg-primary hover:shadow-glow transition-all duration-300 flex items-center gap-2 group/btn">
+              <Button className="h-12 rounded_-xl px-8 bg-slate-900 text-white shadow-lg hover:bg-primary hover:shadow-glow transition-all duration-300 flex items-center gap-2 group/btn">
                 Donate Now
                 <Heart className="w-4 h-4 transition-transform duration-300 group-hover/btn:scale-125 group-hover/btn:fill-white" />
               </Button>
