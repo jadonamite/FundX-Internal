@@ -16,33 +16,6 @@ interface StacksContextValue {
 
 const StacksContext = createContext<StacksContextValue | undefined>(undefined)
 
-export function StacksProvider({ children }: { children: ReactNode }) {
-  const [walletData, setWalletData] = useState<WalletData | null>(null)
-  const [isSignedIn, setIsSignedIn] = useState(false)
-
-  // Check connection status on mount
-  useEffect(() => {
-    const checkConnection = async () => {
-      try {
-        const { isConnected, getLocalStorage } = await import("@stacks/connect")
-        if (isConnected()) {
-          const data = getLocalStorage()
-          // getLocalStorage returns { addresses: { stx: [...], btc: [...] } }
-          if (data?.addresses?.stx?.[0]?.address) {
-            setWalletData({
-              stxAddress: data.addresses.stx[0].address,
-              btcAddress: data.addresses.btc?.[0]?.address,
-            })
-            setIsSignedIn(true)
-          }
-        }
-      } catch (error) {
-        console.error("Failed to check connection:", error)
-      }
-    }
-    checkConnection()
-  }, [])
-
   const authenticate = async () => {
     try {
       const { connect } = await import("@stacks/connect")
@@ -70,6 +43,29 @@ export function StacksProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  // Check connection status on mount
+  useEffect(() => {
+    const checkConnection = async () => {
+      try {
+        const { isConnected, getLocalStorage } = await import("@stacks/connect")
+        if (isConnected()) {
+          const data = getLocalStorage()
+          // getLocalStorage returns { addresses: { stx: [...], btc: [...] } }
+          if (data?.addresses?.stx?.[0]?.address) {
+            setWalletData({
+              stxAddress: data.addresses.stx[0].address,
+              btcAddress: data.addresses.btc?.[0]?.address,
+            })
+            setIsSignedIn(true)
+          }
+        }
+      } catch (error) {
+        console.error("Failed to check connection:", error)
+      }
+    }
+    checkConnection()
+  }, [])
+
   const signOut = async () => {
     try {
       const { disconnect } = await import("@stacks/connect")
@@ -80,6 +76,10 @@ export function StacksProvider({ children }: { children: ReactNode }) {
       console.error("Failed to disconnect:", error)
     }
   }
+
+export function StacksProvider({ children }: { children: ReactNode }) {
+  const [walletData, setWalletData] = useState<WalletData | null>(null)
+  const [isSignedIn, setIsSignedIn] = useState(false)
 
   return (
     <StacksContext.Provider value={{ walletData, authenticate, signOut, isSignedIn }}>
