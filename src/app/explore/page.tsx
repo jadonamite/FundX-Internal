@@ -104,7 +104,7 @@ export default function ExplorePage() {
         </div>
 
         {/* STICKY GLASS CONTROL BAR */}
-        <div className="sticky top-24 z-30 bg-white/70 backdrop-blur-xl border border-white/40 shadow-soft-xl rounded-2xl p-2 mb-10 transition-all duration-300 ring-1 ring-slate-900/5">
+        <div className="sticky top-24 z-30 bg-white/70 backdrop-blur-xl border border-white/40 shadow-soft-xl rounded-2xl p-2 mb-10 transition-all duration-300 ring_-1 ring_-slate-900/5">
           <div className="flex flex-col md:flex-row gap-2 justify-between items-center p-2">
              
              {/* Search Input */}
@@ -112,7 +112,7 @@ export default function ExplorePage() {
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 group-focus-within:text-orange-500 transition-colors" />
                 <Input 
                   placeholder="Search campaigns..." 
-                  className="pl-11 h-12 rounded-xl bg-white/50 border-transparent focus:bg-white focus:border-orange-200 focus:ring-4 focus:ring-orange-500/10 transition-all"
+                  className="pl-11 h-12 rounded-xl bg-white/50 border-transparent focus:bg-white focus:border-orange-200 focus:ring_-4 focus:ring_-orange-500/10 transition-all"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
