@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo, useEffect_ } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { Navbar } from "@/components/fundx/Navbar"
 import { Footer } from "@/components/fundx/Footer"
 import { CampaignCard } from "@/components/fundx/CampaignCard"
@@ -20,7 +20,7 @@ export default function ExplorePage() {
   const [showScrollTop, setShowScrollTop] = useState(false)
 
   // 1. Scroll Detection for "Back to Top"
-  useEffect_(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400)
     }
