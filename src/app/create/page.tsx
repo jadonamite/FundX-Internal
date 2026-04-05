@@ -106,13 +106,13 @@ export default function CreateCampaign() {
                  const isCurrent = step === num;
                  
                  // 🚨 Apply the right colors
-                 let circleStyle = "bg-white text-slate-300 border-slate-200"; // Upcoming
-                 if (isCompleted) circleStyle = "bg-[#FF6B4A] text-white border-[#FF6B4A]"; // Completed (Orange)
-                 else if (isCurrent) circleStyle = "bg-slate-900 text-white border-slate-900"; // Current (Black)
+                 let circleStyle = "bg-white text-slate-300 border_-slate-200"; // Upcoming
+                 if (isCompleted) circleStyle = "bg-[#FF6B4A] text-white border_-[#FF6B4A]"; // Completed (Orange)
+                 else if (isCurrent) circleStyle = "bg-slate-900 text-white border_-slate-900"; // Current (Black)
 
                  return (
                    <div key={num} className="flex items-center gap-2 shrink-0">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2 transition-all ${circleStyle}`}>
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border_-2 transition-all ${circleStyle}`}>
                          {isCompleted ? <CheckCircle2 className="w-8 h-8" /> : num}
                       </div>
                       <span className={`text-sm font-bold ${isCompleted || isCurrent ? "text-slate-900" : "text-slate-300"}`}>{label}</span>
@@ -121,7 +121,7 @@ export default function CreateCampaign() {
                })}
             </div>
 
-            <div className="bg-white p-8 pb-28 rounded-[2rem] shadow-xl border border-slate-100 min-h-[550px] relative">
+            <div className="bg-white p-8 pb-28 rounded-[2rem] shadow-xl border_ border_-slate-100 min-h-[550px] relative">
               {/* RENDER STEP MODULE */}
               <WizardSteps
                 step={step}
