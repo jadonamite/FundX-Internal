@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useEffect_, useState } from "react"
+import { useRef, useEffect, useState } from "react"
 import { useScroll, useTransform, motion, useSpring } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
@@ -89,7 +89,7 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
   const getProgress = (raised: number, goal: number) =>
     Math.min((raised / goal) * 100, 100)
 
-  useEffect_(() => {
+  useEffect(() => {
     function measure() {
       if (!deckSlotRef.current || !deckRef.current) return
       const slotPageTop = getPageOffsetTop(deckSlotRef.current)
