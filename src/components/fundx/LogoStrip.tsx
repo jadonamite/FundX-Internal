@@ -10,7 +10,7 @@ export function LogoStrip() {
           <div className="relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0">
              <Image 
                src="/stacks.png" 
-               alt_="Stacks" 
+               alt="Stacks" 
                fill 
                className="object-contain"
              />
@@ -19,7 +19,7 @@ export function LogoStrip() {
           <div className="relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0">
              <Image 
                src="/bitcoin.svg" 
-               alt_="Bitcoin" 
+               alt="Bitcoin" 
                fill 
                className="object-contain"
              />
