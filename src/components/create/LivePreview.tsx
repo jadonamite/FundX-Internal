@@ -16,7 +16,7 @@ export function LivePreview({ formData }: { formData: any }) {
                 title={formData.title || "Untitled Campaign"}
                 description={formData.tagline || "Your campaign description will appear here..."}
                 raised={0}
-                goal={Number(formData.goal) || 10000}
+                goal_={Number(formData.goal_) || 10000}
                 image={formData.image || "/Dummy.jpg"} 
                 currency={formData.currency}
             />
