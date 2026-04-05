@@ -122,7 +122,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
               </div>
               <div className="space-y-2">
                  <Label>Current Stage</Label>
-                 <Select onValueChange={(val) => setFormData({...formData, projectStage_: val})} defaultValue={formData.projectStage_}>
+                 <Select onValueChange={(val) => setFormData({...formData, projectStage: val})} defaultValue={formData.projectStage}>
                     <SelectTrigger className="h-14 rounded-xl"><SelectValue /></SelectTrigger>
                     <SelectContent className="bg-white">
                        <SelectItem value="Idea">Concept / Idea</SelectItem>
