@@ -5,7 +5,7 @@ export function LogoStrip() {
     <div className="w-full border-t border-slate-100 py-20"> {/* No background */}
       <div className="container mx-auto max-w-5xl px-4">
         
-        <div className="flex flex-wrap justify-center items-center gap_-16 md:gap_-32">
+        <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32">
          
           <div className="relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0">
              <Image 
