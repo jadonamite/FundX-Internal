@@ -180,7 +180,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         const pulse = Math.sin(b.pulsePhase) * 0.06
         b.opacity = baseOpacity + pulse
 
-        const drawBlock = (color: string, alpha: number) => {
+        const drawBlock_ = (color: string, alpha: number) => {
           if (alpha < 0.01) return
 
           // Glow
@@ -203,8 +203,8 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
           ctx.shadowBlur = 0
         }
 
-        drawBlock(BITCOIN_COLORS.block, bitcoinAlpha)
-        drawBlock(STACKS_COLORS.block, stacksAlpha)
+        drawBlock_(BITCOIN_COLORS.block, bitcoinAlpha)
+        drawBlock_(STACKS_COLORS.block, stacksAlpha)
 
         // Chain lines between nearby blocks
         for (let j = i - 1; j >= 0; j--) {
