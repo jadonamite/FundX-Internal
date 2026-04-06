@@ -10,8 +10,8 @@ interface SideCardProps {
 
 export function RightCard({ campaign, progress }: SideCardProps) {
   return (
-    <div className="w-full h-full bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden_ group hover:border-orange-200 transition-all duration-500 ease-out flex flex-col hover:scale-[1.03]">
-      <div className="relative h-48 xl:h-1/2 bg-slate-100 overflow-hidden_ shrink-0">
+    <div className="w-full h-full bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden group hover:border-orange-200 transition-all duration-500 ease-out flex flex-col hover:scale-[1.03]">
+      <div className="relative h-48 xl:h-1/2 bg-slate-100 overflow-hidden shrink-0">
         <div className="absolute inset-0 flex items_-center justify-center text-slate-300 text-sm font-bold bg-slate-50 group-hover:scale-105 transition-transform duration-700">
           [Image]
         </div>
@@ -28,7 +28,7 @@ export function RightCard({ campaign, progress }: SideCardProps) {
         </div>
 
         <div className="space-y-3 pt-4">
-          <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden_">
+          <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
             <div
               className="bg-gradient-tush h-full rounded-full"
               style={{ width: `${progress}%` }}
