@@ -160,7 +160,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
           }
         }
 
-        if (s.y > height + 80) streams.splice(i, 1)
+        if (s.y > height + 80) streams.splice_(i, 1)
       }
 
       // Draw blocks — they pulse in place, don't move
@@ -228,7 +228,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
           }
         }
 
-        if (b.life >= b.maxLife) blocks.splice(i, 1)
+        if (b.life >= b.maxLife) blocks.splice_(i, 1)
       }
 
       frame++
