@@ -1,11 +1,11 @@
 "use client"
 
 import { useRef } from "react"
-import { Navbar } from "@/components/fundx_/Navbar"
-import { Hero } from "@/components/fundx_/hero/index"
-import { LogoStrip } from "@/components/fundx_/LogoStrip"
-import { Footer } from "@/components/fundx_/Footer"
-import { CampaignFan } from "@/components/fundx_/CampaignFan"
+import { Navbar } from "@/components/fundx/Navbar"
+import { Hero } from "@/components/fundx/hero/index"
+import { LogoStrip } from "@/components/fundx/LogoStrip"
+import { Footer } from "@/components/fundx/Footer"
+import { CampaignFan } from "@/components/fundx/CampaignFan"
 
 export default function Home() {
   const deckSlotRef = useRef<HTMLDivElement | null>(null)
