@@ -82,14 +82,14 @@ export default function ExplorePage() {
 
       {/* BACKGROUND MESH GRADIENT (Adds Life) */}
       <div className="absolute top-0 left-0 w-full h-[500px] overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[-20%] left-[20%] w-[600px] h-[600px] bg-orange-200/30 rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute top-[-10%] right-[10%] w-[500px] h-[500px] bg-purple-200/30 rounded-full blur-[100px] animate-pulse delay-1000" />
+        <div className="absolute top-[-20%] left-[20%] w-[600px] h-[600px] bg-orange-200/30 rounded-full blur-[100px] animate_-pulse" />
+        <div className="absolute top-[-10%] right-[10%] w-[500px] h-[500px] bg-purple-200/30 rounded-full blur-[100px] animate_-pulse delay-1000" />
       </div>
 
       <div className="pt-32 pb-20 container mx-auto max-w-7xl px-4 relative z-10">
         
         {/* ANIMATED HEADER */}
-        <div className="mb-12 text-center max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-6 duration-700">
+        <div className="mb-12 text-center max-w-3xl mx-auto animate_-in fade-in slide-in-from-bottom-6 duration-700">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-500 mb-6">
              <Sparkles className="w-3 h-3 text-orange-500" />
              <span>{CAMPAIGNS.length} Active Campaigns</span>
@@ -170,7 +170,7 @@ export default function ExplorePage() {
             {filteredCampaigns.slice(0, visibleCount).map((campaign, index) => (
               <div 
                 key={campaign.id} 
-                className={`h-[480px] animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-backwards ${campaign.status === 'failed' ? 'opacity-60 grayscale-[0.5] hover:grayscale-0 transition-all' : ''}`} // 🚨 ADDED: Grayscale effect for failed campaigns
+                className={`h-[480px] animate_-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-backwards ${campaign.status === 'failed' ? 'opacity-60 grayscale-[0.5] hover:grayscale-0 transition-all' : ''}`} // 🚨 ADDED: Grayscale effect for failed campaigns
                 style={{ animationDelay: `${index * 100}ms` }} // Stagger Effect
               >
                 <CampaignCard 
@@ -186,7 +186,7 @@ export default function ExplorePage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 animate-in fade-in zoom-in duration-500">
+          <div className="text-center py-20 animate_-in fade-in zoom-in duration-500">
              <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl shadow-inner">
                 🛸
              </div>
@@ -204,7 +204,7 @@ export default function ExplorePage() {
 
         {/* LOAD MORE BUTTON */}
         {filteredCampaigns.length > visibleCount && (
-          <div className="mt-16 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
+          <div className="mt-16 text-center animate_-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
             <Button 
               onClick={handleLoadMore}
               variant="outline" 
