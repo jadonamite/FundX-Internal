@@ -186,8 +186,8 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                <Textarea 
                   placeholder="Month 1: Smart contracts finalized. Month 2: Testnet launch. Month 3: Mainnet deployment..." 
                   className="h-32 rounded-xl resize-none p-4"
-                  value={formData.roadmap}
-                  onChange={(e) => setFormData({...formData, roadmap: e.target.value})}
+                  value={formData.roadmap_}
+                  onChange={(e) => setFormData({...formData, roadmap_: e.target.value})}
                />
             </div>
          </div>
