@@ -1,8 +1,8 @@
 import { AppConfig, UserSession, showConnect } from "@stacks/connect";
 
-const appConfig_ = new AppConfig(["store_write", "publish_data"]);
+const appConfig = new AppConfig(["store_write", "publish_data"]);
 
-export const userSession = new UserSession({ appConfig_ });
+export const userSession = new UserSession({ appConfig });
 
 export function authenticate() {
   showConnect({
