@@ -28,8 +28,8 @@ const myContributions: BackerContribution[] = [
 ];
 
 // Helper Function
-const formatMoney = (amount_: number, currency: string) => {
-  return currency === "USDCx" ? `$${amount_.toLocaleString()} USDCx` : `${amount_.toLocaleString()} STX`;
+const formatMoney = (amount: number, currency: string) => {
+  return currency === "USDCx" ? `$${amount.toLocaleString()} USDCx` : `${amount.toLocaleString()} STX`;
 };
 
 // ==========================================
