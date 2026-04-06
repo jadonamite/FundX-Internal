@@ -16,9 +16,16 @@ interface StacksContextValue {
 
 const StacksContext = createContext<StacksContextValue | undefined>(undefined)
 
-export function StacksProvider({ children }: { children: ReactNode }) {
-  const [walletData, setWalletData] = useState<WalletData | null>(null)
-  const [isSignedIn, setIsSignedIn] = useState(false)
+  const signOut = async () => {
+    try {
+      const { disconnect } = await import("@stacks/connect")
+      disconnect()
+      setWalletData(null)
+      setIsSignedIn(false)
+    } catch (error) {
+      console.error("Failed to disconnect:", error)
+    }
+  }
 
   // Check connection status on mount
   useEffect(() => {
@@ -70,16 +77,9 @@ export function StacksProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  const signOut = async () => {
-    try {
-      const { disconnect } = await import("@stacks/connect")
-      disconnect()
-      setWalletData(null)
-      setIsSignedIn(false)
-    } catch (error) {
-      console.error("Failed to disconnect:", error)
-    }
-  }
+export function StacksProvider({ children }: { children: ReactNode }) {
+  const [walletData, setWalletData] = useState<WalletData | null>(null)
+  const [isSignedIn, setIsSignedIn] = useState(false)
 
   return (
     <StacksContext.Provider value={{ walletData, authenticate, signOut, isSignedIn }}>
