@@ -42,7 +42,7 @@ function hexToRgba(hex: string, alpha: number) {
 }
 
 export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
-  const canvasRef_ = useRef<HTMLCanvasElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
   const isStacksModeRef = useRef(isStacksMode)
   const rafRef = useRef<number>(0)
   const targetOpacityRef = useRef(isStacksMode ? 1 : 0)
@@ -53,7 +53,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
   }, [isStacksMode])
 
   useEffect(() => {
-    const canvas = canvasRef_.current
+    const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext("2d")
     if (!ctx) return
@@ -255,7 +255,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
   return (
     <>
       <canvas
-        ref={canvasRef_}
+        ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
       />
       {/* Gradient fade at bottom — blends hero into campaign section */}
