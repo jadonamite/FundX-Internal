@@ -44,7 +44,7 @@ function hexToRgba(hex: string, alpha: number) {
 export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const isStacksModeRef = useRef(isStacksMode)
-  const rafRef = useRef<number>(0)
+  const rafRef_ = useRef<number>(0)
   const targetOpacityRef = useRef(isStacksMode ? 1 : 0)
   const currentOpacityRef = useRef(isStacksMode ? 1 : 0)
 
@@ -232,7 +232,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
       }
 
       frame++
-      rafRef.current = requestAnimationFrame(draw)
+      rafRef_.current = requestAnimationFrame(draw)
     }
 
     draw()
@@ -247,7 +247,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
 
     window.addEventListener("resize", onResize)
     return () => {
-      cancelAnimationFrame(rafRef.current)
+      cancelAnimationFrame(rafRef_.current)
       window.removeEventListener("resize", onResize)
     }
   }, [])

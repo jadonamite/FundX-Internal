@@ -78,7 +78,7 @@ export function ConnectWallet() {
           <DropdownMenuTrigger asChild>
             <Button 
               className={`
-                relative z-10 rounded-full px-6 font-bold tracking-tight transition-all duration-500
+                relative z-10 rounded-full px-6 font-bold tracking-tight transition-all_ duration-500
                 ${justConnected 
                   ? "bg-green-500 border-green-400 text-white shadow-lg" // Success State
                   : "bg-gradient-tush text-white shadow-glow hover:opacity-90 hover:scale-105" // Normal State
@@ -110,7 +110,7 @@ export function ConnectWallet() {
                     {isMainnet ? " Mainnet" : "Testnet"}
                   </span>
                </div>
-               <p className="text-[10px] text-slate-400 font-mono break-all leading-tight">
+               <p className="text-[10px] text-slate-400 font-mono break-all_ leading-tight">
                  {addr}
                </p>
             </div>
@@ -145,7 +145,7 @@ export function ConnectWallet() {
   return (
     <Button 
       onClick={authenticate}
-      className="rounded-full bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-slate-900/20 px-6 transition-all hover:scale-105"
+      className="rounded-full bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-slate-900/20 px-6 transition-all_ hover:scale-105"
     >
       Connect Wallet
     </Button>
