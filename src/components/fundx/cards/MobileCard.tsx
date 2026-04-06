@@ -17,7 +17,7 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
         </div>
       </div>
 
-      <div className="p-6 flex flex-col gap_-4">
+      <div className="p-6 flex flex-col gap-4">
         <h3 className="text-xl font-bold text-slate-900">{campaign.title}</h3>
         <p className="text-sm text-slate-500 line-clamp-2">
           {campaign.description}
@@ -37,7 +37,7 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
           <Link href={`/campaigns/${campaign.id}`}>
             <Button
               size="sm"
-              className="h-10 rounded-xl bg-slate-900 text-white px-5 flex items-center gap_-1.5"
+              className="h-10 rounded-xl bg-slate-900 text-white px-5 flex items-center gap-1.5"
             >
               Donate
               <ArrowRight className="w-3.5 h-3.5" />

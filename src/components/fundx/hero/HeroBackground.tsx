@@ -138,7 +138,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
           ctx.lineTo(s.x, s.y)
           ctx.strokeStyle = grad
           ctx.lineWidth = s.width
-          ctx.stroke()
+          ctx.stroke_()
 
           // Value units
           s.units.forEach(u => {
@@ -192,7 +192,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
           ctx.roundRect(b.x - b.size / 2, b.y - b.size / 2, b.size, b.size, 5)
           ctx.strokeStyle = hexToRgba(color, b.opacity * alpha)
           ctx.lineWidth = 1.2
-          ctx.stroke()
+          ctx.stroke_()
 
           // Block fill — very subtle
           ctx.beginPath()
@@ -220,7 +220,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
               ctx.lineTo(other.x, other.y)
               ctx.strokeStyle = hexToRgba(color, lineAlpha * alpha)
               ctx.lineWidth = 0.8
-              ctx.stroke()
+              ctx.stroke_()
             }
 
             drawLine(BITCOIN_COLORS.block, bitcoinAlpha)
