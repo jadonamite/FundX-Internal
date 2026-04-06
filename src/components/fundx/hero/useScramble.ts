@@ -2,10 +2,6 @@ import { useState, useEffect, useRef } from "react"
 
 const SCRAMBLE_CHARS = "ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ∑∆∇Ωλ∞"
 
-export function useScramble() {
-  const [display, setDisplay] = useState("Bitcoin")
-  const frameRef = useRef<NodeJS.Timeout | null>(null)
-
   const scrambleTo = (word: string) => {
     if (frameRef.current) clearTimeout(frameRef.current)
     let lockedCount = 0
@@ -19,6 +15,10 @@ export function useScramble() {
     }
     tick()
   }
+
+export function useScramble() {
+  const [display, setDisplay] = useState("Bitcoin")
+  const frameRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     return () => { if (frameRef.current) clearTimeout(frameRef.current) }
