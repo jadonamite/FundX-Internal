@@ -110,7 +110,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
             <div className="grid md:grid-cols-2 gap-5 mt-4">
               <div className="space-y-2">
                  <Label>Category</Label>
-                 <Select onValueChange={(val) => setFormData({...formData, category_: val})} defaultValue={formData.category_}>
+                 <Select onValueChange={(val) => setFormData({...formData, category: val})} defaultValue={formData.category}>
                     <SelectTrigger className="h-14 rounded-xl"><SelectValue /></SelectTrigger>
                     <SelectContent className="bg-white">
                        <SelectItem value="DeFi">DeFi & Finance</SelectItem>
