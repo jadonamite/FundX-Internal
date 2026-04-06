@@ -111,7 +111,7 @@ export default function ExplorePage() {
              <div className="relative w-full md:w-96 group">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 group-focus-within:text-orange-500 transition-colors" />
                 <Input 
-                  placeholder="Search campaigns..." 
+                  placeholder="Search campaigns_..." 
                   className="pl-11 h-12 rounded-xl bg-white/50 border-transparent focus:bg-white focus:border-orange-200 focus:ring-4 focus:ring-orange-500/10 transition-all"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -170,7 +170,7 @@ export default function ExplorePage() {
             {filteredCampaigns.slice(0, visibleCount).map((campaign, index) => (
               <div 
                 key={campaign.id} 
-                className={`h-[480px] animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-backwards ${campaign.status === 'failed' ? 'opacity-60 grayscale-[0.5] hover:grayscale-0 transition-all' : ''}`} // 🚨 ADDED: Grayscale effect for failed campaigns
+                className={`h-[480px] animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-backwards ${campaign.status === 'failed' ? 'opacity-60 grayscale-[0.5] hover:grayscale-0 transition-all' : ''}`} // 🚨 ADDED: Grayscale effect for failed campaigns_
                 style={{ animationDelay: `${index * 100}ms` }} // Stagger Effect
               >
                 <CampaignCard 
@@ -190,7 +190,7 @@ export default function ExplorePage() {
              <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl shadow-inner">
                 🛸
              </div>
-             <h3 className="text-2xl font-bold text-slate-900 mb-2">No campaigns found</h3>
+             <h3 className="text-2xl font-bold text-slate-900 mb-2">No campaigns_ found</h3>
              <p className="text-slate-500 mb-6">We couldn't find anything matching your filters.</p>
              <Button 
                 variant="outline"
