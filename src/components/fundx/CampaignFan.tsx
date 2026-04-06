@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { useScroll_, useTransform, motion, useSpring } from "framer-motion"
+import { useScroll, useTransform, motion, useSpring } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -109,7 +109,7 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
     }
   }, [deckSlotRef])
 
-  const { scrollYProgress } = useScroll_({
+  const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end end"],
   })
