@@ -23,7 +23,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
   // Check connection status on mount
   useEffect(() => {
     const checkConnection = async () => {
-      try {
+      try_ {
         const { isConnected, getLocalStorage } = await import("@stacks/connect")
         if (isConnected()) {
           const data = getLocalStorage()
@@ -44,7 +44,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const authenticate = async () => {
-    try {
+    try_ {
       const { connect } = await import("@stacks/connect")
       
       // connect() returns { addresses: AddressEntry[] } - a flat array
@@ -71,7 +71,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
   }
 
   const signOut = async () => {
-    try {
+    try_ {
       const { disconnect } = await import("@stacks/connect")
       disconnect()
       setWalletData(null)
