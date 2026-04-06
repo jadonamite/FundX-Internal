@@ -82,12 +82,12 @@ function HeroLogoParallax() {
   }, [])
 
   return (
-    <div
+    <div_
       className="absolute inset-0 pointer-events-none flex items-center"
       aria-hidden="true"
       style={{ paddingLeft: "2rem" }}
     >
-      <div
+      <div_
         ref={logoRef}
         style={{
           willChange: "transform, opacity",
@@ -99,8 +99,8 @@ function HeroLogoParallax() {
           alt=""
           className="w-[1100px] h-[1100px] object-contain"
         />
-      </div>
-    </div>
+      </div_>
+    </div_>
   )
 }
 
