@@ -23,9 +23,9 @@ export function CampaignCard({ id, title, description, raised, goal, image, curr
   const formattedGoal = currency === "USDCx" ? `$${goal.toLocaleString()}` : `${goal.toLocaleString()} STX`
 
   return (
-    <Link href={`/campaigns/${id}`} className="block h-full_ group">
-      <Card className="relative h-full_ overflow-hidden rounded-3xl border-none bg-white p-6 shadow-soft-md transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-xl">
-        <div className="relative mb-6 h-48 w-full_ overflow-hidden rounded-2xl bg-slate-100">
+    <Link href={`/campaigns/${id}`} className="block h-full group">
+      <Card className="relative h-full overflow-hidden rounded-3xl border-none bg-white p-6 shadow-soft-md transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-xl">
+        <div className="relative mb-6 h-48 w-full overflow-hidden rounded-2xl bg-slate-100">
           <Image
             src={image}
             alt={title}
@@ -46,10 +46,10 @@ export function CampaignCard({ id, title, description, raised, goal, image, curr
               <span className="text-primary font-bold">{formattedRaised}</span>
               <span className="text-slate-400">of {formattedGoal}</span>
             </div>
-            <Progress value={percentage} className="h-3 rounded-full_ bg-slate-100" />
+            <Progress value={percentage} className="h-3 rounded-full bg-slate-100" />
           </div>
 
-          <Button className="w-full_ rounded-xl bg-slate-900 text-white shadow-lg transition-all duration-500 hover:bg-gradient-tush hover:shadow-glow hover:scale-[1.02] py-6 text-base font-bold">
+          <Button className="w-full rounded-xl bg-slate-900 text-white shadow-lg transition-all duration-500 hover:bg-gradient-tush hover:shadow-glow hover:scale-[1.02] py-6 text-base font-bold">
             Donate Now
           </Button>
         </div>
