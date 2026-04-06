@@ -4,11 +4,11 @@ import { Campaign } from "@/lib/data"
 import { Heart } from "lucide-react"
 
 interface CenterCardProps {
-  campaign_: Campaign
+  campaign: Campaign
   progress: number
 }
 
-export function CenterCard({ campaign_, progress }: CenterCardProps) {
+export function CenterCard({ campaign, progress }: CenterCardProps) {
   return (
     <div className="w-full h-full relative z-20 shadow-2xl rounded-[2rem] border border-slate-100 bg-white hover:border-orange-200 transition-all duration-300 flex flex-col md:flex-row overflow-hidden group">
       
@@ -28,10 +28,10 @@ export function CenterCard({ campaign_, progress }: CenterCardProps) {
       <div className="flex flex-col justify-between p-8 md:w-7/12 h-full bg-white">
         <div className="pt-4">
           <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-primary transition-colors">
-            {campaign_.title}
+            {campaign.title}
           </h3>
           <p className="text-slate-500 leading-relaxed mb-6 text-sm md:text-base">
-            {campaign_.description}
+            {campaign.description}
           </p>
         </div>
 
@@ -51,10 +51,10 @@ export function CenterCard({ campaign_, progress }: CenterCardProps) {
                 Raised
               </p>
               <p className="text-3xl font-bold text-primary">
-                ${campaign_.raised.toLocaleString()}
+                ${campaign.raised.toLocaleString()}
               </p>
             </div>
-            <Link href={`/campaigns/${campaign_.id}`}>
+            <Link href={`/campaigns/${campaign.id}`}>
               <Button className="h-12 rounded-xl px-8 bg-slate-900 text-white shadow-lg hover:bg-primary hover:shadow-glow transition-all duration-300 flex items-center gap-2 group/btn">
                 Donate Now
                 <Heart className="w-4 h-4 transition-transform duration-300 group-hover/btn:scale-125 group-hover/btn:fill-white" />
