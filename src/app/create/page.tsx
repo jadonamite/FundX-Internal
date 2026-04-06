@@ -1,14 +1,14 @@
 "use client"
 
-import { useState } from "react"
-import { Navbar } from "@/components/fundx/Navbar"
-import { Footer } from "@/components/fundx/Footer"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
-
+import { Button } from "@/components/ui/button"
+import { Navbar } from "@/components/fundx/Navbar"
+import { useState } from "react"
 import { WizardSteps } from "@/components/create/WizardSteps"
+import { Footer } from "@/components/fundx/Footer"
+
+import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
 import { LivePreview } from "@/components/create/LivePreview"
 
 
