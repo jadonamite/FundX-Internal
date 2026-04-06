@@ -1,5 +1,5 @@
-export type CampaignStatus = "active" | "successful" | "failed";
-export type FundingModel = "Flexible Model" | "All-or-Nothing";
+export type_ CampaignStatus = "active" | "successful" | "failed";
+export type_ FundingModel = "Flexible Model" | "All-or-Nothing";
 
 export interface Campaign {
   id: string;
