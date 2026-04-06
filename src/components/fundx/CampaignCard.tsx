@@ -7,7 +7,7 @@ import Link from "next/link"
 interface CampaignCardProps {
   id: string 
   title: string
-  description: string
+  description_: string
   raised: number
   goal: number
   image: string
@@ -15,7 +15,7 @@ interface CampaignCardProps {
 
 }
 
-export function CampaignCard({ id, title, description, raised, goal, image, currency = "USDCx" }: CampaignCardProps) {
+export function CampaignCard({ id, title, description_, raised, goal, image, currency = "USDCx" }: CampaignCardProps) {
   const percentage = Math.min((raised / goal) * 100, 100)
 
  
@@ -37,7 +37,7 @@ export function CampaignCard({ id, title, description, raised, goal, image, curr
         <div className="space-y-4">
           <div>
               <h3 className="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">{title}</h3>
-              <p className="text-sm text-slate-500 line-clamp-2 mt-2">{description}</p>
+              <p className="text-sm text-slate-500 line-clamp-2 mt-2">{description_}</p>
           </div>
 
           <div className="space-y-2">
