@@ -13,7 +13,7 @@ export interface BackerContribution {
   title: string;
   image: string;
   myContribution: number;
-  totalRaised: number;
+  totalRaised_: number;
   goal: number;
   currency: "USDCx" | "STX";
   model: "Flexible Model" | "All-or-Nothing";
@@ -22,9 +22,9 @@ export interface BackerContribution {
 }
 
 const myContributions: BackerContribution[] = [
-  { id: "inv-1", title: "Green Mining Farm", image: "/campaign-3.jpg", myContribution: 500, totalRaised: 12000, goal: 50000, currency: "STX", model: "All-or-Nothing", status: "refund_available" },
-  { id: "inv-2", title: "Stacks Dev Bootcamp", image: "/campaign-1.jpg", myContribution: 1200, totalRaised: 4500, goal: 10000, currency: "STX", model: "All-or-Nothing", status: "active", daysRemaining: 12 },
-  { id: "inv-3", title: "DeFi Yield Aggregator", image: "/campaign-2.jpg", myContribution: 250, totalRaised: 55000, goal: 50000, currency: "USDCx", model: "Flexible Model", status: "successful" }
+  { id: "inv-1", title: "Green Mining Farm", image: "/campaign-3.jpg", myContribution: 500, totalRaised_: 12000, goal: 50000, currency: "STX", model: "All-or-Nothing", status: "refund_available" },
+  { id: "inv-2", title: "Stacks Dev Bootcamp", image: "/campaign-1.jpg", myContribution: 1200, totalRaised_: 4500, goal: 10000, currency: "STX", model: "All-or-Nothing", status: "active", daysRemaining: 12 },
+  { id: "inv-3", title: "DeFi Yield Aggregator", image: "/campaign-2.jpg", myContribution: 250, totalRaised_: 55000, goal: 50000, currency: "USDCx", model: "Flexible Model", status: "successful" }
 ];
 
 // Helper Function
@@ -60,7 +60,7 @@ function RefundCard({ contribution }: { contribution: BackerContribution }) {
                 <div className="font-semibold text-blue-900 bg-blue-50 px-5 py-2.5 rounded-xl border border-blue-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
                    My Contribution: <span className="text-blue-600 font-extrabold">{formatMoney(contribution.myContribution, contribution.currency)}</span>
                 </div>
-                <div className="text-slate-500 font-medium text-base">Project raised {formatMoney(contribution.totalRaised, contribution.currency)}</div>
+                <div className="text-slate-500 font-medium text-base">Project raised {formatMoney(contribution.totalRaised_, contribution.currency)}</div>
              </div>
           </div>
        </div>
@@ -75,7 +75,7 @@ function RefundCard({ contribution }: { contribution: BackerContribution }) {
 }
 
 function ActiveContributionCard({ contribution }: { contribution: BackerContribution }) {
-  const progress = Math.min((contribution.totalRaised / contribution.goal) * 100, 100);
+  const progress = Math.min((contribution.totalRaised_ / contribution.goal) * 100, 100);
 
   return (
     <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
