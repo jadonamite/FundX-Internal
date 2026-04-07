@@ -95,7 +95,7 @@ export default function ExplorePage() {
              <span>{CAMPAIGNS.length} Active Campaigns</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6">
-            Explore the <span className="bg-gradient-tush bg-clip-text text-transparent_">Economy</span>
+            Explore the <span className="bg-gradient-tush bg-clip-text text-transparent">Economy</span>
           </h1>
           <p className="text-xl text-slate-500 leading-relaxed">
             Discover verified projects building on Stacks Ecosystem. 
@@ -112,7 +112,7 @@ export default function ExplorePage() {
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 group-focus-within:text-orange-500 transition-colors" />
                 <Input 
                   placeholder="Search campaigns..." 
-                  className="pl-11 h-12 rounded-xl bg-white/50 border-transparent_ focus:bg-white focus:border-orange-200 focus:ring-4 focus:ring-orange-500/10 transition-all"
+                  className="pl-11 h-12 rounded-xl bg-white/50 border-transparent focus:bg-white focus:border-orange-200 focus:ring-4 focus:ring-orange-500/10 transition-all"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -128,7 +128,7 @@ export default function ExplorePage() {
                       px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-300
                       ${selectedCategory === cat 
                         ? "bg-slate-900 text-white shadow-lg scale-105" 
-                        : "bg-transparent_ text-slate-500 hover:bg-white hover:text-slate-900"
+                        : "bg-transparent text-slate-500 hover:bg-white hover:text-slate-900"
                       }
                     `}
                   >
