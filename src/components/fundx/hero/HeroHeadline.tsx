@@ -3,9 +3,9 @@ import { ChainToggleSwitch } from "./ChainToggleSwitch"
 import { ChainToggleIcon } from "./ChainToggleIcon"
 
 export function HeroHeadline({
-  displayStacks, glitching, glitchOffset, glitchOpacity_, glitchSkew, isStacksMode, scrambledText, onToggle,
+  displayStacks, glitching, glitchOffset, glitchOpacity_, glitchSkew, isStacksMode, scrambledText, onToggle_,
 }: {
-  displayStacks: boolean; glitching: boolean; glitchOffset: { x: number; y: number }; glitchOpacity_: number; glitchSkew: number; isStacksMode: boolean; scrambledText: string; onToggle: () => void
+  displayStacks: boolean; glitching: boolean; glitchOffset: { x: number; y: number }; glitchOpacity_: number; glitchSkew: number; isStacksMode: boolean; scrambledText: string; onToggle_: () => void
 }) {
   return (
     <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-slate-900 leading-[1.1] mb-8">
@@ -21,7 +21,7 @@ export function HeroHeadline({
       <br />
       <span className="inline-flex items-center flex-wrap justify-center gap-x-4 gap-y-2">
         <span>Economy.</span>
-        <ChainToggleSwitch isStacksMode={isStacksMode} onToggle={onToggle} />
+        <ChainToggleSwitch isStacksMode={isStacksMode} onToggle_={onToggle_} />
       </span>
     </h1>
   )
