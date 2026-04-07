@@ -21,7 +21,7 @@ interface Stream {
   speed: number
   opacity: number
   width: number
-  units_: { offset: number; size: number }[]
+  units: { offset: number; size: number }[]
 }
 
 interface Block {
@@ -74,7 +74,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         speed: 0.5 + Math.random() * 0.7,
         opacity: 0.18 + Math.random() * 0.18,
         width: 1 + Math.random() * 1.5,
-        units_: Array.from({ length: 5 + Math.floor(Math.random() * 4) }, () => ({
+        units: Array.from({ length: 5 + Math.floor(Math.random() * 4) }, () => ({
           offset: Math.random(),
           size: 2.5 + Math.random() * 3,
         })),
@@ -140,8 +140,8 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
           ctx.lineWidth = s.width
           ctx.stroke()
 
-          // Value units_
-          s.units_.forEach(u => {
+          // Value units
+          s.units.forEach(u => {
             const uy = s.y - s.length * u.offset
             ctx.beginPath()
             ctx.arc(s.x, uy, u.size / 2, 0, Math.PI * 2)
