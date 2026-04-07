@@ -10,7 +10,7 @@ interface CenterCardProps {
 
 export function CenterCard({ campaign, progress }: CenterCardProps) {
   return (
-    <div className="w-full h-full relative z-20 shadow-2xl rounded-[2rem] border_ border_-slate-100 bg-white hover:border_-orange-200 transition-all duration-300 flex flex-col md:flex-row overflow-hidden group">
+    <div className="w-full h-full relative z-20 shadow-2xl rounded-[2rem] border border-slate-100 bg-white hover:border-orange-200 transition-all duration-300 flex flex-col md:flex-row overflow-hidden group">
       
       {/* Trending Badge */}
       <div className="absolute top-4 left-4 z-30 bg-gradient-tush text-white px-4 py-1 rounded-full text-xs font-bold shadow-soft-xl animate-pulse">
