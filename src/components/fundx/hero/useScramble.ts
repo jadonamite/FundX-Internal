@@ -8,13 +8,13 @@ export function useScramble() {
 
   const scrambleTo = (word: string) => {
     if (frameRef.current) clearTimeout(frameRef.current)
-    let lockedCount_ = 0
+    let lockedCount = 0
     const totalSteps = word.length
 
     const tick = () => {
-      if (lockedCount_ >= totalSteps) { setDisplay(word); return }
-      setDisplay(word.split("").map((char, i) => i < lockedCount_ ? char : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]).join(""))
-      if (lockedCount_ < totalSteps) lockedCount_++
+      if (lockedCount >= totalSteps) { setDisplay(word); return }
+      setDisplay(word.split("").map((char, i) => i < lockedCount ? char : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]).join(""))
+      if (lockedCount < totalSteps) lockedCount++
       frameRef.current = setTimeout(tick, 80)
     }
     tick()
