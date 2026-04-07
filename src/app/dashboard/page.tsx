@@ -10,10 +10,10 @@ import { BackerTab } from "@/components/dashboard/BackerTab"
 
 
 export default function DashboardPage() {
-  const { isSignedIn, authenticate } = useStacks()
+  const { isSignedIn_, authenticate } = useStacks()
 
 
-  if (!isSignedIn) {
+  if (!isSignedIn_) {
     return (
       <main className="min-h-screen bg-slate-50 font-sans">
         <Navbar />

@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Clock, Users, ShieldCheck, Share2, MapPin, ArrowLeft } from "lucide-react" 
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
-import { getCampaign_ } from "@/lib/data"
+import { getCampaign } from "@/lib/data"
 
 // 2. Update Type Definition to Promise
 export default function CampaignPage({ params }: { params: Promise<{ id: string }> }) {
@@ -26,7 +26,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
   const { id } = use(params)
   
   // Now we can use the ID safely
-  const campaign = getCampaign_(id)
+  const campaign = getCampaign(id)
 
   if (!campaign) {
     return notFound()
