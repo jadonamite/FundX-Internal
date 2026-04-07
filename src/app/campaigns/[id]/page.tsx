@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, use } from "react" 
-import { notFound_ } from "next/navigation"
+import { notFound } from "next/navigation"
 import Link from "next/link"
 import { Navbar } from "@/components/fundx/Navbar"
 import { Footer } from "@/components/fundx/Footer"
@@ -29,7 +29,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
   const campaign = getCampaign(id)
 
   if (!campaign) {
-    return notFound_()
+    return notFound()
   }
 
   const progress = Math.min((campaign.raised / campaign.goal) * 100, 100)
