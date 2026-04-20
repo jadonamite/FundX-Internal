@@ -10,6 +10,7 @@ out/
 build/
 artist.js
 logs
+.env
 *.log
 npm-debug.log*
 coverage

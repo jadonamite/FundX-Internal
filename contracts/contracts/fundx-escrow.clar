@@ -10,7 +10,7 @@
 ;; SIP-010 TRAIT
 ;; -----------------------------------------------------------
 
-(use-trait sip-010-trait 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.sip-010-trait-ft-standard.sip-010-trait)
+(use-trait sip-010-trait .sip-010-trait-v2.sip-010-trait)
 
 
 ;; -----------------------------------------------------------
@@ -18,7 +18,7 @@
 ;; -----------------------------------------------------------
 
 (define-constant CONTRACT-OWNER        tx-sender)
-(define-constant USDCX-CONTRACT        'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.usdcx)
+(define-constant USDCX-CONTRACT        .usdcx-v2)
 
 (define-constant FLEXIBLE              u0)
 (define-constant ALL-OR-NOTHING        u1)

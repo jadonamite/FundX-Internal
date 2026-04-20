@@ -6,18 +6,29 @@ telemetry = false
 cache_dir = './.cache'
 
 # [[project.requirements]]
-# contract_id = 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.usdcx'
+[[project.requirements]]
+contract_id = 'SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard'
 
-[contracts.fundx-escrow]
+[contracts.fundx-escrow-v2]
 path = 'contracts/fundx-escrow.clar'
 clarity_version = 2
 epoch = 'latest'
 
+[contracts.indiegogo-v2]
+path = 'contracts/indiegogo.clar'
+clarity_version = 2
+epoch = 'latest'
 
-[contracts.usdcx]
+[contracts.sip-010-trait-v2]
+path = 'contracts/sip-010-trait-ft-standard.clar'
+clarity_version = 2
+epoch = 'latest'
+
+[contracts.usdcx-v2]
 path = 'contracts/usdcx-mock.clar'
 clarity_version = 2
 epoch = 'latest'
+
 
 [repl.analysis]
 passes = ['check_checker', 'call_checker']
@@ -30,4 +41,5 @@ callee_filter = false
 
 [repl.remote_data]
 enabled = false
+api_url = 'https://api.hiro.so'
 api_url = 'https://api.hiro.so'

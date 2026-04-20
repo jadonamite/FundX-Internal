@@ -12,3 +12,4 @@ costs-reports.json
 node_modules
 **/deployments/default.testnet-plan.yaml
 elite.cjs
+FundTalos.cjs
