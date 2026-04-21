@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { StacksProvider } from "@/components/fundx/StacksProvider";
-import { Toaster } from "@/components/ui/sonner"; 
+import { Toaster } from "@/components/ui/sonner";
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
 
 export const metadata: Metadata = {
   title: "FundX | Capital Formation",
-  description: "Decentralized Capital Formation platform on Stacks.",
+  description: "The Decentralized Capital Formation platform on Stacks.",
   icons: {
     icon: "/LogoFrame.svg",
   },
@@ -24,12 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body_ className={jakarta.variable}>
+      <body className={jakarta.variable}>
         <StacksProvider>
           {children}
         </StacksProvider>
-        <Toaster position="bottom-right" richColors /> 
-      </body_>
+        <Toaster position="bottom-right" richColors />
+      </body>
     </html>
   );
 }
