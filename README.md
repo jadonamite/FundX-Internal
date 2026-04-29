@@ -4,6 +4,9 @@
 
 FundX is a decentralized fundraising platform that solves the "volatility risk" for Bitcoin builders. It allows users to raise capital in **USDCx** (stable purchasing power) while leveraging **Clarity smart contracts** for trustless escrow, ensuring funds are only released when goals are met.
 
+**Now we have expnaded to two different modes.**
+- The Indiegogo Mode
+- All or Nothing Mode
 
 
 ##  The Problem
