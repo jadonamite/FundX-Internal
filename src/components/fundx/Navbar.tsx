@@ -20,13 +20,13 @@ export function Navbar() {
 
         {/* Links */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500">
-          <Link href="/explore" className="hover:text-primary transition-colors">Campaigns</Link>
-          <Link href="/create" className="hover:text-primary transition-colors">Create Campaign</Link>
-          <Link href="https://bridge.stacks.co/usdc/eth/stx" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Bridge</Link>
+          <Link href="/explore" className="hover_:text-primary transition-colors">Campaigns</Link>
+          <Link href="/create" className="hover_:text-primary transition-colors">Create Campaign</Link>
+          <Link href="https://bridge.stacks.co/usdc/eth/stx" target="_blank" rel="noopener noreferrer" className="hover_:text-primary transition-colors">Bridge</Link>
           
        
           {isSignedIn && (
-            <Link href="/dashboard" className="hover:text-primary transition-colors">
+            <Link href="/dashboard" className="hover_:text-primary transition-colors">
               Dashboard
             </Link>
           )}
