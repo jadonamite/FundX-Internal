@@ -112,8 +112,8 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
       targetOpacityRef.current = isStacks ? 1 : 0
       currentOpacityRef.current += (targetOpacityRef.current - currentOpacityRef.current) * 0.03
 
-      const stacksAlpha = currentOpacityRef.current
-      const bitcoinAlpha = 1 - stacksAlpha
+      const stacksAlpha_ = currentOpacityRef.current
+      const bitcoinAlpha = 1 - stacksAlpha_
 
       // Spawn new streams
       if (frame % 45 === 0 && streams.length < 18) {
@@ -151,7 +151,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         }
 
         drawStream(BITCOIN_COLORS.stream, bitcoinAlpha)
-        drawStream(STACKS_COLORS.stream, stacksAlpha)
+        drawStream(STACKS_COLORS.stream, stacksAlpha_)
 
         // Occasionally spawn block at convergence zone
         if (s.y > height * 0.4 && s.y < height * 0.85 && Math.random() < 0.004) {
@@ -204,7 +204,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         }
 
         drawBlock(BITCOIN_COLORS.block, bitcoinAlpha)
-        drawBlock(STACKS_COLORS.block, stacksAlpha)
+        drawBlock(STACKS_COLORS.block, stacksAlpha_)
 
         // Chain lines between nearby blocks
         for (let j = i - 1; j >= 0; j--) {
@@ -224,7 +224,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
             }
 
             drawLine(BITCOIN_COLORS.block, bitcoinAlpha)
-            drawLine(STACKS_COLORS.block, stacksAlpha)
+            drawLine(STACKS_COLORS.block, stacksAlpha_)
           }
         }
 
