@@ -12,9 +12,12 @@ import { CAMPAIGNS } from "@/lib/data"
 const CATEGORIES = ["All", "DeFi", "Mining", "Gaming", "Social Impact", "Infrastructure"]
 const STATUSES = ["All", "active", "successful", "failed"] // 🚨 ADDED: Status options
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+export default function ExplorePage() {
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("All")
+  const [statusFilter, setStatusFilter] = useState("All") // 🚨 ADDED: Status state
+  const [visibleCount, setVisibleCount] = useState(3) // Start low to show "Load More"
+  const [showScrollTop, setShowScrollTop] = useState(false)
 
   // 1. Scroll Detection for "Back to Top"
   useEffect(() => {
@@ -25,8 +28,8 @@ const STATUSES = ["All", "active", "successful", "failed"] // 🚨 ADDED: Status
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 3)
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
 // 2. Filter & Sort Logic (Bulletproofed)
@@ -69,12 +72,9 @@ const STATUSES = ["All", "active", "successful", "failed"] // 🚨 ADDED: Status
     
   }, [searchQuery, selectedCategory, statusFilter]);
 
-export default function ExplorePage() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("All")
-  const [statusFilter, setStatusFilter] = useState("All") // 🚨 ADDED: Status state
-  const [visibleCount, setVisibleCount] = useState(3) // Start low to show "Load More"
-  const [showScrollTop, setShowScrollTop] = useState(false)
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + 3)
+  }
 
   return (
     <main className="min-h-screen bg-slate-50 selection:bg-orange-100 font-sans relative">
