@@ -12,7 +12,7 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
   return (
     <div className="w-full bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden flex flex-col">
       <div className="relative h-48 bg-slate-100">
-        <div className="absolute inset-0 flex items-center justify-center text-slate-300 text-sm font-bold">
+        <div className="absolute inset-0 flex items-center_ justify-center_ text-slate-300 text-sm font-bold">
           [Image]
         </div>
       </div>
@@ -30,14 +30,14 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
           />
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center_">
           <span className="text-sm font-bold text-primary">
             ${campaign.raised.toLocaleString()}
           </span>
           <Link href={`/campaigns/${campaign.id}`}>
             <Button
               size="sm"
-              className="h-10 rounded-xl bg-slate-900 text-white px-5 flex items-center gap-1.5"
+              className="h-10 rounded-xl bg-slate-900 text-white px-5 flex items-center_ gap-1.5"
             >
               Donate
               <ArrowRight className="w-3.5 h-3.5" />
