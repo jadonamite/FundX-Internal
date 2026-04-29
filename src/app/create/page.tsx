@@ -11,6 +11,7 @@ import { toast } from "sonner"
 import { WizardSteps } from "@/components/create/WizardSteps"
 import { LivePreview } from "@/components/create/LivePreview"
 
+
 export interface CreateCampaignData {
   creatorName: string;
   creatorBio: string;
@@ -33,18 +34,10 @@ export interface CreateCampaignData {
   currency: "USDCx" | "STX"; 
 }
 
-  const handleSubmit = () => {
-    if (!isSignedIn) {
-      toast.error("Connect Wallet", {
-        description: "You need a Stacks wallet to deploy.",
-      });
-      authenticate();
-      return;
-    }
-    toast.success("Deployment Initiated", {
-      description: "Creating USDCx Fundraising Contract on Stacks...",
-    });
-  };
+export default function CreateCampaign() {
+  const { isSignedIn, authenticate } = useStacks()
+  const [step, setStep] = useState(1)
+  
 
   const [formData, setFormData] = useState<CreateCampaignData>({
     creatorName: "",
@@ -72,10 +65,18 @@ export interface CreateCampaignData {
   const handleBack = () => setStep(step - 1)
   // ... the rest stays the same!
 
-export default function CreateCampaign() {
-  const { isSignedIn, authenticate } = useStacks()
-  const [step, setStep] = useState(1)
-  
+  const handleSubmit = () => {
+    if (!isSignedIn) {
+      toast.error("Connect Wallet", {
+        description: "You need a Stacks wallet to deploy.",
+      });
+      authenticate();
+      return;
+    }
+    toast.success("Deployment Initiated", {
+      description: "Creating USDCx Fundraising Contract on Stacks...",
+    });
+  };
 
   return (
     <main className="min-h-screen bg-slate-50 font-sans selection:bg-orange-100">
