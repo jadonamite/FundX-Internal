@@ -33,7 +33,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
     const baseDuration = 80
     let current = !targetIsStacks
     let count = 0
-    const scheduleFlip = () => {
+    const scheduleFlip_ = () => {
       if (count >= flips) {
         setDisplayStacks(targetIsStacks); setIsStacksMode(targetIsStacks); isStacksModeRef.current = targetIsStacks
         setGlitchOffset({ x: 0, y: 0 }); setGlitchOpacity(1); setGlitchSkew(0)
@@ -45,9 +45,9 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
       setGlitchOpacity(count < flips - 2 ? 0.6 + Math.random() * 0.4 : 1)
       setGlitchSkew(count < flips - 2 ? (Math.random() - 0.5) * 12 * intensity : 0)
       count++
-      setTimeout(scheduleFlip, baseDuration + Math.random() * 40 - 20)
+      setTimeout(scheduleFlip_, baseDuration + Math.random() * 40 - 20)
     }
-    scheduleFlip()
+    scheduleFlip_()
   }
 
   const handleManualToggle = () => {
