@@ -24,7 +24,7 @@ export interface CreateCampaignData {
   category: string;
   projectStage: string;
   description: string;
-  videoUrl_: string;      
+  videoUrl: string;      
   budgetBreakdown: string; 
   roadmap: string;       
   image: string;
@@ -51,7 +51,7 @@ export default function CreateCampaign() {
     category: "DeFi",
     projectStage: "MVP",
     description: "",
-    videoUrl_: "",
+    videoUrl: "",
     budgetBreakdown: "",
     roadmap: "",
     image: "",
