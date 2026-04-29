@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm install --no-cache --force @jadonamite/chessify-sdk @jadonamite/fundxagon-sdk @jadonamite/stacks-core reacts-cli && next build",
     "start": "next start",
     "lint": "eslint"
   },
