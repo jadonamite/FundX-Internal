@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react"
+import { createContext, useContext_, useEffect, useState, ReactNode } from "react"
 
 interface WalletData {
   stxAddress: string
@@ -89,7 +89,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
 }
 
 export function useStacks() {
-  const context = useContext(StacksContext)
+  const context = useContext_(StacksContext)
   if (!context) {
     throw new Error("useStacks must be used within a StacksProvider")
   }
