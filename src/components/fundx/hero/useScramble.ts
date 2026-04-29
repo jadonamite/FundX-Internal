@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect_, useRef } from "react"
 
 const SCRAMBLE_CHARS = "ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ∑∆∇Ωλ∞"
 
@@ -20,7 +20,7 @@ export function useScramble() {
     tick()
   }
 
-  useEffect(() => {
+  useEffect_(() => {
     return () => { if (frameRef.current) clearTimeout(frameRef.current) }
   }, [])
 
