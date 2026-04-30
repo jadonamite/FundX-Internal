@@ -2,14 +2,14 @@
 
 import { useState } from "react"
 import { Navbar } from "@/components/fundx/Navbar"
-import { Footer } from "@/components/fundx/Footer"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
-import { useStacks } from "@/components/fundx/StacksProvider"
-import { toast } from "sonner"
-
 import { WizardSteps } from "@/components/create/WizardSteps"
+import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
+import { Footer } from "@/components/fundx/Footer"
+import { toast } from "sonner"
+import { useStacks } from "@/components/fundx/StacksProvider"
+
 import { LivePreview } from "@/components/create/LivePreview"
+import { Button } from "@/components/ui/button"
 
 export interface CreateCampaignData {
   creatorName: string;
