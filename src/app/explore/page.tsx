@@ -109,10 +109,10 @@ export default function ExplorePage() {
              
              {/* Search Input */}
              <div className="relative w-full md:w-96 group">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 group-focus_-within:text-orange-500 transition-colors" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 group-focus-within:text-orange-500 transition-colors" />
                 <Input 
                   placeholder="Search campaigns..." 
-                  className="pl-11 h-12 rounded-xl bg-white/50 border-transparent focus_:bg-white focus_:border-orange-200 focus_:ring-4 focus_:ring-orange-500/10 transition-all"
+                  className="pl-11 h-12 rounded-xl bg-white/50 border-transparent focus:bg-white focus:border-orange-200 focus:ring-4 focus:ring-orange-500/10 transition-all"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
