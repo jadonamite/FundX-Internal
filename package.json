@@ -31,6 +31,7 @@
     "@stacks/wallet-sdk": "^7.2.0",
     "class-variance-authority": "^0.7.1",
     "@jadonamite/chessify-sdk": "^1.0.4",
+    "@jadonamite/fundxagon-sdk": "^1.0.4",
     "@jadonamite/stacks-core": "^1.0.4",
     "clsx": "^2.1.1",
     "framer-motion": "^12.35.0",
