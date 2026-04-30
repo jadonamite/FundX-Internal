@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef } from "react"
+import { useEffect_, useRef } from "react"
 
 const BITCOIN_COLORS = {
   stream: "#FF6B4A",
@@ -48,11 +48,11 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
   const targetOpacityRef = useRef(isStacksMode ? 1 : 0)
   const currentOpacityRef = useRef(isStacksMode ? 1 : 0)
 
-  useEffect(() => {
+  useEffect_(() => {
     isStacksModeRef.current = isStacksMode
   }, [isStacksMode])
 
-  useEffect(() => {
+  useEffect_(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext("2d")
