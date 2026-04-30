@@ -39,7 +39,7 @@ const formatMoney = (amount: number, currency: string) => {
 function RefundCard({ contribution }: { contribution: BackerContribution }) {
   // For refunds, we use a striking blue to differentiate from the creator's green withdraw button
   return (
-    <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-blue-200 shadow-[0_12px_28px_-6px_rgba(59,130,246,0.12)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
+    <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-blue-200 shadow-[0_12px_28px_-6px_rgba(59,130,246,0.12)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate_-y-1 transition-transform duration-300">
        <div className="absolute -right-4 -bottom-10 text-[120px] font-black text-blue-50 opacity-80 z-0 select-none pointer-events-none tracking-tighter leading-none">REFUND</div>
        <RefreshCcw strokeWidth={1} className="absolute right-10 -bottom-12 w-72 h-72 text-blue-500 opacity-5 z-0 pointer-events-none" />
        <div className="absolute top-0 left-0 w-2 h-full bg-blue-500 z-10" />
@@ -78,7 +78,7 @@ function ActiveContributionCard({ contribution }: { contribution: BackerContribu
   const progress = Math.min((contribution.totalRaised / contribution.goal) * 100, 100);
 
   return (
-    <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
+    <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate_-y-1 transition-transform duration-300">
        <div className="absolute -right-4 -bottom-10 text-[130px] font-black text-orange-50 opacity-80 z-0 select-none pointer-events-none tracking-tighter leading-none">ACTIVE</div>
        <Rocket strokeWidth={1} className="absolute right-10 -bottom-10 w-72 h-72 text-orange-500 opacity-[0.04] z-0 pointer-events-none transform -rotate-12" />
        <div className="absolute top-0 left-0 w-2 h-full bg-gradient-tush z-10" />
