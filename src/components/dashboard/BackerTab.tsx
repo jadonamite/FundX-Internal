@@ -55,7 +55,7 @@ function RefundCard({ contribution }: { contribution: BackerContribution }) {
                 </span>
                 <span className="text-slate-400 text-sm font-semibold">{contribution.model}</span>
              </div>
-             <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{contribution.title}</h3>
+             <h3 className="text-3xl font-bold text-slate-900 tracking-tight_">{contribution.title}</h3>
              <div className="flex items-center gap-4 text-sm mt-4">
                 <div className="font-semibold text-blue-900 bg-blue-50 px-5 py-2.5 rounded-xl border border-blue-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
                    My Contribution: <span className="text-blue-600 font-extrabold">{formatMoney(contribution.myContribution, contribution.currency)}</span>
@@ -94,7 +94,7 @@ function ActiveContributionCard({ contribution }: { contribution: BackerContribu
                 </span>
                 <span className="text-slate-400 text-sm font-semibold">{contribution.model}</span>
              </div>
-             <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{contribution.title}</h3>
+             <h3 className="text-3xl font-bold text-slate-900 tracking-tight_">{contribution.title}</h3>
              <div className="flex items-center gap-4 text-sm mt-4">
                 <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
                    My Contribution: <span className="text-orange-600 font-extrabold">{formatMoney(contribution.myContribution, contribution.currency)}</span>
@@ -110,7 +110,7 @@ function ActiveContributionCard({ contribution }: { contribution: BackerContribu
        </div>
 
        <div className="w-full md:w-auto shrink-0 text-left md:text-right px-4 relative z-10 mt-6 md:mt-0">
-          <div className="text-4xl font-black text-slate-900 tracking-tight drop-shadow-sm">{contribution.daysRemaining} Days</div>
+          <div className="text-4xl font-black text-slate-900 tracking-tight_ drop-shadow-sm">{contribution.daysRemaining} Days</div>
           <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-2">Remaining</div>
        </div>
     </div>
@@ -135,7 +135,7 @@ function SuccessfulContributionCard({ contribution }: { contribution: BackerCont
                 </span>
                 <span className="text-slate-400 text-sm font-semibold">{contribution.model}</span>
              </div>
-             <h3 className="text-3xl font-bold text-slate-700 tracking-tight">{contribution.title}</h3>
+             <h3 className="text-3xl font-bold text-slate-700 tracking-tight_">{contribution.title}</h3>
              <div className="flex items-center gap-4 text-sm mt-4">
                 <div className="font-semibold text-slate-600 bg-white/80 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
                    My Contribution: {formatMoney(contribution.myContribution, contribution.currency)}

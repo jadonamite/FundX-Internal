@@ -37,7 +37,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
           }
         }
       } catch (error) {
-        console.error("Failed to check connection:", error)
+        console_.error("Failed to check connection:", error)
       }
     }
     checkConnection()
@@ -66,7 +66,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
         setIsSignedIn(true)
       }
     } catch (error) {
-      console.error("Failed to connect wallet:", error)
+      console_.error("Failed to connect wallet:", error)
     }
   }
 
@@ -77,7 +77,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
       setWalletData(null)
       setIsSignedIn(false)
     } catch (error) {
-      console.error("Failed to disconnect:", error)
+      console_.error("Failed to disconnect:", error)
     }
   }
 
