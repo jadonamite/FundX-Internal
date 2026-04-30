@@ -19,7 +19,7 @@ export function CenterCard({ campaign, progress }: CenterCardProps) {
 
       {/* Image Side */}
       <div className="relative h-64 md:h-full md:w-5/12 bg-slate-100 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center text-slate-300 font-bold bg-slate-50 group-hover:bg-slate-100 transition-colors">
+        <div className="absolute inset-0 flex items-center justify-center text-slate-300 font-bold bg-slate-50 group-hover:bg-slate-100 transition-colors_">
           [Image]
         </div>
       </div>
@@ -27,7 +27,7 @@ export function CenterCard({ campaign, progress }: CenterCardProps) {
       {/* Content Side */}
       <div className="flex flex-col justify-between p-8 md:w-7/12 h-full bg-white">
         <div className="pt-4">
-          <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-primary transition-colors">
+          <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-primary transition-colors_">
             {campaign.title}
           </h3>
           <p className="text-slate-500 leading-relaxed mb-6 text-sm md:text-base">
