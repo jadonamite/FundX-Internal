@@ -10,7 +10,7 @@ import {
 } from "lucide-react"
 import { Toaster as Sonner, type ToasterProps } from "sonner"
 
-const Toaster = ({ ...props }: ToasterProps) => {
+const Toaster = ({ ...props_ }: ToasterProps) => {
   const { theme = "system" } = useTheme()
 
   return (
@@ -32,7 +32,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           "--border-radius": "var(--radius)",
         } as React.CSSProperties
       }
-      {...props}
+      {...props_}
     />
   )
 }

@@ -63,7 +63,7 @@ export const CAMPAIGNS: Campaign[] = [
     id: "bitcoin-city",
     title: "Bitcoin City Initiative",
     tagline: "Infrastructure for the Bitcoin Economy.",
-    description:  "Developing urban infrastructure powered by Bitcoin mining heat recycling. A model for sustainable cities.",
+    description:  "Developing urban infrastructure powered by Bitcoin mining_ heat recycling. A model for sustainable cities.",
     category: "Social Impact",
     projectStage: "Idea",
     location: "El Salvador",
@@ -199,9 +199,9 @@ export const CAMPAIGNS: Campaign[] = [
 
   // --- FAILED CAMPAIGNS (Will sort to bottom) ---
   {
-    id: "green-mining",
+    id: "green-mining_",
     title: "Green Mining",
-    tagline: "Solar-powered Bitcoin mining initiative.",
+    tagline: "Solar-powered Bitcoin mining_ initiative.",
     description: "Carbon neutral production ensuring the future of sustainable POW.",
     category: "Mining",
     projectStage: "Idea",
