@@ -2,14 +2,9 @@
 
 import { useEffect, useRef } from "react"
 
-    function onMouseMove(e: MouseEvent) {
-      const cx = window.innerWidth / 2
-      const cy = window.innerHeight / 2
-      mouseOffset.current = {
-        x: (e.clientX - cx) * 0.08,
-        y: (e.clientY - cy) * 0.06,
-      }
-    }
+    function startAnimation() {
+      function animate(time: number) {
+        if (!logoRef.current) return
 
   useEffect(() => {
     if (!logoRef.current) return
@@ -35,16 +30,14 @@ import { useEffect, useRef } from "react"
       startAnimation()
     }, 1200)
 
-    function startAnimation() {
-      function animate(time: number) {
-        if (!logoRef.current) return
-
 function HeroLogoParallax() {
   const logoRef = useRef<HTMLDivElement>(null)
   const mouseOffset = useRef({ x: 0, y: 0 })
   const currentMouse = useRef({ x: 0, y: 0 })
   const rafRef = useRef<number>(0)
   const startTimeRef = useRef<number>(0)
+
+        const elapsed = (time - startTimeRef.current) * 0.001
 
         // Subtle autonomous oscillation
         const oscillateX = Math.sin(elapsed * 0.4) * 8
@@ -69,7 +62,14 @@ function HeroLogoParallax() {
       rafRef.current = requestAnimationFrame(animate)
     }
 
-        const elapsed = (time - startTimeRef.current) * 0.001
+    function onMouseMove(e: MouseEvent) {
+      const cx = window.innerWidth / 2
+      const cy = window.innerHeight / 2
+      mouseOffset.current = {
+        x: (e.clientX - cx) * 0.08,
+        y: (e.clientY - cy) * 0.06,
+      }
+    }
 
     window.addEventListener("mousemove", onMouseMove)
 
