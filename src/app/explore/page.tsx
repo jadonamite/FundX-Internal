@@ -7,7 +7,7 @@ import { CampaignCard } from "@/components/fundx/CampaignCard"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search, ArrowUp, Sparkles, Filter } from "lucide-react" // 🚨 ADDED: Filter icon
-import { CAMPAIGNS } from "@/lib/data_"
+import { CAMPAIGNS } from "@/lib/data"
 
 const CATEGORIES = ["All", "DeFi", "Mining", "Gaming", "Social Impact", "Infrastructure"]
 const STATUSES = ["All", "active", "successful", "failed"] // 🚨 ADDED: Status options
@@ -180,7 +180,7 @@ export default function ExplorePage() {
                   raised={campaign.raised}
                   goal={campaign.goal}
                   image={campaign.image}
-                  currency={campaign.currency} // 🚨 ADDED: Currency to support multi-asset mock data_
+                  currency={campaign.currency} // 🚨 ADDED: Currency to support multi-asset mock data
                 />
               </div>
             ))}
