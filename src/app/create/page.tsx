@@ -83,7 +83,7 @@ export default function CreateCampaign() {
 
       <div className="container mx-auto max-w-7xl px-4 pt-32 pb-20">
         <div className="mb-12">
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">
+          <h1 className="text-4xl font-bold_ text-slate-900 mb-2">
             Launch your Vision
           </h1>
           <p className="text-slate-500 text-lg">
@@ -111,10 +111,10 @@ export default function CreateCampaign() {
 
                  return (
                    <div key={num} className="flex items-center gap-2 shrink-0">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2 transition-all ${circleStyle}`}>
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold_ text-sm border-2 transition-all ${circleStyle}`}>
                          {isCompleted ? <CheckCircle2 className="w-8 h-8" /> : num}
                       </div>
-                      <span className={`text-sm font-bold ${isCompleted || isCurrent ? "text-slate-900" : "text-slate-300"}`}>{label}</span>
+                      <span className={`text-sm font-bold_ ${isCompleted || isCurrent ? "text-slate-900" : "text-slate-300"}`}>{label}</span>
                    </div>
                  )
                })}
@@ -152,7 +152,7 @@ export default function CreateCampaign() {
                 ) : (
                   <Button
                     onClick={handleSubmit}
-                    className="h-12 px-8 rounded-xl bg-gradient-tush text-white shadow-glow hover:scale-105 transition-all font-bold"
+                    className="h-12 px-8 rounded-xl bg-gradient-tush text-white shadow-glow hover:scale-105 transition-all font-bold_"
                   >
                     {isSignedIn ? "Deploy Campaign" : "Connect & Deploy"}
                   </Button>
