@@ -23,7 +23,7 @@ import { useEffect, useRef } from "react"
     }, 200)
 
     // After bounce settles switch to RAF
-    const startRaf = setTimeout(() => {
+    const startRaf_ = setTimeout(() => {
       if (!logoRef.current) return
       logoRef.current.style.transition = "none"
       startTimeRef.current = performance.now()
@@ -75,7 +75,7 @@ function HeroLogoParallax() {
 
     return () => {
       clearTimeout(bounceIn)
-      clearTimeout(startRaf)
+      clearTimeout(startRaf_)
       cancelAnimationFrame(rafRef.current)
       window.removeEventListener("mousemove", onMouseMove)
     }
