@@ -24,7 +24,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
 
   const { display: scrambledText, scrambleTo } = useScramble()
 
-  const runGlitch_ = (targetIsStacks: boolean) => {
+  const runGlitch = (targetIsStacks: boolean) => {
     if (isGlitchingRef.current) return
     isGlitchingRef.current = true
     setGlitching(true)
@@ -53,12 +53,12 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
   const handleManualToggle = () => {
     if (isGlitchingRef.current) return
     if (intervalRef.current) clearInterval(intervalRef.current)
-    runGlitch_(!isStacksModeRef.current)
-    intervalRef.current = setInterval(() => { if (!isGlitchingRef.current) runGlitch_(!isStacksModeRef.current) }, 4500)
+    runGlitch(!isStacksModeRef.current)
+    intervalRef.current = setInterval(() => { if (!isGlitchingRef.current) runGlitch(!isStacksModeRef.current) }, 4500)
   }
 
   useEffect(() => {
-    intervalRef.current = setInterval(() => { if (!isGlitchingRef.current) runGlitch_(!isStacksModeRef.current) }, 4500)
+    intervalRef.current = setInterval(() => { if (!isGlitchingRef.current) runGlitch(!isStacksModeRef.current) }, 4500)
     return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
   }, [])
 

@@ -128,15 +128,15 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         // Draw stream using blended color
         const drawStream = (color: string, alpha: number) => {
           if (alpha < 0.01) return
-          const grad = ctx.createLinearGradient(s.x, s.y - s.length, s.x, s.y)
-          grad.addColorStop(0, "transparent")
-          grad.addColorStop(0.3, hexToRgba(color, s.opacity * alpha))
-          grad.addColorStop(0.7, hexToRgba(color, s.opacity * alpha * 0.8))
-          grad.addColorStop(1, "transparent")
+          const grad_ = ctx.createLinearGradient(s.x, s.y - s.length, s.x, s.y)
+          grad_.addColorStop(0, "transparent")
+          grad_.addColorStop(0.3, hexToRgba(color, s.opacity * alpha))
+          grad_.addColorStop(0.7, hexToRgba(color, s.opacity * alpha * 0.8))
+          grad_.addColorStop(1, "transparent")
           ctx.beginPath()
           ctx.moveTo(s.x, s.y - s.length)
           ctx.lineTo(s.x, s.y)
-          ctx.strokeStyle = grad
+          ctx.strokeStyle = grad_
           ctx.lineWidth = s.width
           ctx.stroke()
 
