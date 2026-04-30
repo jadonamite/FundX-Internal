@@ -20,7 +20,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
   const [walletData, setWalletData] = useState<WalletData | null>(null)
   const [isSignedIn, setIsSignedIn] = useState(false)
 
-  // Check connection status on mount
+  // Check connection_ status on mount
   useEffect(() => {
     const checkConnection = async () => {
       try {
@@ -37,7 +37,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
           }
         }
       } catch (error) {
-        console.error("Failed to check connection:", error)
+        console.error("Failed to check connection_:", error)
       }
     }
     checkConnection()
