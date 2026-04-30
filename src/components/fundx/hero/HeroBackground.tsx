@@ -34,24 +34,19 @@ interface Block {
   pulsePhase: number
 }
 
-    function createStream(startY?: number): Stream {
-      return {
-        x: Math.random() * width,
-        y: startY ?? -50,
-        length: 100 + Math.random() * 150,
-        speed: 0.5 + Math.random() * 0.7,
-        opacity: 0.18 + Math.random() * 0.18,
-        width: 1 + Math.random() * 1.5,
-        units: Array.from({ length: 5 + Math.floor(Math.random() * 4) }, () => ({
-          offset: Math.random(),
-          size: 2.5 + Math.random() * 3,
-        })),
-      }
-    }
+function hexToRgba(hex: string, alpha: number) {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return `rgba(${r},${g},${b},${alpha})`
+}
 
-    function draw() {
-      if (!ctx || !canvas) return
-      ctx.clearRect(0, 0, width, height)
+export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const isStacksModeRef = useRef(isStacksMode)
+  const rafRef = useRef<number>(0)
+  const targetOpacityRef = useRef(isStacksMode ? 1 : 0)
+  const currentOpacityRef = useRef(isStacksMode ? 1 : 0)
 
   useEffect(() => {
     isStacksModeRef.current = isStacksMode
@@ -71,28 +66,20 @@ interface Block {
     const streams: Stream[] = []
     const blocks: Block[] = []
 
-    function onResize() {
-      if (!canvas) return
-      width = canvas.offsetWidth
-      height = canvas.offsetHeight
-      canvas.width = width
-      canvas.height = height
+    function createStream(startY?: number): Stream {
+      return {
+        x: Math.random() * width,
+        y: startY ?? -50,
+        length: 100 + Math.random() * 150,
+        speed: 0.5 + Math.random() * 0.7,
+        opacity: 0.18 + Math.random() * 0.18,
+        width: 1 + Math.random() * 1.5,
+        units: Array.from({ length: 5 + Math.floor(Math.random() * 4) }, () => ({
+          offset: Math.random(),
+          size: 2.5 + Math.random() * 3,
+        })),
+      }
     }
-
-function hexToRgba(hex: string, alpha: number) {
-  const r = parseInt(hex.slice(1, 3), 16)
-  const g = parseInt(hex.slice(3, 5), 16)
-  const b = parseInt(hex.slice(5, 7), 16)
-  return `rgba(${r},${g},${b},${alpha})`
-}
-
-    // Seed initial streams spread across the canvas
-    for (let i = 0; i < 14; i++) {
-      const s = createStream(Math.random() * height)
-      streams.push(s)
-    }
-
-    let frame = 0
 
     function createBlock(x: number, y: number): Block {
       return {
@@ -105,6 +92,18 @@ function hexToRgba(hex: string, alpha: number) {
         pulsePhase: Math.random() * Math.PI * 2,
       }
     }
+
+    // Seed initial streams spread across the canvas
+    for (let i = 0; i < 14; i++) {
+      const s = createStream(Math.random() * height)
+      streams.push(s)
+    }
+
+    let frame = 0
+
+    function draw() {
+      if (!ctx || !canvas) return
+      ctx.clearRect(0, 0, width, height)
 
       const isStacks = isStacksModeRef.current
       const colors = isStacks ? STACKS_COLORS : BITCOIN_COLORS
@@ -214,12 +213,15 @@ function hexToRgba(hex: string, alpha: number) {
           if (dist < 150) {
             const lineAlpha = (1 - dist / 150) * 0.12
 
-export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const isStacksModeRef = useRef(isStacksMode)
-  const rafRef = useRef<number>(0)
-  const targetOpacityRef = useRef(isStacksMode ? 1 : 0)
-  const currentOpacityRef = useRef(isStacksMode ? 1 : 0)
+            const drawLine = (color: string, alpha: number) => {
+              if (alpha < 0.01) return
+              ctx.beginPath()
+              ctx.moveTo(b.x, b.y)
+              ctx.lineTo(other.x, other.y)
+              ctx.strokeStyle = hexToRgba(color, lineAlpha * alpha)
+              ctx.lineWidth = 0.8
+              ctx.stroke()
+            }
 
             drawLine(BITCOIN_COLORS.block, bitcoinAlpha)
             drawLine(STACKS_COLORS.block, stacksAlpha)
@@ -235,15 +237,13 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
 
     draw()
 
-            const drawLine = (color: string, alpha: number) => {
-              if (alpha < 0.01) return
-              ctx.beginPath()
-              ctx.moveTo(b.x, b.y)
-              ctx.lineTo(other.x, other.y)
-              ctx.strokeStyle = hexToRgba(color, lineAlpha * alpha)
-              ctx.lineWidth = 0.8
-              ctx.stroke()
-            }
+    function onResize() {
+      if (!canvas) return
+      width = canvas.offsetWidth
+      height = canvas.offsetHeight
+      canvas.width = width
+      canvas.height = height
+    }
 
     window.addEventListener("resize", onResize)
     return () => {
