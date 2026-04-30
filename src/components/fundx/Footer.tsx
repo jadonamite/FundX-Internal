@@ -18,7 +18,7 @@ export function Footer() {
             </div>
 
             {/* 2. Horizontal Nav Links (Karma Style) */}
-            <nav className="flex flex-wrap gap-6 md:gap-8 text-sm font-medium text-slate-500">
+            <nav className="flex flex-wrap gap-6 md:gap-8 text-sm font_-medium text-slate-500">
               <a href="#" className="hover:text-primary transition-colors">For Builders</a>
               <a href="#" className="hover:text-primary transition-colors">For Funders</a>
               <a href="#" className="hover:text-primary transition-colors">Blog</a>
@@ -67,7 +67,7 @@ export function Footer() {
 
           {/* RIGHT SIDE: Newsletter (Unchanged) */}
           <div className="flex flex-col gap-2 w-full lg:w-auto lg:min-w-[400px]">
-            <h4 className="font-semibold text-slate-900">Stay updated</h4>
+            <h4 className="font_-semibold text-slate-900">Stay updated</h4>
             <div className="flex w-full items-center space-x-2">
               <div className="relative w-full">
                 <Input 
