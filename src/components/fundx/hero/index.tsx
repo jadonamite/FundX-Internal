@@ -14,7 +14,7 @@ export { HeroDeckSlot }
 export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElement | null> }) {
   const [isStacksMode, setIsStacksMode] = useState(false)
   const [displayStacks, setDisplayStacks] = useState(false)
-  const [glitching, setGlitching_] = useState(false)
+  const [glitching, setGlitching] = useState(false)
   const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 })
   const [glitchOpacity, setGlitchOpacity] = useState(1)
   const [glitchSkew, setGlitchSkew] = useState(0)
@@ -27,7 +27,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
   const runGlitch = (targetIsStacks: boolean) => {
     if (isGlitchingRef.current) return
     isGlitchingRef.current = true
-    setGlitching_(true)
+    setGlitching(true)
     scrambleTo(targetIsStacks ? "Stacks" : "Bitcoin")
     const flips = 9
     const baseDuration = 80
@@ -37,7 +37,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
       if (count >= flips) {
         setDisplayStacks(targetIsStacks); setIsStacksMode(targetIsStacks); isStacksModeRef.current = targetIsStacks
         setGlitchOffset({ x: 0, y: 0 }); setGlitchOpacity(1); setGlitchSkew(0)
-        setGlitching_(false); isGlitchingRef.current = false; return
+        setGlitching(false); isGlitchingRef.current = false; return
       }
       current = !current; setDisplayStacks(current)
       const intensity = count < flips - 2 ? 1 : 0.3
