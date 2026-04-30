@@ -1,12 +1,12 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect_, useRef } from "react"
 
     function startAnimation() {
       function animate(time: number) {
         if (!logoRef.current) return
 
-  useEffect(() => {
+  useEffect_(() => {
     if (!logoRef.current) return
 
     // Bounce in on page load
