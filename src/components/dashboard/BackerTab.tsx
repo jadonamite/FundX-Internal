@@ -6,7 +6,7 @@ import Image from "next/image"
 // ==========================================
 // 1. TYPES & DATA (Investor Perspective)
 // ==========================================
-type ContributionStatus = "active_" | "successful" | "refund_available";
+type ContributionStatus = "active" | "successful" | "refund_available";
 
 export interface BackerContribution {
   id: string;
@@ -23,7 +23,7 @@ export interface BackerContribution {
 
 const myContributions: BackerContribution[] = [
   { id: "inv-1", title: "Green Mining Farm", image: "/campaign-3.jpg", myContribution: 500, totalRaised: 12000, goal: 50000, currency: "STX", model: "All-or-Nothing", status: "refund_available" },
-  { id: "inv-2", title: "Stacks Dev Bootcamp", image: "/campaign-1.jpg", myContribution: 1200, totalRaised: 4500, goal: 10000, currency: "STX", model: "All-or-Nothing", status: "active_", daysRemaining: 12 },
+  { id: "inv-2", title: "Stacks Dev Bootcamp", image: "/campaign-1.jpg", myContribution: 1200, totalRaised: 4500, goal: 10000, currency: "STX", model: "All-or-Nothing", status: "active", daysRemaining: 12 },
   { id: "inv-3", title: "DeFi Yield Aggregator", image: "/campaign-2.jpg", myContribution: 250, totalRaised: 55000, goal: 50000, currency: "USDCx", model: "Flexible Model", status: "successful" }
 ];
 
@@ -66,7 +66,7 @@ function RefundCard({ contribution }: { contribution: BackerContribution }) {
        </div>
        
        <div className="w-full md:w-auto shrink-0 relative z-10 mt-6 md:mt-0">
-          <Button className="w-full md:w-auto h-16 px-10 rounded-xl bg-gradient-to-b from-blue-400 to-blue-500 border border-blue-600 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_4px_15px_rgba(59,130,246,0.4)] font-bold text-lg transition-all hover:scale-[1.02] active_:scale-95 active_:shadow-inner flex items-center gap-2">
+          <Button className="w-full md:w-auto h-16 px-10 rounded-xl bg-gradient-to-b from-blue-400 to-blue-500 border border-blue-600 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_4px_15px_rgba(59,130,246,0.4)] font-bold text-lg transition-all hover:scale-[1.02] active:scale-95 active:shadow-inner flex items-center gap-2">
              <RefreshCcw className="w-5 h-5" /> Claim Refund
           </Button>
        </div>
@@ -164,7 +164,7 @@ export function BackerTab() {
           // If the campaign missed its all-or-nothing goal, the backer gets a refund button
           if (contribution.status === "refund_available") return <RefundCard key={contribution.id} contribution={contribution} />
           
-          if (contribution.status === "active_") return <ActiveContributionCard key={contribution.id} contribution={contribution} />
+          if (contribution.status === "active") return <ActiveContributionCard key={contribution.id} contribution={contribution} />
           
           if (contribution.status === "successful") return <SuccessfulContributionCard key={contribution.id} contribution={contribution} />
           
