@@ -1,8 +1,8 @@
 "use client"
 
-import { ConnectWallet } from "@/components/fundx/ConnectWallet"
 import Link from "next/link"
 import Logo from "@/components/Logo"
+import { ConnectWallet } from "@/components/fundx/ConnectWallet"
 import { useStacks } from "@/components/fundx/StacksProvider"
 
 export function Navbar() {
