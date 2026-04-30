@@ -80,7 +80,7 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const deckRef = useRef<HTMLDivElement>(null)
   const [deckOffset, setDeckOffset] = useState(0)
-  const [measured, setMeasured] = useState(false)
+  const [measured, setMeasured_] = useState(false)
 
   const hero = getHeroCampaign()
   const sideCampaigns = getSideCampaigns()
@@ -99,7 +99,7 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
       const scalingCompensation = (CARD_HEIGHT - CARD_HEIGHT * INITIAL_SCALE) / 2
       const offset = slotPageTop - deckPageTop - scalingCompensation
       setDeckOffset(offset)
-      setMeasured(true)
+      setMeasured_(true)
     }
     const t = setTimeout(measure, 200)
     window.addEventListener("resize", measure)
