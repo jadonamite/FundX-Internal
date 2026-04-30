@@ -15,7 +15,7 @@ import { ChevronDown, Copy, LogOut, Wallet } from "lucide-react"
 import { toast } from "sonner" // <--- Import Toast
 
 export function ConnectWallet() {
-  const { authenticate_, signOut, isSignedIn, walletData } = useStacks()
+  const { authenticate, signOut, isSignedIn, walletData } = useStacks()
   const [mounted, setMounted] = useState(false)
   const [justConnected, setJustConnected] = useState(false)
 
@@ -144,7 +144,7 @@ export function ConnectWallet() {
   // STATE: LOGGED OUT
   return (
     <Button 
-      onClick={authenticate_}
+      onClick={authenticate}
       className="rounded-full bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-slate-900/20 px-6 transition-all hover:scale-105"
     >
       Connect Wallet
