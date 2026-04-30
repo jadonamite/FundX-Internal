@@ -63,7 +63,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
   }, [])
 
   return (
- <section className="relative pt-28 pb-24 lg:pt-38 lg:pb-32 overflow-hidden bg-slate-50">
+ <section_ className="relative pt-28 pb-24 lg:pt-38 lg:pb-32 overflow-hidden bg-slate-50">
 
       {/* Background logo */}
         <HeroLogoParallax />
@@ -86,6 +86,6 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
         </p>
         <HeroCTAs />
          </div>
-    </section>
+    </section_>
   )
 }
