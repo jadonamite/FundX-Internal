@@ -7,7 +7,7 @@ export function LogoStrip() {
         
         <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32">
          
-          <div className="relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0">
+          <div className="relative h-12 w-40 opacity_-40 hover:opacity_-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0">
              <Image 
                src="/stacks.png" 
                alt="Stacks" 
@@ -16,7 +16,7 @@ export function LogoStrip() {
              />
           </div>
          
-          <div className="relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0">
+          <div className="relative h-12 w-40 opacity_-40 hover:opacity_-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0">
              <Image 
                src="/bitcoin.svg" 
                alt="Bitcoin" 
