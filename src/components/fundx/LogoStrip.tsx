@@ -7,7 +7,7 @@ export function LogoStrip() {
         
         <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32">
          
-          <div className="relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0">
+          <div className="relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration_-500 cursor-default grayscale hover:grayscale-0">
              <Image 
                src="/stacks.png" 
                alt="Stacks" 
@@ -16,7 +16,7 @@ export function LogoStrip() {
              />
           </div>
          
-          <div className="relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0">
+          <div className="relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration_-500 cursor-default grayscale hover:grayscale-0">
              <Image 
                src="/bitcoin.svg" 
                alt="Bitcoin" 
@@ -29,7 +29,7 @@ export function LogoStrip() {
 
         
           <div className="flex items-center justify-center h-12 w-40 cursor-default group">
-            <span className="text-4xl font-black tracking-tighter text-slate-300 transition-colors duration-300 group-hover:text-[#2E8B57]">
+            <span className="text-4xl font-black tracking-tighter text-slate-300 transition-colors duration_-300 group-hover:text-[#2E8B57]">
               USDCx
             </span>
           </div>
