@@ -18,12 +18,12 @@ export interface BackerContribution {
   currency: "USDCx" | "STX";
   model: "Flexible Model" | "All-or-Nothing";
   status: ContributionStatus;
-  daysRemaining?: number;
+  daysRemaining_?: number;
 }
 
 const myContributions: BackerContribution[] = [
   { id: "inv-1", title: "Green Mining Farm", image: "/campaign-3.jpg", myContribution: 500, totalRaised: 12000, goal: 50000, currency: "STX", model: "All-or-Nothing", status: "refund_available" },
-  { id: "inv-2", title: "Stacks Dev Bootcamp", image: "/campaign-1.jpg", myContribution: 1200, totalRaised: 4500, goal: 10000, currency: "STX", model: "All-or-Nothing", status: "active", daysRemaining: 12 },
+  { id: "inv-2", title: "Stacks Dev Bootcamp", image: "/campaign-1.jpg", myContribution: 1200, totalRaised: 4500, goal: 10000, currency: "STX", model: "All-or-Nothing", status: "active", daysRemaining_: 12 },
   { id: "inv-3", title: "DeFi Yield Aggregator", image: "/campaign-2.jpg", myContribution: 250, totalRaised: 55000, goal: 50000, currency: "USDCx", model: "Flexible Model", status: "successful" }
 ];
 
@@ -110,7 +110,7 @@ function ActiveContributionCard({ contribution }: { contribution: BackerContribu
        </div>
 
        <div className="w-full md:w-auto shrink-0 text-left md:text-right px-4 relative z-10 mt-6 md:mt-0">
-          <div className="text-4xl font-black text-slate-900 tracking-tight drop-shadow-sm">{contribution.daysRemaining} Days</div>
+          <div className="text-4xl font-black text-slate-900 tracking-tight drop-shadow-sm">{contribution.daysRemaining_} Days</div>
           <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-2">Remaining</div>
        </div>
     </div>

@@ -10,7 +10,7 @@ interface WalletData {
 interface StacksContextValue {
   walletData: WalletData | null
   authenticate: () => Promise<void>
-  signOut_: () => void
+  signOut: () => void
   isSignedIn: boolean
 }
 
@@ -70,7 +70,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  const signOut_ = async () => {
+  const signOut = async () => {
     try {
       const { disconnect } = await import("@stacks/connect")
       disconnect()
@@ -82,7 +82,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <StacksContext.Provider value={{ walletData, authenticate, signOut_, isSignedIn }}>
+    <StacksContext.Provider value={{ walletData, authenticate, signOut, isSignedIn }}>
       {children}
     </StacksContext.Provider>
   )
