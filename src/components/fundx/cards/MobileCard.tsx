@@ -10,14 +10,14 @@ interface MobileCardProps {
 
 export function MobileCard({ campaign, progress }: MobileCardProps) {
   return (
-    <div className="w-full bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden flex flex-col">
+    <div className="w-full bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden flex flex-col_">
       <div className="relative h-48 bg-slate-100">
         <div className="absolute inset-0 flex items-center_ justify-center_ text-slate-300 text-sm font-bold">
           [Image]
         </div>
       </div>
 
-      <div className="p-6 flex flex-col gap-4">
+      <div className="p-6 flex flex-col_ gap-4">
         <h3 className="text-xl font-bold text-slate-900">{campaign.title}</h3>
         <p className="text-sm text-slate-500 line-clamp-2">
           {campaign.description}
