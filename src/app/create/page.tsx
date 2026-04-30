@@ -78,7 +78,7 @@ export default function CreateCampaign() {
   // ... the rest stays the same!
 
   return (
-    <main_ className="min-h-screen bg-slate-50 font-sans selection:bg-orange-100">
+    <main className="min-h-screen bg-slate-50 font-sans selection:bg-orange-100">
       <Navbar />
 
       <div className="container mx-auto max-w-7xl px-4 pt-32 pb-20">
@@ -168,6 +168,6 @@ export default function CreateCampaign() {
         </div>
       </div>
       <Footer />
-    </main_>
+    </main>
   );
 }
