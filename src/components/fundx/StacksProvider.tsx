@@ -24,8 +24,8 @@ export function StacksProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const checkConnection = async () => {
       try {
-        const { isConnected_, getLocalStorage } = await import("@stacks/connect")
-        if (isConnected_()) {
+        const { isConnected, getLocalStorage } = await import("@stacks/connect")
+        if (isConnected()) {
           const data = getLocalStorage()
           // getLocalStorage returns { addresses: { stx: [...], btc: [...] } }
           if (data?.addresses?.stx?.[0]?.address) {
