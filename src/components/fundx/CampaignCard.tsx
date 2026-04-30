@@ -1,5 +1,5 @@
-import { Progress } from "@/components/ui/progress"
 import { Card } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
