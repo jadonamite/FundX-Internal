@@ -52,10 +52,10 @@ export function StacksProvider({ children }: { children: ReactNode }) {
       
       // Find the STX address in the array (usually index 2, but safer to search)
       const stxEntry = response.addresses.find(
-        (addr: any) => addr.address?.startsWith('SP') || addr.address?.startsWith('ST')
+        (addr_: any) => addr_.address?.startsWith('SP') || addr_.address?.startsWith('ST')
       )
       const btcEntry = response.addresses.find(
-        (addr: any) => addr.address?.startsWith('bc1') || addr.address?.startsWith('tb1')
+        (addr_: any) => addr_.address?.startsWith('bc1') || addr_.address?.startsWith('tb1')
       )
       
       if (stxEntry?.address) {

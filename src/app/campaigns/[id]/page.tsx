@@ -17,23 +17,6 @@ import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
 import { getCampaign } from "@/lib/data"
 
-// 2. Update Type Definition to Promise
-export default function CampaignPage({ params }: { params: Promise<{ id: string }> }) {
-  const { isSignedIn, authenticate } = useStacks()
-  const [donateAmount, setDonateAmount] = useState("")
-
-  // 3. Unwrap the params using 'use()'
-  const { id } = use(params)
-  
-  // Now we can use the ID safely
-  const campaign = getCampaign(id)
-
-  if (!campaign) {
-    return notFound()
-  }
-
-  const progress = Math.min((campaign.raised / campaign.goal) * 100, 100)
-
   const handleDonate = () => {
     if (!isSignedIn) {
       authenticate()
@@ -48,6 +31,23 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       description: `Contributing ${donateAmount} STX to ${campaign.title}` 
     })
   }
+
+  // 3. Unwrap the params using 'use()'
+  const { id } = use(params)
+  
+  // Now we can use the ID safely
+  const campaign = getCampaign(id)
+
+  if (!campaign) {
+    return notFound()
+  }
+
+  const progress = Math.min((campaign.raised / campaign.goal) * 100, 100)
+
+// 2. Update Type Definition to Promise
+export default function CampaignPage({ params }: { params: Promise<{ id: string }> }) {
+  const { isSignedIn, authenticate } = useStacks()
+  const [donateAmount, setDonateAmount] = useState("")
 
   return (
     <main className="min-h-screen bg-slate-50 selection:bg-orange-100 font-sans">

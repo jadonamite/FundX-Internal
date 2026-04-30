@@ -64,7 +64,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
          </div>
          <div className="space-y-4">
             <Textarea 
-               placeholder="Tell us about your past experience, previous projects, and what drives you..." 
+               placeholder="Tell us about your past experience, previous projects, and what_ drives you..." 
                className="h-64 rounded-xl resize-none p-5 text-base leading-relaxed"
                value={formData.creatorBio}
                onChange={(e) => setFormData({...formData, creatorBio: e.target.value})}
@@ -80,7 +80,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
       <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
          <div className="mb-6">
             <h2 className="text-2xl font-bold text-slate-900">Project Basics</h2>
-            <p className="text-slate-500 text-sm">Define what you are building and give it a face.</p>
+            <p className="text-slate-500 text-sm">Define what_ you are building and give it a face.</p>
          </div>
          <div className="space-y-6">
             <div className="space-y-2">
@@ -242,7 +242,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                   <SelectValue />
                </SelectTrigger>
                <SelectContent className="bg-white border-slate-200 shadow-xl rounded-xl z-50">
-                  <SelectItem value="0" className="text-sm font-medium text-slate-700 py-3 cursor-pointer">Flexible (Keep what you raise)</SelectItem>
+                  <SelectItem value="0" className="text-sm font-medium text-slate-700 py-3 cursor-pointer">Flexible (Keep what_ you raise)</SelectItem>
                   <SelectItem value="1" className="text-sm font-medium text-slate-700 py-3 cursor-pointer">All-or-Nothing (Refunds if goal fails)</SelectItem>
                </SelectContent>
             </Select>
