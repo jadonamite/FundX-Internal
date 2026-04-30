@@ -59,10 +59,10 @@ function SideCard({ campaign, progress, tilt }: SideCardProps) {
           </div>
           <div className="flex justify-between items-center">
             <div>
-              <span_ className="text-xs font-semibold text-slate-400 block">RAISED</span_>
-              <span_ className="text-sm font-bold text-primary">
+              <span className="text-xs font-semibold text-slate-400 block">RAISED</span>
+              <span className="text-sm font-bold text-primary">
                 ${campaign.raised.toLocaleString()}
-              </span_>
+              </span>
             </div>
             <Link href={`/campaigns/${campaign.id}`}>
               <Button size="sm" className="h-10 rounded-xl bg-slate-900 text-white shadow-md hover:bg-primary hover:shadow-glow transition-all px-6">
