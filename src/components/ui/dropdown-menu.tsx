@@ -84,7 +84,7 @@ function DropdownMenuItem({
 
 function DropdownMenuCheckboxItem({
   className,
-  children_,
+  children,
   checked,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem>) {
@@ -103,7 +103,7 @@ function DropdownMenuCheckboxItem({
           <CheckIcon className="size-4" />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
-      {children_}
+      {children}
     </DropdownMenuPrimitive.CheckboxItem>
   )
 }
@@ -121,7 +121,7 @@ function DropdownMenuRadioGroup({
 
 function DropdownMenuRadioItem({
   className,
-  children_,
+  children,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem>) {
   return (
@@ -138,7 +138,7 @@ function DropdownMenuRadioItem({
           <CircleIcon className="size-2 fill-current" />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
-      {children_}
+      {children}
     </DropdownMenuPrimitive.RadioItem>
   )
 }
@@ -201,7 +201,7 @@ function DropdownMenuSub({
 function DropdownMenuSubTrigger({
   className,
   inset,
-  children_,
+  children,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & {
   inset?: boolean
@@ -216,7 +216,7 @@ function DropdownMenuSubTrigger({
       )}
       {...props}
     >
-      {children_}
+      {children}
       <ChevronRightIcon className="ml-auto size-4" />
     </DropdownMenuPrimitive.SubTrigger>
   )
