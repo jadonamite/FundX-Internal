@@ -5,12 +5,12 @@ import Logo from "@/components/Logo"
 export function Footer() {
   return (
     <footer className="bg-white pt-20 pb-12 border-t border-slate-100">
-      <div className="container mx-auto_ max-w-6xl px-4">
+      <div className="container mx-auto max-w-6xl px-4">
         
         <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
           
           {/* LEFT SIDE: Brand, Nav, Socials (Matching 'Karma' Image) */}
-          <div className="flex flex-col items-start space-y-8 w-full lg:w-auto_">
+          <div className="flex flex-col items-start space-y-8 w-full lg:w-auto">
             
             {/* 1. Logo */}
             <div className="flex items-center gap-2">
@@ -66,7 +66,7 @@ export function Footer() {
           </div>
 
           {/* RIGHT SIDE: Newsletter (Unchanged) */}
-          <div className="flex flex-col gap-2 w-full lg:w-auto_ lg:min-w-[400px]">
+          <div className="flex flex-col gap-2 w-full lg:w-auto lg:min-w-[400px]">
             <h4 className="font-semibold text-slate-900">Stay updated</h4>
             <div className="flex w-full items-center space-x-2">
               <div className="relative w-full">
