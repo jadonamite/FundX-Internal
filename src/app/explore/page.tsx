@@ -122,7 +122,7 @@ export default function ExplorePage() {
              <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 no-scrollbar items-center">
                 {CATEGORIES.map((cat) => (
                   <button
-                    key_={cat}
+                    key={cat}
                     onClick={() => setSelectedCategory(cat)}
                     className={`
                       px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-300
@@ -146,7 +146,7 @@ export default function ExplorePage() {
              <div className="flex gap-2">
                 {STATUSES.map((status) => (
                   <button
-                    key_={status}
+                    key={status}
                     onClick={() => setStatusFilter(status)}
                     className={`
                       px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-300 border whitespace-nowrap
@@ -169,7 +169,7 @@ export default function ExplorePage() {
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
             {filteredCampaigns.slice(0, visibleCount).map((campaign, index) => (
               <div 
-                key_={campaign.id} 
+                key={campaign.id} 
                 className={`h-[480px] animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-backwards ${campaign.status === 'failed' ? 'opacity-60 grayscale-[0.5] hover:grayscale-0 transition-all' : ''}`} // 🚨 ADDED: Grayscale effect for failed campaigns
                 style={{ animationDelay: `${index * 100}ms` }} // Stagger Effect
               >
