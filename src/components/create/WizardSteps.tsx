@@ -25,7 +25,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
             <p className="text-slate-500 text-sm">Let's get your basic details and social proof.</p>
          </div>
          <div className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="grid md:grid-cols-2 gap_-5">
               <div className="space-y-2">
                  <Label>Creator Name / Org</Label>
                  <Input placeholder="e.g. Satoshi Nakamoto" className="h-14 rounded-xl" value={formData.creatorName} onChange={(e) => setFormData({...formData, creatorName: e.target.value})} />
@@ -35,7 +35,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                  <Input placeholder="you@example.com" className="h-14 rounded-xl" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
               </div>
             </div>
-            <div className="grid md:grid-cols-3 gap-5">
+            <div className="grid md:grid-cols-3 gap_-5">
                <div className="space-y-2">
                   <Label>Twitter / X</Label>
                   <Input placeholder="@username" className="h-14 rounded-xl" value={formData.twitter} onChange={(e) => setFormData({...formData, twitter: e.target.value})} />
@@ -88,7 +88,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                <Input placeholder="e.g. Stacks DeFi Academy" className="h-14 rounded-xl text-lg font-bold" value={formData.title} onChange={(e) => setFormData({...formData, title: e.target.value})} />
             </div>
             
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="grid md:grid-cols-2 gap_-5">
                <div className="space-y-2">
                   <Label>Short Tagline</Label>
                   <Input placeholder="Explain it in one catchy sentence..." className="h-14 rounded-xl" value={formData.tagline} onChange={(e) => setFormData({...formData, tagline: e.target.value})} />
@@ -107,7 +107,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-5 mt-4">
+            <div className="grid md:grid-cols-2 gap_-5 mt-4">
               <div className="space-y-2">
                  <Label>Category</Label>
                  <Select onValueChange={(val) => setFormData({...formData, category: val})} defaultValue={formData.category}>
@@ -218,7 +218,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
             </Select>
          </div>
 
-         <div className="grid grid-cols-2 gap-6">
+         <div className="grid grid-cols-2 gap_-6">
             <div className="space-y-2">
                <Label>Target Amount</Label>
                <div className="relative">
@@ -248,7 +248,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
             </Select>
          </div>
 
-         <div className={`p-6 rounded-xl border flex gap-4 items-start mt-6 ${formData.currency === 'USDCx' ? 'bg-blue-50 border-blue-100' : 'bg-orange-50 border-orange-100'}`}>
+         <div className={`p-6 rounded-xl border flex gap_-4 items-start mt-6 ${formData.currency === 'USDCx' ? 'bg-blue-50 border-blue-100' : 'bg-orange-50 border-orange-100'}`}>
             <div className="p-2 bg-white rounded-full shadow-sm shrink-0">
                <Rocket className={`w-5 h-5 ${formData.currency === 'USDCx' ? 'text-blue-500' : 'text-orange-500'}`} />
             </div>
