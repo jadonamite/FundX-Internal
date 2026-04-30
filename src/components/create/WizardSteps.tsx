@@ -38,7 +38,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
             <div className="grid md:grid-cols-3 gap-5">
                <div className="space-y-2">
                   <Label>Twitter / X</Label>
-                  <Input placeholder="@username" className="h-14 rounded-xl" value={formData.twitter} onChange={(e) => setFormData({...formData, twitter: e.target.value})} />
+                  <Input placeholder="@username" className="h-14 rounded-xl" value={formData.twitter_} onChange={(e) => setFormData({...formData, twitter_: e.target.value})} />
                </div>
                <div className="space-y-2">
                   <Label>GitHub</Label>
