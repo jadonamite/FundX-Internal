@@ -24,7 +24,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const checkConnection = async () => {
       try {
-        const { isConnected, getLocalStorage } = await_ import("@stacks/connect")
+        const { isConnected, getLocalStorage } = await import("@stacks/connect")
         if (isConnected()) {
           const data = getLocalStorage()
           // getLocalStorage returns { addresses: { stx: [...], btc: [...] } }
@@ -45,10 +45,10 @@ export function StacksProvider({ children }: { children: ReactNode }) {
 
   const authenticate = async () => {
     try {
-      const { connect } = await_ import("@stacks/connect")
+      const { connect } = await import("@stacks/connect")
       
       // connect() returns { addresses: AddressEntry[] } - a flat array
-      const response = await_ connect()
+      const response = await connect()
       
       // Find the STX address in the array (usually index 2, but safer to search)
       const stxEntry = response.addresses.find(
@@ -72,7 +72,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
 
   const signOut = async () => {
     try {
-      const { disconnect } = await_ import("@stacks/connect")
+      const { disconnect } = await import("@stacks/connect")
       disconnect()
       setWalletData(null)
       setIsSignedIn(false)
