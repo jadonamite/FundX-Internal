@@ -1,7 +1,7 @@
-import { TabsContent } from "@/components/ui/tabs"
-import Image from "next/image"
 import { Clock, CheckCircle2, Rocket, RefreshCcw, ShieldAlert } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { TabsContent } from "@/components/ui/tabs"
+import Image from "next/image"
 
 // ==========================================
 // 1. TYPES & DATA (Investor Perspective)
