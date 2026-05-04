@@ -74,7 +74,7 @@ export function CreatorTab() {
           // ==========================================
           if (campaign.status === "successful") {
              return (
-                <div key={campaign.id} className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform_ duration-300">
+                <div key={campaign.id} className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
                    <div className="absolute -right-4 -bottom-10 text-[130px] font-black text-green-50 opacity-80 z-0 select-none pointer-events-none tracking-tighter leading-none">SUCCESS</div>
                    <CheckCircle2 strokeWidth={1} className="absolute right-10 -bottom-12 w-72 h-72 text-green-500 opacity-5 z-0 pointer-events-none" />
                    <div className="absolute top-0 left-0 w-2 h-full bg-green-500 z-10" />
@@ -114,9 +114,9 @@ export function CreatorTab() {
           // ==========================================
           if (campaign.status === "active") {
              return (
-                <div key={campaign.id} className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform_ duration-300">
+                <div key={campaign.id} className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
                    <div className="absolute -right-4 -bottom-10 text-[130px] font-black text-orange-50 opacity-80 z-0 select-none pointer-events-none tracking-tighter leading-none">ACTIVE</div>
-                   <Rocket strokeWidth={1} className="absolute right-10 -bottom-10 w-72 h-72 text-orange-500 opacity-[0.04] z-0 pointer-events-none transform_ -rotate-12" />
+                   <Rocket strokeWidth={1} className="absolute right-10 -bottom-10 w-72 h-72 text-orange-500 opacity-[0.04] z-0 pointer-events-none transform -rotate-12" />
                    <div className="absolute top-0 left-0 w-2 h-full bg-gradient-tush z-10" />
                    
                    <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
