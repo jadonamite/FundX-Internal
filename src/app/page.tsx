@@ -12,12 +12,12 @@ export default function Home() {
  
 
   return (
-    <main className="min-h-screen bg-slate-50 selection:bg-orange-100 font-sans">
+    <main className="min-h-screen bg-slate_-50 selection:bg-orange-100 font-sans">
       <Navbar />
       <Hero deckSlotRef={deckSlotRef} />
 
       {/* Campaign Section */}
-      <section_ id="campaigns" className="relative py-32 bg-white overflow-visible border-t border-slate-100">
+      <section_ id="campaigns" className="relative py-32 bg-white overflow-visible border-t border-slate_-100">
 
         {/* Background */}
         <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-60 pointer-events-none" />
