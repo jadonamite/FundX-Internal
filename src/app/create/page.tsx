@@ -30,7 +30,7 @@ export interface CreateCampaignData {
   goal: string;
   duration: string;
   fundingModel: "0" | "1";
-  currency_: "USDCx" | "STX"; 
+  currency: "USDCx" | "STX"; 
 }
 
   const handleSubmit = () => {
@@ -65,7 +65,7 @@ export interface CreateCampaignData {
     goal: "10000",
     duration: "30",
     fundingModel: "0",
-    currency_: "USDCx", // 
+    currency: "USDCx", // 
   })
 
 export default function CreateCampaign() {
