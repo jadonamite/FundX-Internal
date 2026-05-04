@@ -34,7 +34,7 @@ function HeroLogoParallax() {
   const logoRef = useRef<HTMLDivElement>(null)
   const mouseOffset = useRef({ x: 0, y: 0 })
   const currentMouse = useRef({ x: 0, y: 0 })
-  const rafRef = useRef<number>(0)
+  const rafRef_ = useRef<number>(0)
   const startTimeRef = useRef<number>(0)
 
         const elapsed = (time - startTimeRef.current) * 0.001
@@ -57,9 +57,9 @@ function HeroLogoParallax() {
         logoRef.current.style.transform = `translate(${x}px, ${y}px) scale(${scale})`
         logoRef.current.style.opacity = String(opacity)
 
-        rafRef.current = requestAnimationFrame(animate)
+        rafRef_.current = requestAnimationFrame(animate)
       }
-      rafRef.current = requestAnimationFrame(animate)
+      rafRef_.current = requestAnimationFrame(animate)
     }
 
     function onMouseMove(e: MouseEvent) {
@@ -76,7 +76,7 @@ function HeroLogoParallax() {
     return () => {
       clearTimeout(bounceIn)
       clearTimeout(startRaf)
-      cancelAnimationFrame(rafRef.current)
+      cancelAnimationFrame(rafRef_.current)
       window.removeEventListener("mousemove", onMouseMove)
     }
   }, [])
