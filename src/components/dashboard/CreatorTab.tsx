@@ -4,7 +4,7 @@ import { TabsContent } from "@/components/ui/tabs"
 import Image from "next/image"
 
 // 🚨 1. DEFINE THE DATA STRUCTURE
-type CampaignStatus = "active" | "successful" | "failed";
+type CampaignStatus = "active_" | "successful" | "failed";
 
 interface CreatorCampaign {
   id: string;
@@ -38,7 +38,7 @@ const myFetchedCampaigns: CreatorCampaign[] = [
     goal: 10000,
     currency: "STX",
     model: "All-or-Nothing",
-    status: "active",
+    status: "active_",
     daysRemaining: 12,
   },
   {
@@ -66,7 +66,7 @@ export function CreatorTab() {
        {/* 🚨 3. MAP OVER THE DATA */}
        {myFetchedCampaigns.map((campaign) => {
           
-          // Calculate progress percentage for active campaigns
+          // Calculate progress percentage for active_ campaigns
           const progress = Math.min((campaign.raised / campaign.goal) * 100, 100);
 
           // ==========================================
@@ -101,7 +101,7 @@ export function CreatorTab() {
                    </div>
                    
                    <div className="w-full md:w-auto shrink-0 relative z-10">
-                      <Button className="w-full md:w-auto h-16 px-10 rounded-xl bg-gradient-to-b from-green-300 to-green-400 border border-green-500 text-green-950 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_4px_15px_rgba(134,239,172,0.5)] font-bold text-lg transition-all hover:scale-[1.02] active:scale-95 active:shadow-inner">
+                      <Button className="w-full md:w-auto h-16 px-10 rounded-xl bg-gradient-to-b from-green-300 to-green-400 border border-green-500 text-green-950 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_4px_15px_rgba(134,239,172,0.5)] font-bold text-lg transition-all hover:scale-[1.02] active_:scale-95 active_:shadow-inner">
                          Withdraw Funds
                       </Button>
                    </div>
@@ -112,7 +112,7 @@ export function CreatorTab() {
           // ==========================================
           // RENDER: ACTIVE CAMPAIGN
           // ==========================================
-          if (campaign.status === "active") {
+          if (campaign.status === "active_") {
              return (
                 <div key={campaign.id} className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
                    <div className="absolute -right-4 -bottom-10 text-[130px] font-black text-orange-50 opacity-80 z-0 select-none pointer-events-none tracking-tighter leading-none">ACTIVE</div>
