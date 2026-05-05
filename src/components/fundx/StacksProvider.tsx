@@ -43,32 +43,6 @@ export function StacksProvider({ children }: { children: ReactNode }) {
     checkConnection()
   }, [])
 
-  const signOut = async () => {
-    try {
-      const { disconnect } = await import("@stacks/connect")
-      disconnect()
-      setWalletData(null)
-      setIsSignedIn(false)
-    } catch (error) {
-      console.error("Failed to disconnect:", error)
-    }
-  }
-
-export function useStacks() {
-  const context = useContext(StacksContext)
-  if (!context) {
-    throw new Error("useStacks must be used within a StacksProvider")
-  }
-  return context
-}
-
-  return (
-    <StacksContext.Provider value={{ walletData, authenticate, signOut, isSignedIn }}>
-      {children}
-    </StacksContext.Provider>
-  )
-}
-
   const authenticate = async () => {
     try {
       const { connect } = await import("@stacks/connect")
@@ -95,3 +69,29 @@ export function useStacks() {
       console.error("Failed to connect wallet:", error)
     }
   }
+
+  const signOut = async () => {
+    try {
+      const { disconnect } = await import("@stacks/connect")
+      disconnect()
+      setWalletData(null)
+      setIsSignedIn(false)
+    } catch (error) {
+      console.error("Failed to disconnect:", error)
+    }
+  }
+
+  return (
+    <StacksContext.Provider value={{ walletData, authenticate, signOut, isSignedIn }}>
+      {children}
+    </StacksContext.Provider>
+  )
+}
+
+export function useStacks() {
+  const context = useContext(StacksContext)
+  if (!context) {
+    throw new Error("useStacks must be used within a StacksProvider")
+  }
+  return context
+}
