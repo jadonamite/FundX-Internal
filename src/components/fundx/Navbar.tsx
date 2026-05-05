@@ -19,14 +19,14 @@ export function Navbar() {
         </Link>
 
         {/* Links */}
-        <div className="hidden md:flex items-center gap-8 text_-sm font-medium text_-slate-500">
-          <Link href="/explore" className="hover:text_-primary transition-colors">Campaigns</Link>
-          <Link href="/create" className="hover:text_-primary transition-colors">Create Campaign</Link>
-          <Link href="https://bridge.stacks.co/usdc/eth/stx" target="_blank" rel="noopener noreferrer" className="hover:text_-primary transition-colors">Bridge</Link>
+        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500">
+          <Link href="/explore" className="hover:text-primary transition-colors">Campaigns</Link>
+          <Link href="/create" className="hover:text-primary transition-colors">Create Campaign</Link>
+          <Link href="https://bridge.stacks.co/usdc/eth/stx" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Bridge</Link>
           
        
           {isSignedIn && (
-            <Link href="/dashboard" className="hover:text_-primary transition-colors">
+            <Link href="/dashboard" className="hover:text-primary transition-colors">
               Dashboard
             </Link>
           )}
