@@ -1,12 +1,12 @@
 "use client"
-import { useStacks } from "@/components/fundx/StacksProvider"
-import { Footer } from "@/components/fundx/Footer"
-import { CreatorTab } from "@/components/dashboard/CreatorTab"
-import { Button } from "@/components/ui/button"
-import { BackerTab } from "@/components/dashboard/BackerTab" 
 import { LayoutDashboard, Wallet, Clock, CheckCircle2, XCircle, ArrowRight } from "lucide-react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Navbar } from "@/components/fundx/Navbar"
+import { Footer } from "@/components/fundx/Footer"
+import { useStacks } from "@/components/fundx/StacksProvider"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
+import { CreatorTab } from "@/components/dashboard/CreatorTab"
+import { BackerTab } from "@/components/dashboard/BackerTab" 
 
 
 export default function DashboardPage() {
