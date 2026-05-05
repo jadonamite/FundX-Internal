@@ -1,15 +1,15 @@
 "use client"
 
+import { useState } from "react"
+import { Navbar } from "@/components/fundx/Navbar"
+import { Footer } from "@/components/fundx/Footer"
 import { Button } from "@/components/ui/button"
-import { LivePreview } from "@/components/create/LivePreview"
-import { WizardSteps } from "@/components/create/WizardSteps"
+import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
-import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
-import { Footer } from "@/components/fundx/Footer"
 
-import { Navbar } from "@/components/fundx/Navbar"
-import { useState } from "react"
+import { WizardSteps } from "@/components/create/WizardSteps"
+import { LivePreview } from "@/components/create/LivePreview"
 
 export interface CreateCampaignData {
   creatorName: string;
@@ -68,14 +68,14 @@ export interface CreateCampaignData {
     currency: "USDCx", // 
   })
 
+  const handleNext = () => setStep(step + 1)
+  const handleBack = () => setStep(step - 1)
+  // ... the rest stays the same!
+
 export default function CreateCampaign() {
   const { isSignedIn, authenticate } = useStacks()
   const [step, setStep] = useState(1)
   
-
-  const handleNext = () => setStep(step + 1)
-  const handleBack = () => setStep(step - 1)
-  // ... the rest stays the same!
 
   return (
     <main className="min-h-screen bg-slate-50 font-sans selection:bg-orange-100">
