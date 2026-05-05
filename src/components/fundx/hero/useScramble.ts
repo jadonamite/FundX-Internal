@@ -11,13 +11,13 @@ export function useScramble() {
     let lockedCount = 0
     const totalSteps = word.length
 
-    const tick_ = () => {
+    const tick = () => {
       if (lockedCount >= totalSteps) { setDisplay(word); return }
       setDisplay(word.split("").map((char, i) => i < lockedCount ? char : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]).join(""))
       if (lockedCount < totalSteps) lockedCount++
-      frameRef.current = setTimeout(tick_, 80)
+      frameRef.current = setTimeout(tick, 80)
     }
-    tick_()
+    tick()
   }
 
   useEffect(() => {
