@@ -34,15 +34,12 @@ interface Block {
   pulsePhase: number
 }
 
-            const drawLine = (color: string, alpha: number) => {
-              if (alpha < 0.01) return
-              ctx.beginPath()
-              ctx.moveTo(b.x, b.y)
-              ctx.lineTo(other.x, other.y)
-              ctx.strokeStyle = hexToRgba(color, lineAlpha * alpha)
-              ctx.lineWidth = 0.8
-              ctx.stroke()
-            }
+function hexToRgba(hex: string, alpha: number) {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return `rgba(${r},${g},${b},${alpha})`
+}
 
 export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -69,25 +66,6 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
     const streams: Stream[] = []
     const blocks: Block[] = []
 
-    function draw() {
-      if (!ctx || !canvas) return
-      ctx.clearRect(0, 0, width, height)
-
-function hexToRgba(hex: string, alpha: number) {
-  const r = parseInt(hex.slice(1, 3), 16)
-  const g = parseInt(hex.slice(3, 5), 16)
-  const b = parseInt(hex.slice(5, 7), 16)
-  return `rgba(${r},${g},${b},${alpha})`
-}
-
-    // Seed initial streams spread across the canvas
-    for (let i = 0; i < 14; i++) {
-      const s = createStream(Math.random() * height)
-      streams.push(s)
-    }
-
-    let frame = 0
-
     function createStream(startY?: number): Stream {
       return {
         x: Math.random() * width,
@@ -102,6 +80,30 @@ function hexToRgba(hex: string, alpha: number) {
         })),
       }
     }
+
+    function createBlock(x: number, y: number): Block {
+      return {
+        x,
+        y,
+        size: 20 + Math.random() * 28,
+        opacity: 0,
+        life: 0,
+        maxLife: 180 + Math.random() * 120,
+        pulsePhase: Math.random() * Math.PI * 2,
+      }
+    }
+
+    // Seed initial streams spread across the canvas
+    for (let i = 0; i < 14; i++) {
+      const s = createStream(Math.random() * height)
+      streams.push(s)
+    }
+
+    let frame = 0
+
+    function draw() {
+      if (!ctx || !canvas) return
+      ctx.clearRect(0, 0, width, height)
 
       const isStacks = isStacksModeRef.current
       const colors = isStacks ? STACKS_COLORS : BITCOIN_COLORS
@@ -178,17 +180,8 @@ function hexToRgba(hex: string, alpha: number) {
         const pulse = Math.sin(b.pulsePhase) * 0.06
         b.opacity = baseOpacity + pulse
 
-    function createBlock(x: number, y: number): Block {
-      return {
-        x,
-        y,
-        size: 20 + Math.random() * 28,
-        opacity: 0,
-        life: 0,
-        maxLife: 180 + Math.random() * 120,
-        pulsePhase: Math.random() * Math.PI * 2,
-      }
-    }
+        const drawBlock = (color: string, alpha: number) => {
+          if (alpha < 0.01) return
 
           // Glow
           ctx.shadowBlur = 16
@@ -220,13 +213,15 @@ function hexToRgba(hex: string, alpha: number) {
           if (dist < 150) {
             const lineAlpha = (1 - dist / 150) * 0.12
 
-    function onResize() {
-      if (!canvas) return
-      width = canvas.offsetWidth
-      height = canvas.offsetHeight
-      canvas.width = width
-      canvas.height = height
-    }
+            const drawLine = (color: string, alpha: number) => {
+              if (alpha < 0.01) return
+              ctx.beginPath()
+              ctx.moveTo(b.x, b.y)
+              ctx.lineTo(other.x, other.y)
+              ctx.strokeStyle = hexToRgba(color, lineAlpha * alpha)
+              ctx.lineWidth = 0.8
+              ctx.stroke()
+            }
 
             drawLine(BITCOIN_COLORS.block, bitcoinAlpha)
             drawLine(STACKS_COLORS.block, stacksAlpha)
@@ -242,8 +237,13 @@ function hexToRgba(hex: string, alpha: number) {
 
     draw()
 
-        const drawBlock = (color: string, alpha: number) => {
-          if (alpha < 0.01) return
+    function onResize() {
+      if (!canvas) return
+      width = canvas.offsetWidth
+      height = canvas.offsetHeight
+      canvas.width = width
+      canvas.height = height
+    }
 
     window.addEventListener("resize", onResize)
     return () => {
