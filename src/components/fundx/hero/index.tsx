@@ -17,7 +17,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
   const [glitching, setGlitching] = useState(false)
   const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 })
   const [glitchOpacity, setGlitchOpacity] = useState(1)
-  const [glitchSkew, setGlitchSkew_] = useState(0)
+  const [glitchSkew, setGlitchSkew] = useState(0)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
   const isGlitchingRef = useRef(false)
   const isStacksModeRef = useRef(false)
@@ -36,14 +36,14 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
     const scheduleFlip = () => {
       if (count >= flips) {
         setDisplayStacks(targetIsStacks); setIsStacksMode(targetIsStacks); isStacksModeRef.current = targetIsStacks
-        setGlitchOffset({ x: 0, y: 0 }); setGlitchOpacity(1); setGlitchSkew_(0)
+        setGlitchOffset({ x: 0, y: 0 }); setGlitchOpacity(1); setGlitchSkew(0)
         setGlitching(false); isGlitchingRef.current = false; return
       }
       current = !current; setDisplayStacks(current)
       const intensity = count < flips - 2 ? 1 : 0.3
       setGlitchOffset({ x: (Math.random() - 0.5) * 14 * intensity, y: (Math.random() - 0.5) * 8 * intensity })
       setGlitchOpacity(count < flips - 2 ? 0.6 + Math.random() * 0.4 : 1)
-      setGlitchSkew_(count < flips - 2 ? (Math.random() - 0.5) * 12 * intensity : 0)
+      setGlitchSkew(count < flips - 2 ? (Math.random() - 0.5) * 12 * intensity : 0)
       count++
       setTimeout(scheduleFlip, baseDuration + Math.random() * 40 - 20)
     }
