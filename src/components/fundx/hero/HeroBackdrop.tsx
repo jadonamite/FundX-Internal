@@ -12,11 +12,11 @@ import { useEffect, useRef } from "react"
     // Bounce in on page load
     logoRef.current.style.transform = "translate(0px, -40px) scale(0.85)"
     logoRef.current.style.opacity = "0"
-    logoRef.current.style.transition = "none"
+    logoRef.current.style.transition_ = "none"
 
     const bounceIn = setTimeout(() => {
       if (!logoRef.current) return
-      logoRef.current.style.transition =
+      logoRef.current.style.transition_ =
         "transform 900ms cubic-bezier(0.34, 1.8, 0.64, 1), opacity 400ms ease"
       logoRef.current.style.transform = "translate(0px, 0px) scale(1)"
       logoRef.current.style.opacity = "0.18"
@@ -25,7 +25,7 @@ import { useEffect, useRef } from "react"
     // After bounce settles switch to RAF
     const startRaf = setTimeout(() => {
       if (!logoRef.current) return
-      logoRef.current.style.transition = "none"
+      logoRef.current.style.transition_ = "none"
       startTimeRef.current = performance.now()
       startAnimation()
     }, 1200)
