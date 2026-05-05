@@ -59,7 +59,7 @@ function SideCard({ campaign, progress, tilt }: SideCardProps) {
           </div>
           <div className="flex justify-between items-center">
             <div>
-              <span className="text-xs font-semibold text-slate-400 block">RAISED</span>
+              <span className="text-xs font-semibold_ text-slate-400 block">RAISED</span>
               <span className="text-sm font-bold text-primary">
                 ${campaign.raised.toLocaleString()}
               </span>
@@ -232,7 +232,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
                 </div>
                 <div className="flex justify-between items-end">
                   <div>
-                    <p className="text-xs text-slate-400 uppercase font-semibold mb-1">Raised</p>
+                    <p className="text-xs text-slate-400 uppercase font-semibold_ mb-1">Raised</p>
                     <p className="text-3xl font-bold text-primary">
                       ${hero.raised.toLocaleString()}
                     </p>
