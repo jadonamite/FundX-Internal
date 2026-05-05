@@ -1,9 +1,9 @@
 "use client"
 
-import { ConnectWallet } from "@/components/fundx/ConnectWallet"
-import { useStacks } from "@/components/fundx/StacksProvider"
 import Link from "next/link"
 import Logo from "@/components/Logo"
+import { ConnectWallet } from "@/components/fundx/ConnectWallet"
+import { useStacks } from "@/components/fundx/StacksProvider"
 
 export function Navbar() {
   // Pull in the connection status to know if we should show the Dashboard link
