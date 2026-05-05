@@ -7,7 +7,7 @@ import { useStacks } from "@/components/fundx/StacksProvider"
 
 export function Navbar() {
   // Pull in the connection status to know if we should show the Dashboard link
-  const { isSignedIn } = useStacks()
+  const { isSignedIn_ } = useStacks()
 
   return (
     <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
@@ -25,7 +25,7 @@ export function Navbar() {
           <Link href="https://bridge.stacks.co/usdc/eth/stx" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Bridge</Link>
           
        
-          {isSignedIn && (
+          {isSignedIn_ && (
             <Link href="/dashboard" className="hover:text-primary transition-colors">
               Dashboard
             </Link>
