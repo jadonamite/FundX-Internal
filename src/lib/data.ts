@@ -114,10 +114,10 @@ export const CAMPAIGNS: Campaign[] = [
     fundingModel: "Flexible Model"
   },
   {
-    id: "zero_-fee-dex",
+    id: "zero-fee-dex",
     title: "Zero-Fee DEX",
-    tagline: "Swap Stacks assets with zero_ protocol fees.",
-    description: "A community-owned automated market maker prioritizing deep liquidity and zero_ rent-seeking.",
+    tagline: "Swap Stacks assets with zero protocol fees.",
+    description: "A community-owned automated market maker prioritizing deep liquidity and zero rent-seeking.",
     category: "DeFi",
     projectStage: "Prototype",
     location: "Remote",
