@@ -254,6 +254,11 @@ export const CAMPAIGNS: Campaign[] = [
   }
 ];
 
+// Helper: Get the single trending campaign for the center slot
+export function getHeroCampaign() {
+  return CAMPAIGNS.find((c) => c.isTrending) || CAMPAIGNS[0];
+}
+
 // Helper: Get 2 other campaigns for the side slots
 export function getSideCampaigns() {
   return CAMPAIGNS.filter((c) => !c.isTrending).slice(0, 2);
@@ -266,9 +271,4 @@ export function getCampaign(id: string) {
 // Helper: Get all campaigns for the Explore Page
 export function getAllCampaigns() {
   return CAMPAIGNS;
-}
-
-// Helper: Get the single trending campaign for the center slot
-export function getHeroCampaign() {
-  return CAMPAIGNS.find((c) => c.isTrending) || CAMPAIGNS[0];
 }
