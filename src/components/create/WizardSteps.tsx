@@ -46,7 +46,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                </div>
                <div className="space-y-2">
                   <Label>Website / Portfolio</Label>
-                  <Input placeholder="https://..." className="h-14 rounded-xl" value={formData.portfolio} onChange={(e) => setFormData({...formData, portfolio: e.target.value})} />
+                  <Input placeholder="https://..." className="h-14 rounded-xl" value={formData.portfolio_} onChange={(e) => setFormData({...formData, portfolio_: e.target.value})} />
                </div>
             </div>
          </div>
