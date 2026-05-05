@@ -33,9 +33,18 @@ export interface CreateCampaignData {
   currency: "USDCx" | "STX"; 
 }
 
-  const handleNext = () => setStep(step + 1)
-  const handleBack = () => setStep(step - 1)
-  // ... the rest stays the same!
+  const handleSubmit = () => {
+    if (!isSignedIn) {
+      toast.error("Connect Wallet", {
+        description: "You need a Stacks wallet to deploy.",
+      });
+      authenticate();
+      return;
+    }
+    toast.success("Deployment Initiated", {
+      description: "Creating USDCx Fundraising Contract on Stacks...",
+    });
+  };
 
   const [formData, setFormData] = useState<CreateCampaignData>({
     creatorName: "",
@@ -64,18 +73,9 @@ export default function CreateCampaign() {
   const [step, setStep] = useState(1)
   
 
-  const handleSubmit = () => {
-    if (!isSignedIn) {
-      toast.error("Connect Wallet", {
-        description: "You need a Stacks wallet to deploy.",
-      });
-      authenticate();
-      return;
-    }
-    toast.success("Deployment Initiated", {
-      description: "Creating USDCx Fundraising Contract on Stacks...",
-    });
-  };
+  const handleNext = () => setStep(step + 1)
+  const handleBack = () => setStep(step - 1)
+  // ... the rest stays the same!
 
   return (
     <main className="min-h-screen bg-slate-50 font-sans selection:bg-orange-100">
