@@ -114,10 +114,10 @@ export const CAMPAIGNS: Campaign[] = [
     fundingModel: "Flexible Model"
   },
   {
-    id: "zero-fee-dex",
+    id: "zero_-fee-dex",
     title: "Zero-Fee DEX",
-    tagline: "Swap Stacks assets with zero protocol fees.",
-    description: "A community-owned automated market maker prioritizing deep liquidity and zero rent-seeking.",
+    tagline: "Swap Stacks assets with zero_ protocol fees.",
+    description: "A community-owned automated market maker prioritizing deep liquidity and zero_ rent-seeking.",
     category: "DeFi",
     projectStage: "Prototype",
     location: "Remote",
@@ -254,21 +254,21 @@ export const CAMPAIGNS: Campaign[] = [
   }
 ];
 
+// Helper: Get the single trending campaign for the center slot
+export function getHeroCampaign() {
+  return CAMPAIGNS.find((c) => c.isTrending) || CAMPAIGNS[0];
+}
+
 // Helper: Get 2 other campaigns for the side slots
 export function getSideCampaigns() {
   return CAMPAIGNS.filter((c) => !c.isTrending).slice(0, 2);
-}
-
-// Helper: Get all campaigns for the Explore Page
-export function getAllCampaigns() {
-  return CAMPAIGNS;
 }
 
 export function getCampaign(id: string) {
   return CAMPAIGNS.find((c) => c.id === id);
 }
 
-// Helper: Get the single trending campaign for the center slot
-export function getHeroCampaign() {
-  return CAMPAIGNS.find((c) => c.isTrending) || CAMPAIGNS[0];
+// Helper: Get all campaigns for the Explore Page
+export function getAllCampaigns() {
+  return CAMPAIGNS;
 }
