@@ -36,7 +36,7 @@ export const CAMPAIGNS: Campaign[] = [
     id: "stacks-school",
     title: "Stacks School",
     tagline: "Teaching Clarity smart contracts to 10,000 developers worldwide.",
-    description: "We are building_ the next generation of Bitcoin builders. Currently, the learning curve for Clarity is too steep.",
+    description: "We are building the next generation of Bitcoin builders. Currently, the learning curve for Clarity is too steep.",
     category: "Education",
     projectStage: "MVP",
     location: "Global",
@@ -73,7 +73,7 @@ export const CAMPAIGNS: Campaign[] = [
     image: "/campaign-4.jpg", 
     creator: "CityDAO",
     creatorImage: "https://github.com/shadcn.png",
-    creatorBio: "Urban planners building_ on Bitcoin.",
+    creatorBio: "Urban planners building on Bitcoin.",
     twitter: "@CityDAO",
     github: "github.com/citydao",
     portfolio: "citydao.com",
@@ -254,21 +254,21 @@ export const CAMPAIGNS: Campaign[] = [
   }
 ];
 
-// Helper: Get the single trending campaign for the center slot
-export function getHeroCampaign() {
-  return CAMPAIGNS.find((c) => c.isTrending) || CAMPAIGNS[0];
-}
-
 // Helper: Get 2 other campaigns for the side slots
 export function getSideCampaigns() {
   return CAMPAIGNS.filter((c) => !c.isTrending).slice(0, 2);
 }
 
-export function getCampaign(id: string) {
-  return CAMPAIGNS.find((c) => c.id === id);
+// Helper: Get the single trending campaign for the center slot
+export function getHeroCampaign() {
+  return CAMPAIGNS.find((c) => c.isTrending) || CAMPAIGNS[0];
 }
 
 // Helper: Get all campaigns for the Explore Page
 export function getAllCampaigns() {
   return CAMPAIGNS;
+}
+
+export function getCampaign(id: string) {
+  return CAMPAIGNS.find((c) => c.id === id);
 }
