@@ -27,30 +27,14 @@ const myContributions: BackerContribution[] = [
   { id: "inv-3", title: "DeFi Yield Aggregator", image: "/campaign-2.jpg", myContribution: 250, totalRaised: 55000, goal: 50000, currency: "USDCx", model: "Flexible Model", status: "successful" }
 ];
 
-function ActiveContributionCard({ contribution }: { contribution: BackerContribution }) {
-  const progress = Math.min((contribution.totalRaised / contribution.goal) * 100, 100);
+// Helper Function
+const formatMoney = (amount: number, currency: string) => {
+  return currency === "USDCx" ? `$${amount.toLocaleString()} USDCx` : `${amount.toLocaleString()} STX`;
+};
 
 // ==========================================
 // 2. THE PLUG-IN COMPONENTS
 // ==========================================
-
-// ==========================================
-// 3. THE MAIN SWITCHBOARD COMPONENT
-// ==========================================
-export function BackerTab() {
-  return (
-    <TabsContent value="contributions" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-       
-       {myContributions.map((contribution) => {
-          // If the campaign missed its all-or-nothing goal, the backer gets a refund button
-          if (contribution.status === "refund_available") return <RefundCard key={contribution.id} contribution={contribution} />
-          
-          if (contribution.status === "active") return <ActiveContributionCard key={contribution.id} contribution={contribution} />
-          
-          if (contribution.status === "successful") return <SuccessfulContributionCard key={contribution.id} contribution={contribution} />
-          
-          return null;
-       })}
 
 function RefundCard({ contribution }: { contribution: BackerContribution }) {
   // For refunds, we use a striking blue to differentiate from the creator's green withdraw button
@@ -89,6 +73,9 @@ function RefundCard({ contribution }: { contribution: BackerContribution }) {
     </div>
   )
 }
+
+function ActiveContributionCard({ contribution }: { contribution: BackerContribution }) {
+  const progress = Math.min((contribution.totalRaised / contribution.goal) * 100, 100);
 
   return (
     <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
@@ -130,11 +117,6 @@ function RefundCard({ contribution }: { contribution: BackerContribution }) {
   )
 }
 
-// Helper Function
-const formatMoney = (amount: number, currency: string) => {
-  return currency === "USDCx" ? `$${amount.toLocaleString()} USDCx` : `${amount.toLocaleString()} STX`;
-};
-
 function SuccessfulContributionCard({ contribution }: { contribution: BackerContribution }) {
   return (
     <div className="bg-slate-50 p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[inset_0_4px_20px_rgba(0,0,0,0.02)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden transition-all duration-500">
@@ -170,6 +152,24 @@ function SuccessfulContributionCard({ contribution }: { contribution: BackerCont
     </div>
   )
 }
+
+// ==========================================
+// 3. THE MAIN SWITCHBOARD COMPONENT
+// ==========================================
+export function BackerTab() {
+  return (
+    <TabsContent value="contributions" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+       
+       {myContributions.map((contribution) => {
+          // If the campaign missed its all-or-nothing goal, the backer gets a refund button
+          if (contribution.status === "refund_available") return <RefundCard key={contribution.id} contribution={contribution} />
+          
+          if (contribution.status === "active") return <ActiveContributionCard key={contribution.id} contribution={contribution} />
+          
+          if (contribution.status === "successful") return <SuccessfulContributionCard key={contribution.id} contribution={contribution} />
+          
+          return null;
+       })}
 
     </TabsContent>
   )
