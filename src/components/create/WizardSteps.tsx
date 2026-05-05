@@ -21,7 +21,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-slate-900">Who is building this?</h2>
+            <h2 className="text-2xl font-bold text-slate-900">Who is building_ this?</h2>
             <p className="text-slate-500 text-sm">Let's get your basic details and social proof.</p>
          </div>
          <div className="space-y-6">
@@ -80,7 +80,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
       <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
          <div className="mb-6">
             <h2 className="text-2xl font-bold text-slate-900">Project Basics</h2>
-            <p className="text-slate-500 text-sm">Define what you are building and give it a face.</p>
+            <p className="text-slate-500 text-sm">Define what you are building_ and give it a face.</p>
          </div>
          <div className="space-y-6">
             <div className="space-y-2">
