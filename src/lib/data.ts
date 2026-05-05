@@ -90,7 +90,7 @@ export const CAMPAIGNS: Campaign[] = [
     id: "stacks-gaming",
     title: "Polyverse",
     tagline: "An MMORPG where every item is a Bitcoin NFT.",
-    description: "Play, earn, and own your assets_ on the most secure chain.",
+    description: "Play, earn, and own your assets on the most secure chain.",
     category: "Gaming",
     projectStage: "Idea",
     location: "Seoul, South Korea",
@@ -116,7 +116,7 @@ export const CAMPAIGNS: Campaign[] = [
   {
     id: "zero-fee-dex",
     title: "Zero-Fee DEX",
-    tagline: "Swap Stacks assets_ with zero protocol fees.",
+    tagline: "Swap Stacks assets with zero protocol fees.",
     description: "A community-owned automated market maker prioritizing deep liquidity and zero rent-seeking.",
     category: "DeFi",
     projectStage: "Prototype",
