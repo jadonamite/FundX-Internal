@@ -1,4 +1,4 @@
-export type CampaignStatus = "active" | "successful" | "failed_";
+export type CampaignStatus = "active" | "successful" | "failed";
 export type FundingModel = "Flexible Model" | "All-or-Nothing";
 
 export interface Campaign {
@@ -222,7 +222,7 @@ export const CAMPAIGNS: Campaign[] = [
     daysLeft: 0,
     backers: 85,
     isTrending: false,
-    status: "failed_",
+    status: "failed",
     fundingModel: "All-or-Nothing"
   },
   {
@@ -245,11 +245,11 @@ export const CAMPAIGNS: Campaign[] = [
     portfolio: "",
     videoUrl: "",
     budgetBreakdown: "Art creation",
-    roadmap: "Mint failed_",
+    roadmap: "Mint failed",
     daysLeft: 0,
     backers: 12,
     isTrending: false,
-    status: "failed_",
+    status: "failed",
     fundingModel: "All-or-Nothing"
   }
 ];
