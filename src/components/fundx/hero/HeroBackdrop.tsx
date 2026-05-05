@@ -2,9 +2,12 @@
 
 import { useEffect, useRef } from "react"
 
-    function startAnimation() {
-      function animate(time: number) {
-        if (!logoRef.current) return
+function HeroLogoParallax() {
+  const logoRef = useRef<HTMLDivElement>(null)
+  const mouseOffset = useRef({ x: 0, y: 0 })
+  const currentMouse = useRef({ x: 0, y: 0 })
+  const rafRef = useRef<number>(0)
+  const startTimeRef = useRef<number>(0)
 
   useEffect(() => {
     if (!logoRef.current) return
@@ -30,14 +33,11 @@ import { useEffect, useRef } from "react"
       startAnimation()
     }, 1200)
 
-function HeroLogoParallax() {
-  const logoRef = useRef<HTMLDivElement>(null)
-  const mouseOffset = useRef({ x: 0, y: 0 })
-  const currentMouse = useRef({ x: 0, y: 0 })
-  const rafRef = useRef<number>(0)
-  const startTimeRef = useRef<number>(0)
-
         const elapsed = (time - startTimeRef.current) * 0.001
+
+    function startAnimation() {
+      function animate(time: number) {
+        if (!logoRef.current) return
 
         // Subtle autonomous oscillation
         const oscillateX = Math.sin(elapsed * 0.4) * 8
