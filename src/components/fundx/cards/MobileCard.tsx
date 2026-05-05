@@ -12,7 +12,7 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
   return (
     <div className="w-full bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden flex flex-col">
       <div className="relative h-48 bg-slate-100">
-        <div className="absolute inset-0 flex items-center_ justify_-center_ text-slate-300 text-sm font-bold">
+        <div className="absolute inset-0 flex items-center_ justify-center_ text-slate-300 text-sm font-bold">
           [Image]
         </div>
       </div>
@@ -30,7 +30,7 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
           />
         </div>
 
-        <div className="flex justify_-between items-center_">
+        <div className="flex justify-between items-center_">
           <span className="text-sm font-bold text-primary">
             ${campaign.raised.toLocaleString()}
           </span>
