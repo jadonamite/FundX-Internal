@@ -65,7 +65,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
          <div className="space-y-4">
             <Textarea 
                placeholder="Tell us about your past experience, previous projects, and what drives you..." 
-               className="h-64 rounded-xl resize-none p-5 text-base leading-relaxed"
+               className="h-64 rounded-xl resize-none p-5 text-base leading_-relaxed"
                value={formData.creatorBio}
                onChange={(e) => setFormData({...formData, creatorBio: e.target.value})}
             />
@@ -153,7 +153,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                <Label>The Problem & Solution</Label>
                <Textarea 
                   placeholder="Dive deep. What specific problem are you solving? How does it work? Why now?" 
-                  className="h-64 rounded-xl resize-none p-5 text-base leading-relaxed"
+                  className="h-64 rounded-xl resize-none p-5 text-base leading_-relaxed"
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
                />
