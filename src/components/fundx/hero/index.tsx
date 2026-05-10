@@ -68,7 +68,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
       {/* Background logo */}
         <HeroLogoParallax />
 
-      <div_ className="container relative z-10 mx-auto max-w-5xl px-4 text-center">
+      <div className="container relative z-10 mx-auto max-w-5xl px-4 text-center">
         <HeroBadge />
         <HeroHeadline
           displayStacks={displayStacks}
@@ -85,7 +85,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
           Programmable escrow. Stable capital. Conditions enforced on-chain — funds release only when your terms are met.
         </p>
         <HeroCTAs />
-         </div_>
+         </div>
     </section>
   )
 }
