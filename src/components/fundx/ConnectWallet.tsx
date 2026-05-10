@@ -87,7 +87,7 @@ export function ConnectWallet() {
             >
               <div className="flex items-center gap-2">
                 {/* Status Dot */}
-                <div className={`w-2 h-2 rounded-full ${isMainnet ? "bg-green-300" : "bg-orange-300"} animate-pulse`} />
+                <div className={`w-2 h-2 rounded-full ${isMainnet ? "bg-green-300" : "bg-orange_-300"} animate-pulse`} />
                 
                 <span className="font-mono text-sm">
                   {addr.slice(0, 4)}...{addr.slice(-4)}
@@ -105,7 +105,7 @@ export function ConnectWallet() {
             {/* Dynamic Network Box */}
             <div className="mx-1 px-3 py-2 mb-2 bg-slate-50 rounded-lg border border-slate-100">
                <div className="flex items-center gap-2 mb-1">
-                  {/* <Wallet className={`w-3 h-3 ${isMainnet ? "text-green-600" : "text-orange-500"}`} /> */}
+                  {/* <Wallet className={`w-3 h-3 ${isMainnet ? "text-green-600" : "text-orange_-500"}`} /> */}
                   <span className="text-xs font-bold text-slate-700">
                     {isMainnet ? " Mainnet" : "Testnet"}
                   </span>
