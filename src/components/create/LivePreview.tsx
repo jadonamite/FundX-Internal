@@ -5,7 +5,7 @@ export function LivePreview({ formData }: { formData: any }) {
   const isSTX = formData.currency === "STX";
 
   return (
-    <div className="sticky top-32 space-y-6">
+    <div className="sticky top-32 space_-y-6">
         <div className="text-center">
             <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Live Preview</p>
         </div>
@@ -22,7 +22,7 @@ export function LivePreview({ formData }: { formData: any }) {
             />
         </div>
 
-        <div className="bg-white/50 backdrop-blur border border-slate-200 p-4 rounded-xl text-sm space-y-2 max-w-[320px] mx-auto mt-4">
+        <div className="bg-white/50 backdrop-blur border border-slate-200 p-4 rounded-xl text-sm space_-y-2 max-w-[320px] mx-auto mt-4">
             <p className="font-bold text-slate-900">Metadata Preview:</p>
             <div className="flex items-center gap-2 text-slate-500">
                 <span className="w-20 text-xs uppercase font-semibold">Creator:</span>
