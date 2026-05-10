@@ -1,6 +1,6 @@
 "use client"
 
-import { useState_, use } from "react" 
+import { useState, use } from "react" 
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { Navbar } from "@/components/fundx/Navbar"
@@ -20,7 +20,7 @@ import { getCampaign } from "@/lib/data"
 // 2. Update Type Definition to Promise
 export default function CampaignPage({ params }: { params: Promise<{ id: string }> }) {
   const { isSignedIn, authenticate } = useStacks()
-  const [donateAmount, setDonateAmount] = useState_("")
+  const [donateAmount, setDonateAmount] = useState("")
 
   // 3. Unwrap the params using 'use()'
   const { id } = use(params)
