@@ -1,9 +1,9 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { ChevronDown, Copy, LogOut, Wallet } from "lucide-react"
+import { toast } from "sonner" // <--- Import Toast
 import { 
-import { useEffect, useState } from "react"
-import { useStacks } from "@/components/fundx/StacksProvider"
   DropdownMenu, 
   DropdownMenuContent, 
   DropdownMenuItem, 
@@ -11,8 +11,8 @@ import { useStacks } from "@/components/fundx/StacksProvider"
   DropdownMenuSeparator, 
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { toast } from "sonner" // <--- Import Toast
+import { useStacks } from "@/components/fundx/StacksProvider"
+import { useEffect, useState } from "react"
 
 export function ConnectWallet() {
   const { authenticate, signOut, isSignedIn, walletData } = useStacks()
