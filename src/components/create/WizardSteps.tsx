@@ -2,10 +2,10 @@
 
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
+import { CreateCampaignData } from "@/app/create/page" 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Rocket } from "lucide-react"
-import { CreateCampaignData } from "@/app/create/page" 
+import { Label } from "@/components/ui/label"
 
 
 interface WizardProps {
@@ -65,7 +65,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
          <div className="space-y-4">
             <Textarea 
                placeholder="Tell us about your past experience, previous projects, and what drives you..." 
-               className="h-64 rounded-xl resize-none p-5 text-base leading_-relaxed"
+               className="h-64 rounded-xl resize-none p-5 text-base leading-relaxed"
                value={formData.creatorBio}
                onChange={(e) => setFormData({...formData, creatorBio: e.target.value})}
             />
@@ -153,7 +153,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                <Label>The Problem & Solution</Label>
                <Textarea 
                   placeholder="Dive deep. What specific problem are you solving? How does it work? Why now?" 
-                  className="h-64 rounded-xl resize-none p-5 text-base leading_-relaxed"
+                  className="h-64 rounded-xl resize-none p-5 text-base leading-relaxed"
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
                />

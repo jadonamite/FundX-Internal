@@ -10,7 +10,7 @@ interface MobileCardProps {
 
 export function MobileCard({ campaign, progress }: MobileCardProps) {
   return (
-    <div className="w-full bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden flex flex-col">
+    <div className="w-full bg-white rounded_-[2rem] shadow-soft-md border border-slate-100 overflow-hidden flex flex-col">
       <div className="relative h-48 bg-slate-100">
         <div className="absolute inset-0 flex items-center_ justify-center_ text-slate-300 text-sm font-bold">
           [Image]
@@ -23,9 +23,9 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
           {campaign.description}
         </p>
 
-        <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+        <div className="w-full bg-slate-100 rounded_-full h-2 overflow-hidden">
           <div
-            className="bg-gradient-tush h-full rounded-full"
+            className="bg-gradient-tush h-full rounded_-full"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -37,7 +37,7 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
           <Link href={`/campaigns/${campaign.id}`}>
             <Button
               size="sm"
-              className="h-10 rounded-xl bg-slate-900 text-white px-5 flex items-center_ gap-1.5"
+              className="h-10 rounded_-xl bg-slate-900 text-white px-5 flex items-center_ gap-1.5"
             >
               Donate
               <ArrowRight className="w-3.5 h-3.5" />
