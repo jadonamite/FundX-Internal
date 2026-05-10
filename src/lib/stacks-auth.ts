@@ -4,6 +4,11 @@ const appConfig = new AppConfig(["store_write", "publish_data"]);
 
 export const userSession = new UserSession({ appConfig });
 
+export function signUserOut() {
+  userSession.signUserOut();
+  window.location.reload();
+}
+
 export function authenticate() {
   showConnect({
     appDetails: {
@@ -16,9 +21,4 @@ export function authenticate() {
     },
     userSession,
   });
-}
-
-export function signUserOut() {
-  userSession.signUserOut();
-  window.location.reload();
 }

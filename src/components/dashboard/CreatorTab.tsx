@@ -56,7 +56,7 @@ const myFetchedCampaigns: CreatorCampaign[] = [
 export function CreatorTab() {
   
   // Helper to format money correctly based on currency
-  const formatMoney_ = (amount: number, currency: string) => {
+  const formatMoney = (amount: number, currency: string) => {
     return currency === "USDCx" ? `$${amount.toLocaleString()} USDCx` : `${amount.toLocaleString()} STX`;
   };
 
@@ -93,7 +93,7 @@ export function CreatorTab() {
                          <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{campaign.title}</h3>
                          <div className="flex items-center gap-4 text-sm mt-4">
                             <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
-                               Raised: <span className="text-green-600 font-extrabold">{formatMoney_(campaign.raised, campaign.currency)}</span>
+                               Raised: <span className="text-green-600 font-extrabold">{formatMoney(campaign.raised, campaign.currency)}</span>
                             </div>
                             <div className="text-slate-500 font-medium text-base">Goal: {campaign.goal.toLocaleString()} {campaign.currency === 'USDCx' ? '' : 'STX'}</div>
                          </div>
@@ -133,7 +133,7 @@ export function CreatorTab() {
                          <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{campaign.title}</h3>
                          <div className="flex items-center gap-4 text-sm mt-4">
                             <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
-                               Raised: <span className="text-orange-600 font-extrabold">{formatMoney_(campaign.raised, campaign.currency)}</span>
+                               Raised: <span className="text-orange-600 font-extrabold">{formatMoney(campaign.raised, campaign.currency)}</span>
                             </div>
                             <div className="text-slate-500 font-medium text-base">Goal: {campaign.goal.toLocaleString()} {campaign.currency === 'USDCx' ? '' : 'STX'}</div>
                          </div>
@@ -177,7 +177,7 @@ export function CreatorTab() {
                          <h3 className="text-3xl font-bold text-slate-500 line-through decoration-slate-300 decoration-2 tracking-tight">{campaign.title}</h3>
                          <div className="flex items-center gap-4 text-sm mt-4">
                             <div className="font-semibold text-slate-500 bg-white/50 px-5 py-2.5 rounded-xl border border-slate-200/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03)] text-base">
-                               Raised: {formatMoney_(campaign.raised, campaign.currency)}
+                               Raised: {formatMoney(campaign.raised, campaign.currency)}
                             </div>
                             <div className="text-slate-500 font-medium text-base">Goal: {campaign.goal.toLocaleString()} {campaign.currency === 'USDCx' ? '' : 'STX'}</div>
                          </div>
