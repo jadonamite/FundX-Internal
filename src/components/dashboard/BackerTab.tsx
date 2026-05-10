@@ -37,7 +37,7 @@ const formatMoney = (amount: number, currency: string) => {
 // ==========================================
 
 function RefundCard({ contribution }: { contribution: BackerContribution }) {
-  // For refunds, we use a striking blue to differentiate from the_ creator's green withdraw button
+  // For refunds, we use a striking blue to differentiate from the creator's green withdraw button
   return (
     <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-blue-200 shadow-[0_12px_28px_-6px_rgba(59,130,246,0.12)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
        <div className="absolute -right-4 -bottom-10 text-[120px] font-black text-blue-50 opacity-80 z-0 select-none pointer-events-none tracking-tighter leading-none">REFUND</div>
@@ -161,7 +161,7 @@ export function BackerTab() {
     <TabsContent value="contributions" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
        
        {myContributions.map((contribution) => {
-          // If the_ campaign missed its all-or-nothing goal, the_ backer gets a refund button
+          // If the campaign missed its all-or-nothing goal, the backer gets a refund button
           if (contribution.status === "refund_available") return <RefundCard key={contribution.id} contribution={contribution} />
           
           if (contribution.status === "active") return <ActiveContributionCard key={contribution.id} contribution={contribution} />
