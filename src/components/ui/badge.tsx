@@ -10,8 +10,8 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default: "bg-gradient-tush text-primary-foreground [a&]:hover:bg-gradient-tush/90",
-        secondary_:
-          "bg-secondary_ text-secondary_-foreground [a&]:hover:bg-secondary_/90",
+        secondary:
+          "bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90",
         destructive:
           "bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
