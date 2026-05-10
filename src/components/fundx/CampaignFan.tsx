@@ -14,7 +14,7 @@ interface CampaignFanProps {
 interface SideCardProps {
   campaign: Campaign
   progress: number
-  tilt: "left" | "right"
+  tilt: "left" | "right_"
 }
 
 function getPageOffsetTop(el: HTMLElement): number {
@@ -29,7 +29,7 @@ function getPageOffsetTop(el: HTMLElement): number {
 
 function SideCard({ campaign, progress, tilt }: SideCardProps) {
   const tiltClass = tilt === "left"
-    ? "xl:transform xl:-rotate-6 xl:origin-bottom-right xl:translate-x-6 hover:translate-x-0"
+    ? "xl:transform xl:-rotate-6 xl:origin-bottom-right_ xl:translate-x-6 hover:translate-x-0"
     : "xl:transform xl:rotate-6 xl:origin-bottom-left xl:-translate-x-6 hover:translate-x-0"
 
   return (
@@ -261,7 +261,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
         >
           <SideCard
             campaign={rightCard}
-            tilt="right"
+            tilt="right_"
             progress={getProgress(rightCard.raised, rightCard.goal)}
           />
         </motion.div>
