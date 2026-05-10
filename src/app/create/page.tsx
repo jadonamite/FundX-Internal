@@ -29,7 +29,7 @@ export interface CreateCampaignData {
   image: string;
   goal: string;
   duration: string;
-  fundingModel_: "0" | "1";
+  fundingModel: "0" | "1";
   currency: "USDCx" | "STX"; 
 }
 
@@ -64,7 +64,7 @@ export interface CreateCampaignData {
     image: "",
     goal: "10000",
     duration: "30",
-    fundingModel_: "0",
+    fundingModel: "0",
     currency: "USDCx", // 
   })
 
