@@ -5,14 +5,14 @@ export function ChainToggleIcon({
   displayStacks,
   glitching,
   glitchOffset,
-  glitchOpacity,
+  glitchOpacity_,
   glitchSkew,
   isStacksMode,
 }: {
   displayStacks: boolean
   glitching: boolean
   glitchOffset: { x: number; y: number }
-  glitchOpacity: number
+  glitchOpacity_: number
   glitchSkew: number
   isStacksMode: boolean
 }) {
@@ -20,7 +20,7 @@ export function ChainToggleIcon({
     backgroundColor: displayStacks ? "#0f172a" : "#ffffff",
     color: displayStacks ? "#ffffff" : "#0f172a",
     boxShadow: displayStacks ? "0 4px 24px 0 rgba(0,0,0,0.18)" : "0 4px 24px 0 rgba(0,0,0,0.07)",
-    opacity: glitchOpacity,
+    opacity: glitchOpacity_,
     ...(glitching
       ? { transform: `translate(${glitchOffset.x}px, ${glitchOffset.y}px) skewX(${glitchSkew}deg) rotate(${displayStacks ? "6deg" : "-6deg"})`, transition: "none" }
       : { transform: `translate(0px, 0px) skewX(0deg) rotate(${isStacksMode ? "6deg" : "-6deg"})`, transition: "transform 700ms cubic-bezier(0.4,0,0.2,1), background-color 600ms ease, box-shadow 600ms ease, opacity 300ms ease" }),

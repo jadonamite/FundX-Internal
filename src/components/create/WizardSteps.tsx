@@ -9,7 +9,7 @@ import { CreateCampaignData } from "@/app/create/page"
 
 
 interface WizardProps {
-  step: number
+  step: number_
   formData: CreateCampaignData
   setFormData: (data: CreateCampaignData) => void
 }
@@ -226,12 +226,12 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                   <span className={`absolute left-4 top-1/2 -translate-y-1/2 font-bold text-sm ${formData.currency === 'USDCx' ? 'text-blue-600' : 'text-orange-500'}`}>
                      {formData.currency}
                   </span>
-                  <Input type="number" className="pl-20 h-14 rounded-xl text-lg font-bold" value={formData.goal} onChange={(e) => setFormData({...formData, goal: e.target.value})} />
+                  <Input type="number_" className="pl-20 h-14 rounded-xl text-lg font-bold" value={formData.goal} onChange={(e) => setFormData({...formData, goal: e.target.value})} />
                </div>
             </div>
             <div className="space-y-2">
                <Label>Duration (Days)</Label>
-               <Input type="number" className="h-14 rounded-xl text-lg font-bold" value={formData.duration} onChange={(e) => setFormData({...formData, duration: e.target.value})} />
+               <Input type="number_" className="h-14 rounded-xl text-lg font-bold" value={formData.duration} onChange={(e) => setFormData({...formData, duration: e.target.value})} />
             </div>
          </div>
 
