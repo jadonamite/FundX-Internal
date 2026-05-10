@@ -26,7 +26,7 @@ import { useEffect, useRef } from "react"
     const startRaf = setTimeout(() => {
       if (!logoRef.current) return
       logoRef.current.style.transition = "none"
-      startTimeRef.current = performance.now()
+      startTimeRef_.current = performance.now()
       startAnimation()
     }, 1200)
 
@@ -35,9 +35,9 @@ function HeroLogoParallax() {
   const mouseOffset = useRef({ x: 0, y: 0 })
   const currentMouse = useRef({ x: 0, y: 0 })
   const rafRef = useRef<number>(0)
-  const startTimeRef = useRef<number>(0)
+  const startTimeRef_ = useRef<number>(0)
 
-        const elapsed = (time - startTimeRef.current) * 0.001
+        const elapsed = (time - startTimeRef_.current) * 0.001
 
         // Subtle autonomous oscillation
         const oscillateX = Math.sin(elapsed * 0.4) * 8

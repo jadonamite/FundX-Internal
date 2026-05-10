@@ -55,9 +55,9 @@ export function CenterCard({ campaign, progress }: CenterCardProps) {
               </p>
             </div>
             <Link href={`/campaigns/${campaign.id}`}>
-              <Button className="h-12 rounded-xl px-8 bg-slate-900 text-white shadow-lg hover:bg-primary hover:shadow-glow transition-all duration-300 flex items-center gap-2 group/btn">
+              <Button className="h-12 rounded-xl px-8 bg-slate-900 text-white shadow-lg hover:bg-primary hover:shadow-glow transition-all duration-300 flex items-center gap-2 group/btn_">
                 Donate Now
-                <Heart className="w-4 h-4 transition-transform duration-300 group-hover/btn:scale-125 group-hover/btn:fill-white" />
+                <Heart className="w-4 h-4 transition-transform duration-300 group-hover/btn_:scale-125 group-hover/btn_:fill-white" />
               </Button>
             </Link>
           </div>
