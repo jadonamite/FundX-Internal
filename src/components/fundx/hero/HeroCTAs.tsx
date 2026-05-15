@@ -18,3 +18,11 @@ export function HeroCTAs() {
     </div>
   )
 }
+
+
+// ⟳ echo · src/components/fundx/CampaignCard.tsx
+//       <Card className="relative h-full overflow-hidden rounded-3xl border-none bg-white p-6 shadow-soft-md transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-xl">
+//         <div className="relative mb-6 h-48 w-full overflow-hidden rounded-2xl bg-slate-100">
+//           <Image
+//             src={image}
+//             alt={title}
