@@ -259,11 +259,6 @@ export function getHeroCampaign() {
   return CAMPAIGNS.find((c) => c.isTrending) || CAMPAIGNS[0];
 }
 
-// Helper: Get 2 other campaigns for the side slots
-export function getSideCampaigns() {
-  return CAMPAIGNS.filter((c) => !c.isTrending).slice(0, 2);
-}
-
 export function getCampaign(id: string) {
   return CAMPAIGNS.find((c) => c.id === id);
 }
@@ -271,4 +266,9 @@ export function getCampaign(id: string) {
 // Helper: Get all campaigns for the Explore Page
 export function getAllCampaigns() {
   return CAMPAIGNS;
+}
+
+// Helper: Get 2 other campaigns for the side slots
+export function getSideCampaigns() {
+  return CAMPAIGNS.filter((c) => !c.isTrending).slice(0, 2);
 }
