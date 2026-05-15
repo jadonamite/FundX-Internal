@@ -182,6 +182,7 @@ export default function ExplorePage() {
                   image={campaign.image}
                   currency={campaign.currency} // 🚨 ADDED: Currency to support multi-asset mock data
                 />
+// ← structural drift
               </div>
             ))}
           </div>

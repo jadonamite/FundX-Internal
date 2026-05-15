@@ -57,9 +57,3 @@ export function CampaignCard({ id, title, description, raised, goal, image, curr
     </Link>
   )
 }
-
-// ⟳ echo · src/components/fundx/hero/useScramble.ts
-//     const totalSteps = word.length
-//     const tick = () => {
-//       if (lockedCount >= totalSteps) { setDisplay(word); return }
-//       setDisplay(word.split("").map((char, i) => i < lockedCount ? char : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]).join(""))
