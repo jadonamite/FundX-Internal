@@ -22,6 +22,7 @@ export function CenterCard({ campaign, progress }: CenterCardProps) {
         <div className="absolute inset-0 flex items-center justify-center text-slate-300 font-bold bg-slate-50 group-hover:bg-slate-100 transition-colors">
           [Image]
         </div>
+// ← structural drift
       </div>
 
       {/* Content Side */}
