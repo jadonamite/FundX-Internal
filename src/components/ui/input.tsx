@@ -19,3 +19,8 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
 }
 
 export { Input }
+
+
+// ⟳ echo · src/components/fundx/cards/LeftCard.tsx
+//                 ${campaign.raised.toLocaleString()}
+//               </span>
