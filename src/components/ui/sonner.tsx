@@ -38,8 +38,3 @@ const Toaster = ({ ...props }: ToasterProps) => {
 }
 
 export { Toaster }
-
-
-// ⟳ echo · src/components/fundx/hero/HeroBackground.tsx
-//           ctx.beginPath()
-//           ctx.moveTo(s.x, s.y - s.length)
