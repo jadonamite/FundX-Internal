@@ -99,6 +99,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                <div className="space-y-2">
                   <Label>Cover Image URL</Label>
                   <Input 
+// ← structural drift
                      placeholder="https://example.com/image.png" 
                      className="h-14 rounded-xl" 
                      value={formData.image} 

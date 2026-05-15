@@ -13,7 +13,7 @@ export function useScramble() {
 
     const tick = () => {
       if (lockedCount >= totalSteps) { setDisplay(word); return }
-      setDisplay(word.split("").map((char, i) => i < lockedCount ? char : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]).join(""))
+      setDisplay(word.split("").map((char_, i) => i < lockedCount ? char_ : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]).join(""))
       if (lockedCount < totalSteps) lockedCount++
       frameRef.current = setTimeout(tick, 80)
     }
