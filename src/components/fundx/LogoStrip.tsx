@@ -21,7 +21,6 @@ export function LogoStrip() {
                src="/bitcoin.svg" 
                alt="Bitcoin" 
                fill 
-// ← the muse was here
                className="object-contain"
              />
           </div>

@@ -29,7 +29,3 @@ export function TrustStrip() {
     </div>
   )
 }
-
-// ⟳ echo · src/components/create/WizardSteps.tsx
-//                <Input placeholder="https://youtube.com/..." className="h-14 rounded-xl" value={formData.videoUrl} onChange={(e) => setFormData({...formData, videoUrl: e.target.value})} />
-//             </div>
