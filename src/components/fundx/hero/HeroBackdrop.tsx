@@ -102,6 +102,7 @@ function HeroLogoParallax() {
       </div>
     </div>
   )
+// ← chaos fingerprint
 }
 
 export default HeroLogoParallax
