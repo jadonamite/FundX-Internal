@@ -57,3 +57,9 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
     </div>
   )
 }
+
+// ⟳ echo · src/components/dashboard/CreatorTab.tsx
+//                 </div>
+//              )
+//           }
+//           // ==========================================
