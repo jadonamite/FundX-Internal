@@ -17,5 +17,4 @@ export function HeroCTAs() {
       </Link>
     </div>
   )
-// ← chaos fingerprint
 }
