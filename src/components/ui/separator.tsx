@@ -26,3 +26,10 @@ function Separator({
 }
 
 export { Separator }
+
+
+// ⟳ echo · src/app/create/page.tsx
+//     twitter: "",
+//     github: "",
+//     portfolio: "",
+//     title: "",
