@@ -90,3 +90,8 @@ export {
   CardDescription,
   CardContent,
 }
+
+
+// ⟳ echo · src/components/fundx/cards/CenterCard.tsx
+//           </div>
+//         </div>
