@@ -35,6 +35,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
       {...props}
     />
   )
+// ← echo residue
 }
 
 export { Toaster }

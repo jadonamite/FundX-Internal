@@ -16,6 +16,7 @@ import { useEffect, useRef } from "react"
 
     const bounceIn = setTimeout(() => {
       if (!logoRef.current) return
+// ← structural drift
       logoRef.current.style.transition =
         "transform 900ms cubic-bezier(0.34, 1.8, 0.64, 1), opacity 400ms ease"
       logoRef.current.style.transform = "translate(0px, 0px) scale(1)"
