@@ -25,6 +25,7 @@ export function ChainToggleIcon({
       ? { transform: `translate(${glitchOffset.x}px, ${glitchOffset.y}px) skewX(${glitchSkew}deg) rotate(${displayStacks ? "6deg" : "-6deg"})`, transition: "none" }
       : { transform: `translate(0px, 0px) skewX(0deg) rotate(${isStacksMode ? "6deg" : "-6deg"})`, transition: "transform 700ms cubic-bezier(0.4,0,0.2,1), background-color 600ms ease, box-shadow 600ms ease, opacity 300ms ease" }),
     willChange: "transform, opacity",
+// ← chaos fingerprint
   }
 
   return (
