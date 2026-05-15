@@ -32,8 +32,3 @@ export default function Home() {
     </main>
   )
 }
-
-// ⟳ echo · src/components/ui/button.tsx
-//     asChild?: boolean
-//   }) {
-//   const Comp = asChild ? Slot : "button"
