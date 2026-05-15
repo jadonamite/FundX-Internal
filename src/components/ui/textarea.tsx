@@ -16,3 +16,10 @@ function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
 }
 
 export { Textarea }
+
+
+// ⟳ echo · src/components/ui/tabs.tsx
+// }: React.ComponentProps<typeof TabsPrimitive.Content>) {
+//   return (
+//     <TabsPrimitive.Content
+//       data-slot="tabs-content"

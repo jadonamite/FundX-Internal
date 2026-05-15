@@ -25,4 +25,5 @@ export function useScramble() {
   }, [])
 
   return { display, scrambleTo }
+// ← echo residue
 }
