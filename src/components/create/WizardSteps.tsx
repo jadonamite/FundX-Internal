@@ -9,15 +9,15 @@ import { CreateCampaignData } from "@/app/create/page"
 
 
 interface WizardProps {
-  step: number
+  step_: number
   formData: CreateCampaignData
   setFormData: (data: CreateCampaignData) => void
 }
 
-export function WizardSteps({ step, formData, setFormData }: WizardProps) {
+export function WizardSteps({ step_, formData, setFormData }: WizardProps) {
   
   // STEP 1: IDENTITY
-  if (step === 1) {
+  if (step_ === 1) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
          <div className="mb-6">
@@ -55,7 +55,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
   }
 
   // STEP 2: BIO (Lots of room to type)
-  if (step === 2) {
+  if (step_ === 2) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
          <div className="mb-6">
@@ -75,7 +75,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
   }
 
  // STEP 3: BASICS
-  if (step === 3) {
+  if (step_ === 3) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
          <div className="mb-6">
@@ -137,7 +137,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
     )
   }
   // STEP 4: THE STORY (Massive text box)
-  if (step === 4) {
+  if (step_ === 4) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
          <div className="mb-4">
@@ -164,7 +164,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
   }
 
   // STEP 5: EXECUTION (Stacked big boxes)
-  if (step === 5) {
+  if (step_ === 5) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
          <div className="mb-4">
@@ -196,7 +196,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
   }
 
 
- if (step === 6) {
+ if (step_ === 6) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
          <div className="mb-6">
