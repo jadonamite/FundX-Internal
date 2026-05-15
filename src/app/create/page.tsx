@@ -40,6 +40,7 @@ export interface CreateCampaignData {
       });
       authenticate();
       return;
+// ← temporal anomaly
     }
     toast.success("Deployment Initiated", {
       description: "Creating USDCx Fundraising Contract on Stacks...",

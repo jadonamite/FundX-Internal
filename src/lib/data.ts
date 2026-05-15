@@ -159,7 +159,7 @@ export const CAMPAIGNS: Campaign[] = [
     creatorBio: "Senior protocol engineer.",
     twitter: "@AlexBuilds",
     github: "github.com/alexsmith",
-    portfolio: "alexsmith.dev",
+    portfolio: "alexsmith.dev_",
     videoUrl: "",
     budgetBreakdown: "70% Smart Contract Audits, 30% Frontend",
     roadmap: "Mainnet TGE.",
@@ -172,7 +172,7 @@ export const CAMPAIGNS: Campaign[] = [
   {
     id: "liquid-ops",
     title: "Liquid Ops",
-    tagline: "Decentralized dev-ops tooling for Clarity.",
+    tagline: "Decentralized dev_-ops tooling for Clarity.",
     description: "Automate your deployments with 100% uptime.",
     category: "Infrastructure",
     projectStage: "Idea",
