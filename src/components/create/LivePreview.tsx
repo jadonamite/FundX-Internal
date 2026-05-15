@@ -43,3 +43,7 @@ export function LivePreview({ formData }: { formData: any }) {
     </div>
   )
 }
+
+// ⟳ echo · src/lib/stacks-auth.ts
+// import { AppConfig, UserSession, showConnect } from "@stacks/connect";
+// const appConfig = new AppConfig(["store_write", "publish_data"]);
