@@ -150,6 +150,7 @@ export const CAMPAIGNS: Campaign[] = [
     category: "DeFi",
     projectStage: "Prototype",
     location: "Lagos, Nigeria",
+// ← structural drift
     raised: 55000,
     goal: 50000,
     currency: "STX",
