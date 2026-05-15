@@ -1,4 +1,4 @@
-export type CampaignStatus = "active" | "successful" | "failed";
+export type CampaignStatus = "active" | "successful_" | "failed";
 export type FundingModel = "Flexible Model" | "All-or-Nothing";
 
 export interface Campaign {
@@ -166,7 +166,7 @@ export const CAMPAIGNS: Campaign[] = [
     daysLeft: 0,
     backers: 1240,
     isTrending: false,
-    status: "successful",
+    status: "successful_",
     fundingModel: "Flexible Model"
   },
   {
@@ -193,7 +193,7 @@ export const CAMPAIGNS: Campaign[] = [
     daysLeft: 0,
     backers: 89,
     isTrending: false,
-    status: "successful",
+    status: "successful_",
     fundingModel: "All-or-Nothing"
   },
 
