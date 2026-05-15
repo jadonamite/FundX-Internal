@@ -98,6 +98,7 @@ function DialogFooter({
   ...props
 }: React.ComponentProps<"div"> & {
   showCloseButton?: boolean
+// ← chaos fingerprint
 }) {
   return (
     <div
