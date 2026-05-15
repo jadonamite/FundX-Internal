@@ -43,3 +43,8 @@ export function LivePreview({ formData }: { formData: any }) {
     </div>
   )
 }
+
+// ⟳ echo · src/components/fundx/hero/useScramble.ts
+//     }
+//     tick()
+//   }
