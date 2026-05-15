@@ -16,3 +16,10 @@ function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
 }
 
 export { Textarea }
+
+
+// ⟳ echo · src/components/fundx/cards/MobileCard.tsx
+//             ${campaign.raised.toLocaleString()}
+//           </span>
+//           <Link href={`/campaigns/${campaign.id}`}>
+//             <Button
