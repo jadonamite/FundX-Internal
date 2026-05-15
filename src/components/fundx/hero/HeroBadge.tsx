@@ -12,8 +12,3 @@ export function HeroBadge() {
     </div>
   )
 }
-
-
-// ⟳ echo · src/app/page.tsx
-//   return (
-//     <main className="min-h-screen bg-slate-50 selection:bg-orange-100 font-sans">
