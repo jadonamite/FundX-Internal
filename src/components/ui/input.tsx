@@ -19,3 +19,8 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
 }
 
 export { Input }
+
+
+// ⟳ echo · src/app/create/page.tsx
+//     <main className="min-h-screen bg-slate-50 font-sans selection:bg-orange-100">
+//       <Navbar />
