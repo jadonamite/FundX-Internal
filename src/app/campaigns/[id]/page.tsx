@@ -214,3 +214,8 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
     </main>
   )
 }
+
+// ⟳ echo · src/components/ui/button.tsx
+//         "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
+//         "icon-sm": "size-8",
+//         "icon-lg": "size-10",
