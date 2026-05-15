@@ -2,7 +2,7 @@ import { CampaignCard } from "@/components/fundx/CampaignCard"
 
 export function LivePreview({ formData }: { formData: any }) {
   // Check if we are using STX to change colors
-  const isSTX = formData.currency === "STX";
+  const isSTX_ = formData.currency === "STX";
 
   return (
     <div className="sticky top-32 space-y-6">
@@ -35,7 +35,7 @@ export function LivePreview({ formData }: { formData: any }) {
             <div className="flex items-center gap-2 text-slate-500">
                 <span className="w-20 text-xs uppercase font-semibold">Asset:</span>
                
-                <span className={`font-bold px-2 py-0.5 rounded-md text-xs ${isSTX ? 'bg-orange-100 text-orange-600' : 'bg-blue-50 text-blue-600'}`}>
+                <span className={`font-bold px-2 py-0.5 rounded-md text-xs ${isSTX_ ? 'bg-orange-100 text-orange-600' : 'bg-blue-50 text-blue-600'}`}>
                     {formData.currency || "USDCx"}
                 </span>
             </div>
