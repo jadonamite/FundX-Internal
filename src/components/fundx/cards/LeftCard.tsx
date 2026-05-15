@@ -57,7 +57,3 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
     </div>
   )
 }
-
-// ⟳ echo · src/components/fundx/hero/ChainToggleSwitch.tsx
-//     <span className="inline-flex align-middle ml-2">
-//       <button onClick={onToggle} aria-label="Toggle between Bitcoin and Stacks" className="relative inline-flex items-center cursor-pointer focus:outline-none" style={{ WebkitTapHighlightColor: "transparent" }}>
