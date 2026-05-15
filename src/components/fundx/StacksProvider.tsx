@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react"
 
 interface WalletData {
-  stxAddress_: string
+  stxAddress: string
   btcAddress?: string
 }
 
@@ -30,7 +30,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
           // getLocalStorage returns { addresses: { stx: [...], btc: [...] } }
           if (data?.addresses?.stx?.[0]?.address) {
             setWalletData({
-              stxAddress_: data.addresses.stx[0].address,
+              stxAddress: data.addresses.stx[0].address,
               btcAddress: data.addresses.btc?.[0]?.address,
             })
             setIsSignedIn(true)
@@ -60,7 +60,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
       
       if (stxEntry?.address) {
         setWalletData({
-          stxAddress_: stxEntry.address,
+          stxAddress: stxEntry.address,
           btcAddress: btcEntry?.address,
         })
         setIsSignedIn(true)
