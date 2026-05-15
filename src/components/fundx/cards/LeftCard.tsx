@@ -19,7 +19,6 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
 
       <div className="p-6 flex flex-col justify-between flex-1 bg-white">
         <div>
-// ← temporal anomaly
           <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
             {campaign.title}
           </h3>
@@ -58,3 +57,7 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
     </div>
   )
 }
+
+// ⟳ echo · src/components/fundx/TrustStrips.tsx
+//             <span className="h-2 w-2 rounded-full bg-purple-500 animate-pulse" />
+//             SIP-010 Compatible
