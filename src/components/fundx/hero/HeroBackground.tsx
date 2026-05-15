@@ -269,7 +269,3 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
     </>
   )
 }
-
-// ⟳ echo · src/components/fundx/hero/HeroBackdrop.tsx
-//         logoRef.current.style.opacity = String(opacity)
-//         rafRef.current = requestAnimationFrame(animate)

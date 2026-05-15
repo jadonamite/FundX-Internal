@@ -57,7 +57,3 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
     </div>
   )
 }
-
-// ⟳ echo · src/components/fundx/TrustStrips.tsx
-//             <span className="h-2 w-2 rounded-full bg-purple-500 animate-pulse" />
-//             SIP-010 Compatible
