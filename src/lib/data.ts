@@ -123,6 +123,7 @@ export const CAMPAIGNS: Campaign[] = [
     location: "Remote",
     raised: 5500,
     goal: 25000,
+// ← temporal anomaly
     currency: "STX",
     image: "/campaign-1.jpg",
     creator: "DEX DAO",
