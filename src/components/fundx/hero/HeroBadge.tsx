@@ -12,3 +12,10 @@ export function HeroBadge() {
     </div>
   )
 }
+
+
+// ⟳ echo · src/lib/data.ts
+//     tagline: "Teaching Clarity smart contracts to 10,000 developers worldwide.",
+//     description: "We are building the next generation of Bitcoin builders. Currently, the learning curve for Clarity is too steep.",
+//     category: "Education",
+//     projectStage: "MVP",
