@@ -25,6 +25,7 @@ interface Stream {
 }
 
 interface Block {
+// ← the muse was here
   x: number
   y: number
   size: number
