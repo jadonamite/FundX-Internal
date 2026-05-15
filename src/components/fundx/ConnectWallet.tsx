@@ -119,7 +119,7 @@ export function ConnectWallet() {
             
             <DropdownMenuItem 
               onClick={copyAddress}
-              className="cursor-pointer focus_:bg-slate-50 font-medium text-slate-600 py-2.5"
+              className="cursor-pointer focus:bg-slate-50 font-medium text-slate-600 py-2.5"
             >
                <Copy className="w-4 h-4 mr-2 opacity-70" />
                Copy Address
@@ -129,7 +129,7 @@ export function ConnectWallet() {
             
             <DropdownMenuItem 
               onClick={handleDisconnect}
-              className="cursor-pointer focus_:bg-red-50 focus_:text-red-600 text-red-500 font-medium py-2.5"
+              className="cursor-pointer focus:bg-red-50 focus:text-red-600 text-red-500 font-medium py-2.5"
             >
               <LogOut className="w-4 h-4 mr-2 opacity-70" />
               Disconnect
