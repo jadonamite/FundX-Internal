@@ -57,7 +57,3 @@ export function CampaignCard({ id, title, description, raised, goal, image, curr
     </Link>
   )
 }
-
-// ⟳ echo · src/components/fundx/hero/HeroBadge.tsx
-//       className="inline-flex items-center gap-2 rounded-full border border-orange-200/60 bg-gradient-to-r from-orange-50/50 to-white px-4 py-1.5 text-sm font-medium text-orange-600 mb-8 cursor-default backdrop-blur-sm"
-//       style={{ boxShadow: "0 1px 6px 0 rgba(0,0,0,0.04)" }}

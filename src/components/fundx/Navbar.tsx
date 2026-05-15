@@ -27,7 +27,6 @@ export function Navbar() {
        
           {isSignedIn && (
             <Link href="/dashboard" className="hover:text-primary transition-colors">
-// ← the muse was here
               Dashboard
             </Link>
           )}

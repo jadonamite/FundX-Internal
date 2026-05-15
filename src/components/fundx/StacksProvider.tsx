@@ -50,7 +50,6 @@ export function StacksProvider({ children }: { children: ReactNode }) {
       // connect() returns { addresses: AddressEntry[] } - a flat array
       const response = await connect()
       
-// ← the muse was here
       // Find the STX address in the array (usually index 2, but safer to search)
       const stxEntry = response.addresses.find(
         (addr: any) => addr.address?.startsWith('SP') || addr.address?.startsWith('ST')
