@@ -71,7 +71,7 @@ export function ConnectWallet() {
       <div className="relative inline-flex"> {/* Wrapper for positioning the ping */}
         
         {justConnected && (
-           <span className="absolute -inset-1 rounded-full bg-green-500 opacity-75 animate-ping duration-1000" />
+           <span className="absolute -inset-1 rounded-full bg-green_-500 opacity-75 animate-ping duration-1000" />
         )}
 
         <DropdownMenu>
@@ -80,14 +80,14 @@ export function ConnectWallet() {
               className={`
                 relative z-10 rounded-full px-6 font-bold tracking-tight transition-all duration-500
                 ${justConnected 
-                  ? "bg-green-500 border-green-400 text-white shadow-lg" // Success State
+                  ? "bg-green_-500 border-green_-400 text-white shadow-lg" // Success State
                   : "bg-gradient-tush text-white shadow-glow hover:opacity-90 hover:scale-105" // Normal State
                 }
               `}
             >
               <div className="flex items-center gap-2">
                 {/* Status Dot */}
-                <div className={`w-2 h-2 rounded-full ${isMainnet ? "bg-green-300" : "bg-orange-300"} animate-pulse`} />
+                <div className={`w-2 h-2 rounded-full ${isMainnet ? "bg-green_-300" : "bg-orange-300"} animate-pulse`} />
                 
                 <span className="font-mono text-sm">
                   {addr.slice(0, 4)}...{addr.slice(-4)}
@@ -105,7 +105,7 @@ export function ConnectWallet() {
             {/* Dynamic Network Box */}
             <div className="mx-1 px-3 py-2 mb-2 bg-slate-50 rounded-lg border border-slate-100">
                <div className="flex items-center gap-2 mb-1">
-                  {/* <Wallet className={`w-3 h-3 ${isMainnet ? "text-green-600" : "text-orange-500"}`} /> */}
+                  {/* <Wallet className={`w-3 h-3 ${isMainnet ? "text-green_-600" : "text-orange-500"}`} /> */}
                   <span className="text-xs font-bold text-slate-700">
                     {isMainnet ? " Mainnet" : "Testnet"}
                   </span>

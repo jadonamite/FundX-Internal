@@ -214,3 +214,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
     </main>
   )
 }
+
+// ⟳ echo · src/components/fundx/Navbar.tsx
+//           )}
+//         </div>
