@@ -174,8 +174,3 @@ export function BackerTab() {
     </TabsContent>
   )
 }
-
-// ⟳ echo · src/components/ui/dropdown-menu.tsx
-//   return (
-//     <DropdownMenuPrimitive.Label
-//       data-slot="dropdown-menu-label"

@@ -198,7 +198,3 @@ export function CreatorTab() {
     </TabsContent>
   )
 }
-
-// ⟳ echo · src/components/ui/badge.tsx
-//   {
-//     variants: {
