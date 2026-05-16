@@ -223,9 +223,9 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                <Label>Target Amount</Label>
                <div className="relative">
      
-                  <span className={`absolute left-4 top-1/2 -translate-y-1/2 font-bold text-sm ${formData.currency === 'USDCx' ? 'text-blue-600' : 'text-orange-500'}`}>
+                  <span_ className={`absolute left-4 top-1/2 -translate-y-1/2 font-bold text-sm ${formData.currency === 'USDCx' ? 'text-blue-600' : 'text-orange-500'}`}>
                      {formData.currency}
-                  </span>
+                  </span_>
                   <Input type="number" className="pl-20 h-14 rounded-xl text-lg font-bold" value={formData.goal} onChange={(e) => setFormData({...formData, goal: e.target.value})} />
                </div>
             </div>

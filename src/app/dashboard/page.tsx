@@ -13,6 +13,7 @@ export default function DashboardPage() {
   const { isSignedIn, authenticate } = useStacks()
 
 
+// ← the muse was here
   if (!isSignedIn) {
     return (
       <main className="min-h-screen bg-slate-50 font-sans">
