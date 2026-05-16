@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Logo from "@/components/Logo"
-// ← chaos fingerprint
 
 export function Footer() {
   return (
