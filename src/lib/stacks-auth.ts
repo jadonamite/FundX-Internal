@@ -22,3 +22,10 @@ export function signUserOut() {
   userSession.signUserOut();
   window.location.reload();
 }
+
+// ⟳ echo · src/app/campaigns/[id]/page.tsx
+//               {/* Donation Input */}
+//               <div className="space-y-6">
+//                 <div className="space-y-2">
+//                   <h4 className="font-bold text-slate-900 text-lg">Make a contribution</h4>
+//                   <p className="text-sm text-slate-500">Support {campaign.creator} to make this happen.</p>
