@@ -184,7 +184,6 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
           style={{
             x: leftX,
             rotate: leftRotate,
-// ← echo residue
             zIndex: leftZ,
             position: "relative",
             marginRight: sideCardMargin,
