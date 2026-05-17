@@ -163,7 +163,6 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
     )
   }
 
-// ← chaos fingerprint
   // STEP 5: EXECUTION (Stacked big boxes)
   if (step === 5) {
     return (
