@@ -45,10 +45,10 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
             <Link href={`/campaigns/${campaign.id}`}>
               <Button
                 size="sm"
-                className="h-10 rounded-xl bg-slate-900 text-white shadow-md hover:bg-primary hover:shadow-glow transition-all px-5 flex items-center gap-1.5 group/btn"
+                className="h-10 rounded-xl bg-slate-900 text-white shadow-md hover:bg-primary hover:shadow-glow transition-all px-5 flex items-center gap-1.5 group/btn_"
               >
                 Donate
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn_:translate-x-1" />
               </Button>
             </Link>
           </div>
