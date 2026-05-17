@@ -93,3 +93,10 @@ export function Footer() {
     </footer>
   )
 }
+
+// ⟳ echo · src/components/fundx/hero/useScramble.ts
+// import { useState, useEffect, useRef } from "react"
+// const SCRAMBLE_CHARS = "ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ∑∆∇Ωλ∞"
+// export function useScramble() {
+//   const [display, setDisplay] = useState("Bitcoin")
+//   const frameRef = useRef<NodeJS.Timeout | null>(null)

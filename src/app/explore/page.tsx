@@ -28,8 +28,8 @@ export default function ExplorePage() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + 3)
   }
 
 // 2. Filter & Sort Logic (Bulletproofed)
@@ -72,8 +72,8 @@ export default function ExplorePage() {
     
   }, [searchQuery, selectedCategory, statusFilter]);
 
-  const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 3)
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   return (
