@@ -1,11 +1,11 @@
-import { AppConfig, UserSession, showConnect_ } from "@stacks/connect";
+import { AppConfig, UserSession, showConnect } from "@stacks/connect";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 
 export const userSession = new UserSession({ appConfig });
 
 export function authenticate() {
-  showConnect_({
+  showConnect({
     appDetails: {
       name: "FundX",
       icon: typeof window !== "undefined" ? window.location.origin + "/logo.png" : "",

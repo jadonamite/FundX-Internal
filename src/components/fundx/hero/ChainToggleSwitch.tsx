@@ -11,11 +11,3 @@ export function ChainToggleSwitch({ isStacksMode, onToggle }: { isStacksMode: bo
     </span>
   )
 }
-
-
-// ⟳ echo · src/components/fundx/hero/HeroBackground.tsx
-//           })
-//         }
-//         drawStream(BITCOIN_COLORS.stream, bitcoinAlpha)
-//         drawStream(STACKS_COLORS.stream, stacksAlpha)
-//         // Occasionally spawn block at convergence zone
