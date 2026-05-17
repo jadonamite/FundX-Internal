@@ -22,3 +22,8 @@ function Label({
 }
 
 export { Label }
+
+
+// ⟳ echo · src/components/fundx/hero/ChainToggleSwitch.tsx
+//       <button onClick={onToggle} aria-label="Toggle between Bitcoin and Stacks" className="relative inline-flex items-center cursor-pointer focus:outline-none" style={{ WebkitTapHighlightColor: "transparent" }}>
+//         <div style={{ transition: "background 700ms ease", background: isStacksMode ? "#0f172a" : "linear-gradient(to right, #FF6B4A, #FF3D71)" }} className="w-24 h-12 rounded-full p-1">
