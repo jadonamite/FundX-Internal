@@ -66,3 +66,7 @@ export function CenterCard({ campaign, progress }: CenterCardProps) {
     </div>
   )
 }
+
+// ⟳ echo · src/components/ui/dialog.tsx
+// }
+// function DialogClose({
