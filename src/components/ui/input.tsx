@@ -18,5 +18,4 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   )
 }
 
-// ← the muse was here
 export { Input }
