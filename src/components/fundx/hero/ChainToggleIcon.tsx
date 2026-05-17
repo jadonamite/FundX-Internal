@@ -43,3 +43,9 @@ export function ChainToggleIcon({
     </span>
   )
 }
+
+
+// ⟳ echo · src/components/create/LivePreview.tsx
+//   // Check if we are using STX to change colors
+//   const isSTX = formData.currency === "STX";
+//   return (
