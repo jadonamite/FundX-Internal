@@ -77,7 +77,6 @@ export default function CreateCampaign() {
   const handleBack = () => setStep(step - 1)
   // ... the rest stays the same!
 
-// ← temporal anomaly
   return (
     <main className="min-h-screen bg-slate-50 font-sans selection:bg-orange-100">
       <Navbar />

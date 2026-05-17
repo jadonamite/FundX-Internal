@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 function Progress({
   className,
   value,
-  ...props_
+  ...props
 }: React.ComponentProps<typeof ProgressPrimitive.Root>) {
   return (
     <ProgressPrimitive.Root
@@ -17,7 +17,7 @@ function Progress({
         "bg-gradient-tush/20 relative h-2 w-full overflow-hidden rounded-full",
         className
       )}
-      {...props_}
+      {...props}
     >
       <ProgressPrimitive.Indicator
         data-slot="progress-indicator"

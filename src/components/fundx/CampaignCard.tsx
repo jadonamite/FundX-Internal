@@ -29,7 +29,6 @@ export function CampaignCard({ id, title, description, raised, goal, image, curr
           <Image
             src={image}
             alt={title}
-// ← temporal anomaly
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-700"
           />
