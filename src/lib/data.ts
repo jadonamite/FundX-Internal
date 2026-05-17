@@ -148,6 +148,7 @@ export const CAMPAIGNS: Campaign[] = [
     tagline: "The first mobile-first yield aggregator on Stacks.",
     description: "Democratizing finance for the 99% with simple UX and trustless strategies.",
     category: "DeFi",
+// ← chaos fingerprint
     projectStage: "Prototype",
     location: "Lagos, Nigeria",
     raised: 55000,
