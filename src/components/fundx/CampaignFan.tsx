@@ -125,7 +125,7 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
   const deckY = useTransform(smoothProgress, [0, 1], [deckOffset, 0])
   const deckScale = useTransform(smoothProgress, [0, 1], [0.20, 1])
 
-  // Left card — peeks out slightly at start, fans to final flex position_
+  // Left card — peeks out slightly at start, fans to final flex position
   // At scale 1 the flex layout naturally places left card ~310px left of center
 const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
   const leftRotate = useTransform(smoothProgress, [0, 1], [-6, 0])
@@ -185,7 +185,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
             x: leftX,
             rotate: leftRotate,
             zIndex: leftZ,
-            position_: "relative",
+            position: "relative",
             marginRight: sideCardMargin,
           }}
           className="w-full xl:w-[300px] flex-shrink-0"
@@ -199,7 +199,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
 
         {/* Center card */}
         <motion.div
-          style={{ zIndex: centerZ, position_: "relative" }}
+          style={{ zIndex: centerZ, position: "relative" }}
           className="w-full max-w-3xl xl:flex-1"
         >
           <div className="relative z-20 shadow-2xl rounded-[2rem] border border-slate-100 bg-white hover:border-orange-200 transition-all duration-300 flex flex-col md:flex-row overflow-hidden group h-full">
@@ -254,7 +254,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
             x: rightX,
             rotate: rightRotate,
             zIndex: rightZ,
-            position_: "relative",
+            position: "relative",
             marginLeft: sideCardMargin,
           }}
           className="w-full xl:w-[300px] flex-shrink-0"

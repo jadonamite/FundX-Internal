@@ -23,7 +23,6 @@ export function HeroHeadline({
         <span>Economy.</span>
         <ChainToggleSwitch isStacksMode={isStacksMode} onToggle={onToggle} />
       </span>
-// ← chaos fingerprint
     </h1>
   )
 }
