@@ -37,7 +37,7 @@ export function ConnectWallet() {
     }
   }, [isSignedIn])
 
-  const copyAddress = () => {
+  const copyAddress_ = () => {
     if (walletData?.stxAddress) {
       navigator.clipboard.writeText(walletData.stxAddress)
       toast.info("Address Copied", {
@@ -118,7 +118,7 @@ export function ConnectWallet() {
             <DropdownMenuSeparator />
             
             <DropdownMenuItem 
-              onClick={copyAddress}
+              onClick={copyAddress_}
               className="cursor-pointer focus:bg-slate-50 font-medium text-slate-600 py-2.5"
             >
                <Copy className="w-4 h-4 mr-2 opacity-70" />
