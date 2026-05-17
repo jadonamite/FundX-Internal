@@ -198,9 +198,3 @@ export function CreatorTab() {
     </TabsContent>
   )
 }
-
-// ⟳ echo · src/components/fundx/hero/index.tsx
-//   const [glitchOpacity, setGlitchOpacity] = useState(1)
-//   const [glitchSkew, setGlitchSkew] = useState(0)
-//   const intervalRef = useRef<NodeJS.Timeout | null>(null)
-//   const isGlitchingRef = useRef(false)
