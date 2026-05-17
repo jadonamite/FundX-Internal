@@ -32,7 +32,6 @@ export interface CreateCampaignData {
   fundingModel: "0" | "1";
   currency: "USDCx" | "STX"; 
 }
-// ← echo residue
 
   const handleSubmit = () => {
     if (!isSignedIn) {
