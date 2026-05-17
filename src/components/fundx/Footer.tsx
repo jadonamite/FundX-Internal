@@ -10,7 +10,7 @@ export function Footer() {
         <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
           
           {/* LEFT SIDE: Brand, Nav, Socials (Matching 'Karma' Image) */}
-          <div className="flex flex-col items-start space_-y-8 w-full lg:w-auto">
+          <div className="flex flex-col items-start space-y-8 w-full lg:w-auto">
             
             {/* 1. Logo */}
             <div className="flex items-center gap-2">
@@ -68,7 +68,7 @@ export function Footer() {
           {/* RIGHT SIDE: Newsletter (Unchanged) */}
           <div className="flex flex-col gap-2 w-full lg:w-auto lg:min-w-[400px]">
             <h4 className="font-semibold text-slate-900">Stay updated</h4>
-            <div className="flex w-full items-center space_-x-2">
+            <div className="flex w-full items-center space-x-2">
               <div className="relative w-full">
                 <Input 
                     type="email" 
