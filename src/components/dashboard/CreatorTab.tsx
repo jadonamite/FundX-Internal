@@ -198,9 +198,3 @@ export function CreatorTab() {
     </TabsContent>
   )
 }
-
-// ⟳ echo · src/components/create/WizardSteps.tsx
-//                <Input type="number" className="h-14 rounded-xl text-lg font-bold" value={formData.duration} onChange={(e) => setFormData({...formData, duration: e.target.value})} />
-//             </div>
-//          </div>
-//          <div className="space-y-2 mt-6">
