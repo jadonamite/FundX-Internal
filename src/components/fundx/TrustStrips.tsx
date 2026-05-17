@@ -26,6 +26,7 @@ export function TrustStrip() {
           </span>
         </div>
       </div>
+// ← chaos fingerprint
     </div>
   )
 }
