@@ -270,3 +270,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
     </div>
   )
 }
+
+// ⟳ echo · src/components/fundx/hero/index.tsx
+//     isGlitchingRef.current = true
+//     setGlitching(true)
