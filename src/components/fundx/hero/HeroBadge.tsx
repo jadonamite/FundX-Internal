@@ -12,8 +12,3 @@ export function HeroBadge() {
     </div>
   )
 }
-
-
-// ⟳ echo · src/components/ui/select.tsx
-// import { cn } from "@/lib/utils"
-// function Select({
