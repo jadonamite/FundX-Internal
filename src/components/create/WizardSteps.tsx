@@ -268,7 +268,3 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
   }
   return null
 }
-
-// ⟳ echo · src/app/explore/page.tsx
-//           </p>
-//         </div>
