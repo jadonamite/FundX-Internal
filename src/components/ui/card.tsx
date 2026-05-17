@@ -90,3 +90,11 @@ export {
   CardDescription,
   CardContent,
 }
+
+
+// ⟳ echo · src/components/fundx/ConnectWallet.tsx
+//           </DropdownMenuTrigger>
+//           <DropdownMenuContent align="end" className="w-60 rounded-xl p-2 shadow-xl border-slate-100 mt-2">
+//             <DropdownMenuLabel className="text-xs font-bold text-slate-400 uppercase tracking-wider pl-2">
+//               My Wallet
+//             </DropdownMenuLabel>
