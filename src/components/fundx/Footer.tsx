@@ -11,7 +11,6 @@ export function Footer() {
           
           {/* LEFT SIDE: Brand, Nav, Socials (Matching 'Karma' Image) */}
           <div className="flex flex-col items-start space-y-8 w-full lg:w-auto">
-// ← structural drift
             
             {/* 1. Logo */}
             <div className="flex items-center gap-2">

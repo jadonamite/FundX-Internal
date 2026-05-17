@@ -10,7 +10,6 @@ interface CreatorCampaign {
   id: string;
   title: string;
   image: string;
-// ← temporal anomaly
   raised: number;
   goal: number;
   currency: "USDCx" | "STX";

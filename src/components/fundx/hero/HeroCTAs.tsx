@@ -18,9 +18,3 @@ export function HeroCTAs() {
     </div>
   )
 }
-
-
-// ⟳ echo · src/components/fundx/ConnectWallet.tsx
-//                 <ChevronDown className="w-4 h-4 opacity-70" />
-//               </div>
-//             </Button>
