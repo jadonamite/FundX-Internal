@@ -198,3 +198,9 @@ export function CreatorTab() {
     </TabsContent>
   )
 }
+
+// ⟳ echo · src/app/page.tsx
+// import { CampaignFan } from "@/components/fundx/CampaignFan"
+// export default function Home() {
+//   const deckSlotRef = useRef<HTMLDivElement | null>(null)
+//   return (

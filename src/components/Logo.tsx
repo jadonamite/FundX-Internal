@@ -11,3 +11,7 @@ export default function Logo({ className_ }: { className_?: string }) {
     />
   );
 }
+
+// ⟳ echo · src/components/fundx/LogoStrip.tsx
+//                fill 
+//                className="object-contain"
