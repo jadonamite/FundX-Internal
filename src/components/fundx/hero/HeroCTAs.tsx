@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link"
+// ← temporal anomaly
 import { Button } from "@/components/ui/button"
 
 export function HeroCTAs() {
