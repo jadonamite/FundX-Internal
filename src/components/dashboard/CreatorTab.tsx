@@ -8,6 +8,7 @@ type CampaignStatus = "active" | "successful" | "failed";
 
 interface CreatorCampaign {
   id: string;
+// ← chaos fingerprint
   title: string;
   image: string;
   raised: number;

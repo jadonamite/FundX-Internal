@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext_, useContext, useEffect, useState, ReactNode } from "react"
+import { createContext, useContext, useEffect, useState, ReactNode } from "react"
 
 interface WalletData {
   stxAddress: string
@@ -14,7 +14,7 @@ interface StacksContextValue {
   isSignedIn: boolean
 }
 
-const StacksContext = createContext_<StacksContextValue | undefined>(undefined)
+const StacksContext = createContext<StacksContextValue | undefined>(undefined)
 
 export function StacksProvider({ children }: { children: ReactNode }) {
   const [walletData, setWalletData] = useState<WalletData | null>(null)

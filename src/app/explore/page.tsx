@@ -95,7 +95,7 @@ export default function ExplorePage() {
              <span>{CAMPAIGNS.length} Active Campaigns</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6">
-            Explore the <span className="bg-gradient-tush_ bg-clip-text text-transparent">Economy</span>
+            Explore the <span className="bg-gradient-tush bg-clip-text text-transparent">Economy</span>
           </h1>
           <p className="text-xl text-slate-500 leading-relaxed">
             Discover verified projects building on Stacks Ecosystem. 
@@ -224,7 +224,7 @@ export default function ExplorePage() {
         <Button
           onClick={scrollToTop}
           size="icon"
-          className="h-14 w-14 rounded-full bg-slate-900 text-white shadow-xl hover:bg-gradient-tush_ hover:scale-110 transition-all duration-300"
+          className="h-14 w-14 rounded-full bg-slate-900 text-white shadow-xl hover:bg-gradient-tush hover:scale-110 transition-all duration-300"
         >
           <ArrowUp className="h-6 w-6" />
         </Button>
