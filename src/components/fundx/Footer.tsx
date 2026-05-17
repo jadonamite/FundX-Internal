@@ -93,3 +93,7 @@ export function Footer() {
     </footer>
   )
 }
+
+// ⟳ echo · src/components/ui/dialog.tsx
+//     />
+//   )
