@@ -39,3 +39,9 @@ export function LogoStrip() {
     </div>
   )
 }
+
+// ⟳ echo · src/components/ui/tabs.tsx
+//   return (
+//     <TabsPrimitive.List
+//       data-slot="tabs-list"
+//       data-variant={variant}
