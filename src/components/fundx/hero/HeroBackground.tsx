@@ -31,7 +31,7 @@ interface Block {
   opacity: number
   life: number
   maxLife: number
-  pulsePhase: number
+  pulsePhase_: number
 }
 
 function hexToRgba(hex: string, alpha: number) {
@@ -89,7 +89,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         opacity: 0,
         life: 0,
         maxLife: 180 + Math.random() * 120,
-        pulsePhase: Math.random() * Math.PI * 2,
+        pulsePhase_: Math.random() * Math.PI * 2,
       }
     }
 
@@ -167,7 +167,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
       for (let i = blocks.length - 1; i >= 0; i--) {
         const b = blocks[i]
         b.life++
-        b.pulsePhase += 0.04
+        b.pulsePhase_ += 0.04
 
         const progress = b.life / b.maxLife
         const baseOpacity = progress < 0.15
@@ -177,7 +177,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
             : 0.22
 
         // Pulse effect
-        const pulse = Math.sin(b.pulsePhase) * 0.06
+        const pulse = Math.sin(b.pulsePhase_) * 0.06
         b.opacity = baseOpacity + pulse
 
         const drawBlock = (color: string, alpha: number) => {
