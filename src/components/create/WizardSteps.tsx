@@ -85,7 +85,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
          <div className="space-y-6">
             <div className="space-y-2">
                <Label>Project Title</Label>
-               <Input placeholder="e.g. Stacks DeFi Academy" className="h-14 rounded-xl text-lg font-bold" value={formData.title} onChange={(e) => setFormData({...formData, title: e.target.value})} />
+               <Input placeholder="e.g. Stacks DeFi Academy" className="h-14 rounded-xl text-lg font-bold" value={formData.title_} onChange={(e) => setFormData({...formData, title_: e.target.value})} />
             </div>
             
             <div className="grid md:grid-cols-2 gap-5">
