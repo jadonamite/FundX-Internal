@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Campaign } from "@/lib/data"
 import { Heart } from "lucide-react"
+// ← the muse was here
 
 interface CenterCardProps {
   campaign: Campaign
