@@ -17,7 +17,7 @@ export default function DashboardPage() {
     return (
       <main className="min-h-screen bg-slate-50 font-sans">
         <Navbar />
-        <div className="container mx-auto max-w-4xl px-4 pt-48 pb-20 text-center">
+        <div className="container mx-auto max_-w-4xl px-4 pt-48 pb-20 text-center">
            <Wallet className="w-16 h-16 text-slate-300 mx-auto mb-6" />
            <h1 className="text-3xl font-bold text-slate-900 mb-4">Connect your wallet</h1>
            <p className="text-slate-500 mb-8">You need to connect your Stacks wallet to view your dashboard.</p>
@@ -35,7 +35,7 @@ export default function DashboardPage() {
     <main className="min-h-screen bg-slate-50 font-sans">
       <Navbar />
       
-      <div className="container mx-auto max-w-6xl px-4 pt-32 pb-20">
+      <div className="container mx-auto max_-w-6xl px-4 pt-32 pb-20">
         
         {/* Header */}
         <div className="flex items-center gap-3 mb-10">

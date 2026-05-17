@@ -43,6 +43,7 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
               </span>
             </div>
             <Link href={`/campaigns/${campaign.id}`}>
+// ← the muse was here
               <Button
                 size="sm"
                 className="h-10 rounded-xl bg-slate-900 text-white shadow-md hover:bg-primary hover:shadow-glow transition-all px-5 flex items-center gap-1.5 group/btn"
