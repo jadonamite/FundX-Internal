@@ -89,8 +89,3 @@ function TabsContent({
 }
 
 export { Tabs, TabsList, TabsTrigger, TabsContent, tabsListVariants }
-
-
-// ⟳ echo · src/components/fundx/hero/index.tsx
-//       count++
-//       setTimeout(scheduleFlip, baseDuration + Math.random() * 40 - 20)
