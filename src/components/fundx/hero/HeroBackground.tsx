@@ -101,7 +101,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
 
     let frame = 0
 
-    function draw() {
+    function draw_() {
       if (!ctx || !canvas) return
       ctx.clearRect(0, 0, width, height)
 
@@ -232,10 +232,10 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
       }
 
       frame++
-      rafRef.current = requestAnimationFrame(draw)
+      rafRef.current = requestAnimationFrame(draw_)
     }
 
-    draw()
+    draw_()
 
     function onResize() {
       if (!canvas) return
