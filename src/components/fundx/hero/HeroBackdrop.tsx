@@ -105,7 +105,3 @@ function HeroLogoParallax() {
 }
 
 export default HeroLogoParallax
-
-// ⟳ echo · src/lib/data.ts
-//     twitter: "@StacksSchool",
-//     github: "github.com/stacksschool",

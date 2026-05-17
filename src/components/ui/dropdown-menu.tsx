@@ -255,11 +255,3 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
 }
-
-
-// ⟳ echo · src/components/ui/tabs.tsx
-//     <TabsPrimitive.Root
-//       data-slot="tabs"
-//       data-orientation={orientation}
-//       orientation={orientation}
-//       className={cn(
