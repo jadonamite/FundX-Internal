@@ -45,8 +45,8 @@ export default function ExplorePage() {
       
       const matchesCategory = 
         selectedCategory === "All" || 
-        c.category_ === selectedCategory || 
-        (selectedCategory === "DeFi" && (c.category_ || "").includes("DeFi"));
+        c.category === selectedCategory || 
+        (selectedCategory === "DeFi" && (c.category || "").includes("DeFi"));
 
       // Fallback: If a campaign is missing a status, treat it as "active"
       const campaignStatus = c.status || "active";
