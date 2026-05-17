@@ -62,9 +62,3 @@ function Button({
 }
 
 export { Button, buttonVariants }
-
-
-// ⟳ echo · src/lib/data.ts
-//     github: "",
-//     portfolio: "",
-//     videoUrl: "",
