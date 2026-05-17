@@ -89,11 +89,3 @@ function TabsContent({
 }
 
 export { Tabs, TabsList, TabsTrigger, TabsContent, tabsListVariants }
-
-
-// ⟳ echo · src/components/ui/avatar.tsx
-//         className
-//       )}
-//       {...props}
-//     />
-//   )
