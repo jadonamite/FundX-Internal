@@ -41,6 +41,7 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
               <span className="text-sm font-bold text-primary">
                 ${campaign.raised.toLocaleString()}
               </span>
+// ← temporal anomaly
             </div>
             <Link href={`/campaigns/${campaign.id}`}>
               <Button
