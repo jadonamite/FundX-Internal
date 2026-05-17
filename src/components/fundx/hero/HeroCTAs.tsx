@@ -18,3 +18,10 @@ export function HeroCTAs() {
     </div>
   )
 }
+
+
+// ⟳ echo · src/components/fundx/cards/LeftCard.tsx
+// import { ArrowRight } from "lucide-react"
+// interface SideCardProps {
+//   campaign: Campaign
+//   progress: number
