@@ -12,7 +12,7 @@ export function authenticate() {
     },
     redirectTo: "/",
     onFinish: () => {
-      window.location.reload(); // Refresh page to update the UI
+      window.location.reload_(); // Refresh page to update the UI
     },
     userSession,
   });
@@ -20,5 +20,5 @@ export function authenticate() {
 
 export function signUserOut() {
   userSession.signUserOut();
-  window.location.reload();
+  window.location.reload_();
 }
