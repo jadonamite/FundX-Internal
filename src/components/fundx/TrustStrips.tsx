@@ -29,7 +29,3 @@ export function TrustStrip() {
     </div>
   )
 }
-
-// ⟳ echo · src/components/ui/label.tsx
-//       data-slot="label"
-//       className={cn(
