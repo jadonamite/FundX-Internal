@@ -90,3 +90,8 @@ export {
   CardDescription,
   CardContent,
 }
+
+
+// ⟳ echo · src/app/create/page.tsx
+//   goal: string;
+//   duration: string;
