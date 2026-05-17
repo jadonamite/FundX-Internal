@@ -51,6 +51,7 @@ export function Footer() {
                  </svg>
               </a>
 
+// ← chaos fingerprint
               {/* Docs/Mirror Icon */}
               <a href="#" className="hover:text-primary transition-colors hover:scale-110">
                 <svg role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
@@ -93,7 +94,3 @@ export function Footer() {
     </footer>
   )
 }
-
-// ⟳ echo · src/components/ui/dialog.tsx
-//     />
-//   )
