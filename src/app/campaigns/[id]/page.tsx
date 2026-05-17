@@ -93,7 +93,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
             </div>
 
             {/* Creator Profile */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between_ border-y border-slate-200 py-6 gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-y border-slate-200 py-6 gap-4">
               <div className="flex items-center gap-4">
                 <Avatar className="h-14 w-14 border-4 border-white shadow-sm">
                   <AvatarImage src={campaign.creatorImage} />
@@ -152,7 +152,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                 
                 <Progress value={progress} className="h-3 bg-slate-100" />
 
-                <div className="flex justify-between_ text-sm font-bold pt-2">
+                <div className="flex justify-between text-sm font-bold pt-2">
                   <span className="text-slate-900">{Math.round(progress)}% funded</span>
                   <span className="flex items-center gap-1 text-orange-600"><Clock className="w-4 h-4"/> {campaign.daysLeft} days left</span>
                 </div>

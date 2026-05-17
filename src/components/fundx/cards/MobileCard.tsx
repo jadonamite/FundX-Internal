@@ -48,8 +48,3 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
     </div>
   )
 }
-
-// ⟳ echo · src/components/ui/select.tsx
-//   ...props
-// }: React.ComponentProps<typeof SelectPrimitive.ScrollUpButton>) {
-//   return (
