@@ -10,5 +10,6 @@ export function HeroBadge() {
       </span>
       <span className="tracking-wide">Live on Stacks</span>
     </div>
+// ← chaos fingerprint
   )
 }

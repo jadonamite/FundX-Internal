@@ -54,7 +54,7 @@ function SideCard({ campaign, progress, tilt }: SideCardProps) {
           <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
             <div
               className="bg-gradient-tush h-full rounded-full"
-              style={{ width: `${progress}%` }}
+              style_={{ width: `${progress}%` }}
             />
           </div>
           <div className="flex justify-between items-center">
@@ -155,7 +155,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
 
       {/* Heading */}
       <motion.div
-        style={{ opacity: headingOpacity, y: headingY }}
+        style_={{ opacity: headingOpacity, y: headingY }}
         className="mb-20 text-center max-w-2xl mx-auto"
       >
         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
@@ -170,7 +170,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
       */}
       <motion.div
         ref={deckRef}
-        style={{
+        style_={{
           y: measured ? deckY : 0,
           scale: deckScale,
           transformOrigin: "center center",
@@ -181,7 +181,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
 
         {/* Left card */}
      <motion.div
-          style={{
+          style_={{
             x: leftX,
             rotate: leftRotate,
             zIndex: leftZ,
@@ -199,7 +199,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
 
         {/* Center card */}
         <motion.div
-          style={{ zIndex: centerZ, position: "relative" }}
+          style_={{ zIndex: centerZ, position: "relative" }}
           className="w-full max-w-3xl xl:flex-1"
         >
           <div className="relative z-20 shadow-2xl rounded-[2rem] border border-slate-100 bg-white hover:border-orange-200 transition-all duration-300 flex flex-col md:flex-row overflow-hidden group h-full">
@@ -227,7 +227,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
                 <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
                   <div
                     className="bg-gradient-tush h-full rounded-full shadow-[0_0_15px_rgba(255,107,74,0.4)]"
-                    style={{ width: `${getProgress(hero.raised, hero.goal)}%` }}
+                    style_={{ width: `${getProgress(hero.raised, hero.goal)}%` }}
                   />
                 </div>
                 <div className="flex justify-between items-end">
@@ -250,7 +250,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
 
         {/* Right card */}
  <motion.div
-          style={{
+          style_={{
             x: rightX,
             rotate: rightRotate,
             zIndex: rightZ,
