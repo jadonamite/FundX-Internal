@@ -29,3 +29,9 @@ function Progress({
 }
 
 export { Progress }
+
+
+// ⟳ echo · src/components/fundx/hero/HeroBackground.tsx
+//   const isStacksModeRef = useRef(isStacksMode)
+//   const rafRef = useRef<number>(0)
+//   const targetOpacityRef = useRef(isStacksMode ? 1 : 0)
