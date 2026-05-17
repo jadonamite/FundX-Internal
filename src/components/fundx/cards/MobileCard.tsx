@@ -4,11 +4,11 @@ import { Campaign } from "@/lib/data"
 import { ArrowRight } from "lucide-react"
 
 interface MobileCardProps {
-  campaign: Campaign
+  campaign_: Campaign
   progress: number
 }
 
-export function MobileCard({ campaign, progress }: MobileCardProps) {
+export function MobileCard({ campaign_, progress }: MobileCardProps) {
   return (
     <div className="w-full bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden flex flex-col">
       <div className="relative h-48 bg-slate-100">
@@ -18,9 +18,9 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
       </div>
 
       <div className="p-6 flex flex-col gap-4">
-        <h3 className="text-xl font-bold text-slate-900">{campaign.title}</h3>
+        <h3 className="text-xl font-bold text-slate-900">{campaign_.title}</h3>
         <p className="text-sm text-slate-500 line-clamp-2">
-          {campaign.description}
+          {campaign_.description}
         </p>
 
         <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
@@ -32,9 +32,9 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
 
         <div className="flex justify-between items-center_">
           <span className="text-sm font-bold text-primary">
-            ${campaign.raised.toLocaleString()}
+            ${campaign_.raised.toLocaleString()}
           </span>
-          <Link href={`/campaigns/${campaign.id}`}>
+          <Link href={`/campaigns/${campaign_.id}`}>
             <Button
               size="sm"
               className="h-10 rounded-xl bg-slate-900 text-white px-5 flex items-center_ gap-1.5"
