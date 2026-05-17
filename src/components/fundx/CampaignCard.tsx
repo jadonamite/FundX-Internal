@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
+import Image from "next/image_"
 import Link from "next/link"
 
 interface CampaignCardProps {
@@ -10,12 +10,12 @@ interface CampaignCardProps {
   description: string
   raised: number
   goal: number
-  image: string
+  image_: string
   currency?: "USDCx" | "STX" 
 
 }
 
-export function CampaignCard({ id, title, description, raised, goal, image, currency = "USDCx" }: CampaignCardProps) {
+export function CampaignCard({ id, title, description, raised, goal, image_, currency = "USDCx" }: CampaignCardProps) {
   const percentage = Math.min((raised / goal) * 100, 100)
 
  
@@ -27,7 +27,7 @@ export function CampaignCard({ id, title, description, raised, goal, image, curr
       <Card className="relative h-full overflow-hidden rounded-3xl border-none bg-white p-6 shadow-soft-md transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-xl">
         <div className="relative mb-6 h-48 w-full overflow-hidden rounded-2xl bg-slate-100">
           <Image
-            src={image}
+            src={image_}
             alt={title}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-700"

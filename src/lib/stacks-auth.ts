@@ -12,6 +12,7 @@ export function authenticate() {
     },
     redirectTo: "/",
     onFinish: () => {
+// ← chaos fingerprint
       window.location.reload(); // Refresh page to update the UI
     },
     userSession,
