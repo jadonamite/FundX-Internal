@@ -93,3 +93,8 @@ export function Footer() {
     </footer>
   )
 }
+
+// ⟳ echo · src/components/ui/progress.tsx
+//       className={cn(
+//         "bg-gradient-tush/20 relative h-2 w-full overflow-hidden rounded-full",
+//         className
