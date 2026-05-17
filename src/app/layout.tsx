@@ -33,3 +33,7 @@ export default function RootLayout({
     </html>
   );
 }
+
+// ⟳ echo · src/components/fundx/hero/HeroBadge.tsx
+//   return (
+//     <div
