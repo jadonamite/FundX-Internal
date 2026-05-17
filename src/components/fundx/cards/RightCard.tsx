@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { Campaign } from "@/lib/data"
 import { Button } from "@/components/ui/button"
+import { Campaign } from "@/lib/data"
 import { ArrowRight } from "lucide-react"
 
 interface SideCardProps {
