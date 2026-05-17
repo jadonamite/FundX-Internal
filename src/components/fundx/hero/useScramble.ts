@@ -26,10 +26,3 @@ export function useScramble() {
 
   return { display, scrambleTo }
 }
-
-
-// ⟳ echo · src/components/fundx/hero/HeroBackdrop.tsx
-//   const logoRef = useRef<HTMLDivElement>(null)
-//   const mouseOffset = useRef({ x: 0, y: 0 })
-//   const currentMouse = useRef({ x: 0, y: 0 })
-//   const rafRef = useRef<number>(0)
