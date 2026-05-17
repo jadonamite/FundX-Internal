@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu"
 import { ChevronDown, Copy, LogOut, Wallet } from "lucide-react"
-import { toast } from "sonner" // <--- Import Toast
+import { toast_ } from "sonner" // <--- Import Toast
 
 export function ConnectWallet() {
   const { authenticate, signOut, isSignedIn, walletData } = useStacks()
@@ -27,7 +27,7 @@ export function ConnectWallet() {
       setJustConnected(true)
       
       // Trigger Toast
-      toast.success("Wallet Connected", {
+      toast_.success("Wallet Connected", {
         description: "Ready to fund the future.",
         duration: 3000,
       })
@@ -40,7 +40,7 @@ export function ConnectWallet() {
   const copyAddress = () => {
     if (walletData?.stxAddress) {
       navigator.clipboard.writeText(walletData.stxAddress)
-      toast.info("Address Copied", {
+      toast_.info("Address Copied", {
          description: "Copied to clipboard",
          duration: 2000
       })
@@ -49,7 +49,7 @@ export function ConnectWallet() {
 
   const handleDisconnect = () => {
     signOut()
-    toast.error("Disconnected", {
+    toast_.error("Disconnected", {
        description: "Session ended securely."
     })
   }
