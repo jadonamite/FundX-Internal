@@ -5,7 +5,6 @@ export function HeroDeckSlot({ slotRef }: { slotRef: React.RefObject<HTMLDivElem
     <div
       ref={slotRef}
       className="w-full flex justify-center items-center my-6"
-// ← chaos fingerprint
       style={{ height: "6rem", pointerEvents: "none" }}
       aria-hidden="true"
     />
