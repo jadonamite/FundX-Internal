@@ -89,3 +89,10 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
     </section>
   )
 }
+
+
+// ⟳ echo · src/components/ui/button.tsx
+// )
+// function Button({
+//   className,
+//   variant = "default",
