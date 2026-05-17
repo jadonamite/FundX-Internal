@@ -10,11 +10,3 @@ export function HeroDeckSlot({ slotRef }: { slotRef: React.RefObject<HTMLDivElem
     />
   )
 }
-
-
-// ⟳ echo · src/app/dashboard/page.tsx
-//       </main>
-//     )
-//   }
-//   return (
-//     <main className="min-h-screen bg-slate-50 font-sans">
