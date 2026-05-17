@@ -26,3 +26,11 @@ export function HeroHeadline({
     </h1>
   )
 }
+
+
+// ⟳ echo · src/components/fundx/StacksProvider.tsx
+//   // Check connection status on mount
+//   useEffect(() => {
+//     const checkConnection = async () => {
+//       try {
+//         const { isConnected, getLocalStorage } = await import("@stacks/connect")
