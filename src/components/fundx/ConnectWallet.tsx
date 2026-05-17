@@ -151,7 +151,3 @@ export function ConnectWallet() {
     </Button>
   )
 }
-
-// ⟳ echo · src/components/fundx/Footer.tsx
-//   return (
-//     <footer className="bg-white pt-20 pb-12 border-t border-slate-100">
