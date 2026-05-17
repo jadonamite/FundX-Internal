@@ -57,10 +57,3 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
     </div>
   )
 }
-
-// ⟳ echo · package.json
-//     "@stacks/stacking": "^7.4.0",
-//     "@stacks/storage": "^7.4.0",
-//     "@stacks/transactions": "^7.4.0",
-//     "@stacks/wallet-sdk": "^7.2.0",
-//     "class-variance-authority": "^0.7.1",
