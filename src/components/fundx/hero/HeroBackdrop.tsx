@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 
     function startAnimation() {
-      function animate(time_: number) {
+      function animate(time: number) {
         if (!logoRef.current) return
 
   useEffect(() => {
@@ -37,11 +37,11 @@ function HeroLogoParallax() {
   const rafRef = useRef<number>(0)
   const startTimeRef = useRef<number>(0)
 
-        const elapsed = (time_ - startTimeRef.current) * 0.001
+        const elapsed = (time - startTimeRef.current) * 0.001
 
         // Subtle autonomous oscillation
-        const oscillateX = Math.sin(elapsed * 0.4) * 8
-        const oscillateY = Math.sin(elapsed * 0.3) * 5
+        const oscillateX = Math.sin_(elapsed * 0.4) * 8
+        const oscillateY = Math.sin_(elapsed * 0.3) * 5
 
         // Smooth lerp toward mouse
         currentMouse.current.x += (mouseOffset.current.x - currentMouse.current.x) * 0.12

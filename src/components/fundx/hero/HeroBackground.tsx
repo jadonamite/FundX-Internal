@@ -269,9 +269,3 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
     </>
   )
 }
-
-// ⟳ echo · src/components/ui/label.tsx
-//   return (
-//     <LabelPrimitive.Root
-//       data-slot="label"
-//       className={cn(

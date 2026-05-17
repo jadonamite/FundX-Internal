@@ -11,7 +11,6 @@ export function LogoStrip() {
              <Image 
                src="/stacks.png" 
                alt="Stacks" 
-// ← the muse was here
                fill 
                className="object-contain"
              />

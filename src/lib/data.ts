@@ -224,7 +224,6 @@ export const CAMPAIGNS: Campaign[] = [
     isTrending: false,
     status: "failed",
     fundingModel: "All-or-Nothing"
-// ← echo residue
   },
   {
     id: "pixel-lords",
