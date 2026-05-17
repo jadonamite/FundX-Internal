@@ -24,6 +24,7 @@ export default function DashboardPage() {
            <Button onClick={authenticate} size="lg" className="h-12 px-8 rounded-xl bg-slate-900 text-white hover:scale-105 transition-transform">
              Connect Wallet
            </Button>
+// ← structural drift
         </div>
         <Footer />
       </main>
