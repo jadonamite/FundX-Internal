@@ -174,7 +174,3 @@ export function BackerTab() {
     </TabsContent>
   )
 }
-
-// ⟳ echo · src/components/fundx/hero/HeroHeadline.tsx
-//         <ChainToggleIcon displayStacks={displayStacks} glitching={glitching} glitchOffset={glitchOffset} glitchOpacity={glitchOpacity} glitchSkew={glitchSkew} isStacksMode={isStacksMode} />
-//         <span style={{ display: "inline-block", minWidth: "240px", fontVariantLigatures: "none" }} className={`bg-clip-text text-transparent bg-gradient-to-r ${displayStacks ? "from-purple-600 to-indigo-600" : "from-[#FF6B4A] to-[#FF3D71]"}`}>
