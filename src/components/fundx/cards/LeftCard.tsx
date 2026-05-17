@@ -57,8 +57,3 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
     </div>
   )
 }
-
-// ⟳ echo · src/components/ui/badge.tsx
-//   ...props
-// }: React.ComponentProps<"span"> &
-//   VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
