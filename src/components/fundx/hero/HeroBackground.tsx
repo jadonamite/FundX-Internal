@@ -269,9 +269,3 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
     </>
   )
 }
-
-// ⟳ echo · src/components/fundx/Footer.tsx
-//             <div className="flex w-full items-center space-x-2">
-//               <div className="relative w-full">
-//                 <Input 
-//                     type="email" 

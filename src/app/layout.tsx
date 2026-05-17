@@ -33,10 +33,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-// ⟳ echo · src/components/ui/textarea.tsx
-//         className
-//       )}
-//       {...props}
-//     />
-//   )

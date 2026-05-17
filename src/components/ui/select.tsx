@@ -188,8 +188,3 @@ export {
   SelectTrigger,
   SelectValue,
 }
-
-
-// ⟳ echo · src/components/fundx/TrustStrips.tsx
-//             <span className="h-2 w-2 rounded-full bg-pink-500 animate-pulse" />
-//             Non-Custodial
