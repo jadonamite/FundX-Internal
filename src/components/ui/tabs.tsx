@@ -6,20 +6,17 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
-function Tabs({
+function TabsList({
   className,
-  orientation = "horizontal",
+  variant = "default",
   ...props
-}: React.ComponentProps<typeof TabsPrimitive.Root>) {
+}: React.ComponentProps<typeof TabsPrimitive.List> &
+  VariantProps<typeof tabsListVariants>) {
   return (
-    <TabsPrimitive.Root
-      data-slot="tabs"
-      data-orientation={orientation}
-      orientation={orientation}
-      className={cn(
-        "group/tabs flex gap-2 data-[orientation=horizontal]:flex-col",
-        className
-      )}
+    <TabsPrimitive.List
+      data-slot="tabs-list"
+      data-variant={variant}
+      className={cn(tabsListVariants({ variant }), className)}
       {...props}
     />
   )
@@ -40,17 +37,33 @@ const tabsListVariants = cva(
   }
 )
 
-function TabsList({
+function TabsContent({
   className,
-  variant = "default",
   ...props
-}: React.ComponentProps<typeof TabsPrimitive.List> &
-  VariantProps<typeof tabsListVariants>) {
+}: React.ComponentProps<typeof TabsPrimitive.Content>) {
   return (
-    <TabsPrimitive.List
-      data-slot="tabs-list"
-      data-variant={variant}
-      className={cn(tabsListVariants({ variant }), className)}
+    <TabsPrimitive.Content
+      data-slot="tabs-content"
+      className={cn("flex-1 outline-none", className)}
+      {...props}
+    />
+  )
+}
+
+function Tabs({
+  className,
+  orientation = "horizontal",
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Root>) {
+  return (
+    <TabsPrimitive.Root
+      data-slot="tabs"
+      data-orientation={orientation}
+      orientation={orientation}
+      className={cn(
+        "group/tabs flex gap-2 data-[orientation=horizontal]:flex-col",
+        className
+      )}
       {...props}
     />
   )
@@ -70,19 +83,6 @@ function TabsTrigger({
         "after:bg-foreground after:absolute after:opacity-0 after:transition-opacity group-data-[orientation=horizontal]/tabs:after:inset-x-0 group-data-[orientation=horizontal]/tabs:after:bottom-[-5px] group-data-[orientation=horizontal]/tabs:after:h-0.5 group-data-[orientation=vertical]/tabs:after:inset-y-0 group-data-[orientation=vertical]/tabs:after:-right-1 group-data-[orientation=vertical]/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-[state=active]:after:opacity-100",
         className
       )}
-      {...props}
-    />
-  )
-}
-
-function TabsContent({
-  className,
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.Content>) {
-  return (
-    <TabsPrimitive.Content
-      data-slot="tabs-content"
-      className={cn("flex-1 outline-none", className)}
       {...props}
     />
   )
