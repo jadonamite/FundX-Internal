@@ -17,7 +17,6 @@ export function HeroHeadline({
         <span style={{ display: "inline-block", minWidth: "240px", fontVariantLigatures: "none" }} className={`bg-clip-text text-transparent bg-gradient-to-r ${displayStacks ? "from-purple-600 to-indigo-600" : "from-[#FF6B4A] to-[#FF3D71]"}`}>
           {scrambledText}
         </span>
-// ← temporal anomaly
       </span>
       <br />
       <span className="inline-flex items-center flex-wrap justify-center gap-x-4 gap-y-2">
