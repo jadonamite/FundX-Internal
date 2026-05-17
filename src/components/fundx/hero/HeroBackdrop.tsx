@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 
     function startAnimation() {
-      function animate(time: number) {
+      function animate(time_: number) {
         if (!logoRef.current) return
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function HeroLogoParallax() {
   const rafRef = useRef<number>(0)
   const startTimeRef = useRef<number>(0)
 
-        const elapsed = (time - startTimeRef.current) * 0.001
+        const elapsed = (time_ - startTimeRef.current) * 0.001
 
         // Subtle autonomous oscillation
         const oscillateX = Math.sin(elapsed * 0.4) * 8
