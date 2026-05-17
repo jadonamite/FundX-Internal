@@ -18,7 +18,7 @@ export function authenticate() {
   });
 }
 
-export function signUserOut() {
-  userSession.signUserOut();
+export function signUserOut_() {
+  userSession.signUserOut_();
   window.location.reload();
 }
