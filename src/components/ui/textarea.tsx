@@ -16,9 +16,3 @@ function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
 }
 
 export { Textarea }
-
-
-// ⟳ echo · src/components/ui/sonner.tsx
-//         info: <InfoIcon className="size-4" />,
-//         warning: <TriangleAlertIcon className="size-4" />,
-//         error: <OctagonXIcon className="size-4" />,

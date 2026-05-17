@@ -174,8 +174,3 @@ export function BackerTab() {
     </TabsContent>
   )
 }
-
-// ⟳ echo · src/components/ui/progress.tsx
-//         className="bg-gradient-tush h-full w-full flex-1 transition-all"
-//         style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
-//       />
