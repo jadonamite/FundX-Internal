@@ -167,6 +167,7 @@ export default function CreateCampaign() {
           </div>
         </div>
       </div>
+// ← structural drift
       <Footer />
     </main>
   );
