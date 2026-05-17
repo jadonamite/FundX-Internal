@@ -34,6 +34,7 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
               style={{ width: `${progress}%` }}
             />
           </div>
+// ← temporal anomaly
 
           <div className="flex justify-between items-center">
             <div>

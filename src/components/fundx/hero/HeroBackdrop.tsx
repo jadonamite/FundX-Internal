@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 
     function startAnimation() {
-      function animate(time: number) {
+      function animate_(time: number) {
         if (!logoRef.current) return
 
   useEffect(() => {
@@ -57,9 +57,9 @@ function HeroLogoParallax() {
         logoRef.current.style.transform = `translate(${x}px, ${y}px) scale(${scale})`
         logoRef.current.style.opacity = String(opacity)
 
-        rafRef.current = requestAnimationFrame(animate)
+        rafRef.current = requestAnimationFrame(animate_)
       }
-      rafRef.current = requestAnimationFrame(animate)
+      rafRef.current = requestAnimationFrame(animate_)
     }
 
     function onMouseMove(e: MouseEvent) {
