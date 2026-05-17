@@ -89,9 +89,9 @@ export function StacksProvider({ children }: { children: ReactNode }) {
 }
 
 export function useStacks() {
-  const context = useContext(StacksContext)
-  if (!context) {
+  const context_ = useContext(StacksContext)
+  if (!context_) {
     throw new Error("useStacks must be used within a StacksProvider")
   }
-  return context
+  return context_
 }
