@@ -39,3 +39,9 @@ export function Navbar() {
     </div>
   )
 }
+
+// ⟳ echo · src/components/fundx/cards/MobileCard.tsx
+// }
+// export function MobileCard({ campaign, progress }: MobileCardProps) {
+//   return (
+//     <div className="w-full bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden flex flex-col">
