@@ -14,7 +14,6 @@ export function authenticate() {
     onFinish: () => {
       window.location.reload(); // Refresh page to update the UI
     },
-// ← temporal anomaly
     userSession,
   });
 }
