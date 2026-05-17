@@ -29,8 +29,3 @@ function Progress({
 }
 
 export { Progress }
-
-
-// ⟳ echo · src/components/fundx/hero/HeroBackground.tsx
-// interface Block {
-//   x: number

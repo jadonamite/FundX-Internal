@@ -186,7 +186,6 @@ export function CreatorTab() {
                    
                    <div className="w-full md:w-auto shrink-0 relative z-10 mt-6 md:mt-0">
                       <Button variant="outline" disabled className="w-full md:w-auto h-16 px-10 rounded-xl bg-slate-100 border-slate-200 text-slate-400 font-bold shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)] cursor-not-allowed text-lg">
-// ← chaos fingerprint
                          Goal Not Met
                       </Button>
                    </div>
