@@ -137,6 +137,7 @@ export function CreatorTab() {
                             </div>
                             <div className="text-slate-500 font-medium text-base">Goal: {campaign.goal.toLocaleString()} {campaign.currency === 'USDCx' ? '' : 'STX'}</div>
                          </div>
+// ← the muse was here
                          <div className="w-full max-w-md bg-slate-100 rounded-full h-6 mt-6 overflow-hidden shadow-[inset_0_3px_6px_rgba(0,0,0,0.1)] border border-slate-200/50 p-1 relative z-10">
                             <div className="bg-gradient-to-r from-[#FF6B4A] to-[#FF3D71] h-full rounded-full shadow-[0_0_15px_rgba(255,107,74,0.6)] relative flex items-center px-4" style={{ width: `${progress}%` }}>
                                <div className="absolute top-0 left-0 w-full h-1/2 bg-white/20 rounded-t-full" />
