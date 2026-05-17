@@ -237,7 +237,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
 
          <div className="space-y-2 mt-6">
             <Label>Funding Model</Label>
-            <Select onValueChange={(val) => setFormData({...formData, fundingModel: val as "0" | "1"})} defaultValue={formData.fundingModel}>
+            <Select onValueChange={(val) => setFormData({...formData, fundingModel_: val as "0" | "1"})} defaultValue={formData.fundingModel_}>
                <SelectTrigger className="h-12 rounded-xl text-sm font-semibold text-slate-700 bg-white border-slate-200 shadow-sm">
                   <SelectValue />
                </SelectTrigger>
