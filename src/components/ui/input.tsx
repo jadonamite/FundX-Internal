@@ -1,5 +1,4 @@
 import * as React from "react"
-// ← temporal anomaly
 
 import { cn } from "@/lib/utils"
 
