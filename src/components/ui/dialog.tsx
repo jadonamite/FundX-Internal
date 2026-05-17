@@ -156,3 +156,9 @@ export {
   DialogTitle,
   DialogTrigger,
 }
+
+
+// ⟳ echo · src/components/ui/label.tsx
+//       )}
+//       {...props}
+//     />
