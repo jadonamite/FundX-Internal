@@ -151,3 +151,10 @@ export function ConnectWallet() {
     </Button>
   )
 }
+
+// ⟳ echo · src/components/fundx/cards/CenterCard.tsx
+// import Link from "next/link"
+// import { Button } from "@/components/ui/button"
+// import { Campaign } from "@/lib/data"
+// import { Heart } from "lucide-react"
+// interface CenterCardProps {
