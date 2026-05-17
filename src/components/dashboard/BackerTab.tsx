@@ -50,7 +50,7 @@ function RefundCard({ contribution }: { contribution: BackerContribution }) {
           </div>
           <div className="space-y-3 w-full">
              <div className="flex items-center gap-3 mb-2">
-                <span className="px-3 py-1 rounded-lg bg-blue-50 border border-blue-100/50 text-blue-700 text-xs font-bold uppercase tracking-wider_ flex items-center gap-1.5 shadow-sm">
+                <span className="px-3 py-1 rounded-lg bg-blue-50 border border-blue-100/50 text-blue-700 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
                    <ShieldAlert className="w-3.5 h-3.5 text-blue-500" /> Goal Missed
                 </span>
                 <span className="text-slate-400 text-sm font-semibold">{contribution.model}</span>
@@ -89,7 +89,7 @@ function ActiveContributionCard({ contribution }: { contribution: BackerContribu
           </div>
           <div className="space-y-3 w-full">
              <div className="flex items-center gap-3 mb-2">
-                <span className="px-3 py-1 rounded-lg bg-orange-50 border border-orange-100/50 text-orange-600 text-xs font-bold uppercase tracking-wider_ flex items-center gap-1.5 shadow-sm">
+                <span className="px-3 py-1 rounded-lg bg-orange-50 border border-orange-100/50 text-orange-600 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
                    <Clock className="w-3.5 h-3.5" /> Funding
                 </span>
                 <span className="text-slate-400 text-sm font-semibold">{contribution.model}</span>
@@ -130,7 +130,7 @@ function SuccessfulContributionCard({ contribution }: { contribution: BackerCont
           </div>
           <div className="space-y-3 w-full">
              <div className="flex items-center gap-3 mb-2">
-                <span className="px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-wider_ flex items-center gap-1.5 shadow-sm">
+                <span className="px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
                    <CheckCircle2 className="w-3.5 h-3.5 text-slate-500" /> Funded
                 </span>
                 <span className="text-slate-400 text-sm font-semibold">{contribution.model}</span>
