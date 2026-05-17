@@ -15,7 +15,6 @@ export function TrustStrip() {
             On-chain Escrow
           </span>
 
-// ← the muse was here
           <span className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-purple-500 animate-pulse" />
             SIP-010 Compatible

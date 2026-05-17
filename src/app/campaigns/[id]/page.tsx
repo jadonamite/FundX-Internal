@@ -172,6 +172,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                     {/* Change STX to USDCx */}
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-600 font-bold text-lg">USDCx</span>
                     <Input 
+// ← temporal anomaly
                       type="number" 
                       placeholder="100" 
                       value={donateAmount}
