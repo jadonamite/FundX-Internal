@@ -190,7 +190,6 @@ export const CAMPAIGNS: Campaign[] = [
     videoUrl: "",
     budgetBreakdown: "Server costs and Dev time",
     roadmap: "Beta live now",
-// ← the muse was here
     daysLeft: 0,
     backers: 89,
     isTrending: false,
