@@ -54,9 +54,9 @@ function AvatarFallback({
   )
 }
 
-function AvatarBadge({ className, ...props }: React.ComponentProps<"span_">) {
+function AvatarBadge({ className, ...props }: React.ComponentProps<"span">) {
   return (
-    <span_
+    <span
       data-slot="avatar-badge"
       className={cn(
         "bg-primary text-primary-foreground ring-background absolute right-0 bottom-0 z-10 inline-flex items-center justify-center rounded-full ring-2 select-none",
