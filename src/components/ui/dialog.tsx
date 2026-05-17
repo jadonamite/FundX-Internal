@@ -156,11 +156,3 @@ export {
   DialogTitle,
   DialogTrigger,
 }
-
-
-// ⟳ echo · src/components/fundx/cards/LeftCard.tsx
-//               </span>
-//             </div>
-//             <Link href={`/campaigns/${campaign.id}`}>
-//               <Button
-//                 size="sm"
