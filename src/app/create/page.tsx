@@ -15,36 +15,27 @@ export interface CreateCampaignData {
   creatorName: string;
   creatorBio: string;
   email: string;
-  twitter: string;       
-  github: string;        
-  portfolio: string;     
+  twitter: string;
+  github: string;
+  portfolio: string;
   title: string;
   tagline: string;
   category: string;
   projectStage: string;
   description: string;
-  videoUrl: string;      
-  budgetBreakdown: string; 
-  roadmap: string;       
+  videoUrl: string;
+  budgetBreakdown: string;
+  roadmap: string;
   image: string;
   goal: string;
   duration: string;
   fundingModel: "0" | "1";
-  currency: "USDCx" | "STX"; 
+  currency: "USDCx" | "STX";
 }
 
-  const handleSubmit = () => {
-    if (!isSignedIn) {
-      toast.error("Connect Wallet", {
-        description: "You need a Stacks wallet to deploy.",
-      });
-      authenticate();
-      return;
-    }
-    toast.success("Deployment Initiated", {
-      description: "Creating USDCx Fundraising Contract on Stacks...",
-    });
-  };
+export default function CreateCampaign() {
+  const { isSignedIn, authenticate } = useStacks()
+  const [step, setStep] = useState(1)
 
   const [formData, setFormData] = useState<CreateCampaignData>({
     creatorName: "",
@@ -65,17 +56,24 @@ export interface CreateCampaignData {
     goal: "10000",
     duration: "30",
     fundingModel: "0",
-    currency: "USDCx", // 
+    currency: "USDCx",
   })
-
-export default function CreateCampaign() {
-  const { isSignedIn, authenticate } = useStacks()
-  const [step, setStep] = useState(1)
-  
 
   const handleNext = () => setStep(step + 1)
   const handleBack = () => setStep(step - 1)
-  // ... the rest stays the same!
+
+  const handleSubmit = () => {
+    if (!isSignedIn) {
+      toast.error("Connect Wallet", {
+        description: "You need a Stacks wallet to deploy.",
+      })
+      authenticate()
+      return
+    }
+    toast.success("Deployment Initiated", {
+      description: "Creating USDCx Fundraising Contract on Stacks...",
+    })
+  }
 
   return (
     <main className="min-h-screen bg-slate-50 font-sans selection:bg-orange-100">
@@ -92,43 +90,35 @@ export default function CreateCampaign() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-start">
-          {/* LEFT: Wizard */}
           <div className="space-y-8">
-          
-       {/* Steps Indicator */}
             <div className="flex gap-4 mb-8 overflow-x-auto pb-2 no-scrollbar">
-               {["Identity", "Bio", "Basics", "Story", "Execute", "Fund"].map((label, idx) => {
-                 const num = idx + 1;
-                 
-                 // 🚨 Determine the status of the step
-                 const isCompleted = step > num;
-                 const isCurrent = step === num;
-                 
-                 // 🚨 Apply the right colors
-                 let circleStyle = "bg-white text-slate-300 border-slate-200"; // Upcoming
-                 if (isCompleted) circleStyle = "bg-[#FF6B4A] text-white border-[#FF6B4A]"; // Completed (Orange)
-                 else if (isCurrent) circleStyle = "bg-slate-900 text-white border-slate-900"; // Current (Black)
+              {["Identity", "Bio", "Basics", "Story", "Execute", "Fund"].map((label, idx) => {
+                const num = idx + 1
+                const isCompleted = step > num
+                const isCurrent = step === num
 
-                 return (
-                   <div key={num} className="flex items-center gap-2 shrink-0">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2 transition-all ${circleStyle}`}>
-                         {isCompleted ? <CheckCircle2 className="w-8 h-8" /> : num}
-                      </div>
-                      <span className={`text-sm font-bold ${isCompleted || isCurrent ? "text-slate-900" : "text-slate-300"}`}>{label}</span>
-                   </div>
-                 )
-               })}
+                let circleStyle = "bg-white text-slate-300 border-slate-200"
+                if (isCompleted) circleStyle = "bg-[#FF6B4A] text-white border-[#FF6B4A]"
+                else if (isCurrent) circleStyle = "bg-slate-900 text-white border-slate-900"
+
+                return (
+                  <div key={num} className="flex items-center gap-2 shrink-0">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2 transition-all ${circleStyle}`}>
+                      {isCompleted ? <CheckCircle2 className="w-8 h-8" /> : num}
+                    </div>
+                    <span className={`text-sm font-bold ${isCompleted || isCurrent ? "text-slate-900" : "text-slate-300"}`}>{label}</span>
+                  </div>
+                )
+              })}
             </div>
 
             <div className="bg-white p-8 pb-28 rounded-[2rem] shadow-xl border border-slate-100 min-h-[550px] relative">
-              {/* RENDER STEP MODULE */}
               <WizardSteps
                 step={step}
                 formData={formData}
                 setFormData={setFormData}
               />
 
-              {/* NAVIGATION */}
               <div className="absolute bottom-8 left-8 right-8 flex justify-between">
                 {step > 1 ? (
                   <Button
@@ -161,7 +151,6 @@ export default function CreateCampaign() {
             </div>
           </div>
 
-          {/* RIGHT: Preview Module */}
           <div className="hidden lg:block relative">
             <LivePreview formData={formData} />
           </div>
@@ -169,5 +158,5 @@ export default function CreateCampaign() {
       </div>
       <Footer />
     </main>
-  );
+  )
 }
