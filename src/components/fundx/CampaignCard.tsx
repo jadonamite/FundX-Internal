@@ -57,3 +57,9 @@ export function CampaignCard({ id, title, description, raised, goal, image, curr
     </Link>
   )
 }
+
+// ⟳ echo · src/components/fundx/cards/RightCard.tsx
+//         </div>
+//       </div>
+//       <div className="p-6 flex flex-col justify-between flex-1 bg-white">
+//         <div>
