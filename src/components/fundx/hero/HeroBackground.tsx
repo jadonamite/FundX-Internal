@@ -81,12 +81,6 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
       }
     }
 
-    /**
-     * createBlock
-     * @param {*} x: number
-     * @param {*} y: number
-     * @returns {*}
-     */
     function createBlock(x: number, y: number): Block {
       return {
         x,

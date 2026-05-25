@@ -24,6 +24,5 @@ export function useScramble() {
     return () => { if (frameRef.current) clearTimeout(frameRef.current) }
   }, [])
 
-  // TODO: add error boundary here
   return { display, scrambleTo }
 }
