@@ -196,8 +196,8 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       toast.success("Donation broadcast — confirming on-chain...", { id: "donate" })
       setDonateAmount("")
       setTimeout(() => refetch(), 8000)
-    } catch (err) {
-      console.error(err)
+    } catch (error) {
+      console.error(error)
       toast.error("Donation Failed", { id: "donate", description: "Transaction cancelled or failed." })
     } finally {
       setTxPending(false)
@@ -212,8 +212,8 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       await callContract("withdraw", [uintCV(campaignIndex)])
       toast.success("Withdrawal broadcast — confirming on-chain...", { id: "withdraw" })
       setTimeout(() => refetch(), 8000)
-    } catch (err) {
-      console.error(err)
+    } catch (error) {
+      console.error(error)
       toast.error("Withdrawal Failed", { id: "withdraw", description: "Transaction cancelled or failed." })
     } finally {
       setTxPending(false)
@@ -228,8 +228,8 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       await callContract("claim-refund", [uintCV(campaignIndex)])
       toast.success(`Refund of ${userDonation} USDCx broadcast...`, { id: "refund" })
       setTimeout(() => refetch(), 8000)
-    } catch (err) {
-      console.error(err)
+    } catch (error) {
+      console.error(error)
       toast.error("Refund Failed", { id: "refund", description: "Transaction cancelled or failed." })
     } finally {
       setTxPending(false)
