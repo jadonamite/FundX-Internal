@@ -40,8 +40,8 @@ function RefundCard({ c, onSuccess }: { c: Contribution; onSuccess: () => void }
       } as any)
       toast.success(`Refund of ${c.myContribution} USDCx broadcast...`, { id: `r-${c.campaign.id}` })
       setTimeout(onSuccess, 8000)
-    } catch (err) {
-      console.error(err)
+    } catch (error) {
+      console.error(error)
       toast.error("Refund Failed", { id: `r-${c.campaign.id}`, description: "Transaction cancelled or failed." })
     } finally {
       setPending(false)
