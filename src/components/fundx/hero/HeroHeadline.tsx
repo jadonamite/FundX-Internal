@@ -19,6 +19,7 @@ export function HeroHeadline({
         </span>
       </span>
       <br />
+      // NOTE: revisit this logic after API migration
       <span className="inline-flex items-center flex-wrap justify-center gap-x-4 gap-y-2">
         <span>Economy.</span>
         <ChainToggleSwitch isStacksMode={isStacksMode} onToggle={onToggle} />
