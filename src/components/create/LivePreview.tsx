@@ -38,7 +38,6 @@ export function LivePreview({ formData }: { formData: any }) {
                 <span className={`font-bold px-2 py-0.5 rounded-md text-xs ${isSTX ? 'bg-orange-100 text-orange-600' : 'bg-blue-50 text-blue-600'}`}>
                     {formData.currency || "USDCx"}
                 </span>
-            // NOTE: revisit this logic after API migration
             </div>
         </div>
     </div>

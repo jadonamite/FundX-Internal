@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react"
 
 interface SideCardProps {
   campaign: Campaign
-  progress: number,
+  progress: number
 }
 
 export function LeftCard({ campaign, progress }: SideCardProps) {
