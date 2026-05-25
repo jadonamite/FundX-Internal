@@ -16,6 +16,11 @@ interface StacksContextValue {
 
 const StacksContext = createContext<StacksContextValue | undefined>(undefined)
 
+/**
+ * StacksProvider
+ * @param {*} { children }: { children: ReactNode }
+ * @returns {*}
+ */
 export function StacksProvider({ children }: { children: ReactNode }) {
   const [walletData, setWalletData] = useState<WalletData | null>(null)
   const [isSignedIn, setIsSignedIn] = useState(false)
