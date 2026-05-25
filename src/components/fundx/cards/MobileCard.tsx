@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react"
 
 interface MobileCardProps {
   campaign: Campaign
-  progress: number,
+  progress: number
 }
 
 export function MobileCard({ campaign, progress }: MobileCardProps) {
