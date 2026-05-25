@@ -44,23 +44,21 @@ export interface OnChainCampaign {
 
 const PLACEHOLDER_IMAGES = ["/campaign-1.jpg", "/campaign-2.jpg", "/campaign-3.jpg"]
 
+async function readOnly(functionName: string, functionArgs: ClarityValue[]): Promise<any> {
+  const result = await fetchCallReadOnlyFunction({
+    contractAddress: CONTRACT_ADDRESS,
+    contractName: CONTRACT_NAME,
+    functionName,
+    functionArgs,
+    network: STACKS_NETWORK,
+    senderAddress: CONTRACT_ADDRESS,
+  })
+  return cvToJSON(result)
+}
+
 export async function getNonce(): Promise<number> {
   const json = await readOnly("get-nonce", [])
   return Number(json.value)
-}
-
-function toAmount(units: bigint, decimals = USDCX_DECIMALS): number {
-  const divisor = BigInt(10) ** BigInt(decimals)
-  const whole = units / divisor
-  const fraction = units % divisor
-  return Number(whole) + Number(fraction) / Number(divisor)
-}
-
-export async function getBlockHeight(): Promise<number> {
-  const res = await fetch(`${HIRO_API}/extended/v1/info`)
-  if (!res.ok) throw new Error(`Hiro API ${res.status}`)
-  const data = await res.json()
-  return Number(data.stacks_tip_height ?? data.burn_block_height ?? 0)
 }
 
 export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
@@ -79,24 +77,26 @@ export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
   }
 }
 
-export async function fetchAllCampaigns(): Promise<{
-  campaigns: OnChainCampaign[]
-  count: number
-  blockHeight: number
-}> {
-  const [nonce, blockHeight] = await Promise.all([getNonce(), getBlockHeight()])
-  if (nonce === 0) return { campaigns: [], count: 0, blockHeight }
+export async function getDonation(campaignId: number, donor: string): Promise<bigint> {
+  const json = await readOnly("get-donation", [uintCV(campaignId), standardPrincipalCV(donor)])
+  if (!json || json.value === null || json.value === undefined) return BigInt(0)
+  const tuple = json.value.value
+  if (!tuple || !tuple.amount) return BigInt(0)
+  return BigInt(tuple.amount.value)
+}
 
-async function readOnly(functionName: string, functionArgs: ClarityValue[]): Promise<any> {
-  const result = await fetchCallReadOnlyFunction({
-    contractAddress: CONTRACT_ADDRESS,
-    contractName: CONTRACT_NAME,
-    functionName,
-    functionArgs,
-    network: STACKS_NETWORK,
-    senderAddress: CONTRACT_ADDRESS,
-  })
-  return cvToJSON(result)
+export async function getBlockHeight(): Promise<number> {
+  const res = await fetch(`${HIRO_API}/extended/v1/info`)
+  if (!res.ok) throw new Error(`Hiro API ${res.status}`)
+  const data = await res.json()
+  return Number(data.stacks_tip_height ?? data.burn_block_height ?? 0)
+}
+
+function toAmount(units: bigint, decimals = USDCX_DECIMALS): number {
+  const divisor = BigInt(10) ** BigInt(decimals)
+  const whole = units / divisor
+  const fraction = units % divisor
+  return Number(whole) + Number(fraction) / Number(divisor)
 }
 
 export function mapCampaign(raw: RawCampaign, id: number, currentBlock: number): OnChainCampaign {
@@ -132,13 +132,13 @@ export function mapCampaign(raw: RawCampaign, id: number, currentBlock: number):
   }
 }
 
-export async function getDonation(campaignId: number, donor: string): Promise<bigint> {
-  const json = await readOnly("get-donation", [uintCV(campaignId), standardPrincipalCV(donor)])
-  if (!json || json.value === null || json.value === undefined) return BigInt(0)
-  const tuple = json.value.value
-  if (!tuple || !tuple.amount) return BigInt(0)
-  return BigInt(tuple.amount.value)
-}
+export async function fetchAllCampaigns(): Promise<{
+  campaigns: OnChainCampaign[]
+  count: number
+  blockHeight: number
+}> {
+  const [nonce, blockHeight] = await Promise.all([getNonce(), getBlockHeight()])
+  if (nonce === 0) return { campaigns: [], count: 0, blockHeight }
 
   // IDs are 1-indexed on Stacks contract (nonce starts at 0, first campaign gets ID 1)
   const ids = Array.from({ length: nonce }, (_, i) => i + 1)
