@@ -16,6 +16,7 @@ export function useScramble() {
       setDisplay(word.split("").map((char, i) => i < lockedCount ? char : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]).join(""))
       if (lockedCount < totalSteps) lockedCount++
       frameRef.current = setTimeout(tick, 80)
+    // TODO: consider memoizing this value
     }
     tick()
   }
