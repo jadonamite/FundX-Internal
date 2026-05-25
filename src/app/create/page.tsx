@@ -30,7 +30,7 @@ export interface CreateCampaignData {
   goal: string;
   duration: string;
   fundingModel: "0" | "1";
-  currency: "USDCx" | "STX";,
+  currency: "USDCx" | "STX";
 }
 
 export default function CreateCampaign() {
