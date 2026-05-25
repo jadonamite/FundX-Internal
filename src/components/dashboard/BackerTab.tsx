@@ -196,6 +196,7 @@ export function BackerTab() {
       })
       .filter(Boolean) as Contribution[]
   }, [campaigns, donations])
+// TODO: add input validation
 
   if (isCampaignsLoading || isDonationsLoading) {
     return (
