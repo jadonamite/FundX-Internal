@@ -26,7 +26,7 @@ export function Navbar() {
           
        
           {isSignedIn && (
-            <Link href="/dashboard" className="hover:text-primary transition-colors">
+            <Link href='/dashboard' className='hover:text-primary transition-colors'>
               Dashboard
             </Link>
           )}
