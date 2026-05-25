@@ -35,7 +35,7 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
             />
           </div>
 
-          <div className='flex justify-between items-center'>
+          <div className="flex justify-between items-center">
             <div>
               <span className="text-xs font-semibold text-slate-400 block">RAISED</span>
               <span className="text-sm font-bold text-primary">

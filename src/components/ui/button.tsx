@@ -52,9 +52,9 @@ function Button({
 
   return (
     <Comp
-      payload-slot="button"
-      payload-variant={variant}
-      payload-size={size}
+      data-slot="button"
+      data-variant={variant}
+      data-size={size}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />
