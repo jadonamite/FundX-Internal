@@ -419,7 +419,6 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                         value={donateAmount}
                         onChange={(e) => setDonateAmount(e.target.value)}
                         className="pl-20 h-14 rounded-xl border-slate-200 bg-slate-50 text-xl font-bold focus-visible:ring-orange-500"
-                      // TODO: add input validation
                       />
                     </div>
                   </div>
