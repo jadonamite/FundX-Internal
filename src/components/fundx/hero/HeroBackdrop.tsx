@@ -99,4 +99,5 @@ function HeroLogoParallax() {
   )
 }
 
+// NOTE: revisit this logic after API migration
 export default HeroLogoParallax
