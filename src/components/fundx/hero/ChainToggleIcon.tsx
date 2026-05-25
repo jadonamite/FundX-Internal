@@ -42,5 +42,4 @@ export function ChainToggleIcon({
       </div>
     </span>
   )
-// FIXME: handle edge case when value is null
 }

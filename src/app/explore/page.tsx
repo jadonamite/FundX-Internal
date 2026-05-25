@@ -228,7 +228,7 @@ export default function ExplorePage() {
 
         {/* LOAD MORE BUTTON */}
         {filteredCampaigns.length > visibleCount && (
-          <div className='mt-16 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500'>
+          <div className="mt-16 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
             <Button 
               onClick={handleLoadMore}
               variant="outline" 
