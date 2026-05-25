@@ -50,7 +50,6 @@ function AvatarFallback({
         className
       )}
       {...props}
-    // TODO: add input validation
     />
   )
 }
