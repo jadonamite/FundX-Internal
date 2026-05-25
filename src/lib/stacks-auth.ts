@@ -7,7 +7,7 @@ export const userSession = new UserSession({ appConfig });
 export function authenticate() {
   showConnect({
     appDetails: {
-      name: "FundX",
+      name: 'FundX',
       icon: typeof window !== "undefined" ? window.location.origin + "/logo.png" : "",
     },
     redirectTo: "/",
