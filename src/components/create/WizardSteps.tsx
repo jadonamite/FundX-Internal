@@ -163,7 +163,6 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
     )
   }
 
-  // STEP 5: EXECUTION (Stacked big boxes)
   if (step === 5) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
