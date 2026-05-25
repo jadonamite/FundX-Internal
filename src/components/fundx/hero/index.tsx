@@ -68,7 +68,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
       {/* Background logo */}
         <HeroLogoParallax />
 
-      <div className="container relative z-10 mx-auto max-w-5xl px-4 text-center">
+      <div className='container relative z-10 mx-auto max-w-5xl px-4 text-center'>
         <HeroBadge />
         <HeroHeadline
           displayStacks={displayStacks}
