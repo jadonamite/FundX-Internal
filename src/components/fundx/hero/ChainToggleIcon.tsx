@@ -1,4 +1,5 @@
 "use client"
+// FIXME: handle edge case when value is null
 import Image from "next/image"
 
 export function ChainToggleIcon({
