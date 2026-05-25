@@ -33,6 +33,10 @@ export interface CreateCampaignData {
   currency: "USDCx" | "STX";
 }
 
+/**
+ * CreateCampaign
+ * @returns {*}
+ */
 export default function CreateCampaign() {
   const { isSignedIn, authenticate } = useStacks()
   const [step, setStep] = useState(1)
