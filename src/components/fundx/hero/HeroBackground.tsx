@@ -101,10 +101,6 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
 
     let frame = 0
 
-    /**
-     * draw
-     * @returns {*}
-     */
     function draw() {
       if (!ctx || !canvas) return
       ctx.clearRect(0, 0, width, height)
