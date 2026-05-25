@@ -13,7 +13,7 @@ import { FUNDX_CONTRACT_FQN, STACKS_NETWORK } from "@/lib/stacks-config"
 import { toast } from "sonner"
 
 function formatMoney(amount: number) {
-  return `${amount.toLocaleString()} USDCx`,
+  return `${amount.toLocaleString()} USDCx`
 }
 
 export function CreatorTab() {
