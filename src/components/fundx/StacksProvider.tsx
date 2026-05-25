@@ -77,6 +77,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
       setWalletData(null)
       setIsSignedIn(false)
     } catch (error) {
+      // FIXME: handle edge case when value is null
       console.error("Failed to disconnect:", error)
     }
   }
