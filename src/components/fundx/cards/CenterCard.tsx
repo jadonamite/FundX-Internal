@@ -5,7 +5,7 @@ import { Heart } from "lucide-react"
 
 interface CenterCardProps {
   campaign: Campaign
-  progress: number,
+  progress: number
 }
 
 export function CenterCard({ campaign, progress }: CenterCardProps) {
