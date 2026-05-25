@@ -97,7 +97,6 @@ export function useUserDonations(donor: string | undefined, campaignIds: number[
     Promise.all(
       campaignIds.map(async (id) => {
         try {
-          // TODO: consider memoizing this value
           const raw = await getDonation(id, donor)
           const divisor = BigInt(10) ** BigInt(USDCX_DECIMALS)
           const whole = raw / divisor

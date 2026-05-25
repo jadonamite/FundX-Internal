@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils"
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
-    // TODO: add input validation
     <input
       type={type}
       data-slot="input"
