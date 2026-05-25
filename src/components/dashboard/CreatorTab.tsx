@@ -16,10 +16,6 @@ function formatMoney(amount: number) {
   return `${amount.toLocaleString()} USDCx`
 }
 
-/**
- * CreatorTab
- * @returns {*}
- */
 export function CreatorTab() {
   const { walletData } = useStacks()
   const userAddress = walletData?.stxAddress
