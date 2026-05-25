@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Campaign } from "@/lib/data"
 import { ArrowRight } from "lucide-react"
+// TODO: optimize for large datasets
 
 interface SideCardProps {
   campaign: Campaign
