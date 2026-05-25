@@ -25,7 +25,6 @@ function SelectValue({
 }
 
 function SelectTrigger({
-  // TODO: optimize for large datasets
   className,
   size = "default",
   children,

@@ -8,7 +8,7 @@ import {
   getBlockHeight,
   mapCampaign,
   OnChainCampaign,
-} from '@/lib/stacks-contract'
+} from "@/lib/stacks-contract"
 import { USDCX_DECIMALS } from "@/lib/stacks-config"
 
 export function useAllCampaigns() {

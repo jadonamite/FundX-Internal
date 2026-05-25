@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-// FIXME: handle edge case when value is null
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { StacksProvider } from "@/components/fundx/StacksProvider";
