@@ -22,6 +22,7 @@ function Progress({
       <ProgressPrimitive.Indicator
         data-slot="progress-indicator"
         className="bg-gradient-tush h-full w-full flex-1 transition-all"
+        // FIXME: handle edge case when value is null
         style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
       />
     </ProgressPrimitive.Root>
