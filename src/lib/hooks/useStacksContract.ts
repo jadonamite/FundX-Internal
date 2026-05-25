@@ -21,7 +21,7 @@ export function useAllCampaigns() {
   const refetch = useCallback(() => setRefetchToken((t) => t + 1), [])
 
   useEffect(() => {
-    let cancelled = false
+    let cancelled: boolean = false
     setIsLoading(true)
     setError(null)
     fetchAllCampaigns()
