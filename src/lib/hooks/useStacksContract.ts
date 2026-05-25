@@ -11,9 +11,8 @@ import {
 } from "@/lib/stacks-contract"
 import { USDCX_DECIMALS } from "@/lib/stacks-config"
 
-export function useAllCampaigns() {
-  const [campaigns, setCampaigns] = useState<OnChainCampaign[]>([])
-  const [count, setCount] = useState(0)
+export function useCampaign(id: number) {
+  const [campaign, setCampaign] = useState<OnChainCampaign | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
   const [refetchToken, setRefetchToken] = useState(0)
@@ -45,8 +44,9 @@ export function useAllCampaigns() {
   return { campaigns, count, isLoading, error, refetch }
 }
 
-export function useCampaign(id: number) {
-  const [campaign, setCampaign] = useState<OnChainCampaign | null>(null)
+export function useAllCampaigns() {
+  const [campaigns, setCampaigns] = useState<OnChainCampaign[]>([])
+  const [count, setCount] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
   const [refetchToken, setRefetchToken] = useState(0)
@@ -82,8 +82,8 @@ export function useCampaign(id: number) {
   return { campaign, isLoading, error, refetch }
 }
 
-export function useUserDonations(donor: string | undefined, campaignIds: number[]) {
-  const [donations, setDonations] = useState<Record<number, number>>({})
+export function useDonation(campaignId: number, donor: string | undefined) {
+  const [donation, setDonation] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
 
   const idKey = campaignIds.join(",")
@@ -125,8 +125,8 @@ export function useUserDonations(donor: string | undefined, campaignIds: number[
   return { donations, isLoading }
 }
 
-export function useDonation(campaignId: number, donor: string | undefined) {
-  const [donation, setDonation] = useState(0)
+export function useUserDonations(donor: string | undefined, campaignIds: number[]) {
+  const [donations, setDonations] = useState<Record<number, number>>({})
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
