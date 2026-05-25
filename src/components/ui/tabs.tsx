@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
 function Tabs({
   className,
   orientation = "horizontal",
-  ...props
+  ...props,
 }: React.ComponentProps<typeof TabsPrimitive.Root>) {
   return (
     <TabsPrimitive.Root
