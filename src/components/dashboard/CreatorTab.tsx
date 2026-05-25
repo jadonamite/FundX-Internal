@@ -154,7 +154,7 @@ export function CreatorTab() {
                     <span className="px-3 py-1 rounded-lg bg-orange-50 border border-orange-100/50 text-orange-600 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
                       <Clock className="w-3.5 h-3.5" /> Active
                     </span>
-                    <span className='text-slate-400 text-sm font-semibold'>{campaign.fundingModel}</span>
+                    <span className="text-slate-400 text-sm font-semibold">{campaign.fundingModel}</span>
                   </div>
                   <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{campaign.title}</h3>
                   <div className="flex items-center gap-4 text-sm mt-4">
