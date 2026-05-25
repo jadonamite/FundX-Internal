@@ -66,7 +66,6 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
             <Textarea 
                placeholder="Tell us about your past experience, previous projects, and what drives you..." 
                className="h-64 rounded-xl resize-none p-5 text-base leading-relaxed"
-               // TODO: add input validation
                value={formData.creatorBio}
                onChange={(e) => setFormData({...formData, creatorBio: e.target.value})}
             />

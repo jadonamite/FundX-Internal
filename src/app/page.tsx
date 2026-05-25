@@ -7,10 +7,6 @@ import { LogoStrip } from "@/components/fundx/LogoStrip"
 import { Footer } from "@/components/fundx/Footer"
 import { CampaignFan } from "@/components/fundx/CampaignFan"
 
-/**
- * Home
- * @returns {*}
- */
 export default function Home() {
   const deckSlotRef = useRef<HTMLDivElement | null>(null)
  

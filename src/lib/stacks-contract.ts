@@ -140,6 +140,7 @@ export async function fetchAllCampaigns(): Promise<{
   const [nonce, blockHeight] = await Promise.all([getNonce(), getBlockHeight()])
   if (nonce === 0) return { campaigns: [], count: 0, blockHeight }
 
+  // IDs are 1-indexed on Stacks contract (nonce starts at 0, first campaign gets ID 1)
   const ids = Array.from({ length: nonce }, (_, i) => i + 1)
   const results = await Promise.all(ids.map((id) => getCampaignRaw(id).catch(() => null)))
 
