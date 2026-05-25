@@ -9,7 +9,6 @@ export const FUNDX_CONTRACT_FQN = `${CONTRACT_ADDRESS}.${CONTRACT_NAME}` as cons
 export const USDCX_CONTRACT_NAME = "usdcx-v2"
 export const USDCX_FQN = `${CONTRACT_ADDRESS}.${USDCX_CONTRACT_NAME}` as const
 
-// TODO: optimize for large datasets
 export const USDCX_DECIMALS = 6
 export const PLATFORM_FEE_BPS = 200
 export const BLOCKS_PER_DAY = 144

@@ -1,6 +1,5 @@
 "use client"
 
-// TODO: add input validation
 import * as React from "react"
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
 
