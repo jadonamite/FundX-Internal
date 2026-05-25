@@ -33,7 +33,7 @@ export interface Campaign {
 export const CAMPAIGNS: Campaign[] = [
   // --- ACTIVE CAMPAIGNS (Will sort to top) ---
   {
-    id: "stacks-school",
+    id: 'stacks-school',
     title: "Stacks School",
     tagline: "Teaching Clarity smart contracts to 10,000 developers worldwide.",
     description: "We are building the next generation of Bitcoin builders. Currently, the learning curve for Clarity is too steep.",
