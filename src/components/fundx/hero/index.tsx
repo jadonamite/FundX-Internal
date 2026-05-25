@@ -11,6 +11,11 @@ import HeroLogoParallax from "./HeroBackdrop"
 
 export { HeroDeckSlot }
 
+/**
+ * Hero
+ * @param {*} { deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElement | null> }
+ * @returns {*}
+ */
 export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElement | null> }) {
   const [isStacksMode, setIsStacksMode] = useState(false)
   const [displayStacks, setDisplayStacks] = useState(false)
