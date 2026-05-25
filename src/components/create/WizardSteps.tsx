@@ -110,7 +110,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
             <div className="grid md:grid-cols-2 gap-5 mt-4">
               <div className="space-y-2">
                  <Label>Category</Label>
-                 <Select onValueChange={(val) => setFormData({...formData, category: val})} defaultValue={formData.category}>
+                 <Select onValueChange={(value) => setFormData({...formData, category: value})} defaultValue={formData.category}>
                     <SelectTrigger className="h-14 rounded-xl"><SelectValue /></SelectTrigger>
                     <SelectContent className="bg-white">
                        <SelectItem value="DeFi">DeFi & Finance</SelectItem>
@@ -122,7 +122,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
               </div>
               <div className="space-y-2">
                  <Label>Current Stage</Label>
-                 <Select onValueChange={(val) => setFormData({...formData, projectStage: val})} defaultValue={formData.projectStage}>
+                 <Select onValueChange={(value) => setFormData({...formData, projectStage: value})} defaultValue={formData.projectStage}>
                     <SelectTrigger className="h-14 rounded-xl"><SelectValue /></SelectTrigger>
                     <SelectContent className="bg-white">
                        <SelectItem value="Idea">Concept / Idea</SelectItem>
@@ -207,7 +207,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
 
          <div className="space-y-2 mb-6">
             <Label>Funding Asset</Label>
-            <Select onValueChange={(val) => setFormData({...formData, currency: val as "USDCx" | "STX"})} defaultValue={formData.currency}>
+            <Select onValueChange={(value) => setFormData({...formData, currency: value as "USDCx" | "STX"})} defaultValue={formData.currency}>
                <SelectTrigger className="h-14 rounded-xl text-base font-bold text-slate-700 bg-white border-slate-200 shadow-sm">
                   <SelectValue />
                </SelectTrigger>
@@ -237,7 +237,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
 
          <div className="space-y-2 mt-6">
             <Label>Funding Model</Label>
-            <Select onValueChange={(val) => setFormData({...formData, fundingModel: val as "0" | "1"})} defaultValue={formData.fundingModel}>
+            <Select onValueChange={(value) => setFormData({...formData, fundingModel: value as "0" | "1"})} defaultValue={formData.fundingModel}>
                <SelectTrigger className="h-12 rounded-xl text-sm font-semibold text-slate-700 bg-white border-slate-200 shadow-sm">
                   <SelectValue />
                </SelectTrigger>
