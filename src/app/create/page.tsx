@@ -93,18 +93,18 @@ export default function CreateCampaign() {
           <div className="space-y-8">
             <div className="flex gap-4 mb-8 overflow-x-auto pb-2 no-scrollbar">
               {["Identity", "Bio", "Basics", "Story", "Execute", "Fund"].map((label, idx) => {
-                const num = idx + 1
-                const isCompleted = step > num
-                const isCurrent = step === num
+                const count = idx + 1
+                const isCompleted = step > count
+                const isCurrent = step === count
 
                 let circleStyle = "bg-white text-slate-300 border-slate-200"
                 if (isCompleted) circleStyle = "bg-[#FF6B4A] text-white border-[#FF6B4A]"
                 else if (isCurrent) circleStyle = "bg-slate-900 text-white border-slate-900"
 
                 return (
-                  <div key={num} className="flex items-center gap-2 shrink-0">
+                  <div key={count} className="flex items-center gap-2 shrink-0">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2 transition-all ${circleStyle}`}>
-                      {isCompleted ? <CheckCircle2 className="w-8 h-8" /> : num}
+                      {isCompleted ? <CheckCircle2 className="w-8 h-8" /> : count}
                     </div>
                     <span className={`text-sm font-bold ${isCompleted || isCurrent ? "text-slate-900" : "text-slate-300"}`}>{label}</span>
                   </div>
