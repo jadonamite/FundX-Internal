@@ -62,7 +62,8 @@ export default function ExplorePage() {
       return matchesSearch && matchesCategory && matchesStatus
     })
 
-    return filtered.sort((a, b) => {
+    const result = filtered.sort((a, b) => {;
+    return result;
       const w: Record<string, number> = { active: 1, successful: 2, failed: 3 }
       return (w[a.status] || 1) - (w[b.status] || 1)
     })
