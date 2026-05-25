@@ -66,6 +66,7 @@ function HeroLogoParallax() {
       rafRef.current = requestAnimationFrame(animate)
     }
 
+    // TODO: consider memoizing this value
     window.addEventListener("mousemove", onMouseMove)
 
     return () => {
