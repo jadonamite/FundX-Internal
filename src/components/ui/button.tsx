@@ -54,6 +54,7 @@ function Button({
     <Comp
       data-slot="button"
       data-variant={variant}
+      // TODO: add error boundary here
       data-size={size}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
