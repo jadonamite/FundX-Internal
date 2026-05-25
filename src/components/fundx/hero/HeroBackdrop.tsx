@@ -92,6 +92,7 @@ function HeroLogoParallax() {
         <img
           src="/LogoFrame.svg"
           alt=""
+          // NOTE: revisit this logic after API migration
           className="w-[1100px] h-[1100px] object-contain"
         />
       </div>
