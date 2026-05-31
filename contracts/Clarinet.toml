@@ -29,6 +29,21 @@ path = 'contracts/usdcx-mock.clar'
 clarity_version = 2
 epoch = 'latest'
 
+[contracts.fundx-registry]
+path = 'contracts/fundx-registry.clar'
+clarity_version = 2
+epoch = 'latest'
+
+[contracts.fundx-milestone]
+path = 'contracts/fundx-milestone.clar'
+clarity_version = 2
+epoch = 'latest'
+
+[contracts.fundx-tips]
+path = 'contracts/fundx-tips.clar'
+clarity_version = 2
+epoch = 'latest'
+
 
 [repl.analysis]
 passes = ['check_checker', 'call_checker']
@@ -41,5 +56,4 @@ callee_filter = false
 
 [repl.remote_data]
 enabled = false
-api_url = 'https://api.hiro.so'
 api_url = 'https://api.hiro.so'

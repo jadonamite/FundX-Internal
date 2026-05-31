@@ -35,4 +35,28 @@ plan:
       path: contracts/usdcx-mock.clar
       anchor-block-only: true
       clarity-version: 2
+    - transaction-type: contract-publish
+      contract-name: fundx-tips
+      expected-sender: SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39
+      cost: 300000
+      path: contracts/fundx-tips.clar
+      anchor-block-only: true
+      clarity-version: 2
+      txid: 9042a19e9103e37eb8f2955943384a94f938948268f16b766a341ea009590668
+    - transaction-type: contract-publish
+      contract-name: fundx-registry
+      expected-sender: SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39
+      cost: 300000
+      path: contracts/fundx-registry.clar
+      anchor-block-only: true
+      clarity-version: 2
+      txid: 74d93f69cffe1d1f79f917031133c5014e8641d4bb487f34d720d215b6c93150
+    - transaction-type: contract-publish
+      contract-name: fundx-milestone
+      expected-sender: SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39
+      cost: 300000
+      path: contracts/fundx-milestone.clar
+      anchor-block-only: true
+      clarity-version: 2
+      txid: 6414792e6b406057e83908bcfda7e57b5b13e32dac574166321fe9b558cd7ad7
     epoch: '3.4'
