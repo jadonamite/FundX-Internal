@@ -4,7 +4,8 @@ import { useState } from "react"
 import { Navbar } from "@/components/fundx/Navbar"
 import { Footer } from "@/components/fundx/Footer"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
+import { ArrowRight, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
 import {
@@ -44,6 +45,7 @@ export interface CreateCampaignData {
 }
 
 export default function CreateCampaign() {
+  const router = useRouter()
   const { isSignedIn, authenticate } = useStacks()
   const [step, setStep] = useState(1)
   const [isDeploying, setIsDeploying] = useState(false)
@@ -79,6 +81,8 @@ export default function CreateCampaign() {
       authenticate()
       return
     }
+    if (isDeploying) return
+    setIsDeploying(true)
 
     const goalNumber = Number(formData.goal)
     const durationNumber = Number(formData.duration)
@@ -149,9 +153,12 @@ export default function CreateCampaign() {
         id: "create",
         description: "Your campaign and metadata are on Stacks.",
       })
+      router.push(`/campaigns/${newId}`)
     } catch (err) {
       console.error(err)
       toast.error("Deployment Failed", { id: "create", description: "Transaction cancelled or failed." })
+    } finally {
+      setIsDeploying(false)
     }
   }
 
@@ -222,9 +229,12 @@ export default function CreateCampaign() {
                 ) : (
                   <Button
                     onClick={handleSubmit}
-                    className="h-12 px-8 rounded-xl bg-gradient-tush text-white shadow-glow hover:scale-105 transition-all font-bold"
+                    disabled={isDeploying}
+                    className="h-12 px-8 rounded-xl bg-gradient-tush text-white shadow-glow hover:scale-105 transition-all font-bold disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
-                    {isSignedIn ? "Deploy Campaign" : "Connect & Deploy"}
+                    {isDeploying ? (
+                      <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Deploying...</>
+                    ) : isSignedIn ? "Deploy Campaign" : "Connect & Deploy"}
                   </Button>
                 )}
               </div>

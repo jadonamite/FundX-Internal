@@ -273,7 +273,10 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
             {campaign.title}
           </h1>
-          <p className="text-xl text-slate-500 max-w-3xl">
+          {campaign.tagline && (
+            <p className="text-xl font-medium text-slate-700 max-w-3xl mb-2">{campaign.tagline}</p>
+          )}
+          <p className="text-base text-slate-500 max-w-3xl">
             {campaign.description}
           </p>
         </div>

@@ -86,7 +86,7 @@ export function Footer() {
         
         {/* Simple Copyright Footer */}
         <div className="mt-12 text-left text-xs text-slate-400">
-          © 2026 FundX Decentralized Protocol.
+          © {new Date().getFullYear()} FundX Decentralized Protocol.
         </div>
 
       </div>
