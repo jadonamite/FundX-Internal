@@ -19,7 +19,7 @@ import {
 } from "@/lib/stacks-config"
 import { getCampaignCount } from "@/lib/stacks-contract"
 
-import { WizardSteps } from "@/components/create/WizardSteps"
+import { WizardSteps, WIZARD_STEPS, validateStep } from "@/components/create/WizardSteps"
 import { LivePreview } from "@/components/create/LivePreview"
 
 export interface CreateCampaignData {
@@ -72,7 +72,14 @@ export default function CreateCampaign() {
     currency: "USDCx",
   })
 
-  const handleNext = () => setStep(step + 1)
+  const handleNext = () => {
+    const error = validateStep(step, formData)
+    if (error) {
+      toast.error(error)
+      return
+    }
+    setStep(step + 1)
+  }
   const handleBack = () => setStep(step - 1)
 
   const handleSubmit = async () => {

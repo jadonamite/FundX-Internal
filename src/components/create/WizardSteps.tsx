@@ -1,12 +1,12 @@
 "use client"
 
+import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Rocket } from "lucide-react"
-import { CreateCampaignData } from "@/app/create/page" 
-
+import { AlertCircle, Check, Zap, ShieldCheck } from "lucide-react"
+import { CreateCampaignData } from "@/app/create/page"
 
 interface WizardProps {
   step: number
@@ -14,257 +14,333 @@ interface WizardProps {
   setFormData: (data: CreateCampaignData) => void
 }
 
+function FieldError({ msg }: { msg: string }) {
+  return (
+    <p className="flex items-center gap-1 text-xs text-red-500 mt-1">
+      <AlertCircle className="w-3 h-3 shrink-0" /> {msg}
+    </p>
+  )
+}
+
+function CharCount({ value, max }: { value: string; max: number }) {
+  const over = value.length > max
+  return (
+    <span className={`text-xs tabular-nums ${over ? "text-red-500 font-bold" : "text-slate-400"}`}>
+      {value.length}/{max}
+    </span>
+  )
+}
+
+function FundingModelCard({
+  value, selected, onClick, title, description, badge,
+}: {
+  value: string; selected: boolean; onClick: () => void
+  title: string; description: string; badge?: string
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`w-full text-left p-5 rounded-2xl border-2 transition-all duration-200 relative ${
+        selected
+          ? "border-slate-900 bg-slate-900 text-white shadow-lg scale-[1.01]"
+          : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50"
+      }`}
+    >
+      {badge && (
+        <span className={`absolute top-3 right-3 text-xs font-bold px-2 py-0.5 rounded-full ${
+          selected ? "bg-white/20 text-white" : "bg-orange-100 text-orange-600"
+        }`}>
+          {badge}
+        </span>
+      )}
+      <div className="flex items-start gap-3">
+        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 mt-0.5 ${
+          selected ? "border-white bg-white" : "border-slate-300"
+        }`}>
+          {selected && <Check className="w-3 h-3 text-slate-900" />}
+        </div>
+        <div>
+          <p className={`font-bold text-base mb-1 ${selected ? "text-white" : "text-slate-900"}`}>{title}</p>
+          <p className={`text-sm leading-relaxed ${selected ? "text-white/80" : "text-slate-500"}`}>{description}</p>
+        </div>
+      </div>
+    </button>
+  )
+}
+
+const CATEGORIES = ["DeFi & Finance", "Mining & Infra", "Education", "Gaming", "Social Impact", "Infrastructure", "Other"]
+
 export function WizardSteps({ step, formData, setFormData }: WizardProps) {
-  
-  // STEP 1: IDENTITY
+  const [touched, setTouched] = useState<Record<string, boolean>>({})
+
+  const touch = (field: string) => setTouched(t => ({ ...t, [field]: true }))
+  const err = (field: string, cond: boolean) => touched[field] && cond
+
+  // ─── STEP 1: Creator ───────────────────────────────────────────
   if (step === 1) {
     return (
-      <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
-         <div className="mb-6">
-            <h2 className="text-2xl font-bold text-slate-900">Who is building this?</h2>
-            <p className="text-slate-500 text-sm">Let's get your basic details and social proof.</p>
-         </div>
-         <div className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-5">
-              <div className="space-y-2">
-                 <Label>Creator Name / Org</Label>
-                 <Input placeholder="e.g. Satoshi Nakamoto" className="h-14 rounded-xl" value={formData.creatorName} onChange={(e) => setFormData({...formData, creatorName: e.target.value})} />
-              </div>
-              <div className="space-y-2">
-                 <Label>Email (Private)</Label>
-                 <Input placeholder="you@example.com" className="h-14 rounded-xl" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
-              </div>
+      <div className="space-y-7 animate-in fade-in slide-in-from-right-4 duration-400">
+        <div>
+          <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-1">Step 1 of 3</p>
+          <h2 className="text-2xl font-bold text-slate-900">Who's building this?</h2>
+          <p className="text-slate-400 text-sm mt-1">Your public profile visible to backers.</p>
+        </div>
+
+        <div className="space-y-2">
+          <Label className="font-semibold text-slate-700">
+            Creator Name / Org <span className="text-red-400">*</span>
+          </Label>
+          <Input
+            placeholder="e.g. Satoshi Nakamoto"
+            className={`h-13 rounded-xl text-base ${err("creatorName", !formData.creatorName) ? "border-red-400 focus-visible:ring-red-400" : ""}`}
+            value={formData.creatorName}
+            onChange={(e) => setFormData({ ...formData, creatorName: e.target.value })}
+            onBlur={() => touch("creatorName")}
+          />
+          {err("creatorName", !formData.creatorName) && <FieldError msg="Name is required" />}
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label className="font-semibold text-slate-700">Twitter / X</Label>
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-bold">@</span>
+              <Input
+                placeholder="username"
+                className="pl-7 h-13 rounded-xl"
+                value={formData.twitter}
+                onChange={(e) => setFormData({ ...formData, twitter: e.target.value })}
+              />
             </div>
-            <div className="grid md:grid-cols-3 gap-5">
-               <div className="space-y-2">
-                  <Label>Twitter / X</Label>
-                  <Input placeholder="@username" className="h-14 rounded-xl" value={formData.twitter} onChange={(e) => setFormData({...formData, twitter: e.target.value})} />
-               </div>
-               <div className="space-y-2">
-                  <Label>GitHub</Label>
-                  <Input placeholder="github.com/..." className="h-14 rounded-xl" value={formData.github} onChange={(e) => setFormData({...formData, github: e.target.value})} />
-               </div>
-               <div className="space-y-2">
-                  <Label>Website / Portfolio</Label>
-                  <Input placeholder="https://..." className="h-14 rounded-xl" value={formData.portfolio} onChange={(e) => setFormData({...formData, portfolio: e.target.value})} />
-               </div>
-            </div>
-         </div>
+          </div>
+          <div className="space-y-2">
+            <Label className="font-semibold text-slate-700">GitHub</Label>
+            <Input
+              placeholder="github.com/..."
+              className="h-13 rounded-xl"
+              value={formData.github}
+              onChange={(e) => setFormData({ ...formData, github: e.target.value })}
+            />
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label className="font-semibold text-slate-700">Website / Portfolio</Label>
+          <Input
+            placeholder="https://yourproject.com"
+            className="h-13 rounded-xl"
+            value={formData.portfolio}
+            onChange={(e) => setFormData({ ...formData, portfolio: e.target.value })}
+          />
+        </div>
       </div>
     )
   }
 
-  // STEP 2: BIO (Lots of room to type)
+  // ─── STEP 2: Campaign ──────────────────────────────────────────
   if (step === 2) {
     return (
-      <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
-         <div className="mb-6">
-            <h2 className="text-2xl font-bold text-slate-900">Your Background</h2>
-            <p className="text-slate-500 text-sm">Why are you the right person or team to build this?</p>
-         </div>
-         <div className="space-y-4">
-            <Textarea 
-               placeholder="Tell us about your past experience, previous projects, and what drives you..." 
-               className="h-64 rounded-xl resize-none p-5 text-base leading-relaxed"
-               value={formData.creatorBio}
-               onChange={(e) => setFormData({...formData, creatorBio: e.target.value})}
+      <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-400">
+        <div>
+          <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-1">Step 2 of 3</p>
+          <h2 className="text-2xl font-bold text-slate-900">Your Campaign</h2>
+          <p className="text-slate-400 text-sm mt-1">This information is stored on-chain via the registry.</p>
+        </div>
+
+        <div className="space-y-2">
+          <Label className="font-semibold text-slate-700">
+            Campaign Title <span className="text-red-400">*</span>
+          </Label>
+          <Input
+            placeholder="e.g. Stacks DeFi Academy"
+            className={`h-13 rounded-xl text-base font-bold ${err("title", !formData.title) ? "border-red-400 focus-visible:ring-red-400" : ""}`}
+            value={formData.title}
+            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            onBlur={() => touch("title")}
+          />
+          {err("title", !formData.title) && <FieldError msg="Title is required" />}
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex justify-between items-center">
+            <Label className="font-semibold text-slate-700">
+              Tagline <span className="text-red-400">*</span>
+            </Label>
+            <CharCount value={formData.tagline} max={80} />
+          </div>
+          <Input
+            placeholder="One punchy sentence that sells your idea"
+            className={`h-13 rounded-xl ${err("tagline", !formData.tagline) ? "border-red-400 focus-visible:ring-red-400" : ""}`}
+            value={formData.tagline}
+            maxLength={80}
+            onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
+            onBlur={() => touch("tagline")}
+          />
+          {err("tagline", !formData.tagline) && <FieldError msg="Tagline is required" />}
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label className="font-semibold text-slate-700">Category</Label>
+            <Select
+              onValueChange={(val) => setFormData({ ...formData, category: val })}
+              defaultValue={formData.category}
+            >
+              <SelectTrigger className="h-13 rounded-xl">
+                <SelectValue placeholder="Pick a category" />
+              </SelectTrigger>
+              <SelectContent className="bg-white rounded-xl shadow-xl">
+                {CATEGORIES.map((c) => (
+                  <SelectItem key={c} value={c}>{c}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label className="font-semibold text-slate-700">Cover Image URL</Label>
+            <Input
+              placeholder="https://..."
+              className="h-13 rounded-xl"
+              value={formData.image}
+              onChange={(e) => setFormData({ ...formData, image: e.target.value })}
             />
-         </div>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex justify-between items-center">
+            <Label className="font-semibold text-slate-700">
+              Description <span className="text-red-400">*</span>
+            </Label>
+            <CharCount value={formData.description} max={512} />
+          </div>
+          <Textarea
+            placeholder="What problem are you solving? How does it work? Why now?"
+            className={`h-44 rounded-xl resize-none p-4 text-sm leading-relaxed ${
+              err("description", !formData.description) ? "border-red-400 focus-visible:ring-red-400" : ""
+            }`}
+            maxLength={512}
+            value={formData.description}
+            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+            onBlur={() => touch("description")}
+          />
+          {err("description", !formData.description) && <FieldError msg="Description is required" />}
+        </div>
       </div>
     )
   }
 
- // STEP 3: BASICS
+  // ─── STEP 3: Funding ───────────────────────────────────────────
   if (step === 3) {
-    return (
-      <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
-         <div className="mb-6">
-            <h2 className="text-2xl font-bold text-slate-900">Project Basics</h2>
-            <p className="text-slate-500 text-sm">Define what you are building and give it a face.</p>
-         </div>
-         <div className="space-y-6">
-            <div className="space-y-2">
-               <Label>Project Title</Label>
-               <Input placeholder="e.g. Stacks DeFi Academy" className="h-14 rounded-xl text-lg font-bold" value={formData.title} onChange={(e) => setFormData({...formData, title: e.target.value})} />
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-5">
-               <div className="space-y-2">
-                  <Label>Short Tagline</Label>
-                  <Input placeholder="Explain it in one catchy sentence..." className="h-14 rounded-xl" value={formData.tagline} onChange={(e) => setFormData({...formData, tagline: e.target.value})} />
-               </div>
-    
+    const goalNum = Number(formData.goal)
+    const durationNum = Number(formData.duration)
 
-           
-               <div className="space-y-2">
-                  <Label>Cover Image URL</Label>
-                  <Input 
-                     placeholder="https://example.com/image.png" 
-                     className="h-14 rounded-xl" 
-                     value={formData.image} 
-                     onChange={(e) => setFormData({...formData, image: e.target.value})} 
-                  />
-               </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-5 mt-4">
-              <div className="space-y-2">
-                 <Label>Category</Label>
-                 <Select onValueChange={(val) => setFormData({...formData, category: val})} defaultValue={formData.category}>
-                    <SelectTrigger className="h-14 rounded-xl"><SelectValue /></SelectTrigger>
-                    <SelectContent className="bg-white">
-                       <SelectItem value="DeFi">DeFi & Finance</SelectItem>
-                       <SelectItem value="Mining">Mining & Infra</SelectItem>
-                       <SelectItem value="Education">Education</SelectItem>
-                       <SelectItem value="Gaming">Gaming</SelectItem>
-                    </SelectContent>
-                 </Select>
-              </div>
-              <div className="space-y-2">
-                 <Label>Current Stage</Label>
-                 <Select onValueChange={(val) => setFormData({...formData, projectStage: val})} defaultValue={formData.projectStage}>
-                    <SelectTrigger className="h-14 rounded-xl"><SelectValue /></SelectTrigger>
-                    <SelectContent className="bg-white">
-                       <SelectItem value="Idea">Concept / Idea</SelectItem>
-                       <SelectItem value="Prototype">Prototype / Alpha</SelectItem>
-                       <SelectItem value="MVP">Live MVP</SelectItem>
-                    </SelectContent>
-                 </Select>
-              </div>
-            </div>
-         </div>
-      </div>
-    )
-  }
-  // STEP 4: THE STORY (Massive text box)
-  if (step === 4) {
     return (
-      <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
-         <div className="mb-4">
-            <h2 className="text-2xl font-bold text-slate-900">The Pitch</h2>
-            <p className="text-slate-500 text-sm">Explain the problem and how your product fixes it.</p>
-         </div>
-         <div className="space-y-5">
-            <div className="space-y-2">
-               <Label>Pitch Video URL (Optional but highly recommended)</Label>
-               <Input placeholder="https://youtube.com/..." className="h-14 rounded-xl" value={formData.videoUrl} onChange={(e) => setFormData({...formData, videoUrl: e.target.value})} />
-            </div>
-            <div className="space-y-2">
-               <Label>The Problem & Solution</Label>
-               <Textarea 
-                  placeholder="Dive deep. What specific problem are you solving? How does it work? Why now?" 
-                  className="h-64 rounded-xl resize-none p-5 text-base leading-relaxed"
-                  value={formData.description}
-                  onChange={(e) => setFormData({...formData, description: e.target.value})}
-               />
-            </div>
-         </div>
-      </div>
-    )
-  }
+      <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-400">
+        <div>
+          <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-1">Step 3 of 3</p>
+          <h2 className="text-2xl font-bold text-slate-900">Funding Setup</h2>
+          <p className="text-slate-400 text-sm mt-1">These parameters are written directly to the smart contract.</p>
+        </div>
 
-  // STEP 5: EXECUTION (Stacked big boxes)
-  if (step === 5) {
-    return (
-      <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
-         <div className="mb-4">
-            <h2 className="text-2xl font-bold text-slate-900">Execution Plan</h2>
-            <p className="text-slate-500 text-sm">Show backers exactly how you will spend their funds and hit your goals.</p>
-         </div>
-         <div className="space-y-6">
-            <div className="space-y-2">
-               <Label>Budget Breakdown</Label>
-               <Textarea 
-                  placeholder="e.g., 60% Full-Stack Dev ($6,000), 20% Audits ($2,000), 20% Infrastructure ($2,000)..." 
-                  className="h-32 rounded-xl resize-none p-4"
-                  value={formData.budgetBreakdown}
-                  onChange={(e) => setFormData({...formData, budgetBreakdown: e.target.value})}
-               />
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label className="font-semibold text-slate-700">
+              Goal Amount <span className="text-red-400">*</span>
+            </Label>
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-600 font-bold text-sm">USDCx</span>
+              <Input
+                type="number"
+                min={1}
+                className={`pl-16 h-13 rounded-xl text-lg font-bold ${
+                  err("goal", !goalNum || goalNum <= 0) ? "border-red-400 focus-visible:ring-red-400" : ""
+                }`}
+                value={formData.goal}
+                onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
+                onBlur={() => touch("goal")}
+              />
             </div>
-            <div className="space-y-2">
-               <Label>Product Roadmap</Label>
-               <Textarea 
-                  placeholder="Month 1: Smart contracts finalized. Month 2: Testnet launch. Month 3: Mainnet deployment..." 
-                  className="h-32 rounded-xl resize-none p-4"
-                  value={formData.roadmap}
-                  onChange={(e) => setFormData({...formData, roadmap: e.target.value})}
-               />
+            {err("goal", !goalNum || goalNum <= 0) && <FieldError msg="Enter a goal greater than 0" />}
+          </div>
+
+          <div className="space-y-2">
+            <Label className="font-semibold text-slate-700">
+              Duration <span className="text-red-400">*</span>
+            </Label>
+            <div className="relative">
+              <Input
+                type="number"
+                min={1}
+                max={365}
+                className={`pr-14 h-13 rounded-xl text-lg font-bold ${
+                  err("duration", !durationNum || durationNum <= 0) ? "border-red-400 focus-visible:ring-red-400" : ""
+                }`}
+                value={formData.duration}
+                onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+                onBlur={() => touch("duration")}
+              />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-semibold text-sm pointer-events-none">days</span>
             </div>
-         </div>
+            {err("duration", !durationNum || durationNum <= 0) && <FieldError msg="Enter a duration greater than 0" />}
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <Label className="font-semibold text-slate-700">Funding Model</Label>
+          <div className="space-y-3">
+            <FundingModelCard
+              value="0"
+              selected={formData.fundingModel === "0"}
+              onClick={() => setFormData({ ...formData, fundingModel: "0" })}
+              title="Flexible"
+              description="You keep whatever is raised, even if the goal isn't met. Lower risk for creators."
+              badge="Popular"
+            />
+            <FundingModelCard
+              value="1"
+              selected={formData.fundingModel === "1"}
+              onClick={() => setFormData({ ...formData, fundingModel: "1" })}
+              title="All-or-Nothing"
+              description="Funds are only released if the goal is fully reached. Backers get refunds if it falls short."
+            />
+          </div>
+        </div>
+
+        {goalNum > 0 && durationNum > 0 && (
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Summary</p>
+            <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-slate-700">
+              <span><span className="font-bold">{goalNum.toLocaleString()}</span> USDCx goal</span>
+              <span><span className="font-bold">{durationNum}</span> days (~{(durationNum * 144).toLocaleString()} blocks)</span>
+              <span><span className="font-bold">{formData.fundingModel === "0" ? "Flexible" : "All-or-Nothing"}</span> model</span>
+              <span className="flex items-center gap-1 text-green-600 font-medium">
+                <ShieldCheck className="w-3.5 h-3.5" /> 2% platform fee on success
+              </span>
+            </div>
+          </div>
+        )}
       </div>
     )
   }
 
+  return null
+}
 
- if (step === 6) {
-    return (
-      <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
-         <div className="mb-6">
-            <h2 className="text-2xl font-bold text-slate-900">Funding Goals</h2>
-            <p className="text-slate-500 text-sm">Set your target and define your on-chain rules.</p>
-         </div>
-         
+// Export step count and per-step validators for the parent page
+export const WIZARD_STEPS = 3
 
-         <div className="space-y-2 mb-6">
-            <Label>Funding Asset</Label>
-            <Select onValueChange={(val) => setFormData({...formData, currency: val as "USDCx" | "STX"})} defaultValue={formData.currency}>
-               <SelectTrigger className="h-14 rounded-xl text-base font-bold text-slate-700 bg-white border-slate-200 shadow-sm">
-                  <SelectValue />
-               </SelectTrigger>
-               <SelectContent className="bg-white border-slate-200 shadow-xl rounded-xl z-50">
-                  <SelectItem value="USDCx" className="text-sm font-bold text-blue-600 py-3 cursor-pointer">USDCx (Stablecoin)</SelectItem>
-                  <SelectItem value="STX" disabled className="text-sm font-bold text-slate-300 py-3 cursor-not-allowed">STX — Coming Soon</SelectItem>
-               </SelectContent>
-            </Select>
-         </div>
-
-         <div className="grid grid-cols-2 gap-6">
-            <div className="space-y-2">
-               <Label>Target Amount</Label>
-               <div className="relative">
-     
-                  <span className={`absolute left-4 top-1/2 -translate-y-1/2 font-bold text-sm ${formData.currency === 'USDCx' ? 'text-blue-600' : 'text-orange-500'}`}>
-                     {formData.currency}
-                  </span>
-                  <Input type="number" className="pl-20 h-14 rounded-xl text-lg font-bold" value={formData.goal} onChange={(e) => setFormData({...formData, goal: e.target.value})} />
-               </div>
-            </div>
-            <div className="space-y-2">
-               <Label>Duration (Days)</Label>
-               <Input type="number" className="h-14 rounded-xl text-lg font-bold" value={formData.duration} onChange={(e) => setFormData({...formData, duration: e.target.value})} />
-            </div>
-         </div>
-
-         <div className="space-y-2 mt-6">
-            <Label>Funding Model</Label>
-            <Select onValueChange={(val) => setFormData({...formData, fundingModel: val as "0" | "1"})} defaultValue={formData.fundingModel}>
-               <SelectTrigger className="h-12 rounded-xl text-sm font-semibold text-slate-700 bg-white border-slate-200 shadow-sm">
-                  <SelectValue />
-               </SelectTrigger>
-               <SelectContent className="bg-white border-slate-200 shadow-xl rounded-xl z-50">
-                  <SelectItem value="0" className="text-sm font-medium text-slate-700 py-3 cursor-pointer">Flexible (Keep what you raise)</SelectItem>
-                  <SelectItem value="1" className="text-sm font-medium text-slate-700 py-3 cursor-pointer">All-or-Nothing (Refunds if goal fails)</SelectItem>
-               </SelectContent>
-            </Select>
-         </div>
-
-         <div className={`p-6 rounded-xl border flex gap-4 items-start mt-6 ${formData.currency === 'USDCx' ? 'bg-blue-50 border-blue-100' : 'bg-orange-50 border-orange-100'}`}>
-            <div className="p-2 bg-white rounded-full shadow-sm shrink-0">
-               <Rocket className={`w-5 h-5 ${formData.currency === 'USDCx' ? 'text-blue-500' : 'text-orange-500'}`} />
-            </div>
-            <div>
-               <h4 className={`font-bold ${formData.currency === 'USDCx' ? 'text-blue-900' : 'text-orange-900'}`}>
-                  Raising in {formData.currency}
-               </h4>
-               <p className={`text-sm mt-1 ${formData.currency === 'USDCx' ? 'text-blue-700/80' : 'text-orange-700/80'}`}>
-                  {formData.currency === 'USDCx' 
-                     ? "USDCx ensures your funding runway doesn't evaporate due to market volatility." 
-                     : "STX is great for crypto-native communities, but involves price volatility risk."}
-               </p>
-            </div>
-         </div>
-      </div>
-    )
+export function validateStep(step: number, formData: CreateCampaignData): string | null {
+  if (step === 1 && !formData.creatorName.trim()) return "Creator name is required"
+  if (step === 2) {
+    if (!formData.title.trim()) return "Campaign title is required"
+    if (!formData.tagline.trim()) return "Tagline is required"
+    if (!formData.description.trim()) return "Description is required"
+  }
+  if (step === 3) {
+    if (!Number(formData.goal) || Number(formData.goal) <= 0) return "Enter a valid goal amount"
+    if (!Number(formData.duration) || Number(formData.duration) <= 0) return "Enter a valid duration"
   }
   return null
 }
