@@ -16,6 +16,7 @@ import {
 
 export interface RawCampaign {
   creator: string
+  token: string
   goal: bigint
   deadline: bigint
   totalRaised: bigint
@@ -31,7 +32,8 @@ export interface OnChainCampaign {
   image: string
   category: string
   creator: string
-  currency: "USDCx"
+  token: string
+  currency: "USDCx" | "STX"
   goal: number
   raised: number
   deadline: number
@@ -56,18 +58,19 @@ async function readOnly(functionName: string, functionArgs: ClarityValue[]): Pro
   return cvToJSON(result)
 }
 
-export async function getNonce(): Promise<number> {
-  const json = await readOnly("get-nonce", [])
+export async function getCampaignCount(): Promise<number> {
+  const json = await readOnly("get-campaign-count", [])
   return Number(json.value)
 }
 
 export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
   const json = await readOnly("get-campaign", [uintCV(id)])
   if (!json || json.value === null || json.value === undefined) return null
-  const tuple = json.value.value
-  if (!tuple) return null
+  const tuple = json.value.value ?? json.value
+  if (!tuple || !tuple.creator) return null
   return {
     creator: tuple.creator.value,
+    token: tuple.token.value,
     goal: BigInt(tuple.goal.value),
     deadline: BigInt(tuple.deadline.value),
     totalRaised: BigInt(tuple["total-raised"].value),
@@ -77,12 +80,11 @@ export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
   }
 }
 
+// indiegogo get-donation returns plain uint (default-to u0), not a tuple
 export async function getDonation(campaignId: number, donor: string): Promise<bigint> {
   const json = await readOnly("get-donation", [uintCV(campaignId), standardPrincipalCV(donor)])
   if (!json || json.value === null || json.value === undefined) return BigInt(0)
-  const tuple = json.value.value
-  if (!tuple || !tuple.amount) return BigInt(0)
-  return BigInt(tuple.amount.value)
+  return BigInt(json.value)
 }
 
 export async function getBlockHeight(): Promise<number> {
@@ -97,6 +99,11 @@ function toAmount(units: bigint, decimals = USDCX_DECIMALS): number {
   const whole = units / divisor
   const fraction = units % divisor
   return Number(whole) + Number(fraction) / Number(divisor)
+}
+
+function tokenFqnToCurrency(tokenFqn: string): "USDCx" | "STX" {
+  if (tokenFqn.includes("usdcx")) return "USDCx"
+  return "STX"
 }
 
 export function mapCampaign(raw: RawCampaign, id: number, currentBlock: number): OnChainCampaign {
@@ -116,11 +123,12 @@ export function mapCampaign(raw: RawCampaign, id: number, currentBlock: number):
   return {
     id: String(id),
     title: `Campaign #${id}`,
-    description: "A verified on-chain campaign raising USDCx on Stacks.",
+    description: "A verified on-chain campaign raising funds on Stacks.",
     image: PLACEHOLDER_IMAGES[(id - 1) % PLACEHOLDER_IMAGES.length],
     category: "DeFi",
     creator: raw.creator,
-    currency: "USDCx",
+    token: raw.token,
+    currency: tokenFqnToCurrency(raw.token),
     goal,
     raised,
     deadline: deadlineBlock,
@@ -137,16 +145,15 @@ export async function fetchAllCampaigns(): Promise<{
   count: number
   blockHeight: number
 }> {
-  const [nonce, blockHeight] = await Promise.all([getNonce(), getBlockHeight()])
-  if (nonce === 0) return { campaigns: [], count: 0, blockHeight }
+  const [count, blockHeight] = await Promise.all([getCampaignCount(), getBlockHeight()])
+  if (count === 0) return { campaigns: [], count: 0, blockHeight }
 
-  // IDs are 1-indexed on Stacks contract (nonce starts at 0, first campaign gets ID 1)
-  const ids = Array.from({ length: nonce }, (_, i) => i + 1)
+  const ids = Array.from({ length: count }, (_, i) => i + 1)
   const results = await Promise.all(ids.map((id) => getCampaignRaw(id).catch(() => null)))
 
   const campaigns = results
     .map((raw, i) => (raw ? mapCampaign(raw, ids[i], blockHeight) : null))
     .filter(Boolean) as OnChainCampaign[]
 
-  return { campaigns, count: nonce, blockHeight }
+  return { campaigns, count, blockHeight }
 }

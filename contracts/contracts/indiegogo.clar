@@ -70,6 +70,10 @@
 ;; READ-ONLY FUNCTIONS
 ;; -----------------------------------------------------------
 
+(define-read-only (get-campaign-count)
+  (var-get campaign-count)
+)
+
 (define-read-only (get-campaign (id uint))
   (map-get? campaigns id)
 )
