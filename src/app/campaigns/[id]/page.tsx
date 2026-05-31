@@ -25,6 +25,7 @@ import {
   CONTRACT_NAME,
   USDCX_DECIMALS,
   STACKS_NETWORK,
+  parseTokenFqn,
 } from "@/lib/stacks-config"
 
 const PLACEHOLDER_IMAGES = ["/campaign-1.jpg", "/campaign-2.jpg", "/campaign-3.jpg"]
@@ -180,16 +181,17 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       setTxPending(true)
       toast.loading("Awaiting wallet signature...", { id: "donate" })
 
-      const { uintCV, Pc } = await import("@stacks/transactions")
+      const { uintCV, contractPrincipalCV, Pc } = await import("@stacks/transactions")
       const amountUnits = toUnits(donateAmount)
+      const [tokenAddr, tokenName] = parseTokenFqn(campaign.token)
 
       const pc = Pc.principal(userAddress)
         .willSendLte(amountUnits)
-        .ft(USDCX_FQN as `${string}.${string}`, "usdcx")
+        .ft(campaign.token as `${string}.${string}`, tokenName)
 
       await callContract(
         "donate",
-        [uintCV(campaignIndex), uintCV(amountUnits)],
+        [contractPrincipalCV(tokenAddr, tokenName), uintCV(campaignIndex), uintCV(amountUnits)],
         [pc]
       )
 
@@ -208,8 +210,9 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
     try {
       setTxPending(true)
       toast.loading("Awaiting wallet signature...", { id: "withdraw" })
-      const { uintCV } = await import("@stacks/transactions")
-      await callContract("withdraw", [uintCV(campaignIndex)])
+      const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
+      const [tokenAddr, tokenName] = parseTokenFqn(campaign.token)
+      await callContract("withdraw", [contractPrincipalCV(tokenAddr, tokenName), uintCV(campaignIndex)])
       toast.success("Withdrawal broadcast — confirming on-chain...", { id: "withdraw" })
       setTimeout(() => refetch(), 8000)
     } catch (err) {
@@ -224,8 +227,9 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
     try {
       setTxPending(true)
       toast.loading("Awaiting wallet signature...", { id: "refund" })
-      const { uintCV } = await import("@stacks/transactions")
-      await callContract("claim-refund", [uintCV(campaignIndex)])
+      const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
+      const [tokenAddr, tokenName] = parseTokenFqn(campaign.token)
+      await callContract("claim-refund", [contractPrincipalCV(tokenAddr, tokenName), uintCV(campaignIndex)])
       toast.success(`Refund of ${userDonation} USDCx broadcast...`, { id: "refund" })
       setTimeout(() => refetch(), 8000)
     } catch (err) {

@@ -9,7 +9,7 @@ import { useState, useMemo } from "react"
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { useAllCampaigns, useUserDonations } from "@/lib/hooks/useStacksContract"
 import { OnChainCampaign } from "@/lib/stacks-contract"
-import { FUNDX_CONTRACT_FQN, STACKS_NETWORK } from "@/lib/stacks-config"
+import { FUNDX_CONTRACT_FQN, STACKS_NETWORK, parseTokenFqn } from "@/lib/stacks-config"
 import { toast } from "sonner"
 
 function formatMoney(amount: number) {
@@ -30,11 +30,12 @@ function RefundCard({ c, onSuccess }: { c: Contribution; onSuccess: () => void }
       setPending(true)
       toast.loading("Awaiting wallet signature...", { id: `r-${c.campaign.id}` })
       const { request } = await import("@stacks/connect")
-      const { uintCV } = await import("@stacks/transactions")
+      const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
+      const [tokenAddr, tokenName] = parseTokenFqn(c.campaign.token)
       await request("stx_callContract", {
         contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
         functionName: "claim-refund",
-        functionArgs: [uintCV(Number(c.campaign.id))],
+        functionArgs: [contractPrincipalCV(tokenAddr, tokenName), uintCV(Number(c.campaign.id))],
         network: STACKS_NETWORK as any,
         postConditionMode: "allow",
       } as any)

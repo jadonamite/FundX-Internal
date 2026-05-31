@@ -7,6 +7,14 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
+import {
+  FUNDX_CONTRACT_FQN,
+  STACKS_NETWORK,
+  USDCX_CONTRACT_ADDRESS,
+  USDCX_CONTRACT_NAME,
+  USDCX_DECIMALS,
+  BLOCKS_PER_DAY,
+} from "@/lib/stacks-config"
 
 import { WizardSteps } from "@/components/create/WizardSteps"
 import { LivePreview } from "@/components/create/LivePreview"
@@ -62,17 +70,60 @@ export default function CreateCampaign() {
   const handleNext = () => setStep(step + 1)
   const handleBack = () => setStep(step - 1)
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!isSignedIn) {
-      toast.error("Connect Wallet", {
-        description: "You need a Stacks wallet to deploy.",
-      })
+      toast.error("Connect Wallet", { description: "You need a Stacks wallet to deploy." })
       authenticate()
       return
     }
-    toast.success("Deployment Initiated", {
-      description: "Creating USDCx Fundraising Contract on Stacks...",
-    })
+
+    const goalNumber = Number(formData.goal)
+    const durationNumber = Number(formData.duration)
+    if (!goalNumber || goalNumber <= 0) {
+      toast.error("Invalid goal", { description: "Enter a goal amount greater than 0." })
+      return
+    }
+    if (!durationNumber || durationNumber <= 0) {
+      toast.error("Invalid duration", { description: "Enter a duration in days greater than 0." })
+      return
+    }
+
+    try {
+      toast.loading("Awaiting wallet signature...", { id: "create" })
+
+      const { request } = await import("@stacks/connect")
+      const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
+
+      // USDCx for now; STX support requires a wrapped SIP-010 token address
+      const tokenAddr = USDCX_CONTRACT_ADDRESS
+      const tokenName = USDCX_CONTRACT_NAME
+
+      const goalUnits = BigInt(Math.round(goalNumber * 10 ** USDCX_DECIMALS))
+      const durationBlocks = durationNumber * BLOCKS_PER_DAY
+      const fundingModel = Number(formData.fundingModel)
+
+      await request("stx_callContract", {
+        contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
+        functionName: "create-campaign",
+        functionArgs: [
+          contractPrincipalCV(tokenAddr, tokenName),
+          uintCV(goalUnits),
+          uintCV(durationBlocks),
+          uintCV(fundingModel),
+        ],
+        network: STACKS_NETWORK as any,
+        postConditionMode: "deny",
+        postConditions: [],
+      } as any)
+
+      toast.success("Campaign deployed!", {
+        id: "create",
+        description: "Your campaign is live on Stacks.",
+      })
+    } catch (err) {
+      console.error(err)
+      toast.error("Deployment Failed", { id: "create", description: "Transaction cancelled or failed." })
+    }
   }
 
   return (
