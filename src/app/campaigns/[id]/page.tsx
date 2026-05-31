@@ -184,10 +184,11 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       const { uintCV, contractPrincipalCV, Pc } = await import("@stacks/transactions")
       const amountUnits = toUnits(donateAmount)
       const [tokenAddr, tokenName] = parseTokenFqn(campaign.token)
+      const assetName = getTokenAssetName(tokenName)
 
       const pc = Pc.principal(userAddress)
         .willSendLte(amountUnits)
-        .ft(campaign.token as `${string}.${string}`, tokenName)
+        .ft(campaign.token as `${string}.${string}`, assetName)
 
       await callContract(
         "donate",

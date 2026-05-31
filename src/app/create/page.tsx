@@ -9,12 +9,14 @@ import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
 import {
   FUNDX_CONTRACT_FQN,
+  REGISTRY_CONTRACT_FQN,
   STACKS_NETWORK,
   USDCX_CONTRACT_ADDRESS,
   USDCX_CONTRACT_NAME,
   USDCX_DECIMALS,
   BLOCKS_PER_DAY,
 } from "@/lib/stacks-config"
+import { getCampaignCount } from "@/lib/stacks-contract"
 
 import { WizardSteps } from "@/components/create/WizardSteps"
 import { LivePreview } from "@/components/create/LivePreview"
@@ -102,6 +104,10 @@ export default function CreateCampaign() {
       const durationBlocks = durationNumber * BLOCKS_PER_DAY
       const fundingModel = Number(formData.fundingModel)
 
+      // Read current count so we can predict the new campaign ID
+      const currentCount = await getCampaignCount()
+      const newId = currentCount + 1
+
       await request("stx_callContract", {
         contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
         functionName: "create-campaign",
@@ -116,9 +122,31 @@ export default function CreateCampaign() {
         postConditions: [],
       } as any)
 
-      toast.success("Campaign deployed!", {
+      toast.loading("Campaign deployed! Registering metadata...", { id: "create" })
+
+      const { stringUtf8CV } = await import("@stacks/transactions")
+
+      await request("stx_callContract", {
+        contract: REGISTRY_CONTRACT_FQN as `${string}.${string}`,
+        functionName: "register",
+        functionArgs: [
+          uintCV(newId),
+          stringUtf8CV(formData.title || `Campaign #${newId}`),
+          stringUtf8CV(formData.tagline || ""),
+          stringUtf8CV(formData.description || ""),
+          stringUtf8CV(formData.image || ""),
+          stringUtf8CV(formData.category || "DeFi"),
+          stringUtf8CV(""),
+          stringUtf8CV(formData.twitter ? `twitter:${formData.twitter}` : ""),
+        ],
+        network: STACKS_NETWORK as any,
+        postConditionMode: "deny",
+        postConditions: [],
+      } as any)
+
+      toast.success("Campaign live!", {
         id: "create",
-        description: "Your campaign is live on Stacks.",
+        description: "Your campaign and metadata are on Stacks.",
       })
     } catch (err) {
       console.error(err)

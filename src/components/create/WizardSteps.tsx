@@ -213,7 +213,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                </SelectTrigger>
                <SelectContent className="bg-white border-slate-200 shadow-xl rounded-xl z-50">
                   <SelectItem value="USDCx" className="text-sm font-bold text-blue-600 py-3 cursor-pointer">USDCx (Stablecoin)</SelectItem>
-                  <SelectItem value="STX" className="text-sm font-bold text-orange-500 py-3 cursor-pointer">STX (Native Stacks)</SelectItem>
+                  <SelectItem value="STX" disabled className="text-sm font-bold text-slate-300 py-3 cursor-not-allowed">STX — Coming Soon</SelectItem>
                </SelectContent>
             </Select>
          </div>

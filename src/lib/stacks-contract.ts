@@ -8,6 +8,7 @@ import {
 import {
   CONTRACT_ADDRESS,
   CONTRACT_NAME,
+  REGISTRY_CONTRACT_NAME,
   STACKS_NETWORK,
   USDCX_DECIMALS,
   BLOCKS_PER_DAY,
@@ -25,12 +26,24 @@ export interface RawCampaign {
   fundingModel: number
 }
 
+export interface RegistryMeta {
+  title: string
+  tagline: string
+  description: string
+  imageUri: string
+  category: string
+  location: string
+  social: string
+}
+
 export interface OnChainCampaign {
   id: string
   title: string
+  tagline: string
   description: string
   image: string
   category: string
+  location: string
   creator: string
   token: string
   currency: "USDCx" | "STX"
@@ -46,10 +59,14 @@ export interface OnChainCampaign {
 
 const PLACEHOLDER_IMAGES = ["/campaign-1.jpg", "/campaign-2.jpg", "/campaign-3.jpg"]
 
-async function readOnly(functionName: string, functionArgs: ClarityValue[]): Promise<any> {
+async function readOnly(
+  contractName: string,
+  functionName: string,
+  functionArgs: ClarityValue[]
+): Promise<any> {
   const result = await fetchCallReadOnlyFunction({
     contractAddress: CONTRACT_ADDRESS,
-    contractName: CONTRACT_NAME,
+    contractName,
     functionName,
     functionArgs,
     network: STACKS_NETWORK,
@@ -59,12 +76,12 @@ async function readOnly(functionName: string, functionArgs: ClarityValue[]): Pro
 }
 
 export async function getCampaignCount(): Promise<number> {
-  const json = await readOnly("get-campaign-count", [])
+  const json = await readOnly(CONTRACT_NAME, "get-campaign-count", [])
   return Number(json.value)
 }
 
 export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
-  const json = await readOnly("get-campaign", [uintCV(id)])
+  const json = await readOnly(CONTRACT_NAME, "get-campaign", [uintCV(id)])
   if (!json || json.value === null || json.value === undefined) return null
   const tuple = json.value.value ?? json.value
   if (!tuple || !tuple.creator) return null
@@ -80,9 +97,32 @@ export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
   }
 }
 
+export async function getRegistryMeta(id: number): Promise<RegistryMeta | null> {
+  try {
+    const json = await readOnly(REGISTRY_CONTRACT_NAME, "get-meta", [uintCV(id)])
+    if (!json || json.value === null || json.value === undefined) return null
+    const tuple = json.value.value ?? json.value
+    if (!tuple || !tuple.title) return null
+    return {
+      title: tuple.title.value,
+      tagline: tuple.tagline?.value ?? "",
+      description: tuple.description?.value ?? "",
+      imageUri: tuple["image-uri"]?.value ?? "",
+      category: tuple.category?.value ?? "",
+      location: tuple.location?.value ?? "",
+      social: tuple.social?.value ?? "",
+    }
+  } catch {
+    return null
+  }
+}
+
 // indiegogo get-donation returns plain uint (default-to u0), not a tuple
 export async function getDonation(campaignId: number, donor: string): Promise<bigint> {
-  const json = await readOnly("get-donation", [uintCV(campaignId), standardPrincipalCV(donor)])
+  const json = await readOnly(CONTRACT_NAME, "get-donation", [
+    uintCV(campaignId),
+    standardPrincipalCV(donor),
+  ])
   if (!json || json.value === null || json.value === undefined) return BigInt(0)
   return BigInt(json.value)
 }
@@ -106,7 +146,12 @@ function tokenFqnToCurrency(tokenFqn: string): "USDCx" | "STX" {
   return "STX"
 }
 
-export function mapCampaign(raw: RawCampaign, id: number, currentBlock: number): OnChainCampaign {
+export function mapCampaign(
+  raw: RawCampaign,
+  id: number,
+  currentBlock: number,
+  meta?: RegistryMeta | null
+): OnChainCampaign {
   const deadlineBlock = Number(raw.deadline)
   const isPast = currentBlock >= deadlineBlock
   const isFlexible = raw.fundingModel === 0
@@ -122,10 +167,12 @@ export function mapCampaign(raw: RawCampaign, id: number, currentBlock: number):
 
   return {
     id: String(id),
-    title: `Campaign #${id}`,
-    description: "A verified on-chain campaign raising funds on Stacks.",
-    image: PLACEHOLDER_IMAGES[(id - 1) % PLACEHOLDER_IMAGES.length],
-    category: "DeFi",
+    title: meta?.title || `Campaign #${id}`,
+    tagline: meta?.tagline ?? "",
+    description: meta?.description || "A verified on-chain campaign raising funds on Stacks.",
+    image: meta?.imageUri || PLACEHOLDER_IMAGES[(id - 1) % PLACEHOLDER_IMAGES.length],
+    category: meta?.category || "DeFi",
+    location: meta?.location ?? "",
     creator: raw.creator,
     token: raw.token,
     currency: tokenFqnToCurrency(raw.token),
@@ -149,10 +196,14 @@ export async function fetchAllCampaigns(): Promise<{
   if (count === 0) return { campaigns: [], count: 0, blockHeight }
 
   const ids = Array.from({ length: count }, (_, i) => i + 1)
-  const results = await Promise.all(ids.map((id) => getCampaignRaw(id).catch(() => null)))
 
-  const campaigns = results
-    .map((raw, i) => (raw ? mapCampaign(raw, ids[i], blockHeight) : null))
+  const [rawResults, metaResults] = await Promise.all([
+    Promise.all(ids.map((id) => getCampaignRaw(id).catch(() => null))),
+    Promise.all(ids.map((id) => getRegistryMeta(id).catch(() => null))),
+  ])
+
+  const campaigns = rawResults
+    .map((raw, i) => (raw ? mapCampaign(raw, ids[i], blockHeight, metaResults[i]) : null))
     .filter(Boolean) as OnChainCampaign[]
 
   return { campaigns, count, blockHeight }

@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react"
 import {
   fetchAllCampaigns,
   getCampaignRaw,
+  getRegistryMeta,
   getDonation,
   getBlockHeight,
   mapCampaign,
@@ -62,10 +63,10 @@ export function useCampaign(id: number) {
     let cancelled = false
     setIsLoading(true)
     setError(null)
-    Promise.all([getCampaignRaw(id), getBlockHeight()])
-      .then(([raw, blockHeight]) => {
+    Promise.all([getCampaignRaw(id), getBlockHeight(), getRegistryMeta(id)])
+      .then(([raw, blockHeight, meta]) => {
         if (cancelled) return
-        setCampaign(raw ? mapCampaign(raw, id, blockHeight) : null)
+        setCampaign(raw ? mapCampaign(raw, id, blockHeight, meta) : null)
       })
       .catch((e) => {
         if (cancelled) return
