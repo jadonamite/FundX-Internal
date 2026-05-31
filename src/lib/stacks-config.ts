@@ -25,3 +25,13 @@ export function parseTokenFqn(fqn: string): [string, string] {
   const dot = fqn.lastIndexOf(".")
   return [fqn.slice(0, dot), fqn.slice(dot + 1)]
 }
+
+// Maps contract names to their define-fungible-token asset identifier
+const TOKEN_ASSET_NAMES: Record<string, string> = {
+  "usdcx-v2": "usdcx",
+  "usdcx": "usdcx",
+}
+
+export function getTokenAssetName(contractName: string): string {
+  return TOKEN_ASSET_NAMES[contractName] ?? contractName
+}

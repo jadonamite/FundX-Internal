@@ -20,12 +20,12 @@ import { getCampaign } from "@/lib/data"
 import { useCampaign, useDonation } from "@/lib/hooks/useStacksContract"
 import {
   FUNDX_CONTRACT_FQN,
-  USDCX_FQN,
   CONTRACT_ADDRESS,
   CONTRACT_NAME,
   USDCX_DECIMALS,
   STACKS_NETWORK,
   parseTokenFqn,
+  getTokenAssetName,
 } from "@/lib/stacks-config"
 
 const PLACEHOLDER_IMAGES = ["/campaign-1.jpg", "/campaign-2.jpg", "/campaign-3.jpg"]
