@@ -184,36 +184,48 @@ export default function CreateCampaign() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-start">
-          <div className="space-y-8">
-            <div className="flex gap-4 mb-8 overflow-x-auto pb-2 no-scrollbar">
-              {["Identity", "Bio", "Basics", "Story", "Execute", "Fund"].map((label, idx) => {
-                const num = idx + 1
-                const isCompleted = step > num
-                const isCurrent = step === num
+          <div className="space-y-6">
 
-                let circleStyle = "bg-white text-slate-300 border-slate-200"
-                if (isCompleted) circleStyle = "bg-[#FF6B4A] text-white border-[#FF6B4A]"
-                else if (isCurrent) circleStyle = "bg-slate-900 text-white border-slate-900"
-
-                return (
-                  <div key={num} className="flex items-center gap-2 shrink-0">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2 transition-all ${circleStyle}`}>
-                      {isCompleted ? <CheckCircle2 className="w-8 h-8" /> : num}
+            {/* Step progress bar */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-xs font-bold text-slate-400 uppercase tracking-widest">
+                {["Creator", "Campaign", "Funding"].map((label, idx) => {
+                  const num = idx + 1
+                  const isDone = step > num
+                  const isActive = step === num
+                  return (
+                    <div key={num} className={`flex items-center gap-1.5 transition-colors ${isActive ? "text-slate-900" : isDone ? "text-orange-500" : "text-slate-300"}`}>
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-black border-2 transition-all ${
+                        isDone ? "bg-orange-500 border-orange-500 text-white" :
+                        isActive ? "bg-slate-900 border-slate-900 text-white" :
+                        "bg-white border-slate-200 text-slate-300"
+                      }`}>
+                        {isDone ? <CheckCircle2 className="w-4 h-4" /> : num}
+                      </div>
+                      <span>{label}</span>
                     </div>
-                    <span className={`text-sm font-bold ${isCompleted || isCurrent ? "text-slate-900" : "text-slate-300"}`}>{label}</span>
-                  </div>
-                )
-              })}
+                  )
+                })}
+              </div>
+              <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-orange-400 to-orange-500 rounded-full transition-all duration-500"
+                  style={{ width: `${((step - 1) / (WIZARD_STEPS - 1)) * 100}%` }}
+                />
+              </div>
             </div>
 
-            <div className="bg-white p-8 pb-28 rounded-[2rem] shadow-xl border border-slate-100 min-h-[550px] relative">
-              <WizardSteps
-                step={step}
-                formData={formData}
-                setFormData={setFormData}
-              />
+            {/* Form card */}
+            <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100 min-h-[540px] flex flex-col">
+              <div className="flex-1">
+                <WizardSteps
+                  step={step}
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+              </div>
 
-              <div className="absolute bottom-8 left-8 right-8 flex justify-between">
+              <div className="flex justify-between pt-8 mt-8 border-t border-slate-100">
                 {step > 1 ? (
                   <Button
                     variant="ghost"
@@ -226,12 +238,12 @@ export default function CreateCampaign() {
                   <div />
                 )}
 
-                {step < 6 ? (
+                {step < WIZARD_STEPS ? (
                   <Button
                     onClick={handleNext}
                     className="h-12 px-8 rounded-xl bg-slate-900 text-white hover:bg-slate-800 hover:scale-105 transition-all"
                   >
-                    Next Step <ArrowRight className="w-4 h-4 ml-2" />
+                    Continue <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 ) : (
                   <Button
