@@ -267,14 +267,14 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
               {campaign.fundingModel}
             </Badge>
             <div className="flex items-center text-slate-500 text-sm font-medium">
-              <MapPin className="w-3 h-3 mr-1" /> Stacks Mainnet
+              <MapPin className="w-3 h-3 mr-1" /> {campaign.location || "Stacks Mainnet"}
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
-            Campaign #{id}
+            {campaign.title}
           </h1>
           <p className="text-xl text-slate-500 max-w-3xl">
-            A verified on-chain campaign raising USDCx on Stacks.
+            {campaign.description}
           </p>
         </div>
 
