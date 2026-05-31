@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { 
@@ -18,24 +18,27 @@ export function ConnectWallet() {
   const { authenticate, signOut, isSignedIn, walletData } = useStacks()
   const [mounted, setMounted] = useState(false)
   const [justConnected, setJustConnected] = useState(false)
+  const prevSignedIn = useRef<boolean | null>(null)
 
-  // 1. Connection Effect & Toast
   useEffect(() => {
     setMounted(true)
-    if (isSignedIn) {
-      // Trigger animations
+  }, [])
+
+  // Only fire toast + animation when transitioning false → true (not on page load)
+  useEffect(() => {
+    if (!mounted) return
+    if (prevSignedIn.current === false && isSignedIn) {
       setJustConnected(true)
-      
-      // Trigger Toast
       toast.success("Wallet Connected", {
         description: "Ready to fund the future.",
         duration: 3000,
       })
-
       const timer = setTimeout(() => setJustConnected(false), 2000)
+      prevSignedIn.current = true
       return () => clearTimeout(timer)
     }
-  }, [isSignedIn])
+    prevSignedIn.current = isSignedIn
+  }, [isSignedIn, mounted])
 
   const copyAddress = () => {
     if (walletData?.stxAddress) {

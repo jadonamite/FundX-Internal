@@ -46,6 +46,7 @@ export interface CreateCampaignData {
 export default function CreateCampaign() {
   const { isSignedIn, authenticate } = useStacks()
   const [step, setStep] = useState(1)
+  const [isDeploying, setIsDeploying] = useState(false)
 
   const [formData, setFormData] = useState<CreateCampaignData>({
     creatorName: "",
