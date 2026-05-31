@@ -463,7 +463,14 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                 <span>Secured by FundX Escrow on Stacks</span>
               </div>
 
-              <Button variant="ghost" className="w-full text-slate-500 hover:text-slate-900 hover:bg-slate-50 rounded-xl h-12">
+              <Button
+                variant="ghost"
+                className="w-full text-slate-500 hover:text-slate-900 hover:bg-slate-50 rounded-xl h-12"
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href)
+                  toast.success("Link copied!", { description: "Share this campaign with your network." })
+                }}
+              >
                 <Share2 className="w-4 h-4 mr-2" /> Share this campaign
               </Button>
             </div>
