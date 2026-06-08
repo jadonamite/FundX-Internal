@@ -10,6 +10,7 @@ import { useStacks } from "@/components/fundx/StacksProvider"
 import { useAllCampaigns, useUserDonations } from "@/lib/hooks/useStacksContract"
 import { OnChainCampaign } from "@/lib/stacks-contract"
 import { FUNDX_CONTRACT_FQN, STACKS_NETWORK, parseTokenFqn } from "@/lib/stacks-config"
+import { waitForTx } from "@/lib/utils"
 import { toast } from "sonner"
 
 function formatMoney(amount: number) {
@@ -32,15 +33,24 @@ function RefundCard({ c, onSuccess }: { c: Contribution; onSuccess: () => void }
       const { request } = await import("@stacks/connect")
       const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
       const [tokenAddr, tokenName] = parseTokenFqn(c.campaign.token)
-      await request("stx_callContract", {
+      const result = await request("stx_callContract", {
         contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
         functionName: "claim-refund",
         functionArgs: [contractPrincipalCV(tokenAddr, tokenName), uintCV(Number(c.campaign.id))],
         network: STACKS_NETWORK as any,
         postConditionMode: "allow",
       } as any)
-      toast.success(`Refund of ${c.myContribution} USDCx broadcast...`, { id: `r-${c.campaign.id}` })
-      setTimeout(onSuccess, 8000)
+      toast.loading("Confirming on-chain...", { id: `r-${c.campaign.id}` })
+      const status = await waitForTx((result as any)?.txid ?? "")
+      if (status === "success") {
+        toast.success(`${c.myContribution} USDCx refunded!`, { id: `r-${c.campaign.id}` })
+        onSuccess()
+      } else if (status === "failed") {
+        toast.error("Refund failed on-chain", { id: `r-${c.campaign.id}` })
+      } else {
+        toast.info("Still confirming — check your wallet", { id: `r-${c.campaign.id}` })
+        onSuccess()
+      }
     } catch (err) {
       console.error(err)
       toast.error("Refund Failed", { id: `r-${c.campaign.id}`, description: "Transaction cancelled or failed." })

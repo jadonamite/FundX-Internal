@@ -10,6 +10,7 @@ import { useStacks } from "@/components/fundx/StacksProvider"
 import { useAllCampaigns } from "@/lib/hooks/useStacksContract"
 import { OnChainCampaign } from "@/lib/stacks-contract"
 import { FUNDX_CONTRACT_FQN, STACKS_NETWORK, parseTokenFqn } from "@/lib/stacks-config"
+import { waitForTx } from "@/lib/utils"
 import { toast } from "sonner"
 
 function formatMoney(amount: number) {
@@ -35,7 +36,7 @@ export function CreatorTab() {
       const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
       const [tokenAddr, tokenName] = parseTokenFqn(campaign.token)
 
-      await request("stx_callContract", {
+      const result = await request("stx_callContract", {
         contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
         functionName: "withdraw",
         functionArgs: [contractPrincipalCV(tokenAddr, tokenName), uintCV(Number(campaign.id))],
@@ -43,8 +44,17 @@ export function CreatorTab() {
         postConditionMode: "allow",
       } as any)
 
-      toast.success("Withdrawal broadcast — confirming on-chain...", { id: `w-${campaign.id}` })
-      setTimeout(() => refetch(), 8000)
+      toast.loading("Confirming on-chain...", { id: `w-${campaign.id}` })
+      const status = await waitForTx((result as any)?.txid ?? "")
+      if (status === "success") {
+        toast.success("Withdrawal confirmed!", { id: `w-${campaign.id}` })
+        refetch()
+      } else if (status === "failed") {
+        toast.error("Withdrawal failed on-chain", { id: `w-${campaign.id}` })
+      } else {
+        toast.info("Still confirming — check your wallet", { id: `w-${campaign.id}` })
+        refetch()
+      }
     } catch (err) {
       console.error(err)
       toast.error("Withdrawal Failed", { id: `w-${campaign.id}`, description: "Transaction cancelled or failed." })

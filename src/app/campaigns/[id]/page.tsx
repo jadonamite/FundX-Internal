@@ -16,6 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Clock, ShieldCheck, Share2, MapPin, ArrowLeft, Loader2, CheckCircle2, XCircle, Wallet } from "lucide-react"
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
+import { waitForTx } from "@/lib/utils"
 import { getCampaign } from "@/lib/data"
 import { useCampaign, useDonation } from "@/lib/hooks/useStacksContract"
 import {
@@ -190,15 +191,24 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
         .willSendLte(amountUnits)
         .ft(campaign.token as `${string}.${string}`, assetName)
 
-      await callContract(
+      const result = await callContract(
         "donate",
         [contractPrincipalCV(tokenAddr, tokenName), uintCV(campaignIndex), uintCV(amountUnits)],
         [pc]
       )
 
-      toast.success("Donation broadcast — confirming on-chain...", { id: "donate" })
       setDonateAmount("")
-      setTimeout(() => refetch(), 8000)
+      toast.loading("Confirming on-chain...", { id: "donate" })
+      const status = await waitForTx((result as any)?.txid ?? "")
+      if (status === "success") {
+        toast.success("Donation confirmed!", { id: "donate" })
+        refetch()
+      } else if (status === "failed") {
+        toast.error("Donation failed on-chain", { id: "donate", description: "The transaction was rejected." })
+      } else {
+        toast.info("Still confirming...", { id: "donate", description: "Check your wallet for the tx status." })
+        refetch()
+      }
     } catch (err) {
       console.error(err)
       toast.error("Donation Failed", { id: "donate", description: "Transaction cancelled or failed." })
@@ -213,9 +223,18 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       toast.loading("Awaiting wallet signature...", { id: "withdraw" })
       const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
       const [tokenAddr, tokenName] = parseTokenFqn(campaign.token)
-      await callContract("withdraw", [contractPrincipalCV(tokenAddr, tokenName), uintCV(campaignIndex)])
-      toast.success("Withdrawal broadcast — confirming on-chain...", { id: "withdraw" })
-      setTimeout(() => refetch(), 8000)
+      const result = await callContract("withdraw", [contractPrincipalCV(tokenAddr, tokenName), uintCV(campaignIndex)])
+      toast.loading("Confirming on-chain...", { id: "withdraw" })
+      const status = await waitForTx((result as any)?.txid ?? "")
+      if (status === "success") {
+        toast.success("Withdrawal confirmed!", { id: "withdraw" })
+        refetch()
+      } else if (status === "failed") {
+        toast.error("Withdrawal failed on-chain", { id: "withdraw", description: "The transaction was rejected." })
+      } else {
+        toast.info("Still confirming...", { id: "withdraw", description: "Check your wallet for the tx status." })
+        refetch()
+      }
     } catch (err) {
       console.error(err)
       toast.error("Withdrawal Failed", { id: "withdraw", description: "Transaction cancelled or failed." })
@@ -230,9 +249,18 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       toast.loading("Awaiting wallet signature...", { id: "refund" })
       const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
       const [tokenAddr, tokenName] = parseTokenFqn(campaign.token)
-      await callContract("claim-refund", [contractPrincipalCV(tokenAddr, tokenName), uintCV(campaignIndex)])
-      toast.success(`Refund of ${userDonation} USDCx broadcast...`, { id: "refund" })
-      setTimeout(() => refetch(), 8000)
+      const result = await callContract("claim-refund", [contractPrincipalCV(tokenAddr, tokenName), uintCV(campaignIndex)])
+      toast.loading("Confirming on-chain...", { id: "refund" })
+      const status = await waitForTx((result as any)?.txid ?? "")
+      if (status === "success") {
+        toast.success(`${userDonation} USDCx refunded!`, { id: "refund" })
+        refetch()
+      } else if (status === "failed") {
+        toast.error("Refund failed on-chain", { id: "refund", description: "The transaction was rejected." })
+      } else {
+        toast.info("Still confirming...", { id: "refund", description: "Check your wallet for the tx status." })
+        refetch()
+      }
     } catch (err) {
       console.error(err)
       toast.error("Refund Failed", { id: "refund", description: "Transaction cancelled or failed." })

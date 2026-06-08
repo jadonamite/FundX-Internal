@@ -6,6 +6,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Campaign, getHeroCampaign, getSideCampaigns } from "@/lib/data"
+import { useAllCampaigns } from "@/lib/hooks/useStacksContract"
+import { OnChainCampaign } from "@/lib/stacks-contract"
 
 interface CampaignFanProps {
   deckSlotRef: React.RefObject<HTMLDivElement | null>
@@ -82,10 +84,27 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
   const [deckOffset, setDeckOffset] = useState(0)
   const [measured, setMeasured] = useState(false)
 
-  const hero = getHeroCampaign()
-  const sideCampaigns = getSideCampaigns()
-  const leftCard = sideCampaigns[0]
-  const rightCard = sideCampaigns[1]
+  const { campaigns: liveChain } = useAllCampaigns()
+
+  // Use live on-chain campaigns if available, fall back to mock data
+  const activeLive = liveChain.filter((c) => c.status === "active")
+  const toCard = (c: OnChainCampaign): Campaign => ({
+    id: c.id, title: c.title, tagline: c.tagline ?? "", description: c.description,
+    category: c.category, projectStage: "MVP", location: "",
+    raised: c.raised, goal: c.goal, currency: c.currency,
+    image: c.image, creator: c.creator, creatorImage: "", creatorBio: "",
+    twitter: "", github: "", portfolio: "", videoUrl: "",
+    budgetBreakdown: "", roadmap: "", daysLeft: c.daysLeft,
+    backers: 0, status: c.status, fundingModel: c.fundingModel,
+  })
+
+  const mockHero = getHeroCampaign()
+  const mockSide = getSideCampaigns()
+
+  const hero   = activeLive.length >= 1 ? toCard(activeLive[0]) : mockHero
+  const leftCard  = activeLive.length >= 2 ? toCard(activeLive[1]) : mockSide[0]
+  const rightCard = activeLive.length >= 3 ? toCard(activeLive[2]) : mockSide[1]
+
   const getProgress = (raised: number, goal: number) =>
     Math.min((raised / goal) * 100, 100)
 
