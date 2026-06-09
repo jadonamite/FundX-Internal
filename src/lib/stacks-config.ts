@@ -2,15 +2,20 @@ import { STACKS_MAINNET } from "@stacks/network"
 
 export const STACKS_NETWORK = STACKS_MAINNET
 
+// Escrow + registry deployer (CONTRACT-OWNER of the escrow)
 export const CONTRACT_ADDRESS = "SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39"
-export const CONTRACT_NAME = "indiegogo-v2"
+// Best-of-both-worlds escrow: multi-token allowlist + working enumeration.
+// NOTE: must be deployed and have USDCx allow-listed (set-allowed-token) before live.
+export const CONTRACT_NAME = "fundx-escrow-v3"
 export const FUNDX_CONTRACT_FQN = `${CONTRACT_ADDRESS}.${CONTRACT_NAME}` as const
 
 export const REGISTRY_CONTRACT_NAME = "fundx-registry"
 export const REGISTRY_CONTRACT_FQN = `${CONTRACT_ADDRESS}.${REGISTRY_CONTRACT_NAME}` as const
 
-export const USDCX_CONTRACT_ADDRESS = CONTRACT_ADDRESS
-export const USDCX_CONTRACT_NAME = "usdcx-v2"
+// Real USDCx on Stacks mainnet (separate deployer from the escrow).
+// Contract `usdcx`, FT asset `usdcx-token`, 6 decimals.
+export const USDCX_CONTRACT_ADDRESS = "SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE"
+export const USDCX_CONTRACT_NAME = "usdcx"
 export const USDCX_FQN = `${USDCX_CONTRACT_ADDRESS}.${USDCX_CONTRACT_NAME}` as const
 
 export const USDCX_DECIMALS = 6
@@ -29,10 +34,11 @@ export function parseTokenFqn(fqn: string): [string, string] {
   return [fqn.slice(0, dot), fqn.slice(dot + 1)]
 }
 
-// Maps contract names to their define-fungible-token asset identifier
+// Maps a token's contract name to its define-fungible-token asset identifier.
+// Needed to build SIP-010 post-conditions on donate.
 const TOKEN_ASSET_NAMES: Record<string, string> = {
-  "usdcx-v2": "usdcx",
-  "usdcx": "usdcx",
+  "usdcx": "usdcx-token", // real USDCx: SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx
+  "usdcx-v2": "usdcx",    // legacy mock token
 }
 
 export function getTokenAssetName(contractName: string): string {
