@@ -164,14 +164,11 @@ Contract assigns:
 
 Backers:
 
-* Approve USDCx transfer
-* Donate to campaign vault
+* Transfer USDCx into the campaign vault (single SIP-010 transfer, no approve step)
 * Have donation tracked on-chain
 
-If goal would be exceeded:
-
-* Only remaining amount is accepted
-* Excess is not transferred
+Donations are accepted in full for the entire active window. There is no goal
+cap — a campaign may raise beyond its stated goal until the deadline passes.
 
 ---
 
