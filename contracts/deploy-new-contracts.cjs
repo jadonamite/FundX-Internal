@@ -22,12 +22,8 @@ const DELAY_MS = 20000;
 
 const CONTRACTS = [
   {
-    name:    'fundx-tips',
-    file:    resolve(__dirname, 'contracts/fundx-tips.clar'),
-  },
-  {
-    name:    'fundx-milestone',
-    file:    resolve(__dirname, 'contracts/fundx-milestone.clar'),
+    name:    'fundx-escrow-v3',
+    file:    resolve(__dirname, 'contracts/fundx-escrow-v3.clar'),
   },
 ];
 

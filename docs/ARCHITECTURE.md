@@ -11,7 +11,8 @@ Deployer / contract principal: `SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39`
 
 | Deployed name | Source | Counter | Tokens | Used by UI |
 |---|---|---|---|---|
-| `indiegogo-v2` | `indiegogo.clar` | `campaign-count` | multi-token allowlist | ✅ primary |
+| `fundx-escrow-v3` | `fundx-escrow-v3.clar` | `campaign-count` (+`get-nonce` alias) | multi-token allowlist | 🔜 new primary (pending deploy) |
+| `indiegogo-v2` | `indiegogo.clar` | `campaign-count` | multi-token allowlist | superseded by v3 |
 | `fundx-escrow-v2` | `fundx-escrow.clar` | `campaign-nonce` | USDCx-only (`.usdcx-v2`) | ❌ |
 | `fundx-milestone` | `fundx-milestone.clar` | `campaign-nonce` | USDCx-only | ❌ |
 | `fundx-tips` | `fundx-tips.clar` | — (stats only) | USDCx-only | ❌ |
@@ -20,9 +21,10 @@ Deployer / contract principal: `SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39`
 | `sip-010-trait-v2` | `sip-010-trait-ft-standard.clar` | — | n/a | trait dep |
 
 > `usdcx-mock.clar` is explicitly marked "LOCAL TESTING ONLY — DO NOT DEPLOY TO
-> MAINNET" in its own header, yet it is the live settlement token. It is an
-> owner-mintable `define-fungible-token`. Production target is **aeUSDC** — see
-> [`TODO.md`](TODO.md).
+> MAINNET" in its own header, yet it is the original live settlement token. It is an
+> owner-mintable `define-fungible-token`. The real settlement token is **USDCx**
+> `SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx` (FT asset `usdcx-token`,
+> 6 decimals) — the frontend now targets it. See [`TODO.md`](TODO.md).
 
 ---
 
@@ -70,8 +72,14 @@ Both implement the same flexible / all-or-nothing escrow. They diverge:
 
 **Assessment:** `fundx-escrow-v2` is the cleaner, safer design (working enumeration,
 true refund cleanup, self-documenting tuples). `indiegogo-v2` wins only on multi-token
-flexibility, which is optional for a single-stablecoin product — and its deployed copy
-is missing `get-campaign-count`. See [`TODO.md`](TODO.md) for the resolution options.
+flexibility — and its deployed copy is missing `get-campaign-count`.
+
+### Resolution: `fundx-escrow-v3` (best of both worlds)
+`fundx-escrow-v3.clar` merges both: indiegogo's **multi-token allowlist + per-campaign
+token** with fundx-escrow's **working enumeration** (`get-campaign-count` *and*
+`get-nonce`), **`map-delete` refund cleanup**, and documented invariants. Its external
+API is byte-compatible with `indiegogo-v2`, so the frontend needed only a config change.
+It is `clarinet check`-clean; tests live in `contracts/tests/fundx-escrow-v3.test.ts`.
 
 ---
 

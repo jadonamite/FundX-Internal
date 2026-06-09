@@ -2,38 +2,39 @@
 
 Derived from a full source read + live Hiro mainnet verification. Highest-impact first.
 
-## P0 — broken against mainnet
+## P0 — deploy & cut over to fundx-escrow-v3 (in progress)
 
-- [ ] **`get-campaign-count` missing on deployed `indiegogo-v2`.** Live call returns
-      `UndefinedFunction("get-campaign-count")`. The frontend relies on it, so Explore,
-      Dashboard, and create-page ID prediction throw on mainnet.
-      Fix options:
-      1. Read the `campaign-count` **data-var** directly (`/v2/data_var/SP6X0M….indiegogo-v2/campaign-count`) — no redeploy; or
-      2. Redeploy `indiegogo` (it adds the accessor); or
-      3. Switch the frontend to `fundx-escrow-v2`, which already has `get-nonce`.
-- [ ] **Paginate / index enumeration.** `campaign-count` is **9,907**. The current
-      unbatched `fetchAllCampaigns` fan-out (~2 reads × count) is non-viable. Add
-      pagination or an off-chain indexer regardless of how the count is read.
+The best-of-both-worlds escrow `fundx-escrow-v3.clar` is written, `clarinet check`-clean,
+and the frontend (`stacks-config.ts`) is already pointed at it + real USDCx. Remaining:
 
-## P1 — token: mock → real USDC
+- [ ] **Deploy `fundx-escrow-v3` to mainnet** (sender `SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39`).
+      A v3 entry has been added to `deploy-new-contracts.cjs`. **Needs the deployer key
+      (`.env`) and real STX — irreversible, requires owner action.**
+- [ ] **Allow-list USDCx on v3** — as `CONTRACT-OWNER` call
+      `set-allowed-token('SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx, true)` (one tx).
+- [ ] **Run the simnet suite locally** — `cd contracts && npm test` (vitest config restored).
+      Could not execute in CI sandbox (vitest 4 ↔ clarinet-sdk worker + offline trait requirement).
+- [ ] A fresh v3 deploy starts at `campaign-count = 0`, which **sidesteps** the old
+      `indiegogo-v2` problems below (no missing accessor, no 9,907-row fan-out).
 
-- [ ] **Replace mock `usdcx-v2` with aeUSDC.** Target:
-      `SP3Y2ZSH8P7D50B0VBTSX11S7XSG24M1VB9YFQA4K.token-aeusdc` (Allbridge-bridged USDC,
-      **6 decimals — same as the mock, so no amount-math changes**).
-      Migration (minimal, no escrow redeploy):
-      1. As `CONTRACT-OWNER`, call `indiegogo-v2.set-allowed-token(…token-aeusdc, true)`.
-      2. In `src/lib/stacks-config.ts`, point `USDCX_CONTRACT_ADDRESS`/`USDCX_CONTRACT_NAME`
-         at the aeUSDC contract and add `"token-aeusdc": "aeUSDC"` to `TOKEN_ASSET_NAMES`
-         (the donate post-condition needs the `aeUSDC` asset name). Keep decimals = 6.
-      3. New campaigns settle in aeUSDC; legacy mock campaigns are filtered as legacy.
-      - Note: there is **no native Circle/CCTP USDC** on Stacks; aeUSDC is the de-facto USDC.
-        Update any "Circle / CCTP" wording in `FundXDocs.md` accordingly.
+### Background — why the old `indiegogo-v2` is being replaced
+- Deployed `indiegogo-v2` is **missing `get-campaign-count`** (live call returns
+  `UndefinedFunction`), so the frontend's enumeration throws against it.
+- Its `campaign-count` data-var reads **9,907**, making the unbatched `fetchAllCampaigns`
+  fan-out non-viable. (If you ever keep `indiegogo-v2`, paginate/index it.)
+
+## P1 — real USDCx (done in config, pending on-chain)
+
+- [x] Identify the real token: **USDCx** `SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx`,
+      FT asset `usdcx-token`, **6 decimals** (same as the mock → no amount-math changes).
+- [x] `src/lib/stacks-config.ts` updated: `USDCX_CONTRACT_ADDRESS/NAME` → real USDCx,
+      `TOKEN_ASSET_NAMES["usdcx"] = "usdcx-token"`.
+- [ ] On-chain: allow-list it on v3 (see P0).
+- [ ] Update the "Circle / CCTP" wording in `FundXDocs.md` — USDCx here is the mainnet
+      `…usdcx` token, not a Circle-native CCTP mint.
 
 ## P2 — correctness / cleanup
 
-- [ ] **Decide the canonical escrow.** `fundx-escrow-v2` is cleaner (working `get-nonce`,
-      `map-delete` refund cleanup, tuple data model). Either adopt it (redeploy pointed at
-      aeUSDC) or redeploy `indiegogo` with the accessor — see `ARCHITECTURE.md` §3.
 - [ ] **Wire or scope STX.** The create form offers STX but the code always submits USDCx.
       Either wire a wrapped SIP-010 STX or remove the option from the form.
 - [ ] **Delete dead code** — `src/lib/stacks-auth.ts` is imported nowhere
