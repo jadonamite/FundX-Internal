@@ -34,12 +34,15 @@ export function CreatorTab() {
 
       const { request } = await import("@stacks/connect")
       const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
-      const [tokenAddr, tokenName] = parseTokenFqn(campaign.token)
+      const isStx = campaign.currency === "STX"
+      const fnArgs = isStx
+        ? [uintCV(Number(campaign.id))]
+        : (() => { const [a, nme] = parseTokenFqn(campaign.token); return [contractPrincipalCV(a, nme), uintCV(Number(campaign.id))] })()
 
       const result = await request("stx_callContract", {
         contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
-        functionName: "withdraw",
-        functionArgs: [contractPrincipalCV(tokenAddr, tokenName), uintCV(Number(campaign.id))],
+        functionName: isStx ? "withdraw-stx" : "withdraw-ft",
+        functionArgs: fnArgs,
         network: STACKS_NETWORK as any,
         postConditionMode: "allow",
       } as any)

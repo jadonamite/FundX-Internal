@@ -32,11 +32,14 @@ function RefundCard({ c, onSuccess }: { c: Contribution; onSuccess: () => void }
       toast.loading("Awaiting wallet signature...", { id: `r-${c.campaign.id}` })
       const { request } = await import("@stacks/connect")
       const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
-      const [tokenAddr, tokenName] = parseTokenFqn(c.campaign.token)
+      const isStx = c.campaign.currency === "STX"
+      const fnArgs = isStx
+        ? [uintCV(Number(c.campaign.id))]
+        : (() => { const [a, nme] = parseTokenFqn(c.campaign.token); return [contractPrincipalCV(a, nme), uintCV(Number(c.campaign.id))] })()
       const result = await request("stx_callContract", {
         contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
-        functionName: "claim-refund",
-        functionArgs: [contractPrincipalCV(tokenAddr, tokenName), uintCV(Number(c.campaign.id))],
+        functionName: isStx ? "claim-refund-stx" : "claim-refund-ft",
+        functionArgs: fnArgs,
         network: STACKS_NETWORK as any,
         postConditionMode: "allow",
       } as any)
