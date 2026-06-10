@@ -184,18 +184,24 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
 
       const { uintCV, contractPrincipalCV, Pc } = await import("@stacks/transactions")
       const amountUnits = toUnits(donateAmount)
-      const [tokenAddr, tokenName] = parseTokenFqn(campaign.token)
-      const assetName = getTokenAssetName(tokenName)
+      const isStx = campaign.currency === "STX"
 
-      const pc = Pc.principal(userAddress)
-        .willSendLte(amountUnits)
-        .ft(campaign.token as `${string}.${string}`, assetName)
-
-      const result = await callContract(
-        "donate",
-        [contractPrincipalCV(tokenAddr, tokenName), uintCV(campaignIndex), uintCV(amountUnits)],
-        [pc]
-      )
+      let result
+      if (isStx) {
+        const pc = Pc.principal(userAddress).willSendLte(amountUnits).ustx()
+        result = await callContract("donate-stx", [uintCV(campaignIndex), uintCV(amountUnits)], [pc])
+      } else {
+        const [tokenAddr, tokenName] = parseTokenFqn(campaign.token)
+        const assetName = getTokenAssetName(tokenName)
+        const pc = Pc.principal(userAddress)
+          .willSendLte(amountUnits)
+          .ft(campaign.token as `${string}.${string}`, assetName)
+        result = await callContract(
+          "donate-ft",
+          [contractPrincipalCV(tokenAddr, tokenName), uintCV(campaignIndex), uintCV(amountUnits)],
+          [pc]
+        )
+      }
 
       setDonateAmount("")
       toast.loading("Confirming on-chain...", { id: "donate" })
@@ -221,9 +227,19 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
     try {
       setTxPending(true)
       toast.loading("Awaiting wallet signature...", { id: "withdraw" })
+      const { request } = await import("@stacks/connect")
       const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
-      const [tokenAddr, tokenName] = parseTokenFqn(campaign.token)
-      const result = await callContract("withdraw", [contractPrincipalCV(tokenAddr, tokenName), uintCV(campaignIndex)])
+      const isStx = campaign.currency === "STX"
+      const fnArgs = isStx
+        ? [uintCV(campaignIndex)]
+        : (() => { const [a, nme] = parseTokenFqn(campaign.token); return [contractPrincipalCV(a, nme), uintCV(campaignIndex)] })()
+      const result = await request("stx_callContract", {
+        contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
+        functionName: isStx ? "withdraw-stx" : "withdraw-ft",
+        functionArgs: fnArgs,
+        network: STACKS_NETWORK as any,
+        postConditionMode: "allow",
+      } as any)
       toast.loading("Confirming on-chain...", { id: "withdraw" })
       const status = await waitForTx((result as any)?.txid ?? "")
       if (status === "success") {
@@ -247,9 +263,19 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
     try {
       setTxPending(true)
       toast.loading("Awaiting wallet signature...", { id: "refund" })
+      const { request } = await import("@stacks/connect")
       const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
-      const [tokenAddr, tokenName] = parseTokenFqn(campaign.token)
-      const result = await callContract("claim-refund", [contractPrincipalCV(tokenAddr, tokenName), uintCV(campaignIndex)])
+      const isStx = campaign.currency === "STX"
+      const fnArgs = isStx
+        ? [uintCV(campaignIndex)]
+        : (() => { const [a, nme] = parseTokenFqn(campaign.token); return [contractPrincipalCV(a, nme), uintCV(campaignIndex)] })()
+      const result = await request("stx_callContract", {
+        contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
+        functionName: isStx ? "claim-refund-stx" : "claim-refund-ft",
+        functionArgs: fnArgs,
+        network: STACKS_NETWORK as any,
+        postConditionMode: "allow",
+      } as any)
       toast.loading("Confirming on-chain...", { id: "refund" })
       const status = await waitForTx((result as any)?.txid ?? "")
       if (status === "success") {

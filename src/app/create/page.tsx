@@ -108,27 +108,25 @@ export default function CreateCampaign() {
       const { request } = await import("@stacks/connect")
       const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
 
-      // USDCx for now; STX support requires a wrapped SIP-010 token address
-      const tokenAddr = USDCX_CONTRACT_ADDRESS
-      const tokenName = USDCX_CONTRACT_NAME
-
+      // STX (native, 6-dec uSTX) and USDCx (SIP-010, 6-dec) share the same scale
       const goalUnits = BigInt(Math.round(goalNumber * 10 ** USDCX_DECIMALS))
       const durationBlocks = durationNumber * BLOCKS_PER_DAY
       const fundingModel = Number(formData.fundingModel)
+      const isStx = formData.currency === "STX"
 
       // Read current count so we can predict the new campaign ID
       const currentCount = await getCampaignCount()
       const newId = currentCount + 1
 
+      // Fundraiser's chosen asset routes to the matching rail
+      const createArgs = isStx
+        ? [uintCV(goalUnits), uintCV(durationBlocks), uintCV(fundingModel)]
+        : [contractPrincipalCV(USDCX_CONTRACT_ADDRESS, USDCX_CONTRACT_NAME), uintCV(goalUnits), uintCV(durationBlocks), uintCV(fundingModel)]
+
       await request("stx_callContract", {
         contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
-        functionName: "create-campaign",
-        functionArgs: [
-          contractPrincipalCV(tokenAddr, tokenName),
-          uintCV(goalUnits),
-          uintCV(durationBlocks),
-          uintCV(fundingModel),
-        ],
+        functionName: isStx ? "create-campaign-stx" : "create-campaign-ft",
+        functionArgs: createArgs,
         network: STACKS_NETWORK as any,
         postConditionMode: "deny",
         postConditions: [],
