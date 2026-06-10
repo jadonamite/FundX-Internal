@@ -4,9 +4,9 @@ export const STACKS_NETWORK = STACKS_MAINNET
 
 // Escrow + registry deployer (CONTRACT-OWNER of the escrow)
 export const CONTRACT_ADDRESS = "SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39"
-// Best-of-both-worlds escrow: multi-token allowlist + working enumeration.
-// NOTE: must be deployed and have USDCx allow-listed (set-allowed-token) before live.
-export const CONTRACT_NAME = "fundx-escrow-v3"
+// Dual-asset escrow: native STX OR allow-listed SIP-010 (USDCx), fundraiser's choice.
+// STX uses *-stx functions; USDCx uses *-ft functions.
+export const CONTRACT_NAME = "fundx-escrow-v4"
 export const FUNDX_CONTRACT_FQN = `${CONTRACT_ADDRESS}.${CONTRACT_NAME}` as const
 
 export const REGISTRY_CONTRACT_NAME = "fundx-registry"

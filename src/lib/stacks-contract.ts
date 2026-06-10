@@ -17,7 +17,8 @@ import {
 
 export interface RawCampaign {
   creator: string
-  token: string
+  assetStx: boolean        // true = native STX campaign, false = SIP-010 (USDCx)
+  token: string | null     // FT contract FQN when assetStx is false; null for STX
   goal: bigint
   deadline: bigint
   totalRaised: bigint
@@ -85,9 +86,12 @@ export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
   if (!json || json.value === null || json.value === undefined) return null
   const tuple = json.value.value ?? json.value
   if (!tuple || !tuple.creator) return null
+  // token is (optional principal): { value: { value: "SP....usdcx" } } for some, { value: null } for none
+  const tokenInner = tuple.token?.value
   return {
     creator: tuple.creator.value,
-    token: tuple.token.value,
+    assetStx: Boolean(tuple["asset-stx"].value),
+    token: tokenInner ? (tokenInner.value ?? tokenInner) : null,
     goal: BigInt(tuple.goal.value),
     deadline: BigInt(tuple.deadline.value),
     totalRaised: BigInt(tuple["total-raised"].value),
@@ -141,10 +145,6 @@ function toAmount(units: bigint, decimals = USDCX_DECIMALS): number {
   return Number(whole) + Number(fraction) / Number(divisor)
 }
 
-function tokenFqnToCurrency(tokenFqn: string): "USDCx" | "STX" {
-  if (tokenFqn.includes("usdcx")) return "USDCx"
-  return "STX"
-}
 
 export function mapCampaign(
   raw: RawCampaign,
@@ -174,8 +174,8 @@ export function mapCampaign(
     category: meta?.category || "DeFi",
     location: meta?.location ?? "",
     creator: raw.creator,
-    token: raw.token,
-    currency: tokenFqnToCurrency(raw.token),
+    token: raw.token ?? "",
+    currency: raw.assetStx ? "STX" : "USDCx",
     goal,
     raised,
     deadline: deadlineBlock,
