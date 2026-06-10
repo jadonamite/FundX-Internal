@@ -86,6 +86,11 @@ plan:
       path: contracts/fundx-escrow-v3.clar
       clarity-version: 2
     - transaction-type: emulated-contract-publish
+      contract-name: fundx-escrow-v4
+      emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+      path: contracts/fundx-escrow-v4.clar
+      clarity-version: 2
+    - transaction-type: emulated-contract-publish
       contract-name: fundx-milestone
       emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
       path: contracts/fundx-milestone.clar
