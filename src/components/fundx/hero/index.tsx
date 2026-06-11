@@ -32,7 +32,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
     const flips = 9
     const baseDuration = 80
     let current = !targetIsStacks
-    let count = 0
+    let count: number = 0
     const scheduleFlip = () => {
       if (count >= flips) {
         setDisplayStacks(targetIsStacks); setIsStacksMode(targetIsStacks); isStacksModeRef.current = targetIsStacks
