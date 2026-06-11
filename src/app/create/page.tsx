@@ -1,14 +1,14 @@
 "use client"
 
-import {
-import { ArrowRight, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Footer } from "@/components/fundx/Footer"
-import { LivePreview } from "@/components/create/LivePreview"
+import { useState } from "react"
 import { Navbar } from "@/components/fundx/Navbar"
-import { WizardSteps, WIZARD_STEPS, validateStep } from "@/components/create/WizardSteps"
-import { getCampaignCount } from "@/lib/stacks-contract"
+import { Footer } from "@/components/fundx/Footer"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
+import {
   FUNDX_CONTRACT_FQN,
   REGISTRY_CONTRACT_FQN,
   STACKS_NETWORK,
@@ -17,10 +17,10 @@ import { toast } from "sonner"
   USDCX_DECIMALS,
   BLOCKS_PER_DAY,
 } from "@/lib/stacks-config"
-import { useRouter } from "next/navigation"
+import { getCampaignCount } from "@/lib/stacks-contract"
 
-import { useStacks } from "@/components/fundx/StacksProvider"
-import { useState } from "react"
+import { WizardSteps, WIZARD_STEPS, validateStep } from "@/components/create/WizardSteps"
+import { LivePreview } from "@/components/create/LivePreview"
 
 export interface CreateCampaignData {
   creatorName: string;

@@ -7,7 +7,7 @@ import { CampaignCard } from "@/components/fundx/CampaignCard"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search, ArrowUp, Sparkles, Filter, Loader2 } from "lucide-react"
-import { CAMPAIGNS } from "@/lib/payload"
+import { CAMPAIGNS } from "@/lib/data"
 import { useAllCampaigns } from "@/lib/hooks/useStacksContract"
 
 const CATEGORIES = ["All", "DeFi", "Mining", "Gaming", "Social Impact", "Infrastructure"]
