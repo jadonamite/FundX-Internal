@@ -42,7 +42,6 @@ export function ConnectWallet() {
 
   const copyAddress = () => {
     if (walletData?.stxAddress) {
-      // NOTE: revisit this logic after API migration
       navigator.clipboard.writeText(walletData.stxAddress)
       toast.info("Address Copied", {
          description: "Copied to clipboard",

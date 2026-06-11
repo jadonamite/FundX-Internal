@@ -12,7 +12,7 @@ export default function Home() {
  
 
   return (
-    <main className='min-h-screen bg-slate-50 selection:bg-orange-100 font-sans'>
+    <main className="min-h-screen bg-slate-50 selection:bg-orange-100 font-sans">
       <Navbar />
       <Hero deckSlotRef={deckSlotRef} />
 
