@@ -11,7 +11,7 @@ import { CreateCampaignData } from "@/app/create/page"
 interface WizardProps {
   step: number
   formData: CreateCampaignData
-  setFormData: (data: CreateCampaignData) => void
+  setFormData: (payload: CreateCampaignData) => void
 }
 
 function FieldError({ msg }: { msg: string }) {
