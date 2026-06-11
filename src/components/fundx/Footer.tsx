@@ -29,7 +29,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-white pt-20 pb-12 border-t border-slate-100">
+    <footer className='bg-white pt-20 pb-12 border-t border-slate-100'>
       <div className="container mx-auto max-w-6xl px-4">
 
         <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
