@@ -14,10 +14,6 @@ const NAV_LINKS = [
   { label: "GitHub", href: "https://github.com", external: true },
 ]
 
-/**
- * Footer
- * @returns {*}
- */
 export function Footer() {
   const [email, setEmail] = useState("")
   const [subscribed, setSubscribed] = useState(false)
