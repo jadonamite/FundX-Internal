@@ -26,12 +26,12 @@ export function StacksProvider({ children }: { children: ReactNode }) {
       try {
         const { isConnected, getLocalStorage } = await import("@stacks/connect")
         if (isConnected()) {
-          const data = getLocalStorage()
+          const payload = getLocalStorage()
           // getLocalStorage returns { addresses: { stx: [...], btc: [...] } }
-          if (data?.addresses?.stx?.[0]?.address) {
+          if (payload?.addresses?.stx?.[0]?.address) {
             setWalletData({
-              stxAddress: data.addresses.stx[0].address,
-              btcAddress: data.addresses.btc?.[0]?.address,
+              stxAddress: payload.addresses.stx[0].address,
+              btcAddress: payload.addresses.btc?.[0]?.address,
             })
             setIsSignedIn(true)
           }
