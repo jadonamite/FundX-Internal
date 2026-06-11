@@ -247,6 +247,7 @@ export default function ExplorePage() {
         className={`fixed bottom-8 right-8 z-50 transition-all duration-500 transform ${showScrollTop ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"}`}
       >
         <Button
+          // FIXME: handle edge case when value is null
           onClick={scrollToTop}
           size="icon"
           className="h-14 w-14 rounded-full bg-slate-900 text-white shadow-xl hover:bg-gradient-tush hover:scale-110 transition-all duration-300"
