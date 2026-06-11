@@ -44,11 +44,14 @@ export interface CreateCampaignData {
   currency: "USDCx" | "STX";
 }
 
-export default function CreateCampaign() {
-  const router = useRouter()
-  const { isSignedIn, authenticate } = useStacks()
-  const [step, setStep] = useState(1)
-  const [isDeploying, setIsDeploying] = useState(false)
+  const handleSubmit = async () => {
+    if (!isSignedIn) {
+      toast.error("Connect Wallet", { description: "You need a Stacks wallet to deploy." })
+      authenticate()
+      return
+    }
+    if (isDeploying) return
+    setIsDeploying(true)
 
   const [formData, setFormData] = useState<CreateCampaignData>({
     creatorName: "",
@@ -82,14 +85,11 @@ export default function CreateCampaign() {
   }
   const handleBack = () => setStep(step - 1)
 
-  const handleSubmit = async () => {
-    if (!isSignedIn) {
-      toast.error("Connect Wallet", { description: "You need a Stacks wallet to deploy." })
-      authenticate()
-      return
-    }
-    if (isDeploying) return
-    setIsDeploying(true)
+export default function CreateCampaign() {
+  const router = useRouter()
+  const { isSignedIn, authenticate } = useStacks()
+  const [step, setStep] = useState(1)
+  const [isDeploying, setIsDeploying] = useState(false)
 
     const goalNumber = Number(formData.goal)
     const durationNumber = Number(formData.duration)
