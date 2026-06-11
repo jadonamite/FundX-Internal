@@ -21,7 +21,6 @@ export async function waitForTx(
         if (data.tx_status === "abort_by_response" || data.tx_status === "abort_by_post_condition") return "failed"
       }
     } catch {
-      // network hiccup — keep polling
     }
     await new Promise((r) => setTimeout(r, intervalMs))
   }
