@@ -54,6 +54,12 @@ function AvatarFallback({
   )
 }
 
+/**
+ * AvatarBadge
+ * @param {*} { className
+ * @param {*} ...props }: React.ComponentProps<"span">
+ * @returns {*}
+ */
 function AvatarBadge({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
