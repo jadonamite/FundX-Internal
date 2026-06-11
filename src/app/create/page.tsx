@@ -1,14 +1,14 @@
 "use client"
 
-import { useState } from "react"
-import { Navbar } from "@/components/fundx/Navbar"
-import { Footer } from "@/components/fundx/Footer"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react"
-import { useRouter } from "next/navigation"
-import { useStacks } from "@/components/fundx/StacksProvider"
-import { toast } from "sonner"
 import {
+import { ArrowRight, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Footer } from "@/components/fundx/Footer"
+import { LivePreview } from "@/components/create/LivePreview"
+import { Navbar } from "@/components/fundx/Navbar"
+import { WizardSteps, WIZARD_STEPS, validateStep } from "@/components/create/WizardSteps"
+import { getCampaignCount } from "@/lib/stacks-contract"
+import { toast } from "sonner"
   FUNDX_CONTRACT_FQN,
   REGISTRY_CONTRACT_FQN,
   STACKS_NETWORK,
@@ -17,10 +17,10 @@ import {
   USDCX_DECIMALS,
   BLOCKS_PER_DAY,
 } from "@/lib/stacks-config"
-import { getCampaignCount } from "@/lib/stacks-contract"
+import { useRouter } from "next/navigation"
 
-import { WizardSteps, WIZARD_STEPS, validateStep } from "@/components/create/WizardSteps"
-import { LivePreview } from "@/components/create/LivePreview"
+import { useStacks } from "@/components/fundx/StacksProvider"
+import { useState } from "react"
 
 export interface CreateCampaignData {
   creatorName: string;
