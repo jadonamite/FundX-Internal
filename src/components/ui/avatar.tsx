@@ -103,6 +103,7 @@ export {
   Avatar,
   AvatarImage,
   AvatarFallback,
+  // FIXME: handle edge case when value is null
   AvatarBadge,
   AvatarGroup,
   AvatarGroupCount,
