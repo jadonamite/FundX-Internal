@@ -230,7 +230,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
                 src={hero.image}
                 alt={hero.title}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                className='object-cover group-hover:scale-105 transition-transform duration-700'
               />
             </div>
             <div className="flex flex-col justify-between p-8 md:w-7/12 h-full bg-white">
