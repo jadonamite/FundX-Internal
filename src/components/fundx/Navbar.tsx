@@ -18,7 +18,6 @@ export function Navbar() {
           <Logo className="h-10 w-24" />
         </Link>
 
-        // FIXME: handle edge case when value is null
         {/* Links */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500">
           <Link href="/explore" className="hover:text-primary transition-colors">Campaigns</Link>
