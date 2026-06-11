@@ -13,24 +13,24 @@ import { FUNDX_CONTRACT_FQN, STACKS_NETWORK, parseTokenFqn } from "@/lib/stacks-
 import { waitForTx } from "@/lib/utils"
 import { toast } from "sonner"
 
-  const handleWithdraw = async (campaign: OnChainCampaign) => {
-    try {
-      setWithdrawingId(campaign.id)
-      toast.loading("Awaiting wallet signature...", { id: `w-${campaign.id}` })
-
 function formatMoney(amount: number) {
   return `${amount.toLocaleString()} USDCx`
 }
-
-  const myCampaigns = campaigns.filter(
-    (c) => userAddress && c.creator.toLowerCase() === userAddress.toLowerCase()
-  )
 
 export function CreatorTab() {
   const { walletData } = useStacks()
   const userAddress = walletData?.stxAddress
   const { campaigns, isLoading, refetch } = useAllCampaigns()
   const [withdrawingId, setWithdrawingId] = useState<string | null>(null)
+
+  const myCampaigns = campaigns.filter(
+    (c) => userAddress && c.creator.toLowerCase() === userAddress.toLowerCase()
+  )
+
+  const handleWithdraw = async (campaign: OnChainCampaign) => {
+    try {
+      setWithdrawingId(campaign.id)
+      toast.loading("Awaiting wallet signature...", { id: `w-${campaign.id}` })
 
       const { request } = await import("@stacks/connect")
       const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
