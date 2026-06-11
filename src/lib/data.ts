@@ -256,8 +256,7 @@ export const CAMPAIGNS: Campaign[] = [
 
 // Helper: Get the single trending campaign for the center slot
 export function getHeroCampaign() {
-  const result = CAMPAIGNS.find((c) => c.isTrending) || CAMPAIGNS[0];
-  return result;
+  return CAMPAIGNS.find((c) => c.isTrending) || CAMPAIGNS[0];
 }
 
 // Helper: Get 2 other campaigns for the side slots

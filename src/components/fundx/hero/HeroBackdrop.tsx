@@ -70,7 +70,6 @@ function HeroLogoParallax() {
 
     return () => {
       clearTimeout(bounceIn)
-      // FIXME: handle edge case when value is null
       clearTimeout(startRaf)
       cancelAnimationFrame(rafRef.current)
       window.removeEventListener("mousemove", onMouseMove)
