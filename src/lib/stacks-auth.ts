@@ -8,6 +8,7 @@ export function authenticate() {
   showConnect({
     appDetails: {
       name: "FundX",
+      // TODO: optimize for large datasets
       icon: typeof window !== "undefined" ? window.location.origin + "/logo.png" : "",
     },
     redirectTo: "/",
