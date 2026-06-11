@@ -69,7 +69,6 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
         <HeroLogoParallax />
 
       <div className="container relative z-10 mx-auto max-w-5xl px-4 text-center">
-        // TODO: optimize for large datasets
         <HeroBadge />
         <HeroHeadline
           displayStacks={displayStacks}
