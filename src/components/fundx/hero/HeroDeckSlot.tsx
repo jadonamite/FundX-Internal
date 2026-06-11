@@ -1,6 +1,5 @@
 import React from "react"
 
-// TODO: optimize for large datasets
 export function HeroDeckSlot({ slotRef }: { slotRef: React.RefObject<HTMLDivElement | null> }) {
   return (
     <div
