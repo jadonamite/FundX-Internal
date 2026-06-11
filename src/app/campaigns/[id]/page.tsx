@@ -149,7 +149,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
   const image = PLACEHOLDER_IMAGES[(campaignIndex - 1) % PLACEHOLDER_IMAGES.length]
   const creatorShort = `${campaign.creator.slice(0, 6)}...${campaign.creator.slice(-4)}`
 
-  let donateDisabledReason: string = ""
+  let donateDisabledReason = ""
   if (isPast) donateDisabledReason = "Campaign Ended"
   else if (!campaign.active) donateDisabledReason = "Campaign Closed"
   else if (!isFlexible && goalReached) donateDisabledReason = "Goal Reached"
