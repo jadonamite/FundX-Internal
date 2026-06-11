@@ -72,7 +72,7 @@ function RefundCard({ c, onSuccess }: { c: Contribution; onSuccess: () => void }
         <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm grayscale-[0.2]">
           <Image src={c.campaign.image} alt={c.campaign.title} fill className="object-cover" />
         </div>
-        <div className='space-y-3 w-full'>
+        <div className="space-y-3 w-full">
           <div className="flex items-center gap-3 mb-2">
             <span className="px-3 py-1 rounded-lg bg-blue-50 border border-blue-100/50 text-blue-700 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
               <ShieldAlert className="w-3.5 h-3.5 text-blue-500" /> Goal Missed

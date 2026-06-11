@@ -25,6 +25,7 @@ export interface Campaign {
   daysLeft: number;
   backers: number;
   isTrending?: boolean;
+  // 🚨 NEW FIELDS ADDED HERE
   status: CampaignStatus;
   fundingModel: FundingModel;
 }
