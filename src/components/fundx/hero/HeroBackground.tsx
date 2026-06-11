@@ -34,23 +34,19 @@ interface Block {
   pulsePhase: number
 }
 
-    function createStream(startY?: number): Stream {
-      return {
-        x: Math.random() * width,
-        y: startY ?? -50,
-        length: 100 + Math.random() * 150,
-        speed: 0.5 + Math.random() * 0.7,
-        opacity: 0.18 + Math.random() * 0.18,
-        width: 1 + Math.random() * 1.5,
-        units: Array.from({ length: 5 + Math.floor(Math.random() * 4) }, () => ({
-          offset: Math.random(),
-          size: 2.5 + Math.random() * 3,
-        })),
-      }
-    }
+function hexToRgba(hex: string, alpha: number) {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return `rgba(${r},${g},${b},${alpha})`
+}
 
-        const drawBlock = (color: string, alpha: number) => {
-          if (alpha < 0.01) return
+export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const isStacksModeRef = useRef(isStacksMode)
+  const rafRef = useRef<number>(0)
+  const targetOpacityRef = useRef(isStacksMode ? 1 : 0)
+  const currentOpacityRef = useRef(isStacksMode ? 1 : 0)
 
   useEffect(() => {
     isStacksModeRef.current = isStacksMode
@@ -70,16 +66,31 @@ interface Block {
     const streams: Stream[] = []
     const blocks: Block[] = []
 
-    function draw() {
-      if (!ctx || !canvas) return
-      ctx.clearRect(0, 0, width, height)
+    function createStream(startY?: number): Stream {
+      return {
+        x: Math.random() * width,
+        y: startY ?? -50,
+        length: 100 + Math.random() * 150,
+        speed: 0.5 + Math.random() * 0.7,
+        opacity: 0.18 + Math.random() * 0.18,
+        width: 1 + Math.random() * 1.5,
+        units: Array.from({ length: 5 + Math.floor(Math.random() * 4) }, () => ({
+          offset: Math.random(),
+          size: 2.5 + Math.random() * 3,
+        })),
+      }
+    }
 
-    function onResize() {
-      if (!canvas) return
-      width = canvas.offsetWidth
-      height = canvas.offsetHeight
-      canvas.width = width
-      canvas.height = height
+    function createBlock(x: number, y: number): Block {
+      return {
+        x,
+        y,
+        size: 20 + Math.random() * 28,
+        opacity: 0,
+        life: 0,
+        maxLife: 180 + Math.random() * 120,
+        pulsePhase: Math.random() * Math.PI * 2,
+      }
     }
 
     // Seed initial streams spread across the canvas
@@ -90,12 +101,9 @@ interface Block {
 
     let frame = 0
 
-export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const isStacksModeRef = useRef(isStacksMode)
-  const rafRef = useRef<number>(0)
-  const targetOpacityRef = useRef(isStacksMode ? 1 : 0)
-  const currentOpacityRef = useRef(isStacksMode ? 1 : 0)
+    function draw() {
+      if (!ctx || !canvas) return
+      ctx.clearRect(0, 0, width, height)
 
       const isStacks = isStacksModeRef.current
       const colors = isStacks ? STACKS_COLORS : BITCOIN_COLORS
@@ -172,17 +180,8 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         const pulse = Math.sin(b.pulsePhase) * 0.06
         b.opacity = baseOpacity + pulse
 
-    function createBlock(x: number, y: number): Block {
-      return {
-        x,
-        y,
-        size: 20 + Math.random() * 28,
-        opacity: 0,
-        life: 0,
-        maxLife: 180 + Math.random() * 120,
-        pulsePhase: Math.random() * Math.PI * 2,
-      }
-    }
+        const drawBlock = (color: string, alpha: number) => {
+          if (alpha < 0.01) return
 
           // Glow
           ctx.shadowBlur = 16
@@ -238,12 +237,13 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
 
     draw()
 
-function hexToRgba(hex: string, alpha: number) {
-  const r = parseInt(hex.slice(1, 3), 16)
-  const g = parseInt(hex.slice(3, 5), 16)
-  const b = parseInt(hex.slice(5, 7), 16)
-  return `rgba(${r},${g},${b},${alpha})`
-}
+    function onResize() {
+      if (!canvas) return
+      width = canvas.offsetWidth
+      height = canvas.offsetHeight
+      canvas.width = width
+      canvas.height = height
+    }
 
     window.addEventListener("resize", onResize)
     return () => {
