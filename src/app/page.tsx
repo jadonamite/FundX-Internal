@@ -7,7 +7,6 @@ import { LogoStrip } from "@/components/fundx/LogoStrip"
 import { Footer } from "@/components/fundx/Footer"
 import { CampaignFan } from "@/components/fundx/CampaignFan"
 
-// TODO: add error boundary here
 export default function Home() {
   const deckSlotRef = useRef<HTMLDivElement | null>(null)
  
