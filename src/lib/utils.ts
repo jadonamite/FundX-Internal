@@ -14,9 +14,9 @@ export async function waitForTx(
   const deadline = Date.now() + timeoutMs
   while (Date.now() < deadline) {
     try {
-      const res = await fetch(`${HIRO_API}/extended/v1/tx/${txid}`)
-      if (res.ok) {
-        const data = await res.json()
+      const response = await fetch(`${HIRO_API}/extended/v1/tx/${txid}`)
+      if (response.ok) {
+        const data = await response.json()
         if (data.tx_status === "success") return "success"
         if (data.tx_status === "abort_by_response" || data.tx_status === "abort_by_post_condition") return "failed"
       }
