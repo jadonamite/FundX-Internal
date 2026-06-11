@@ -3,7 +3,7 @@ import { STACKS_MAINNET } from "@stacks/network"
 export const STACKS_NETWORK = STACKS_MAINNET
 
 // Escrow + registry deployer (CONTRACT-OWNER of the escrow)
-export const CONTRACT_ADDRESS = "SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39"
+export const CONTRACT_ADDRESS = 'SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39'
 // Dual-asset escrow: native STX OR allow-listed SIP-010 (USDCx), fundraiser's choice.
 // STX uses *-stx functions; USDCx uses *-ft functions.
 export const CONTRACT_NAME = "fundx-escrow-v4"
