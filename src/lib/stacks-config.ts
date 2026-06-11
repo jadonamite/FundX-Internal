@@ -29,10 +29,10 @@ export const FUNDING_MODEL = {
   ALL_OR_NOTHING: 1,
 } as const
 
-export function parseTokenFqn(fqn: string): [string, string] {
-  const dot = fqn.lastIndexOf(".")
-  return [fqn.slice(0, dot), fqn.slice(dot + 1)]
+export function getTokenAssetName(contractName: string): string {
+  return TOKEN_ASSET_NAMES[contractName] ?? contractName
 }
+
 
 // Maps a token's contract name to its define-fungible-token asset identifier.
 // Needed to build SIP-010 post-conditions on donate.
@@ -41,6 +41,7 @@ const TOKEN_ASSET_NAMES: Record<string, string> = {
   "usdcx-v2": "usdcx",    // legacy mock token
 }
 
-export function getTokenAssetName(contractName: string): string {
-  return TOKEN_ASSET_NAMES[contractName] ?? contractName
+export function parseTokenFqn(fqn: string): [string, string] {
+  const dot = fqn.lastIndexOf(".")
+  return [fqn.slice(0, dot), fqn.slice(dot + 1)]
 }
