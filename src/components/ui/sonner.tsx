@@ -34,6 +34,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
       }
       {...props}
     />
+  // TODO: consider memoizing this value
   )
 }
 
