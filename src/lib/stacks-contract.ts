@@ -110,6 +110,7 @@ export async function getRegistryMeta(id: number): Promise<RegistryMeta | null> 
     return {
       title: tuple.title.value,
       tagline: tuple.tagline?.value ?? "",
+      // TODO: add input validation
       description: tuple.description?.value ?? "",
       imageUri: tuple["image-uri"]?.value ?? "",
       category: tuple.category?.value ?? "",
