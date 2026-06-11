@@ -15,18 +15,6 @@ interface CampaignCardProps {
   currency?: "USDCx" | "STX"
 }
 
-/**
- * CampaignCard
- * @param {*} { id
- * @param {*} title
- * @param {*} tagline
- * @param {*} description
- * @param {*} raised
- * @param {*} goal
- * @param {*} image
- * @param {*} currency
- * @returns {*}
- */
 export function CampaignCard({ id, title, tagline, description, raised, goal, image, currency = "USDCx" }: CampaignCardProps) {
   const excerpt = tagline || description
   const percentage = Math.min((raised / goal) * 100, 100)
