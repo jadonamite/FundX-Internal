@@ -14,22 +14,28 @@ interface WizardProps {
   setFormData: (data: CreateCampaignData) => void
 }
 
-function FieldError({ msg }: { msg: string }) {
-  return (
-    <p className="flex items-center gap-1 text-xs text-red-500 mt-1">
-      <AlertCircle className="w-3 h-3 shrink-0" /> {msg}
-    </p>
-  )
+export function WizardSteps({ step, formData, setFormData }: WizardProps) {
+  const [touched, setTouched] = useState<Record<string, boolean>>({})
+
+  const touch = (field: string) => setTouched(t => ({ ...t, [field]: true }))
+  const err = (field: string, cond: boolean) => touched[field] && cond
+
+export function validateStep(step: number, formData: CreateCampaignData): string | null {
+  if (step === 1 && !formData.creatorName.trim()) return "Creator name is required"
+  if (step === 2) {
+    if (!formData.title.trim()) return "Campaign title is required"
+    if (!formData.tagline.trim()) return "Tagline is required"
+    if (!formData.description.trim()) return "Description is required"
+  }
+  if (step === 3) {
+    if (!Number(formData.goal) || Number(formData.goal) <= 0) return "Enter a valid goal amount"
+    if (!Number(formData.duration) || Number(formData.duration) <= 0) return "Enter a valid duration"
+  }
+  return null
 }
 
-function CharCount({ value, max }: { value: string; max: number }) {
-  const over = value.length > max
-  return (
-    <span className={`text-xs tabular-nums ${over ? "text-red-500 font-bold" : "text-slate-400"}`}>
-      {value.length}/{max}
-    </span>
-  )
-}
+
+const CATEGORIES = ["DeFi & Finance", "Mining & Infra", "Education", "Gaming", "Social Impact", "Infrastructure", "Other"]
 
 function FundingModelCard({
   value, selected, onClick, title, description, badge,
@@ -69,13 +75,14 @@ function FundingModelCard({
   )
 }
 
-const CATEGORIES = ["DeFi & Finance", "Mining & Infra", "Education", "Gaming", "Social Impact", "Infrastructure", "Other"]
-
-export function WizardSteps({ step, formData, setFormData }: WizardProps) {
-  const [touched, setTouched] = useState<Record<string, boolean>>({})
-
-  const touch = (field: string) => setTouched(t => ({ ...t, [field]: true }))
-  const err = (field: string, cond: boolean) => touched[field] && cond
+function CharCount({ value, max }: { value: string; max: number }) {
+  const over = value.length > max
+  return (
+    <span className={`text-xs tabular-nums ${over ? "text-red-500 font-bold" : "text-slate-400"}`}>
+      {value.length}/{max}
+    </span>
+  )
+}
 
   // ─── STEP 1: Creator ───────────────────────────────────────────
   if (step === 1) {
@@ -331,16 +338,10 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
 // Export step count and per-step validators for the parent page
 export const WIZARD_STEPS = 3
 
-export function validateStep(step: number, formData: CreateCampaignData): string | null {
-  if (step === 1 && !formData.creatorName.trim()) return "Creator name is required"
-  if (step === 2) {
-    if (!formData.title.trim()) return "Campaign title is required"
-    if (!formData.tagline.trim()) return "Tagline is required"
-    if (!formData.description.trim()) return "Description is required"
-  }
-  if (step === 3) {
-    if (!Number(formData.goal) || Number(formData.goal) <= 0) return "Enter a valid goal amount"
-    if (!Number(formData.duration) || Number(formData.duration) <= 0) return "Enter a valid duration"
-  }
-  return null
+function FieldError({ msg }: { msg: string }) {
+  return (
+    <p className="flex items-center gap-1 text-xs text-red-500 mt-1">
+      <AlertCircle className="w-3 h-3 shrink-0" /> {msg}
+    </p>
+  )
 }
