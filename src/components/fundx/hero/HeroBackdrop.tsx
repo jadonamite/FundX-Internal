@@ -31,11 +31,6 @@ function HeroLogoParallax() {
       startAnimation()
     }, 1200)
 
-    /**
-     * onMouseMove
-     * @param {*} e: MouseEvent
-     * @returns {*}
-     */
     function onMouseMove(e: MouseEvent) {
       const cx = window.innerWidth / 2
       const cy = window.innerHeight / 2

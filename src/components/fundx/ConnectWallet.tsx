@@ -14,10 +14,6 @@ import {
 import { ChevronDown, Copy, LogOut, Wallet } from "lucide-react"
 import { toast } from "sonner" // <--- Import Toast
 
-/**
- * ConnectWallet
- * @returns {*}
- */
 export function ConnectWallet() {
   const { authenticate, signOut, isSignedIn, walletData } = useStacks()
   const [mounted, setMounted] = useState(false)

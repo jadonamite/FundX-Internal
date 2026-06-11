@@ -9,5 +9,5 @@ export default function Logo({ className }: { className?: string }) {
       height={16}
       className={className}
     />
-  );,
+  );
 }
