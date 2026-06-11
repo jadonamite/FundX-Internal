@@ -81,7 +81,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
               <div className="flex items-center text-slate-500 text-sm font-medium"><MapPin className="w-3 h-3 mr-1" />{mockCampaign.location}</div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">{mockCampaign.title}</h1>
-            <p className="text-xl text-slate-500 max-w-3xl">{mockCampaign.description}</p>
+            <p className='text-xl text-slate-500 max-w-3xl'>{mockCampaign.description}</p>
           </div>
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 space-y-10">
