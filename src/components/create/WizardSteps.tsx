@@ -71,6 +71,13 @@ function FundingModelCard({
 
 const CATEGORIES = ["DeFi & Finance", "Mining & Infra", "Education", "Gaming", "Social Impact", "Infrastructure", "Other"]
 
+/**
+ * WizardSteps
+ * @param {*} { step
+ * @param {*} formData
+ * @param {*} setFormData }: WizardProps
+ * @returns {*}
+ */
 export function WizardSteps({ step, formData, setFormData }: WizardProps) {
   const [touched, setTouched] = useState<Record<string, boolean>>({})
 
