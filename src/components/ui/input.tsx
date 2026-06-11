@@ -15,7 +15,6 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
       )}
       {...props}
     />
-  // TODO: add error boundary here
   )
 }
 
