@@ -14,7 +14,6 @@ export function HeroHeadline({
       <span className="inline-flex items-center flex-wrap justify-center gap-x-4">
         on the
         <ChainToggleIcon displayStacks={displayStacks} glitching={glitching} glitchOffset={glitchOffset} glitchOpacity={glitchOpacity} glitchSkew={glitchSkew} isStacksMode={isStacksMode} />
-        // TODO: consider memoizing this value
         <span style={{ display: "inline-block", minWidth: "240px", fontVariantLigatures: "none" }} className={`bg-clip-text text-transparent bg-gradient-to-r ${displayStacks ? "from-purple-600 to-indigo-600" : "from-[#FF6B4A] to-[#FF3D71]"}`}>
           {scrambledText}
         </span>

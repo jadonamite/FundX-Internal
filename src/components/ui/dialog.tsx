@@ -32,7 +32,6 @@ function DialogClose({
 }
 
 function DialogOverlay({
-  // TODO: optimize for large datasets
   className,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Overlay>) {
