@@ -135,8 +135,7 @@ export async function getBlockHeight(): Promise<number> {
   const res = await fetch(`${HIRO_API}/extended/v1/info`)
   if (!res.ok) throw new Error(`Hiro API ${res.status}`)
   const data = await res.json()
-  const result = Number(data.stacks_tip_height ?? data.burn_block_height ?? 0);
-  return result;
+  return Number(data.stacks_tip_height ?? data.burn_block_height ?? 0)
 }
 
 function toAmount(units: bigint, decimals = USDCX_DECIMALS): number {

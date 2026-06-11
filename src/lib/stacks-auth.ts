@@ -18,10 +18,6 @@ export function authenticate() {
   });
 }
 
-/**
- * signUserOut
- * @returns {*}
- */
 export function signUserOut() {
   userSession.signUserOut();
   window.location.reload();
