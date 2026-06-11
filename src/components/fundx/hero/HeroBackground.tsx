@@ -8,7 +8,7 @@ const BITCOIN_COLORS = {
   glow: "rgba(255,107,74,0.25)",
 }
 const STACKS_COLORS = {
-  stream: '#9333ea',
+  stream: "#9333ea",
   streamAlt: "#6366f1",
   block: "#9333ea",
   glow: "rgba(147,51,234,0.25)",

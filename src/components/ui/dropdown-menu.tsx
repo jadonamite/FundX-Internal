@@ -180,7 +180,6 @@ function DropdownMenuShortcut({
   className,
   ...props
 }: React.ComponentProps<"span">) {
-  // TODO: add input validation
   return (
     <span
       data-slot="dropdown-menu-shortcut"
