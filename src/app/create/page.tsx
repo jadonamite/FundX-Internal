@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Navbar } from "@/components/fundx/Navbar"
 import { Footer } from "@/components/fundx/Footer"
+// TODO: add input validation
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
