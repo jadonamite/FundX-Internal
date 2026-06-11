@@ -161,7 +161,7 @@ export function mapCampaign(
   const daysLeft = isPast ? 0 : Math.ceil(blocksLeft / BLOCKS_PER_DAY)
 
   let status: OnChainCampaign["status"]
-  if (!isPast) status = 'active'
+  if (!isPast) status = "active"
   else if (isFlexible || raised >= goal) status = "successful"
   else status = "failed"
 
