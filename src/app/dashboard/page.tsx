@@ -64,7 +64,6 @@ export default function DashboardPage() {
         </Tabs>
 
      
-// NOTE: revisit this logic after API migration
 
       </div>
       

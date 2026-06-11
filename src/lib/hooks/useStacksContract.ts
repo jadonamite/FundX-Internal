@@ -12,9 +12,12 @@ import {
 } from "@/lib/stacks-contract"
 import { USDCX_DECIMALS } from "@/lib/stacks-config"
 
-export function useUserDonations(donor: string | undefined, campaignIds: number[]) {
-  const [donations, setDonations] = useState<Record<number, number>>({})
-  const [isLoading, setIsLoading] = useState(false)
+export function useAllCampaigns() {
+  const [campaigns, setCampaigns] = useState<OnChainCampaign[]>([])
+  const [count, setCount] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<Error | null>(null)
+  const [refetchToken, setRefetchToken] = useState(0)
 
   const refetch = useCallback(() => setRefetchToken((t) => t + 1), [])
 
@@ -43,9 +46,11 @@ export function useUserDonations(donor: string | undefined, campaignIds: number[
   return { campaigns, count, isLoading, error, refetch }
 }
 
-export function useDonation(campaignId: number, donor: string | undefined) {
-  const [donation, setDonation] = useState(0)
-  const [isLoading, setIsLoading] = useState(false)
+export function useCampaign(id: number) {
+  const [campaign, setCampaign] = useState<OnChainCampaign | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<Error | null>(null)
+  const [refetchToken, setRefetchToken] = useState(0)
 
   const refetch = useCallback(() => setRefetchToken((t) => t + 1), [])
 
@@ -78,11 +83,9 @@ export function useDonation(campaignId: number, donor: string | undefined) {
   return { campaign, isLoading, error, refetch }
 }
 
-export function useCampaign(id: number) {
-  const [campaign, setCampaign] = useState<OnChainCampaign | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<Error | null>(null)
-  const [refetchToken, setRefetchToken] = useState(0)
+export function useUserDonations(donor: string | undefined, campaignIds: number[]) {
+  const [donations, setDonations] = useState<Record<number, number>>({})
+  const [isLoading, setIsLoading] = useState(false)
 
   const idKey = campaignIds.join(",")
   useEffect(() => {
@@ -123,12 +126,9 @@ export function useCampaign(id: number) {
   return { donations, isLoading }
 }
 
-export function useAllCampaigns() {
-  const [campaigns, setCampaigns] = useState<OnChainCampaign[]>([])
-  const [count, setCount] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<Error | null>(null)
-  const [refetchToken, setRefetchToken] = useState(0)
+export function useDonation(campaignId: number, donor: string | undefined) {
+  const [donation, setDonation] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (!donor || !campaignId || isNaN(campaignId) || campaignId < 1) {
