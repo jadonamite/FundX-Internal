@@ -12,10 +12,6 @@ import {
 } from "@/lib/stacks-contract"
 import { USDCX_DECIMALS } from "@/lib/stacks-config"
 
-/**
- * useAllCampaigns
- * @returns {*}
- */
 export function useAllCampaigns() {
   const [campaigns, setCampaigns] = useState<OnChainCampaign[]>([])
   const [count, setCount] = useState(0)
