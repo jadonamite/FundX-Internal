@@ -2,10 +2,6 @@ import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { HIRO_API } from "./stacks-config"
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
-
 // Polls Hiro API until tx is confirmed, rejected, or timeout (default 2 min)
 export async function waitForTx(
   txid: string,
@@ -26,4 +22,9 @@ export async function waitForTx(
     await new Promise((r) => setTimeout(r, intervalMs))
   }
   return "timeout"
+}
+
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }
