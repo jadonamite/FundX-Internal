@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 
-const SCRAMBLE_CHARS = "ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ∑∆∇Ωλ∞"
+const SCRAMBLE_CHARS = 'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ∑∆∇Ωλ∞'
 
 export function useScramble() {
   const [display, setDisplay] = useState("Bitcoin")
