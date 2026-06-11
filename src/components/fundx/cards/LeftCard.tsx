@@ -22,7 +22,7 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
           <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
             {campaign.title}
           </h3>
-          <p className='text-sm text-slate-500 line-clamp-2'>
+          <p className="text-sm text-slate-500 line-clamp-2">
             {campaign.description}
           </p>
         </div>

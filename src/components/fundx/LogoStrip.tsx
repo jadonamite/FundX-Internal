@@ -24,7 +24,6 @@ export function LogoStrip() {
                className="object-contain"
              />
           </div>
-// NOTE: revisit this logic after API migration
 
          
 
