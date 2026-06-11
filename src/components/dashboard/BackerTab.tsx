@@ -13,12 +13,9 @@ import { FUNDX_CONTRACT_FQN, STACKS_NETWORK, parseTokenFqn } from "@/lib/stacks-
 import { waitForTx } from "@/lib/utils"
 import { toast } from "sonner"
 
-export function BackerTab() {
-  const { walletData } = useStacks()
-  const userAddress = walletData?.stxAddress
-  const { campaigns, isLoading: isCampaignsLoading, refetch } = useAllCampaigns()
-  const campaignIds = useMemo(() => campaigns.map((c) => Number(c.id)), [campaigns])
-  const { donations, isLoading: isDonationsLoading } = useUserDonations(userAddress, campaignIds)
+function formatMoney(amount: number) {
+  return `${amount.toLocaleString()} USDCx`
+}
 
 interface Contribution {
   campaign: OnChainCampaign
@@ -26,12 +23,8 @@ interface Contribution {
   status: "active" | "successful" | "refund_available"
 }
 
-function SuccessCard({ c }: { c: Contribution }) {
-  return (
-    <div className="bg-slate-50 p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-inner flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
-      <div className="absolute -right-4 -bottom-10 text-[130px] font-black text-slate-200 opacity-50 z-0 select-none pointer-events-none tracking-tighter leading-none">FUNDED</div>
-      <CheckCircle2 strokeWidth={1} className="absolute right-10 -bottom-10 w-72 h-72 text-slate-300 opacity-20 z-0 pointer-events-none" />
-      <div className="absolute top-0 left-0 w-2 h-full bg-slate-300 z-10" />
+function RefundCard({ c, onSuccess }: { c: Contribution; onSuccess: () => void }) {
+  const [pending, setPending] = useState(false)
 
   const handleRefund = async () => {
     try {
@@ -111,9 +104,13 @@ function SuccessCard({ c }: { c: Contribution }) {
   )
 }
 
-function formatMoney(amount: number) {
-  return `${amount.toLocaleString()} USDCx`
-}
+function ActiveCard({ c }: { c: Contribution }) {
+  const progress = Math.min((c.campaign.raised / c.campaign.goal) * 100, 100)
+  return (
+    <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
+      <div className="absolute -right-4 -bottom-10 text-[130px] font-black text-orange-50 opacity-80 z-0 select-none pointer-events-none tracking-tighter leading-none">ACTIVE</div>
+      <Rocket strokeWidth={1} className="absolute right-10 -bottom-10 w-72 h-72 text-orange-500 opacity-[0.04] z-0 pointer-events-none transform -rotate-12" />
+      <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-orange-400 to-orange-500 z-10" />
 
       <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
         <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
@@ -149,13 +146,12 @@ function formatMoney(amount: number) {
   )
 }
 
-function ActiveCard({ c }: { c: Contribution }) {
-  const progress = Math.min((c.campaign.raised / c.campaign.goal) * 100, 100)
+function SuccessCard({ c }: { c: Contribution }) {
   return (
-    <div className="bg-white p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-1 transition-transform duration-300">
-      <div className="absolute -right-4 -bottom-10 text-[130px] font-black text-orange-50 opacity-80 z-0 select-none pointer-events-none tracking-tighter leading-none">ACTIVE</div>
-      <Rocket strokeWidth={1} className="absolute right-10 -bottom-10 w-72 h-72 text-orange-500 opacity-[0.04] z-0 pointer-events-none transform -rotate-12" />
-      <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-orange-400 to-orange-500 z-10" />
+    <div className="bg-slate-50 p-8 md:p-10 min-h-[240px] rounded-[2rem] border border-slate-200 shadow-inner flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+      <div className="absolute -right-4 -bottom-10 text-[130px] font-black text-slate-200 opacity-50 z-0 select-none pointer-events-none tracking-tighter leading-none">FUNDED</div>
+      <CheckCircle2 strokeWidth={1} className="absolute right-10 -bottom-10 w-72 h-72 text-slate-300 opacity-20 z-0 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-2 h-full bg-slate-300 z-10" />
 
       <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
         <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-300 shadow-sm">
@@ -188,8 +184,12 @@ function ActiveCard({ c }: { c: Contribution }) {
   )
 }
 
-function RefundCard({ c, onSuccess }: { c: Contribution; onSuccess: () => void }) {
-  const [pending, setPending] = useState(false)
+export function BackerTab() {
+  const { walletData } = useStacks()
+  const userAddress = walletData?.stxAddress
+  const { campaigns, isLoading: isCampaignsLoading, refetch } = useAllCampaigns()
+  const campaignIds = useMemo(() => campaigns.map((c) => Number(c.id)), [campaigns])
+  const { donations, isLoading: isDonationsLoading } = useUserDonations(userAddress, campaignIds)
 
   const contributions: Contribution[] = useMemo(() => {
     return campaigns

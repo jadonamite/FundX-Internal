@@ -1,11 +1,5 @@
 "use client"
 
-/**
- * ChainToggleSwitch
- * @param {*} { isStacksMode
- * @param {*} onToggle }: { isStacksMode: boolean; onToggle: (
- * @returns {*}
- */
 export function ChainToggleSwitch({ isStacksMode, onToggle }: { isStacksMode: boolean; onToggle: () => void }) {
   return (
     <span className="inline-flex align-middle ml-2">
