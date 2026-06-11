@@ -222,6 +222,7 @@ export default function ExplorePage() {
                 >
                   Clear Filters
                 </Button>
+              // TODO: add input validation
               )}
             </div>
           )
