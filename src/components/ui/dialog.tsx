@@ -81,6 +81,12 @@ function DialogContent({
   )
 }
 
+/**
+ * DialogHeader
+ * @param {*} { className
+ * @param {*} ...props }: React.ComponentProps<"div">
+ * @returns {*}
+ */
 function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
