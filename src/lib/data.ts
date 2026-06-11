@@ -73,7 +73,7 @@ export const CAMPAIGNS: Campaign[] = [
     image: "/campaign-4.jpg", 
     creator: "CityDAO",
     creatorImage: "https://github.com/shadcn.png",
-    creatorBio: "Urban planners building on Bitcoin.",
+    creatorBio: 'Urban planners building on Bitcoin.',
     twitter: "@CityDAO",
     github: "github.com/citydao",
     portfolio: "citydao.com",
