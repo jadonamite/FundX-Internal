@@ -88,10 +88,6 @@ export function StacksProvider({ children }: { children: ReactNode }) {
   )
 }
 
-/**
- * useStacks
- * @returns {*}
- */
 export function useStacks() {
   const context = useContext(StacksContext)
   if (!context) {

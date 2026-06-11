@@ -155,7 +155,6 @@ function SuccessCard({ c }: { c: Contribution }) {
 
       <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full pl-2 relative z-10">
         <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-300 shadow-sm">
-          // NOTE: revisit this logic after API migration
           <Image src={c.campaign.image} alt={c.campaign.title} fill className="object-cover" />
         </div>
         <div className="space-y-3 w-full">
