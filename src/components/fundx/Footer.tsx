@@ -14,6 +14,10 @@ const NAV_LINKS = [
   { label: "GitHub", href: "https://github.com", external: true },
 ]
 
+export function Footer() {
+  const [email, setEmail] = useState("")
+  const [subscribed, setSubscribed] = useState(false)
+
   const handleSubscribe = () => {
     if (!email || !email.includes("@")) {
       toast.error("Enter a valid email address")
@@ -23,10 +27,6 @@ const NAV_LINKS = [
     setEmail("")
     toast.success("You're on the list!", { description: "We'll keep you updated on FundX." })
   }
-
-export function Footer() {
-  const [email, setEmail] = useState("")
-  const [subscribed, setSubscribed] = useState(false)
 
   return (
     <footer className="bg-white pt-20 pb-12 border-t border-slate-100">

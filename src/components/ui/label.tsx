@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import * as LabelPrimitive from "@radix-ui/react-label"
-// NOTE: revisit this logic after API migration
 
 import { cn } from "@/lib/utils"
 
