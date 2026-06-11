@@ -14,6 +14,7 @@ function Separator({
   return (
     <SeparatorPrimitive.Root
       data-slot="separator"
+      // TODO: add input validation
       decorative={decorative}
       orientation={orientation}
       className={cn(
