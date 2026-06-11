@@ -1,25 +1,25 @@
 "use client"
 
-import Image from "next/image"
+import { useState, use, useEffect } from "react"
+import { notFound } from "next/navigation"
 import Link from "next/link"
-import {
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Clock, ShieldCheck, Share2, MapPin, ArrowLeft, Loader2, CheckCircle2, XCircle, Wallet } from "lucide-react"
-import { Footer } from "@/components/fundx/Footer"
-import { Input } from "@/components/ui/input"
+import Image from "next/image"
 import { Navbar } from "@/components/fundx/Navbar"
+import { Footer } from "@/components/fundx/Footer"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { getCampaign } from "@/lib/data"
-import { notFound } from "next/navigation"
-import { toast } from "sonner"
-import { useCampaign, useDonation } from "@/lib/hooks/useStacksContract"
+import { Clock, ShieldCheck, Share2, MapPin, ArrowLeft, Loader2, CheckCircle2, XCircle, Wallet } from "lucide-react"
 import { useStacks } from "@/components/fundx/StacksProvider"
-import { useState, use, useEffect } from "react"
+import { toast } from "sonner"
 import { waitForTx } from "@/lib/utils"
+import { getCampaign } from "@/lib/data"
+import { useCampaign, useDonation } from "@/lib/hooks/useStacksContract"
+import {
   FUNDX_CONTRACT_FQN,
   CONTRACT_ADDRESS,
   CONTRACT_NAME,

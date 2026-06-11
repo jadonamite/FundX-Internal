@@ -1,9 +1,5 @@
 import Image from "next/image"
 
-/**
- * LogoStrip
- * @returns {*}
- */
 export function LogoStrip() {
   return (
     <div className="w-full border-t border-slate-100 py-20"> {/* No background */}
