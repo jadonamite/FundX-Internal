@@ -109,6 +109,10 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
     Math.min((raised / goal) * 100, 100)
 
   useEffect(() => {
+    /**
+     * measure
+     * @returns {*}
+     */
     function measure() {
       if (!deckSlotRef.current || !deckRef.current) return
       const slotPageTop = getPageOffsetTop(deckSlotRef.current)
