@@ -1,3 +1,7 @@
+/**
+ * TrustStrip
+ * @returns {*}
+ */
 export function TrustStrip() {
   return (
     <div className="mt-12 relative">
