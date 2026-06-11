@@ -135,7 +135,6 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
     )
   }
 
-  // --- ON-CHAIN CAMPAIGN (numeric ID) ---
   if (!campaign) return notFound()
 
   const progress = Math.min((campaign.raised / campaign.goal) * 100, 100)
