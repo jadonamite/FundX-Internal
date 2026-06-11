@@ -231,7 +231,6 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
     )
   }
 
-  // ─── STEP 3: Funding ───────────────────────────────────────────
   if (step === 3) {
     const goalNum = Number(formData.goal)
     const durationNum = Number(formData.duration)
