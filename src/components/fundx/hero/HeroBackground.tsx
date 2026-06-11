@@ -55,8 +55,8 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
+    const context = canvas.getContext("2d")
+    if (!context) return
 
     let width = canvas.offsetWidth
     let height = canvas.offsetHeight
@@ -102,8 +102,8 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
     let frame = 0
 
     function draw() {
-      if (!ctx || !canvas) return
-      ctx.clearRect(0, 0, width, height)
+      if (!context || !canvas) return
+      context.clearRect(0, 0, width, height)
 
       const isStacks = isStacksModeRef.current
       const colors = isStacks ? STACKS_COLORS : BITCOIN_COLORS
@@ -128,25 +128,25 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         // Draw stream using blended color
         const drawStream = (color: string, alpha: number) => {
           if (alpha < 0.01) return
-          const grad = ctx.createLinearGradient(s.x, s.y - s.length, s.x, s.y)
+          const grad = context.createLinearGradient(s.x, s.y - s.length, s.x, s.y)
           grad.addColorStop(0, "transparent")
           grad.addColorStop(0.3, hexToRgba(color, s.opacity * alpha))
           grad.addColorStop(0.7, hexToRgba(color, s.opacity * alpha * 0.8))
           grad.addColorStop(1, "transparent")
-          ctx.beginPath()
-          ctx.moveTo(s.x, s.y - s.length)
-          ctx.lineTo(s.x, s.y)
-          ctx.strokeStyle = grad
-          ctx.lineWidth = s.width
-          ctx.stroke()
+          context.beginPath()
+          context.moveTo(s.x, s.y - s.length)
+          context.lineTo(s.x, s.y)
+          context.strokeStyle = grad
+          context.lineWidth = s.width
+          context.stroke()
 
           // Value units
           s.units.forEach(u => {
             const uy = s.y - s.length * u.offset
-            ctx.beginPath()
-            ctx.arc(s.x, uy, u.size / 2, 0, Math.PI * 2)
-            ctx.fillStyle = hexToRgba(color, s.opacity * alpha * 1.4)
-            ctx.fill()
+            context.beginPath()
+            context.arc(s.x, uy, u.size / 2, 0, Math.PI * 2)
+            context.fillStyle = hexToRgba(color, s.opacity * alpha * 1.4)
+            context.fill()
           })
         }
 
@@ -184,23 +184,23 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
           if (alpha < 0.01) return
 
           // Glow
-          ctx.shadowBlur = 16
-          ctx.shadowColor = hexToRgba(color, b.opacity * alpha * 0.8)
+          context.shadowBlur = 16
+          context.shadowColor = hexToRgba(color, b.opacity * alpha * 0.8)
 
           // Block border
-          ctx.beginPath()
-          ctx.roundRect(b.x - b.size / 2, b.y - b.size / 2, b.size, b.size, 5)
-          ctx.strokeStyle = hexToRgba(color, b.opacity * alpha)
-          ctx.lineWidth = 1.2
-          ctx.stroke()
+          context.beginPath()
+          context.roundRect(b.x - b.size / 2, b.y - b.size / 2, b.size, b.size, 5)
+          context.strokeStyle = hexToRgba(color, b.opacity * alpha)
+          context.lineWidth = 1.2
+          context.stroke()
 
           // Block fill — very subtle
-          ctx.beginPath()
-          ctx.roundRect(b.x - b.size / 2, b.y - b.size / 2, b.size, b.size, 5)
-          ctx.fillStyle = hexToRgba(color, b.opacity * alpha * 0.15)
-          ctx.fill()
+          context.beginPath()
+          context.roundRect(b.x - b.size / 2, b.y - b.size / 2, b.size, b.size, 5)
+          context.fillStyle = hexToRgba(color, b.opacity * alpha * 0.15)
+          context.fill()
 
-          ctx.shadowBlur = 0
+          context.shadowBlur = 0
         }
 
         drawBlock(BITCOIN_COLORS.block, bitcoinAlpha)
@@ -215,12 +215,12 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
 
             const drawLine = (color: string, alpha: number) => {
               if (alpha < 0.01) return
-              ctx.beginPath()
-              ctx.moveTo(b.x, b.y)
-              ctx.lineTo(other.x, other.y)
-              ctx.strokeStyle = hexToRgba(color, lineAlpha * alpha)
-              ctx.lineWidth = 0.8
-              ctx.stroke()
+              context.beginPath()
+              context.moveTo(b.x, b.y)
+              context.lineTo(other.x, other.y)
+              context.strokeStyle = hexToRgba(color, lineAlpha * alpha)
+              context.lineWidth = 0.8
+              context.stroke()
             }
 
             drawLine(BITCOIN_COLORS.block, bitcoinAlpha)
