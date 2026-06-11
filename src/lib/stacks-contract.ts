@@ -47,7 +47,7 @@ export interface OnChainCampaign {
   location: string
   creator: string
   token: string
-  currency: 'USDCx' | 'STX'
+  currency: "USDCx" | "STX"
   goal: number
   raised: number
   deadline: number

@@ -13,7 +13,6 @@ export function authenticate() {
     redirectTo: "/",
     onFinish: () => {
       window.location.reload(); // Refresh page to update the UI
-    // TODO: optimize for large datasets
     },
     userSession,
   });
