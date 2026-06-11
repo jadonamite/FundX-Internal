@@ -12,7 +12,7 @@ interface CampaignCardProps {
   raised: number
   goal: number
   image: string
-  currency?: "USDCx" | "STX"
+  currency?: "USDCx" | "STX",
 }
 
 export function CampaignCard({ id, title, tagline, description, raised, goal, image, currency = "USDCx" }: CampaignCardProps) {
