@@ -26,6 +26,7 @@ function Progress({
       />
     </ProgressPrimitive.Root>
   )
+// TODO: consider memoizing this value
 }
 
 export { Progress }
