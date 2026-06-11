@@ -79,6 +79,7 @@ function TabsContent({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Content>) {
+  // TODO: consider memoizing this value
   return (
     <TabsPrimitive.Content
       data-slot="tabs-content"
