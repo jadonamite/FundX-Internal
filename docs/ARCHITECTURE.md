@@ -107,12 +107,12 @@ app/ pages         /explore (live + mock pad), /campaigns/[id] (donate/withdraw/
 
 Behavioral facts worth knowing:
 - **Wallet** state comes from `StacksProvider` (`useStacks()`), using the modern
-  `@stacks/connect` `connect()/disconnect()/isConnected()` API. `src/lib/stacks-auth.ts`
-  is an older `showConnect`/`UserSession` implementation that is **imported nowhere** (dead).
+  `@stacks/connect` `connect()/disconnect()/isConnected()` API.
 - **Create = 2 transactions** — escrow create, then registry register; the new id is
   predicted from the campaign count.
-- **STX currency is UI-only.** The create form offers STX but `create/page.tsx` always
-  submits USDCx (a wrapped SIP-010 STX would be required).
+- **STX is a real on-chain choice.** `fundx-escrow-v4` has split rails, so `create/page.tsx`
+  routes to `create-campaign-stx` or `create-campaign-ft` by the selected asset (the STX rail
+  is deployed but not yet smoke-tested on mainnet).
 - **Post-condition modes differ:** donate uses `"deny"` + an explicit FT post-condition
   (`Pc.principal(user).willSendLte(amount).ft(token, asset)`); dashboard withdraw/refund
   use `"allow"` because funds leave the contract via `as-contract` (a sender post-condition

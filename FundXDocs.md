@@ -53,13 +53,15 @@ FundX introduces a USDCx-powered on-chain escrow model:
 
 ### Stable Funding via USDCx
 
-FundX uses USDCx, a USDC-backed token minted via Circle’s infrastructure and interoperable through CCTP mechanisms managed by Circle.
+FundX settles in USDCx, the USD-backed stablecoin live on Stacks mainnet
+(`SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx`, FT asset `usdcx-token`,
+6 decimals). It is the Stacks-native USDCx token — not a Circle-native CCTP mint.
 
 This provides:
 
-* 1:1 USD backing
-* Cross-chain mint and burn mechanics
-* Native liquidity within supported ecosystems
+* USD-denominated value, insulating campaigns from STX/BTC volatility
+* A single SIP-010 transfer per donation (no approve step)
+* Native liquidity on Stacks
 
 ---
 

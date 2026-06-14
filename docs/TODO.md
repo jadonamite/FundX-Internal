@@ -1,54 +1,60 @@
 # FundX — TODO (prioritized)
 
-Derived from a full source read + live Hiro mainnet verification. Highest-impact first.
+Reconciled against `HANDOVER.md` (2026-06-10) + live Hiro mainnet state. Highest-impact first.
 
-## P0 — deploy & cut over to fundx-escrow-v3 (in progress)
+## Done — escrow cutover (was P0/P1)
 
-The best-of-both-worlds escrow `fundx-escrow-v3.clar` is written, `clarinet check`-clean,
-and the frontend (`stacks-config.ts`) is already pointed at it + real USDCx. Remaining:
+The old plan to cut over to `fundx-escrow-v3` has been **superseded**: the project moved to
+**`fundx-escrow-v4`**, the dual-asset escrow where each campaign picks **STX *or* USDCx**.
 
-- [ ] **Deploy `fundx-escrow-v3` to mainnet** (sender `SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39`).
-      A v3 entry has been added to `deploy-new-contracts.cjs`. **Needs the deployer key
-      (`.env`) and real STX — irreversible, requires owner action.**
-- [ ] **Allow-list USDCx on v3** — as `CONTRACT-OWNER` call
-      `set-allowed-token('SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx, true)` (one tx).
-- [ ] **Run the simnet suite locally** — `cd contracts && npm test` (vitest config restored).
-      Could not execute in CI sandbox (vitest 4 ↔ clarinet-sdk worker + offline trait requirement).
-- [ ] A fresh v3 deploy starts at `campaign-count = 0`, which **sidesteps** the old
-      `indiegogo-v2` problems below (no missing accessor, no 9,907-row fan-out).
+- [x] `fundx-escrow-v4` deployed to mainnet (deployer `SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39`).
+- [x] USDCx allow-listed on v4 (and legacy v3). Real token:
+      `SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx`, FT asset `usdcx-token`, 6 decimals.
+- [x] Frontend wired to v4 (`stacks-config.ts` → `CONTRACT_NAME = "fundx-escrow-v4"`),
+      typechecks clean, split `-stx`/`-ft` rails routed by the campaign's asset.
+- [x] STX is now a **real on-chain choice** in the create form (was UI-only).
 
-### Background — why the old `indiegogo-v2` is being replaced
-- Deployed `indiegogo-v2` is **missing `get-campaign-count`** (live call returns
-  `UndefinedFunction`), so the frontend's enumeration throws against it.
-- Its `campaign-count` data-var reads **9,907**, making the unbatched `fetchAllCampaigns`
-  fan-out non-viable. (If you ever keep `indiegogo-v2`, paginate/index it.)
+## P0 — verify the STX rail on mainnet
 
-## P1 — real USDCx (done in config, pending on-chain)
+- [ ] **Smoke-test `donate-stx` / `withdraw-stx` / `claim-refund-stx` on mainnet.** Deployed
+      but never exercised. Make it recoverable: creator = owner = deployer so funds round-trip;
+      use `duration=1` (deadlines are tenure-paced, ~10 min/unit). STX is 6-dec like USDCx.
+- [ ] **Run the simnet suites locally** — `cd contracts && npm test`
+      (`tests/fundx-escrow-v3.test.ts`, `tests/fundx-escrow-v4.test.ts`). Couldn't run in the
+      CI sandbox (vitest 4 ↔ clarinet-sdk worker + offline trait requirement).
 
-- [x] Identify the real token: **USDCx** `SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx`,
-      FT asset `usdcx-token`, **6 decimals** (same as the mock → no amount-math changes).
-- [x] `src/lib/stacks-config.ts` updated: `USDCX_CONTRACT_ADDRESS/NAME` → real USDCx,
-      `TOKEN_ASSET_NAMES["usdcx"] = "usdcx-token"`.
-- [ ] On-chain: allow-list it on v3 (see P0).
-- [ ] Update the "Circle / CCTP" wording in `FundXDocs.md` — USDCx here is the mainnet
-      `…usdcx` token, not a Circle-native CCTP mint.
+## P1 — deploy pipeline
+
+- [ ] **Vercel deploys failing/queued.** Root cause (unused `@jadonamite/*` SDKs pinning
+      `@stacks@^6` vs FundX's `@stacks@7`, an `ERESOLVE`) was fixed by removing them
+      (commit `a94a26d`); fix is sitting in a queued deploy. Check Vercel Usage/Billing for a
+      paused/limit state, cancel the stuck queued deploy, run `vercel --prod` from the fix.
+- [ ] **Throttle the auto-push flood.** `.push.sh` commits + pushes on every file change →
+      a Vercel deploy each → queue/limit pressure. Throttle or disable auto-deploy-on-push.
 
 ## P2 — correctness / cleanup
 
-- [ ] **Wire or scope STX.** The create form offers STX but the code always submits USDCx.
-      Either wire a wrapped SIP-010 STX or remove the option from the form.
-- [ ] **Delete dead code** — `src/lib/stacks-auth.ts` is imported nowhere
-      (`StacksProvider` uses the modern `@stacks/connect` API).
+- [x] ~~Wire or scope STX~~ — wired in v4.
+- [x] ~~Delete dead `src/lib/stacks-auth.ts`~~ — removed.
 
 ## P3 — docs hygiene
 
-- [ ] Fix or retire `contracts/deployments/FUNDX-GUIDE.md` — it documents `fundx-escrow`
-      (3-arg create, USDCx-only) and a non-existent token `SP2C2YFP…usdcx`, not the live contract.
-- [ ] Regenerate `structure.md` / `Struct.md` (file trees are outdated).
-- [ ] Update `PROGRESS.md`: contract is `indiegogo-v2` (not `fundx-escrow-v2`); confirmation
-      uses `waitForTx` polling (not `setTimeout(refetch, 8000)`).
+- [x] ~~Fix the Circle/CCTP wording in `FundXDocs.md`~~ — done (USDCx is the Stacks-native
+      `…usdcx` token, not a Circle CCTP mint).
+- [x] ~~Fix or retire `contracts/deployments/FUNDX-GUIDE.md`~~ — retired (documented the old
+      `fundx-escrow`, 3-arg create, and a non-existent token).
+- [x] ~~Regenerate `structure.md` / `Struct.md`~~ — done.
+- [x] ~~Update `PROGRESS.md`~~ — now reflects v4, real USDCx, and `waitForTx` polling.
+- [ ] `clarinet check` has 1 pre-existing error: `fundx-tips.clar` undeclared-trait
+      (unrelated to v3/v4, which are clean).
 
 ## Backlog — deployed but unwired features
 
 - [ ] `fundx-milestone` (3-tranche release) — build UI or move to roadmap.
 - [ ] `fundx-tips` (direct tipping + reputation) — build UI or move to roadmap.
+
+## Deferred
+
+- [ ] Accept STX **and** USDCx in a single campaign — needs per-asset accounting; no oracle.
+</content>
+</invoke>
