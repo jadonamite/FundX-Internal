@@ -71,16 +71,6 @@ plan:
   - id: 1
     transactions:
     - transaction-type: emulated-contract-publish
-      contract-name: sip-010-trait-v2
-      emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
-      path: contracts/sip-010-trait-ft-standard.clar
-      clarity-version: 2
-    - transaction-type: emulated-contract-publish
-      contract-name: fundx-escrow-v2
-      emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
-      path: contracts/fundx-escrow.clar
-      clarity-version: 2
-    - transaction-type: emulated-contract-publish
       contract-name: fundx-escrow-v3
       emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
       path: contracts/fundx-escrow-v3.clar
@@ -89,6 +79,11 @@ plan:
       contract-name: fundx-escrow-v4
       emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
       path: contracts/fundx-escrow-v4.clar
+      clarity-version: 2
+    - transaction-type: emulated-contract-publish
+      contract-name: sip-010-trait-v2
+      emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+      path: contracts/sip-010-trait-ft-standard.clar
       clarity-version: 2
     - transaction-type: emulated-contract-publish
       contract-name: fundx-milestone
