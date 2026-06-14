@@ -144,10 +144,7 @@ Implications: enumeration must read the data-var (or be redeployed with the acce
 
 ## 7. Stale docs (do not trust as current)
 
-- `FUNDX-GUIDE.md` documents `fundx-escrow` (3-arg create, USDCx-only) and a token
-  address `SP2C2YFP…usdcx` that **does not exist on mainnet** — not the live contract.
-- `structure.md` / `Struct.md` file trees are outdated.
-- `PROGRESS.md` is largely accurate but names `fundx-escrow-v2` as the contract (live is
-  `indiegogo-v2`) and describes an old `setTimeout(refetch, 8000)` confirmation (now `waitForTx`).
+- `structure.md` / `Struct.md` / `PROGRESS.md` were regenerated 2026-06-14 and now reflect
+  the live `fundx-escrow-v4` + real USDCx + `waitForTx` confirmation.
 - `Helper.md`, `Another.md`, `trials.md`, `whattofix.md` are git-ignored scratch notes.
 - `FundX.clar` is the original Clarity-3 testnet version, superseded by the two escrows.
