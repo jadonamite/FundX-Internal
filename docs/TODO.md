@@ -1,60 +1,61 @@
-# FundX — TODO (prioritized)
+# FundX — TODO
 
-Reconciled against `HANDOVER.md` (2026-06-10) + live Hiro mainnet state. Highest-impact first.
+From a full source + tooling sweep (2026-06-15). Live contract: `fundx-escrow-v4`
+(dual-asset STX **or** USDCx). Core contracts + USDCx flow work; the gaps below are real.
 
-## Done — escrow cutover (was P0/P1)
+## P0 — broken tooling (blocks all verification)
 
-The old plan to cut over to `fundx-escrow-v3` has been **superseded**: the project moved to
-**`fundx-escrow-v4`**, the dual-asset escrow where each campaign picks **STX *or* USDCx**.
+- [ ] **Test suite never runs** — three stacked failures: (1) `.bin/vitest` is a dangling
+      symlink → `npm install` rebuilds it; (2) `vitest@^4` is pinned but
+      `vitest-environment-clarinet@3` needs vitest `^3` → forks worker won't start;
+      (3) the trait error below aborts simnet init. Fix all three, then `npm test` runs the
+      (already thorough) v4 suite.
+- [ ] **`clarinet check` error** — legacy contracts (`fundx-escrow.clar`, `fundx-milestone`,
+      `fundx-tips`) import the trait locally via `.sip-010-trait-v2.sip-010-trait`, which
+      fails simnet analysis. Point them at the remote FQN
+      `'SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.sip-010-trait`
+      (as v3/v4 do), or drop the unused ones from `Clarinet.toml`. Deployed contracts are
+      unaffected — this is local-only.
+- [ ] **`next build` typecheck scope** — root `tsconfig.json` includes `**/*.ts` and only
+      excludes `node_modules`, pulling `contracts/tests/*.ts` (38+ errors) into the app build.
+      Add `contracts` to `exclude`. (`src/` itself is 0 errors.)
 
-- [x] `fundx-escrow-v4` deployed to mainnet (deployer `SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39`).
-- [x] USDCx allow-listed on v4 (and legacy v3). Real token:
-      `SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx`, FT asset `usdcx-token`, 6 decimals.
-- [x] Frontend wired to v4 (`stacks-config.ts` → `CONTRACT_NAME = "fundx-escrow-v4"`),
-      typechecks clean, split `-stx`/`-ft` rails routed by the campaign's asset.
-- [x] STX is now a **real on-chain choice** in the create form (was UI-only).
+## P1 — correctness bugs
 
-## P0 — verify the STX rail on mainnet
+- [ ] **UI is asset-blind** — every label hardcodes "USDCx" even for STX campaigns
+      (detail page lines 358/383/418/440/456/477/282; `formatMoney` in both dashboard tabs;
+      donate input prefix). STX campaigns work on-chain but display the wrong currency.
+      Derive the label from `campaign.currency`.
+- [ ] **Create wizard drops most input** — collects creatorBio, email, github, portfolio,
+      videoUrl, budgetBreakdown, roadmap, projectStage, location, but `register` persists only
+      title/tagline/description/image/category/social (location hardcoded `""`). Either persist
+      them (extend registry or off-chain store) or stop collecting them.
 
-- [ ] **Smoke-test `donate-stx` / `withdraw-stx` / `claim-refund-stx` on mainnet.** Deployed
-      but never exercised. Make it recoverable: creator = owner = deployer so funds round-trip;
-      use `duration=1` (deadlines are tenure-paced, ~10 min/unit). STX is 6-dec like USDCx.
-- [ ] **Run the simnet suites locally** — `cd contracts && npm test`
-      (`tests/fundx-escrow-v3.test.ts`, `tests/fundx-escrow-v4.test.ts`). Couldn't run in the
-      CI sandbox (vitest 4 ↔ clarinet-sdk worker + offline trait requirement).
+## P2 — mainnet verification
 
-## P1 — deploy pipeline
+- [ ] **STX rail never exercised on mainnet** — smoke-test `donate-stx`/`withdraw-stx`/
+      `claim-refund-stx` recoverably (creator = owner = deployer, `duration=1`). USDCx cycle
+      already proven.
 
-- [ ] **Vercel deploys failing/queued.** Root cause (unused `@jadonamite/*` SDKs pinning
-      `@stacks@^6` vs FundX's `@stacks@7`, an `ERESOLVE`) was fixed by removing them
-      (commit `a94a26d`); fix is sitting in a queued deploy. Check Vercel Usage/Billing for a
-      paused/limit state, cancel the stuck queued deploy, run `vercel --prod` from the fix.
-- [ ] **Throttle the auto-push flood.** `.push.sh` commits + pushes on every file change →
-      a Vercel deploy each → queue/limit pressure. Throttle or disable auto-deploy-on-push.
+## P3 — deploy pipeline
 
-## P2 — correctness / cleanup
+- [ ] **Vercel deploys** — ERESOLVE fix (removed `@jadonamite/*` SDKs, commit `a94a26d`) is in a
+      queued deploy. Check Usage/Billing, cancel the stuck queue, `vercel --prod`.
+- [ ] **`.push.sh` auto-push** — commits + pushes to `main` on every file change. Throttle or
+      gate it.
 
-- [x] ~~Wire or scope STX~~ — wired in v4.
-- [x] ~~Delete dead `src/lib/stacks-auth.ts`~~ — removed.
+## P4 — cleanup
 
-## P3 — docs hygiene
+- [ ] Remove unused `reacts-cli` dependency from `package.json`.
+- [ ] Decide on `indiegogo-v2` (missing `get-campaign-count`, `campaign-count` reads 9,907),
+      `fundx-escrow.clar`, and `FundX.clar` — all dead/superseded. Archive or delete.
 
-- [x] ~~Fix the Circle/CCTP wording in `FundXDocs.md`~~ — done (USDCx is the Stacks-native
-      `…usdcx` token, not a Circle CCTP mint).
-- [x] ~~Fix or retire `contracts/deployments/FUNDX-GUIDE.md`~~ — retired (documented the old
-      `fundx-escrow`, 3-arg create, and a non-existent token).
-- [x] ~~Regenerate `structure.md` / `Struct.md`~~ — done.
-- [x] ~~Update `PROGRESS.md`~~ — now reflects v4, real USDCx, and `waitForTx` polling.
-- [ ] `clarinet check` has 1 pre-existing error: `fundx-tips.clar` undeclared-trait
-      (unrelated to v3/v4, which are clean).
-
-## Backlog — deployed but unwired features
+## Backlog — deployed, no UI
 
 - [ ] `fundx-milestone` (3-tranche release) — build UI or move to roadmap.
-- [ ] `fundx-tips` (direct tipping + reputation) — build UI or move to roadmap.
+- [ ] `fundx-tips` (tipping + reputation) — build UI or move to roadmap.
 
 ## Deferred
 
-- [ ] Accept STX **and** USDCx in a single campaign — needs per-asset accounting; no oracle.
+- [ ] Accept STX **and** USDCx in one campaign — needs per-asset accounting; no oracle.
 </content>
-</invoke>
