@@ -173,9 +173,9 @@ export function CreatorTab() {
                   <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{campaign.title}</h3>
                   <div className="flex items-center gap-4 text-sm mt-4">
                     <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 text-base">
-                      Raised: <span className="text-orange-600 font-extrabold">{formatMoney(campaign.raised)}</span>
+                      Raised: <span className="text-orange-600 font-extrabold">{formatMoney(campaign.raised, campaign.currency)}</span>
                     </div>
-                    <div className="text-slate-500 font-medium text-base">Goal: {campaign.goal.toLocaleString()} USDCx</div>
+                    <div className="text-slate-500 font-medium text-base">Goal: {campaign.goal.toLocaleString()} {campaign.currency}</div>
                   </div>
                   <div className="w-full max-w-md bg-slate-100 rounded-full h-6 mt-6 overflow-hidden shadow-inner border border-slate-200/50 p-1">
                     <div
@@ -216,9 +216,9 @@ export function CreatorTab() {
                 <h3 className="text-3xl font-bold text-slate-500 line-through decoration-slate-300 decoration-2 tracking-tight">{campaign.title}</h3>
                 <div className="flex items-center gap-4 text-sm mt-4">
                   <div className="font-semibold text-slate-500 bg-white/50 px-5 py-2.5 rounded-xl border border-slate-200/60 text-base">
-                    Raised: {formatMoney(campaign.raised)}
+                    Raised: {formatMoney(campaign.raised, campaign.currency)}
                   </div>
-                  <div className="text-slate-500 font-medium text-base">Goal: {campaign.goal.toLocaleString()} USDCx</div>
+                  <div className="text-slate-500 font-medium text-base">Goal: {campaign.goal.toLocaleString()} {campaign.currency}</div>
                 </div>
               </div>
             </div>

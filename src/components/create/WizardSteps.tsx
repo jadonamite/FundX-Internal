@@ -250,7 +250,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
               Goal Amount <span className="text-red-400">*</span>
             </Label>
             <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-600 font-bold text-sm">USDCx</span>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-600 font-bold text-sm">{formData.currency}</span>
               <Input
                 type="number"
                 min={1}
@@ -312,7 +312,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
           <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Summary</p>
             <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-slate-700">
-              <span><span className="font-bold">{goalNum.toLocaleString()}</span> USDCx goal</span>
+              <span><span className="font-bold">{goalNum.toLocaleString()}</span> {formData.currency} goal</span>
               <span><span className="font-bold">{durationNum}</span> days (~{(durationNum * 144).toLocaleString()} blocks)</span>
               <span><span className="font-bold">{formData.fundingModel === "0" ? "Flexible" : "All-or-Nothing"}</span> model</span>
               <span className="flex items-center gap-1 text-green-600 font-medium">

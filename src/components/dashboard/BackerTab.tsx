@@ -13,8 +13,8 @@ import { FUNDX_CONTRACT_FQN, STACKS_NETWORK, parseTokenFqn } from "@/lib/stacks-
 import { waitForTx } from "@/lib/utils"
 import { toast } from "sonner"
 
-function formatMoney(amount: number) {
-  return `${amount.toLocaleString()} USDCx`
+function formatMoney(amount: number, currency: string) {
+  return `${amount.toLocaleString()} ${currency}`
 }
 
 interface Contribution {
@@ -46,7 +46,7 @@ function RefundCard({ c, onSuccess }: { c: Contribution; onSuccess: () => void }
       toast.loading("Confirming on-chain...", { id: `r-${c.campaign.id}` })
       const status = await waitForTx((result as any)?.txid ?? "")
       if (status === "success") {
-        toast.success(`${c.myContribution} USDCx refunded!`, { id: `r-${c.campaign.id}` })
+        toast.success(`${c.myContribution} ${c.campaign.currency} refunded!`, { id: `r-${c.campaign.id}` })
         onSuccess()
       } else if (status === "failed") {
         toast.error("Refund failed on-chain", { id: `r-${c.campaign.id}` })
@@ -82,10 +82,10 @@ function RefundCard({ c, onSuccess }: { c: Contribution; onSuccess: () => void }
           <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{c.campaign.title}</h3>
           <div className="flex flex-wrap items-center gap-4 text-sm mt-4">
             <div className="font-semibold text-blue-900 bg-blue-50 px-5 py-2.5 rounded-xl border border-blue-200/60 text-base">
-              My Contribution: <span className="text-blue-600 font-extrabold">{formatMoney(c.myContribution)}</span>
+              My Contribution: <span className="text-blue-600 font-extrabold">{formatMoney(c.myContribution, c.campaign.currency)}</span>
             </div>
             <div className="text-slate-500 font-medium text-base">
-              Project raised {formatMoney(c.campaign.raised)}
+              Project raised {formatMoney(c.campaign.raised, c.campaign.currency)}
             </div>
           </div>
         </div>
@@ -126,9 +126,9 @@ function ActiveCard({ c }: { c: Contribution }) {
           <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{c.campaign.title}</h3>
           <div className="flex flex-wrap items-center gap-4 text-sm mt-4">
             <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 text-base">
-              My Contribution: <span className="text-orange-600 font-extrabold">{formatMoney(c.myContribution)}</span>
+              My Contribution: <span className="text-orange-600 font-extrabold">{formatMoney(c.myContribution, c.campaign.currency)}</span>
             </div>
-            <div className="text-slate-500 font-medium text-base">Goal: {c.campaign.goal.toLocaleString()} USDCx</div>
+            <div className="text-slate-500 font-medium text-base">Goal: {c.campaign.goal.toLocaleString()} {c.campaign.currency}</div>
           </div>
           <div className="w-full max-w-md bg-slate-100 rounded-full h-6 mt-6 overflow-hidden shadow-inner border border-slate-200/50 p-1">
             <div className="bg-gradient-to-r from-orange-400 to-orange-500 h-full rounded-full relative" style={{ width: `${progress}%` }}>
@@ -167,7 +167,7 @@ function SuccessCard({ c }: { c: Contribution }) {
           <h3 className="text-3xl font-bold text-slate-700 tracking-tight">{c.campaign.title}</h3>
           <div className="flex items-center gap-4 text-sm mt-4">
             <div className="font-semibold text-slate-600 bg-white/80 px-5 py-2.5 rounded-xl border border-slate-200/60 text-base">
-              My Contribution: {formatMoney(c.myContribution)}
+              My Contribution: {formatMoney(c.myContribution, c.campaign.currency)}
             </div>
           </div>
         </div>
