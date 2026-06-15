@@ -177,7 +177,7 @@ export default function CreateCampaign() {
             Launch your Vision
           </h1>
           <p className="text-slate-500 text-lg">
-            Create a trustless <strong>USDCx</strong> crowdfunding campaign.
+            Create a trustless <strong>STX or USDCx</strong> crowdfunding campaign.
           </p>
         </div>
 

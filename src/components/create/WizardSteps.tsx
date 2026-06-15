@@ -244,6 +244,28 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
           <p className="text-slate-400 text-sm mt-1">These parameters are written directly to the smart contract.</p>
         </div>
 
+        <div className="space-y-3">
+          <Label className="font-semibold text-slate-700">Settlement Asset</Label>
+          <div className="grid grid-cols-2 gap-3">
+            <FundingModelCard
+              value="USDCx"
+              selected={formData.currency === "USDCx"}
+              onClick={() => setFormData({ ...formData, currency: "USDCx" })}
+              title="USDCx"
+              description="USD-pegged stablecoin. No volatility for backers."
+              badge="Stable"
+            />
+            <FundingModelCard
+              value="STX"
+              selected={formData.currency === "STX"}
+              onClick={() => setFormData({ ...formData, currency: "STX" })}
+              title="STX"
+              description="Native Stacks token. Raise in STX directly."
+            />
+          </div>
+          <p className="text-xs text-slate-400">The asset is fixed at creation — a campaign accepts only the one you pick.</p>
+        </div>
+
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label className="font-semibold text-slate-700">
