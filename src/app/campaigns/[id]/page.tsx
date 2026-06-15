@@ -142,6 +142,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
   const isPast = campaign.status !== "active"
   const isFlexible = campaign.fundingModel === "Flexible Model"
   const goalReached = campaign.raised >= campaign.goal
+  const currency = campaign.currency
 
   const isCreator = !!userAddress && campaign.creator.toLowerCase() === userAddress.toLowerCase()
   const canWithdraw = isCreator && isPast && !campaign.withdrawn && (isFlexible || goalReached)
@@ -279,7 +280,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       toast.loading("Confirming on-chain...", { id: "refund" })
       const status = await waitForTx((result as any)?.txid ?? "")
       if (status === "success") {
-        toast.success(`${userDonation} USDCx refunded!`, { id: "refund" })
+        toast.success(`${userDonation} ${currency} refunded!`, { id: "refund" })
         refetch()
       } else if (status === "failed") {
         toast.error("Refund failed on-chain", { id: "refund", description: "The transaction was rejected." })
@@ -355,7 +356,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                 <div className="flex items-center gap-2"><ShieldCheck className="w-5 h-5 text-green-500" /> Verified</div>
                 {userDonation > 0 && (
                   <div className="flex items-center gap-2 text-orange-500">
-                    <Wallet className="w-5 h-5" /> You contributed {userDonation} USDCx
+                    <Wallet className="w-5 h-5" /> You contributed {userDonation} {currency}
                   </div>
                 )}
               </div>
@@ -380,8 +381,8 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                   </div>
                   <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Token</p>
-                    <p className="text-lg font-bold text-slate-900">USDCx</p>
-                    <p className="text-xs text-slate-400 mt-1 font-mono">SIP-010 stablecoin</p>
+                    <p className="text-lg font-bold text-slate-900">{currency}</p>
+                    <p className="text-xs text-slate-400 mt-1 font-mono">{currency === "STX" ? "Native Stacks token" : "SIP-010 stablecoin"}</p>
                   </div>
                   <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Deadline Block</p>
@@ -415,7 +416,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
               <div className="space-y-5">
                 <div className="space-y-1">
                   <div className="text-4xl font-black text-slate-900 tracking-tight">
-                    {campaign.raised.toLocaleString()} <span className="text-xl font-bold text-slate-400">USDCx</span>
+                    {campaign.raised.toLocaleString()} <span className="text-xl font-bold text-slate-400">{currency}</span>
                   </div>
                   <div className="text-base font-medium text-slate-400">of {campaign.goal.toLocaleString()} goal</div>
                 </div>
@@ -437,14 +438,14 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                 <div className="bg-green-50 rounded-2xl p-5 border border-green-100">
                   <p className="text-sm font-bold text-green-800 mb-1">You are the creator</p>
                   <p className="text-xs text-green-600 mb-4">
-                    {campaign.raised > 0 ? `${campaign.raised.toLocaleString()} USDCx is ready to withdraw.` : "No funds to withdraw."}
+                    {campaign.raised > 0 ? `${campaign.raised.toLocaleString()} ${currency} is ready to withdraw.` : "No funds to withdraw."}
                   </p>
                   <Button
                     onClick={handleWithdraw}
                     disabled={txPending || campaign.raised === 0}
                     className="w-full h-12 rounded-xl bg-green-600 hover:bg-green-700 text-white font-bold"
                   >
-                    {txPending ? <Loader2 className="w-4 h-4 animate-spin" /> : `Withdraw ${campaign.raised.toLocaleString()} USDCx`}
+                    {txPending ? <Loader2 className="w-4 h-4 animate-spin" /> : `Withdraw ${campaign.raised.toLocaleString()} ${currency}`}
                   </Button>
                 </div>
               )}
@@ -453,14 +454,14 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                 <div className="bg-red-50 rounded-2xl p-5 border border-red-100">
                   <p className="text-sm font-bold text-red-800 mb-1">Refund available</p>
                   <p className="text-xs text-red-600 mb-4">
-                    Goal was not reached. You can reclaim your {userDonation} USDCx.
+                    Goal was not reached. You can reclaim your {userDonation} {currency}.
                   </p>
                   <Button
                     onClick={handleRefund}
                     disabled={txPending}
                     className="w-full h-12 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold"
                   >
-                    {txPending ? <Loader2 className="w-4 h-4 animate-spin" /> : `Claim ${userDonation} USDCx Refund`}
+                    {txPending ? <Loader2 className="w-4 h-4 animate-spin" /> : `Claim ${userDonation} ${currency} Refund`}
                   </Button>
                 </div>
               )}
@@ -474,7 +475,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
 
                   <div className={`transition-all duration-300 ${!isSignedIn ? "opacity-50 grayscale pointer-events-none" : ""}`}>
                     <div className="relative">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-base text-blue-600">USDCx</span>
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-base text-blue-600">{currency}</span>
                       <Input
                         type="number"
                         placeholder="100"
