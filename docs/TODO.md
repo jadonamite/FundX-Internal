@@ -26,10 +26,11 @@ From a full source + tooling sweep (2026-06-15). Live contract: `fundx-escrow-v4
       (detail page lines 358/383/418/440/456/477/282; `formatMoney` in both dashboard tabs;
       donate input prefix). STX campaigns work on-chain but display the wrong currency.
       Derive the label from `campaign.currency`.
-- [ ] **Create wizard drops most input** — collects creatorBio, email, github, portfolio,
-      videoUrl, budgetBreakdown, roadmap, projectStage, location, but `register` persists only
-      title/tagline/description/image/category/social (location hardcoded `""`). Either persist
-      them (extend registry or off-chain store) or stop collecting them.
+- [x] **Create wizard drops most input** — fixed via off-chain store. `lib/campaign-meta.ts`
+      + `api/campaign-meta` route (Upstash Redis REST, no SDK dep, graceful fallback). Create
+      saves the extra fields after register; detail page renders creator name/bio/socials +
+      stage/budget/roadmap. **Action: provision Upstash Redis on Vercel + set
+      `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` to activate.**
 
 ## P2 — mainnet verification
 

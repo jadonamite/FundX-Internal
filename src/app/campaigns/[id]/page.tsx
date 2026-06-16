@@ -355,7 +355,24 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                 </Avatar>
                 <div>
                   <p className="text-sm font-medium text-slate-500 uppercase tracking-wide">Deployed by</p>
-                  <p className="font-bold text-slate-900 font-mono text-base">{creatorShort}</p>
+                  {extraMeta?.creatorName ? (
+                    <>
+                      <p className="font-bold text-slate-900 text-base">{extraMeta.creatorName}</p>
+                      <p className="text-slate-400 font-mono text-xs">{creatorShort}</p>
+                    </>
+                  ) : (
+                    <p className="font-bold text-slate-900 font-mono text-base">{creatorShort}</p>
+                  )}
+                  {extraMeta?.creatorBio && (
+                    <p className="text-sm text-slate-500 mt-1 max-w-md">{extraMeta.creatorBio}</p>
+                  )}
+                  {(extraMeta?.twitter || extraMeta?.github || extraMeta?.portfolio) && (
+                    <div className="flex gap-3 mt-2 text-xs font-semibold">
+                      {extraMeta.twitter && <a href={`https://x.com/${extraMeta.twitter.replace(/^@/, "")}`} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">Twitter</a>}
+                      {extraMeta.github && <a href={extraMeta.github.startsWith("http") ? extraMeta.github : `https://${extraMeta.github}`} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">GitHub</a>}
+                      {extraMeta.portfolio && <a href={extraMeta.portfolio.startsWith("http") ? extraMeta.portfolio : `https://${extraMeta.portfolio}`} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">Website</a>}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flex gap-6 text-slate-600 font-medium">
@@ -401,6 +418,20 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                     <p className="text-xs text-slate-400 mt-1">{CONTRACT_NAME}</p>
                   </div>
                 </div>
+
+                {(extraMeta?.roadmap || extraMeta?.budgetBreakdown || extraMeta?.projectStage) && (
+                  <div className="not-prose space-y-4 mb-6">
+                    {extraMeta.projectStage && (
+                      <div><h4 className="font-bold text-slate-900 mb-1">Stage</h4><p className="text-slate-600 text-sm">{extraMeta.projectStage}</p></div>
+                    )}
+                    {extraMeta.budgetBreakdown && (
+                      <div><h4 className="font-bold text-slate-900 mb-1">Budget Breakdown</h4><p className="text-slate-600 text-sm whitespace-pre-line">{extraMeta.budgetBreakdown}</p></div>
+                    )}
+                    {extraMeta.roadmap && (
+                      <div><h4 className="font-bold text-slate-900 mb-1">Roadmap</h4><p className="text-slate-600 text-sm whitespace-pre-line">{extraMeta.roadmap}</p></div>
+                    )}
+                  </div>
+                )}
 
                 <div className="bg-orange-50 p-6 rounded-2xl border border-orange-100 not-prose">
                   <h4 className="font-bold text-orange-800 mb-2">Smart Contract Enforced</h4>
