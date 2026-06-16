@@ -17,6 +17,18 @@ coverage
 *.info
 costs-reports.json
 node_modules
+
+# Secrets / keys (never push these — auto-commit safety)
+.env
+.env.*
+*.key
+*.pem
+*.mnemonic
+*.tacked
+
+# Build artifacts
+*.tsbuildinfo
+
 trials.md
 Helper.md
 deployments/FUNDX-GUIDE.md

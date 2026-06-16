@@ -33,9 +33,13 @@ From a full source + tooling sweep (2026-06-15). Live contract: `fundx-escrow-v4
 
 ## P2 — mainnet verification
 
-- [ ] **STX rail never exercised on mainnet** — smoke-test `donate-stx`/`withdraw-stx`/
-      `claim-refund-stx` recoverably (creator = owner = deployer, `duration=1`). USDCx cycle
-      already proven.
+- [x] **STX rail verified on mainnet (2026-06-16)** — campaign #1: `create-campaign-stx`
+      (goal 1 STX, flexible) → `donate-stx` 0.05 STX → `withdraw-stx`, all confirmed, funds
+      round-tripped, net cost = gas only. Broadcasting works via the normal `@stacks` SDK
+      (the old "fetch failed" note was stale — it's Node's direct https that's flaky, not the
+      SDK broadcast path; curl reads are reliable).
+- [ ] `claim-refund-stx` path still unexercised on mainnet (symmetric to withdraw; FT refund
+      already proven on v3). Optional — covered by the simnet suite once P0 is fixed.
 
 ## P3 — deploy pipeline
 
