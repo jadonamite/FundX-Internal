@@ -19,6 +19,7 @@ import { toast } from "sonner"
 import { waitForTx } from "@/lib/utils"
 import { getCampaign } from "@/lib/data"
 import { useCampaign, useDonation } from "@/lib/hooks/useStacksContract"
+import { fetchExtraMeta, type ExtraMeta } from "@/lib/campaign-meta"
 import {
   FUNDX_CONTRACT_FQN,
   CONTRACT_ADDRESS,
@@ -43,12 +44,17 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
   const [donateAmount, setDonateAmount] = useState("")
   const [mounted, setMounted] = useState(false)
   const [txPending, setTxPending] = useState(false)
+  const [extraMeta, setExtraMeta] = useState<ExtraMeta | null>(null)
 
   const { id } = use(params)
   const campaignIndex = Number(id)
   const isMockId = isNaN(campaignIndex)
 
   useEffect(() => setMounted(true), [])
+  useEffect(() => {
+    if (isMockId || !campaignIndex || campaignIndex < 1) return
+    fetchExtraMeta(campaignIndex).then(setExtraMeta)
+  }, [isMockId, campaignIndex])
 
   const { campaign, isLoading, refetch } = useCampaign(isMockId ? 0 : campaignIndex)
   const { donation: userDonation } = useDonation(campaignIndex, userAddress)

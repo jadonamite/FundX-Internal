@@ -18,6 +18,7 @@ import {
   BLOCKS_PER_DAY,
 } from "@/lib/stacks-config"
 import { getCampaignCount } from "@/lib/stacks-contract"
+import { saveExtraMeta } from "@/lib/campaign-meta"
 
 import { WizardSteps, WIZARD_STEPS, validateStep } from "@/components/create/WizardSteps"
 import { LivePreview } from "@/components/create/LivePreview"
@@ -153,6 +154,20 @@ export default function CreateCampaign() {
         postConditionMode: "deny",
         postConditions: [],
       } as any)
+
+      // Persist the rich fields off-chain (best-effort — never blocks the campaign)
+      await saveExtraMeta(newId, {
+        creatorName: formData.creatorName,
+        creatorBio: formData.creatorBio,
+        email: formData.email,
+        twitter: formData.twitter,
+        github: formData.github,
+        portfolio: formData.portfolio,
+        projectStage: formData.projectStage,
+        videoUrl: formData.videoUrl,
+        budgetBreakdown: formData.budgetBreakdown,
+        roadmap: formData.roadmap,
+      })
 
       toast.success("Campaign live!", {
         id: "create",
