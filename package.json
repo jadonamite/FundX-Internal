@@ -3,13 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    // Development scripts
     "dev": "next dev",
-    // Build scripts
     "build": "next build",
-    // Start scripts
     "start": "next start",
-    // Linting scripts
     "lint": "eslint"
   },
   "dependencies": {
