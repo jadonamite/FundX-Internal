@@ -7,7 +7,7 @@ import { CampaignCard } from "@/components/fundx/CampaignCard"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search, ArrowUp, Sparkles, Filter, Loader2 } from "lucide-react"
-import { CAMPAIGNS } from "@/lib/payload"
+import { CAMPAIGNS } from "@/lib/data"
 import { useAllCampaigns } from "@/lib/hooks/useStacksContract"
 
 const CATEGORIES = ["All", "DeFi", "Mining", "Gaming", "Social Impact", "Infrastructure"]
@@ -29,7 +29,6 @@ export default function ExplorePage() {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" })
 
-  // Merge live on-chain campaigns first, mock campaigns pad the rest
   // Mock IDs are slugs, live IDs are numeric — no collision
   const liveIds = new Set(campaigns.map((c) => c.id))
   const mockAsDisplay = CAMPAIGNS.filter((c) => !liveIds.has(c.id)).map((c) => ({
