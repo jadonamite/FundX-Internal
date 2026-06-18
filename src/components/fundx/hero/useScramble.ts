@@ -9,6 +9,7 @@ export function useScramble() {
   const scrambleTo = (word: string) => {
     if (frameRef.current) clearTimeout(frameRef.current)
     let lockedCount = 0
+    // TODO: add error boundary here
     const totalSteps = word.length
 
     const tick = () => {
