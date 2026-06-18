@@ -8,19 +8,14 @@ import { HeroDeckSlot } from "./HeroDeckSlot"
 import { useScramble } from "./useScramble"
 import HeroLogoParallax from "./HeroBackdrop"
 
-
 export { HeroDeckSlot }
 
-export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElement | null> }) {
-  const [isStacksMode, setIsStacksMode] = useState(false)
-  const [displayStacks, setDisplayStacks] = useState(false)
-  const [glitching, setGlitching] = useState(false)
-  const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 })
-  const [glitchOpacity, setGlitchOpacity] = useState(1)
-  const [glitchSkew, setGlitchSkew] = useState(0)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
-  const isGlitchingRef = useRef(false)
-  const isStacksModeRef = useRef(false)
+  const handleManualToggle = () => {
+    if (isGlitchingRef.current) return
+    if (intervalRef.current) clearInterval(intervalRef.current)
+    runGlitch(!isStacksModeRef.current)
+    intervalRef.current = setInterval(() => { if (!isGlitchingRef.current) runGlitch(!isStacksModeRef.current) }, 4500)
+  }
 
   const { display: scrambledText, scrambleTo } = useScramble()
 
@@ -50,12 +45,16 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
     scheduleFlip()
   }
 
-  const handleManualToggle = () => {
-    if (isGlitchingRef.current) return
-    if (intervalRef.current) clearInterval(intervalRef.current)
-    runGlitch(!isStacksModeRef.current)
-    intervalRef.current = setInterval(() => { if (!isGlitchingRef.current) runGlitch(!isStacksModeRef.current) }, 4500)
-  }
+export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElement | null> }) {
+  const [isStacksMode, setIsStacksMode] = useState(false)
+  const [displayStacks, setDisplayStacks] = useState(false)
+  const [glitching, setGlitching] = useState(false)
+  const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 })
+  const [glitchOpacity, setGlitchOpacity] = useState(1)
+  const [glitchSkew, setGlitchSkew] = useState(0)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+  const isGlitchingRef = useRef(false)
+  const isStacksModeRef = useRef(false)
 
   useEffect(() => {
     intervalRef.current = setInterval(() => { if (!isGlitchingRef.current) runGlitch(!isStacksModeRef.current) }, 4500)
