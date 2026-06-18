@@ -314,7 +314,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
           <div className="space-y-3">
             <FundingModelCard
               value="0"
-              selected={formData.fundingModel === '0'}
+              selected={formData.fundingModel === "0"}
               onClick={() => setFormData({ ...formData, fundingModel: "0" })}
               title="Flexible"
               description="You keep whatever is raised, even if the goal isn't met. Lower risk for creators."
