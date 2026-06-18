@@ -1,6 +1,6 @@
 "use client"
-import { ChainToggleSwitch } from "./ChainToggleSwitch"
 import { ChainToggleIcon } from "./ChainToggleIcon"
+import { ChainToggleSwitch } from "./ChainToggleSwitch"
 
 export function HeroHeadline({
   displayStacks, glitching, glitchOffset, glitchOpacity, glitchSkew, isStacksMode, scrambledText, onToggle,

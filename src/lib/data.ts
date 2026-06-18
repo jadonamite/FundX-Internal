@@ -261,8 +261,7 @@ export function getHeroCampaign() {
 
 // Helper: Get 2 other campaigns for the side slots
 export function getSideCampaigns() {
-  const result = CAMPAIGNS.filter((c) => !c.isTrending).slice(0, 2);
-  return result;
+  return CAMPAIGNS.filter((c) => !c.isTrending).slice(0, 2);
 }
 
 export function getCampaign(id: string) {
