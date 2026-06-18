@@ -15,7 +15,7 @@ export function Navbar() {
         
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 cursor-pointer">
-          <Logo className='h-10 w-24' />
+          <Logo className="h-10 w-24" />
         </Link>
 
         {/* Links */}
