@@ -13,9 +13,13 @@ import { useAllCampaigns } from "@/lib/hooks/useStacksContract"
 const CATEGORIES = ["All", "DeFi", "Mining", "Gaming", "Social Impact", "Infrastructure"]
 const STATUSES = ["All", "active", "successful", "failed"] // 🚨 ADDED: Status options
 
-  const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 3)
-  }
+export default function ExplorePage() {
+  const { campaigns, isLoading, count } = useAllCampaigns()
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("All")
+  const [statusFilter, setStatusFilter] = useState("All")
+  const [visibleCount, setVisibleCount] = useState(3)
+  const [showScrollTop, setShowScrollTop] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => setShowScrollTop(window.scrollY > 400)
@@ -64,13 +68,9 @@ const STATUSES = ["All", "active", "successful", "failed"] // 🚨 ADDED: Status
     })
   }, [allDisplayCampaigns, searchQuery, selectedCategory, statusFilter])
 
-export default function ExplorePage() {
-  const { campaigns, isLoading, count } = useAllCampaigns()
-  const [searchQuery, setSearchQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("All")
-  const [statusFilter, setStatusFilter] = useState("All")
-  const [visibleCount, setVisibleCount] = useState(3)
-  const [showScrollTop, setShowScrollTop] = useState(false)
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + 3)
+  }
 
   return (
     <main className="min-h-screen bg-slate-50 selection:bg-orange-100 font-sans relative">

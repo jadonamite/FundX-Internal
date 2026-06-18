@@ -96,7 +96,7 @@ export function Footer() {
               <div className="flex w-full items-center gap-2">
                 <Input
                   type="email"
-                  placeholder='Enter your email'
+                  placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
