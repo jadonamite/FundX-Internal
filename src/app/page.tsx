@@ -24,6 +24,7 @@ export default function Home() {
 
         <div className="container relative z-10 mx-auto max-w-7xl px-4">
           <CampaignFan deckSlotRef={deckSlotRef} />
+        // TODO: add error boundary here
         </div>
       </section>
 
