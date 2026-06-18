@@ -47,7 +47,7 @@ export function CenterCard({ campaign, progress }: CenterCardProps) {
           {/* Raised + Button */}
           <div className="flex justify-between items-end">
             <div>
-              <p className="text-xs text-slate-400 uppercase font-semibold mb-1">
+              <p className='text-xs text-slate-400 uppercase font-semibold mb-1'>
                 Raised
               </p>
               <p className="text-3xl font-bold text-primary">
