@@ -14,10 +14,10 @@ interface WizardProps {
   setFormData: (data: CreateCampaignData) => void
 }
 
-function FieldError({ msg }: { msg: string }) {
+function FieldError({ message }: { message: string }) {
   return (
     <p className="flex items-center gap-1 text-xs text-red-500 mt-1">
-      <AlertCircle className="w-3 h-3 shrink-0" /> {msg}
+      <AlertCircle className="w-3 h-3 shrink-0" /> {message}
     </p>
   )
 }
@@ -98,7 +98,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
             onChange={(e) => setFormData({ ...formData, creatorName: e.target.value })}
             onBlur={() => touch("creatorName")}
           />
-          {err("creatorName", !formData.creatorName) && <FieldError msg="Name is required" />}
+          {err("creatorName", !formData.creatorName) && <FieldError message="Name is required" />}
         </div>
 
         <div className="grid grid-cols-2 gap-4">
@@ -159,7 +159,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
             onBlur={() => touch("title")}
           />
-          {err("title", !formData.title) && <FieldError msg="Title is required" />}
+          {err("title", !formData.title) && <FieldError message="Title is required" />}
         </div>
 
         <div className="space-y-2">
@@ -177,7 +177,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
             onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
             onBlur={() => touch("tagline")}
           />
-          {err("tagline", !formData.tagline) && <FieldError msg="Tagline is required" />}
+          {err("tagline", !formData.tagline) && <FieldError message="Tagline is required" />}
         </div>
 
         <div className="grid grid-cols-2 gap-4">
@@ -225,7 +225,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             onBlur={() => touch("description")}
           />
-          {err("description", !formData.description) && <FieldError msg="Description is required" />}
+          {err("description", !formData.description) && <FieldError message="Description is required" />}
         </div>
       </div>
     )
@@ -284,7 +284,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
                 onBlur={() => touch("goal")}
               />
             </div>
-            {err("goal", !goalNum || goalNum <= 0) && <FieldError msg="Enter a goal greater than 0" />}
+            {err("goal", !goalNum || goalNum <= 0) && <FieldError message="Enter a goal greater than 0" />}
           </div>
 
           <div className="space-y-2">
@@ -305,7 +305,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-semibold text-sm pointer-events-none">days</span>
             </div>
-            {err("duration", !durationNum || durationNum <= 0) && <FieldError msg="Enter a duration greater than 0" />}
+            {err("duration", !durationNum || durationNum <= 0) && <FieldError message="Enter a duration greater than 0" />}
           </div>
         </div>
 
