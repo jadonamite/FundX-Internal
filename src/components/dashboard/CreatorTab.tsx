@@ -115,7 +115,7 @@ export function CreatorTab() {
                 <div className="relative w-full sm:w-40 h-52 sm:h-40 shrink-0 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
                   <Image src={campaign.image} alt={campaign.title} fill className="object-cover" />
                 </div>
-                <div className='space-y-3 w-full'>
+                <div className="space-y-3 w-full">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="px-3 py-1 rounded-lg bg-green-50 border border-green-100/50 text-green-700 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
                       <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />

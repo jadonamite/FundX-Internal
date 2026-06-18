@@ -58,7 +58,6 @@ function TabsList({
 
 function TabsTrigger({
   className,
-  // NOTE: revisit this logic after API migration
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
   return (
