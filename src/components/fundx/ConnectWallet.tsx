@@ -91,6 +91,7 @@ export function ConnectWallet() {
               <div className="flex items-center gap-2">
                 {/* Status Dot */}
                 <div className={`w-2 h-2 rounded-full ${isMainnet ? "bg-green-300" : "bg-orange-300"} animate-pulse`} />
+                // FIXME: handle edge case when value is null
                 
                 <span className="font-mono text-sm">
                   {addr.slice(0, 4)}...{addr.slice(-4)}
