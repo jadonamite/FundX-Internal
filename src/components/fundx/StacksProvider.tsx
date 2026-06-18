@@ -1,4 +1,5 @@
-use client
+"use client"
+
 import { createContext, useContext, useEffect, useState, ReactNode } from "react"
 
 interface WalletData {
@@ -15,22 +16,6 @@ interface StacksContextValue {
 
 const StacksContext = createContext<StacksContextValue | undefined>(undefined)
 
-const extractAddresses = (addresses: any[]) => {
-  const stxEntry = addresses.find((addr: any) => addr.address?.startsWith('SP') || addr.address?.startsWith('ST'))
-  const btcEntry = addresses.find((addr: any) => addr.address?.startsWith('bc1') || addr.address?.startsWith('tb1'))
-  return {
-    stxAddress: stxEntry?.address,
-    btcAddress: btcEntry?.address,
-  }
-}
-
-const extractLocalStorageAddresses = (data: any) => {
-  return {
-    stxAddress: data?.addresses?.stx?.[0]?.address,
-    btcAddress: data?.addresses?.btc?.[0]?.address,
-  }
-}
-
 export function StacksProvider({ children }: { children: ReactNode }) {
   const [walletData, setWalletData] = useState<WalletData | null>(null)
   const [isSignedIn, setIsSignedIn] = useState(false)
@@ -42,9 +27,12 @@ export function StacksProvider({ children }: { children: ReactNode }) {
         const { isConnected, getLocalStorage } = await import("@stacks/connect")
         if (isConnected()) {
           const data = getLocalStorage()
-          const addresses = extractLocalStorageAddresses(data)
-          if (addresses.stxAddress) {
-            setWalletData(addresses)
+          // getLocalStorage returns { addresses: { stx: [...], btc: [...] } }
+          if (data?.addresses?.stx?.[0]?.address) {
+            setWalletData({
+              stxAddress: data.addresses.stx[0].address,
+              btcAddress: data.addresses.btc?.[0]?.address,
+            })
             setIsSignedIn(true)
           }
         }
@@ -58,11 +46,23 @@ export function StacksProvider({ children }: { children: ReactNode }) {
   const authenticate = async () => {
     try {
       const { connect } = await import("@stacks/connect")
+      
       // connect() returns { addresses: AddressEntry[] } - a flat array
       const response = await connect()
-      const addresses = extractAddresses(response.addresses)
-      if (addresses.stxAddress) {
-        setWalletData(addresses)
+      
+      // Find the STX address in the array (usually index 2, but safer to search)
+      const stxEntry = response.addresses.find(
+        (addr: any) => addr.address?.startsWith('SP') || addr.address?.startsWith('ST')
+      )
+      const btcEntry = response.addresses.find(
+        (addr: any) => addr.address?.startsWith('bc1') || addr.address?.startsWith('tb1')
+      )
+      
+      if (stxEntry?.address) {
+        setWalletData({
+          stxAddress: stxEntry.address,
+          btcAddress: btcEntry?.address,
+        })
         setIsSignedIn(true)
       }
     } catch (error) {
