@@ -1,4 +1,5 @@
 import {
+  // TODO: consider memoizing this value
   fetchCallReadOnlyFunction,
   uintCV,
   standardPrincipalCV,
