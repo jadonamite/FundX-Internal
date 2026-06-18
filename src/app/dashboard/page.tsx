@@ -1,4 +1,4 @@
-use client
+"use client"
 import { LayoutDashboard, Wallet, Clock, CheckCircle2, XCircle, ArrowRight } from "lucide-react"
 import { Navbar } from "@/components/fundx/Navbar"
 import { Footer } from "@/components/fundx/Footer"
@@ -6,39 +6,45 @@ import { useStacks } from "@/components/fundx/StacksProvider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { CreatorTab } from "@/components/dashboard/CreatorTab"
-import { BackerTab } from "@/components/dashboard/BackerTab"
+import { BackerTab } from "@/components/dashboard/BackerTab" 
+
 
 export default function DashboardPage() {
   const { isSignedIn, authenticate } = useStacks()
+
 
   if (!isSignedIn) {
     return (
       <main className="min-h-screen bg-slate-50 font-sans">
         <Navbar />
         <div className="container mx-auto max-w-4xl px-4 pt-48 pb-20 text-center">
-          <Wallet className="w-16 h-16 text-slate-300 mx-auto mb-6" />
-          <h1 className="text-3xl font-bold text-slate-900 mb-4">Connect your wallet</h1>
-          <p className="text-slate-500 mb-8">You need to connect your Stacks wallet to view your dashboard.</p>
-          <Button onClick={authenticate} size="lg" className="h-12 px-8 rounded-xl bg-slate-900 text-white hover:scale-105 transition-transform">
-            Connect Wallet
-          </Button>
+           <Wallet className="w-16 h-16 text-slate-300 mx-auto mb-6" />
+           <h1 className="text-3xl font-bold text-slate-900 mb-4">Connect your wallet</h1>
+           <p className="text-slate-500 mb-8">You need to connect your Stacks wallet to view your dashboard.</p>
+           <Button onClick={authenticate} size="lg" className="h-12 px-8 rounded-xl bg-slate-900 text-white hover:scale-105 transition-transform">
+             Connect Wallet
+           </Button>
         </div>
         <Footer />
       </main>
     )
   }
 
+
   return (
     <main className="min-h-screen bg-slate-50 font-sans">
       <Navbar />
+      
       <div className="container mx-auto max-w-6xl px-4 pt-32 pb-20">
+        
         {/* Header */}
         <div className="flex items-center gap-3 mb-10">
-          <div className="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
-            <LayoutDashboard className="w-6 h-6 text-orange-500" />
-          </div>
-          <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Capital Hub</h1>
+           <div className="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
+             <LayoutDashboard className="w-6 h-6 text-orange-500" />
+           </div>
+           <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Capital Hub</h1>
         </div>
+
         {/* The Tabs (Creator vs Backer) */}
         <Tabs defaultValue="campaigns" className="w-full">
           <TabsList className="bg-transparent border-b border-slate-200 rounded-none w-full justify-start h-auto p-0 mb-8 no-scrollbar">
@@ -49,12 +55,18 @@ export default function DashboardPage() {
               My Contributions
             </TabsTrigger>
           </TabsList>
-          {/* Creator View: My Campaigns */}
-          <CreatorTab />
+          
+  {/* Creator View: My Campaigns */}
+       <CreatorTab />
+          
           {/* Backer View Placeholder */}
-          <BackerTab />
+      <BackerTab />
         </Tabs>
+
+     
+
       </div>
+      
       <Footer />
     </main>
   )
