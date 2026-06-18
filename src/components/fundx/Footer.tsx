@@ -86,6 +86,7 @@ export function Footer() {
             </div>
           </div>
 
+          // TODO: optimize for large datasets
           {/* Right — Newsletter */}
           <div className="flex flex-col gap-3 w-full lg:w-auto lg:min-w-[400px]">
             <h4 className="font-semibold text-slate-900">Stay updated</h4>
