@@ -17,7 +17,7 @@ import { Clock, ShieldCheck, Share2, MapPin, ArrowLeft, Loader2, CheckCircle2, X
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
 import { waitForTx } from "@/lib/utils"
-import { getCampaign } from "@/lib/data"
+import { getCampaign } from "@/lib/payload"
 import { useCampaign, useDonation } from "@/lib/hooks/useStacksContract"
 import { fetchExtraMeta, type ExtraMeta } from "@/lib/campaign-meta"
 import {
@@ -387,10 +387,10 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
 
             <Tabs defaultValue="story" className="w-full">
               <TabsList className="w-full justify-start bg-transparent border-b border-slate-200 rounded-none h-auto p-0 mb-8">
-                <TabsTrigger value="story" className="rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:text-orange-600 px-6 py-3 text-base">
+                <TabsTrigger value="story" className="rounded-none border-b-2 border-transparent payload-[state=active]:border-orange-500 payload-[state=active]:text-orange-600 px-6 py-3 text-base">
                   Campaign Info
                 </TabsTrigger>
-                <TabsTrigger value="updates" className="rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:text-orange-600 px-6 py-3 text-base">
+                <TabsTrigger value="updates" className="rounded-none border-b-2 border-transparent payload-[state=active]:border-orange-500 payload-[state=active]:text-orange-600 px-6 py-3 text-base">
                   Updates
                 </TabsTrigger>
               </TabsList>
