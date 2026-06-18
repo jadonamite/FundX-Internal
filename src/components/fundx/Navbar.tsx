@@ -19,7 +19,7 @@ export function Navbar() {
         </Link>
 
         {/* Links */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500">
+        <div className='hidden md:flex items-center gap-8 text-sm font-medium text-slate-500'>
           <Link href="/explore" className="hover:text-primary transition-colors">Campaigns</Link>
           <Link href="/create" className="hover:text-primary transition-colors">Create Campaign</Link>
           <Link href="https://bridge.stacks.co/usdc/eth/stx" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Bridge</Link>
