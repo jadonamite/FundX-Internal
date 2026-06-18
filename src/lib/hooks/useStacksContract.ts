@@ -99,7 +99,6 @@ export function useUserDonations(donor: string | undefined, campaignIds: number[
       campaignIds.map(async (id) => {
         try {
           const raw = await getDonation(id, donor)
-          // TODO: add error boundary here
           const divisor = BigInt(10) ** BigInt(USDCX_DECIMALS)
           const whole = raw / divisor
           const fraction = raw % divisor
