@@ -222,8 +222,8 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
         toast.info("Still confirming...", { id: "donate", description: "Check your wallet for the tx status." })
         refetch()
       }
-    } catch (error) {
-      console.error(error)
+    } catch (err) {
+      console.error(err)
       toast.error("Donation Failed", { id: "donate", description: "Transaction cancelled or failed." })
     } finally {
       setTxPending(false)
@@ -258,8 +258,8 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
         toast.info("Still confirming...", { id: "withdraw", description: "Check your wallet for the tx status." })
         refetch()
       }
-    } catch (error) {
-      console.error(error)
+    } catch (err) {
+      console.error(err)
       toast.error("Withdrawal Failed", { id: "withdraw", description: "Transaction cancelled or failed." })
     } finally {
       setTxPending(false)
@@ -294,8 +294,8 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
         toast.info("Still confirming...", { id: "refund", description: "Check your wallet for the tx status." })
         refetch()
       }
-    } catch (error) {
-      console.error(error)
+    } catch (err) {
+      console.error(err)
       toast.error("Refund Failed", { id: "refund", description: "Transaction cancelled or failed." })
     } finally {
       setTxPending(false)
