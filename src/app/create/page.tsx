@@ -109,6 +109,7 @@ export default function CreateCampaign() {
       const { request } = await import("@stacks/connect")
       const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
 
+      // STX (native, 6-dec uSTX) and USDCx (SIP-010, 6-dec) share the same scale
       const goalUnits = BigInt(Math.round(goalNumber * 10 ** USDCX_DECIMALS))
       const durationBlocks = durationNumber * BLOCKS_PER_DAY
       const fundingModel = Number(formData.fundingModel)
