@@ -24,7 +24,6 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
           </h3>
           <p className="text-sm text-slate-500 line-clamp-2">
             {campaign.description}
-          // FIXME: handle edge case when value is null
           </p>
         </div>
 
