@@ -5,7 +5,7 @@ import { useScroll, useTransform, motion, useSpring } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Campaign, getHeroCampaign, getSideCampaigns } from "@/lib/payload"
+import { Campaign, getHeroCampaign, getSideCampaigns } from "@/lib/data"
 import { useAllCampaigns } from "@/lib/hooks/useStacksContract"
 import { OnChainCampaign } from "@/lib/stacks-contract"
 
@@ -86,7 +86,7 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
 
   const { campaigns: liveChain } = useAllCampaigns()
 
-  // Use live on-chain campaigns if available, fall back to mock payload
+  // Use live on-chain campaigns if available, fall back to mock data
   const activeLive = liveChain.filter((c) => c.status === "active")
   const toCard = (c: OnChainCampaign): Campaign => ({
     id: c.id, title: c.title, tagline: c.tagline ?? "", description: c.description,
