@@ -113,7 +113,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
       currentOpacityRef.current += (targetOpacityRef.current - currentOpacityRef.current) * 0.03
 
       const stacksAlpha = currentOpacityRef.current
-      const bitcoinAlpha: number = 1 - stacksAlpha
+      const bitcoinAlpha = 1 - stacksAlpha
 
       // Spawn new streams
       if (frame % 45 === 0 && streams.length < 18) {
