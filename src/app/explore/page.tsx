@@ -29,6 +29,7 @@ export default function ExplorePage() {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" })
 
+  // Merge live on-chain campaigns first, mock campaigns pad the rest
   // Mock IDs are slugs, live IDs are numeric — no collision
   const liveIds = new Set(campaigns.map((c) => c.id))
   const mockAsDisplay = CAMPAIGNS.filter((c) => !liveIds.has(c.id)).map((c) => ({
