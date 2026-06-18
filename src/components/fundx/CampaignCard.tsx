@@ -15,8 +15,10 @@ interface CampaignCardProps {
   currency?: 'USDCx' | 'STX';
 }
 
-const formatAmount = (amount: number, currency: CampaignCardProps['currency']) =>
-  currency === 'USDCx' ? `$${amount.toLocaleString()}` : `${amount.toLocaleString()} STX`;
+const getExcerpt = (tagline?: string, description: string) => tagline || description;
+const getPercentage = (raised: number, goal: number) => Math.min((raised / goal) * 100, 100);
+const formatCurrency = (value: number, currency: 'USDCx' | 'STX') =>
+  currency === 'USDCx' ? `$${value.toLocaleString()}` : `${value.toLocaleString()} STX`;
 
 export function CampaignCard({
   id,
@@ -28,31 +30,20 @@ export function CampaignCard({
   image,
   currency = 'USDCx',
 }: CampaignCardProps) {
-  const excerpt = tagline || description;
-  const percentage = Math.min((raised / goal) * 100, 100);
-  const formattedRaised = formatAmount(raised, currency);
-  const formattedGoal = formatAmount(goal, currency);
+  const excerpt = getExcerpt(tagline, description);
+  const percentage = getPercentage(raised, goal);
+  const formattedRaised = formatCurrency(raised, currency);
+  const formattedGoal = formatCurrency(goal, currency);
 
   return (
     <Link href={`/campaigns/${id}`} className='block h-full group'>
-      <Card
-        className='relative h-full overflow-hidden rounded-3xl border-none bg-white p-6 shadow-soft-md transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-xl'
-      >
+      <Card className='relative h-full overflow-hidden rounded-3xl border-none bg-white p-6 shadow-soft-md transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-xl'>
         <div className='relative mb-6 h-48 w-full overflow-hidden rounded-2xl bg-slate-100'>
-          <Image
-            src={image}
-            alt={title}
-            fill
-            className='object-cover group-hover:scale-105 transition-transform duration-700'
-          />
+          <Image src={image} alt={title} fill className='object-cover group-hover:scale-105 transition-transform duration-700' />
         </div>
         <div className='space-y-4'>
           <div>
-            <h3
-              className='text-xl font-bold text-slate-900 group-hover:text-primary transition-colors'
-            >
-              {title}
-            </h3>
+            <h3 className='text-xl font-bold text-slate-900 group-hover:text-primary transition-colors'>{title}</h3>
             <p className='text-sm text-slate-500 line-clamp-2 mt-2'>{excerpt}</p>
           </div>
           <div className='space-y-2'>
@@ -60,14 +51,9 @@ export function CampaignCard({
               <span className='text-primary font-bold'>{formattedRaised}</span>
               <span className='text-slate-400'>of {formattedGoal}</span>
             </div>
-            <Progress
-              value={percentage}
-              className='h-3 rounded-full bg-slate-100'
-            />
+            <Progress value={percentage} className='h-3 rounded-full bg-slate-100' />
           </div>
-          <Button
-            className='w-full rounded-xl bg-slate-900 text-white shadow-lg transition-all duration-500 hover:bg-gradient-tush hover:shadow-glow hover:scale-[1.02] py-6 text-base font-bold'
-          >
+          <Button className='w-full rounded-xl bg-slate-900 text-white shadow-lg transition-all duration-500 hover:bg-gradient-tush hover:shadow-glow hover:scale-[1.02] py-6 text-base font-bold'>
             Donate Now
           </Button>
         </div>
