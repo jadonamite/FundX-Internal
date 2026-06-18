@@ -63,7 +63,6 @@ export function Footer() {
                 </svg>
               </a>
 
-              // TODO: add input validation
               {/* Telegram */}
               <a href="https://t.me" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hover:scale-110">
                 <svg role="img" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
