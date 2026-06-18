@@ -16,7 +16,6 @@ interface CampaignFanProps {
 interface SideCardProps {
   campaign: Campaign
   progress: number
-  // TODO: optimize for large datasets
   tilt: "left" | "right"
 }
 
