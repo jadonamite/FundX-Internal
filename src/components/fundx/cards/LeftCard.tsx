@@ -1,12 +1,31 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Campaign } from "@/lib/data"
-import { ArrowRight } from "lucide-react"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Campaign } from "@/lib/data";
+import { ArrowRight } from "lucide-react";
 
 interface SideCardProps {
-  campaign: Campaign
-  progress: number
+  campaign: Campaign;
+  progress: number;
 }
+
+const ProgressBar = ({ progress }: { progress: number }) => {
+  return (
+    <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+      <div className="bg-gradient-tush h-full rounded-full" style={{ width: `${progress}%` }} />
+    </div>
+  );
+};
+
+const DonateButton = ({ campaign }: { campaign: Campaign }) => {
+  return (
+    <Link href={`/campaigns/${campaign.id}`}>
+      <Button size="sm" className="h-10 rounded-xl bg-slate-900 text-white shadow-md hover:bg-primary hover:shadow-glow transition-all px-5 flex items-center gap-1.5 group/btn">
+        Donate
+        <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
+      </Button>
+    </Link>
+  );
+};
 
 export function LeftCard({ campaign, progress }: SideCardProps) {
   return (
@@ -16,7 +35,6 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
           [Image]
         </div>
       </div>
-
       <div className="p-6 flex flex-col justify-between flex-1 bg-white">
         <div>
           <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
@@ -26,15 +44,8 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
             {campaign.description}
           </p>
         </div>
-
         <div className="space-y-3 pt-4">
-          <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-            <div
-              className="bg-gradient-tush h-full rounded-full"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-
+          <ProgressBar progress={progress} />
           <div className="flex justify-between items-center">
             <div>
               <span className="text-xs font-semibold text-slate-400 block">RAISED</span>
@@ -42,18 +53,10 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
                 ${campaign.raised.toLocaleString()}
               </span>
             </div>
-            <Link href={`/campaigns/${campaign.id}`}>
-              <Button
-                size="sm"
-                className="h-10 rounded-xl bg-slate-900 text-white shadow-md hover:bg-primary hover:shadow-glow transition-all px-5 flex items-center gap-1.5 group/btn"
-              >
-                Donate
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
-              </Button>
-            </Link>
+            <DonateButton campaign={campaign} />
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
