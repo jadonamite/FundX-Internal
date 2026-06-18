@@ -1,15 +1,13 @@
-"use client"
-
+use client
 import * as React from "react"
 import * as ProgressPrimitive from "@radix-ui/react-progress"
-
 import { cn } from "@/lib/utils"
 
-function Progress({
-  className,
-  value,
-  ...props
-}: React.ComponentProps<typeof ProgressPrimitive.Root>) {
+const getProgressIndicatorStyle = (value: number) => ({
+  transform: `translateX(-${100 - (value || 0)}%)`
+})
+
+function Progress({ className, value, ...props }: React.ComponentProps<typeof ProgressPrimitive.Root>) {
   return (
     <ProgressPrimitive.Root
       data-slot="progress"
@@ -22,10 +20,9 @@ function Progress({
       <ProgressPrimitive.Indicator
         data-slot="progress-indicator"
         className="bg-gradient-tush h-full w-full flex-1 transition-all"
-        style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
+        style={getProgressIndicatorStyle(value)}
       />
     </ProgressPrimitive.Root>
   )
 }
-
 export { Progress }
