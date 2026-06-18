@@ -99,7 +99,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
       streams.push(s)
     }
 
-    let frame: number = 0
+    let frame = 0
 
     function draw() {
       if (!ctx || !canvas) return

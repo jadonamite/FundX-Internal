@@ -58,8 +58,8 @@ export function CreatorTab() {
         toast.info("Still confirming — check your wallet", { id: `w-${campaign.id}` })
         refetch()
       }
-    } catch (error) {
-      console.error(error)
+    } catch (err) {
+      console.error(err)
       toast.error("Withdrawal Failed", { id: `w-${campaign.id}`, description: "Transaction cancelled or failed." })
     } finally {
       setWithdrawingId(null)

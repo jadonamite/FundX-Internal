@@ -144,6 +144,7 @@ export function ConnectWallet() {
     )
   }
 
+  // STATE: LOGGED OUT
   return (
     <Button 
       onClick={authenticate}
