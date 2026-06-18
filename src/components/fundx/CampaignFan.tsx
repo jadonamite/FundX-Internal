@@ -19,6 +19,11 @@ interface SideCardProps {
   tilt: "left" | "right"
 }
 
+/**
+ * getPageOffsetTop
+ * @param {*} el: HTMLElement
+ * @returns {*}
+ */
 function getPageOffsetTop(el: HTMLElement): number {
   let top = 0
   let current: HTMLElement | null = el
