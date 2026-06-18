@@ -154,7 +154,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
           </Label>
           <Input
             placeholder="e.g. Stacks DeFi Academy"
-            className={`h-13 rounded-xl text-base font-bold ${err("title", !formData.title) ? "border-red-400 focus-visible:ring-red-400" : ""}`}
+            className={`h-13 rounded-xl text-base font-bold ${err('title', !formData.title) ? 'border-red-400 focus-visible:ring-red-400' : ''}`}
             value={formData.title}
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
             onBlur={() => touch("title")}
