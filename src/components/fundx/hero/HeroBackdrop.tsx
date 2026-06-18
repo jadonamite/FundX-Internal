@@ -53,7 +53,7 @@ function HeroLogoParallax() {
 
         const progress = Math.min(window.scrollY / (window.innerHeight * 0.7), 1)
         const scale = 1 + progress * 0.35
-        const opacity = 0.20 * (1 - progress)
+        const opacity: number = 0.20 * (1 - progress)
 
         const x = currentMouse.current.x + oscillateX
         const y = currentMouse.current.y + oscillateY
