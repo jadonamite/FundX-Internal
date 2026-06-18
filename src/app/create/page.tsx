@@ -1,14 +1,14 @@
 "use client"
 
-import {
-import { ArrowRight, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Footer } from "@/components/fundx/Footer"
-import { LivePreview } from "@/components/create/LivePreview"
+import { useState } from "react"
 import { Navbar } from "@/components/fundx/Navbar"
-import { WizardSteps, WIZARD_STEPS, validateStep } from "@/components/create/WizardSteps"
-import { getCampaignCount } from "@/lib/stacks-contract"
-import { saveExtraMeta } from "@/lib/campaign-meta"
+import { Footer } from "@/components/fundx/Footer"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { useStacks } from "@/components/fundx/StacksProvider"
+import { toast } from "sonner"
+import {
   FUNDX_CONTRACT_FQN,
   REGISTRY_CONTRACT_FQN,
   STACKS_NETWORK,
@@ -17,11 +17,11 @@ import { saveExtraMeta } from "@/lib/campaign-meta"
   USDCX_DECIMALS,
   BLOCKS_PER_DAY,
 } from "@/lib/stacks-config"
-import { toast } from "sonner"
-import { useRouter } from "next/navigation"
+import { getCampaignCount } from "@/lib/stacks-contract"
+import { saveExtraMeta } from "@/lib/campaign-meta"
 
-import { useStacks } from "@/components/fundx/StacksProvider"
-import { useState } from "react"
+import { WizardSteps, WIZARD_STEPS, validateStep } from "@/components/create/WizardSteps"
+import { LivePreview } from "@/components/create/LivePreview"
 
 export interface CreateCampaignData {
   creatorName: string;
@@ -109,7 +109,6 @@ export default function CreateCampaign() {
       const { request } = await import("@stacks/connect")
       const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
 
-      // STX (native, 6-dec uSTX) and USDCx (SIP-010, 6-dec) share the same scale
       const goalUnits = BigInt(Math.round(goalNumber * 10 ** USDCX_DECIMALS))
       const durationBlocks = durationNumber * BLOCKS_PER_DAY
       const fundingModel = Number(formData.fundingModel)
