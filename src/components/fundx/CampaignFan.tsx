@@ -67,7 +67,7 @@ function SideCard({ campaign, progress, tilt }: SideCardProps) {
               </span>
             </div>
             <Link href={`/campaigns/${campaign.id}`}>
-              <Button size="sm" className="h-10 rounded-xl bg-slate-900 text-white shadow-md hover:bg-primary hover:shadow-glow transition-all px-6">
+              <Button size='sm' className='h-10 rounded-xl bg-slate-900 text-white shadow-md hover:bg-primary hover:shadow-glow transition-all px-6'>
                 Donate
               </Button>
             </Link>
