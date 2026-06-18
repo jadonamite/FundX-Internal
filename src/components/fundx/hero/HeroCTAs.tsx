@@ -2,6 +2,10 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
+/**
+ * HeroCTAs
+ * @returns {*}
+ */
 export function HeroCTAs() {
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
