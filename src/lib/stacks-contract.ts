@@ -121,7 +121,6 @@ export async function getRegistryMeta(id: number): Promise<RegistryMeta | null> 
   }
 }
 
-// indiegogo get-donation returns plain uint (default-to u0), not a tuple
 export async function getDonation(campaignId: number, donor: string): Promise<bigint> {
   const json = await readOnly(CONTRACT_NAME, "get-donation", [
     uintCV(campaignId),
