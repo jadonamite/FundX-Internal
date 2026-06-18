@@ -60,21 +60,19 @@ export interface OnChainCampaign {
 
 const PLACEHOLDER_IMAGES = ["/campaign-1.jpg", "/campaign-2.jpg", "/campaign-3.jpg"]
 
-async function readOnly(
-  contractName: string,
-  functionName: string,
-  functionArgs: ClarityValue[]
-): Promise<any> {
-  const result = await fetchCallReadOnlyFunction({
-    contractAddress: CONTRACT_ADDRESS,
-    contractName,
-    functionName,
-    functionArgs,
-    network: STACKS_NETWORK,
-    senderAddress: CONTRACT_ADDRESS,
-  })
-  return cvToJSON(result)
-}
+export function mapCampaign(
+  raw: RawCampaign,
+  id: number,
+  currentBlock: number,
+  meta?: RegistryMeta | null
+): OnChainCampaign {
+  const deadlineBlock = Number(raw.deadline)
+  const isPast = currentBlock >= deadlineBlock
+  const isFlexible = raw.fundingModel === 0
+  const goal = toAmount(raw.goal)
+  const raised = toAmount(raw.totalRaised)
+  const blocksLeft = Math.max(0, deadlineBlock - currentBlock)
+  const daysLeft = isPast ? 0 : Math.ceil(blocksLeft / BLOCKS_PER_DAY)
 
 export async function getCampaignCount(): Promise<number> {
   const json = await readOnly(CONTRACT_NAME, "get-campaign-count", [])
@@ -121,14 +119,20 @@ export async function getRegistryMeta(id: number): Promise<RegistryMeta | null> 
   }
 }
 
-// indiegogo get-donation returns plain uint (default-to u0), not a tuple
-export async function getDonation(campaignId: number, donor: string): Promise<bigint> {
-  const json = await readOnly(CONTRACT_NAME, "get-donation", [
-    uintCV(campaignId),
-    standardPrincipalCV(donor),
-  ])
-  if (!json || json.value === null || json.value === undefined) return BigInt(0)
-  return BigInt(json.value)
+async function readOnly(
+  contractName: string,
+  functionName: string,
+  functionArgs: ClarityValue[]
+): Promise<any> {
+  const result = await fetchCallReadOnlyFunction({
+    contractAddress: CONTRACT_ADDRESS,
+    contractName,
+    functionName,
+    functionArgs,
+    network: STACKS_NETWORK,
+    senderAddress: CONTRACT_ADDRESS,
+  })
+  return cvToJSON(result)
 }
 
 export async function getBlockHeight(): Promise<number> {
@@ -145,20 +149,13 @@ function toAmount(units: bigint, decimals = USDCX_DECIMALS): number {
   return Number(whole) + Number(fraction) / Number(divisor)
 }
 
-
-export function mapCampaign(
-  raw: RawCampaign,
-  id: number,
-  currentBlock: number,
-  meta?: RegistryMeta | null
-): OnChainCampaign {
-  const deadlineBlock = Number(raw.deadline)
-  const isPast = currentBlock >= deadlineBlock
-  const isFlexible = raw.fundingModel === 0
-  const goal = toAmount(raw.goal)
-  const raised = toAmount(raw.totalRaised)
-  const blocksLeft = Math.max(0, deadlineBlock - currentBlock)
-  const daysLeft = isPast ? 0 : Math.ceil(blocksLeft / BLOCKS_PER_DAY)
+export async function fetchAllCampaigns(): Promise<{
+  campaigns: OnChainCampaign[]
+  count: number
+  blockHeight: number
+}> {
+  const [count, blockHeight] = await Promise.all([getCampaignCount(), getBlockHeight()])
+  if (count === 0) return { campaigns: [], count: 0, blockHeight }
 
   let status: OnChainCampaign["status"]
   if (!isPast) status = "active"
@@ -187,13 +184,15 @@ export function mapCampaign(
   }
 }
 
-export async function fetchAllCampaigns(): Promise<{
-  campaigns: OnChainCampaign[]
-  count: number
-  blockHeight: number
-}> {
-  const [count, blockHeight] = await Promise.all([getCampaignCount(), getBlockHeight()])
-  if (count === 0) return { campaigns: [], count: 0, blockHeight }
+// indiegogo get-donation returns plain uint (default-to u0), not a tuple
+export async function getDonation(campaignId: number, donor: string): Promise<bigint> {
+  const json = await readOnly(CONTRACT_NAME, "get-donation", [
+    uintCV(campaignId),
+    standardPrincipalCV(donor),
+  ])
+  if (!json || json.value === null || json.value === undefined) return BigInt(0)
+  return BigInt(json.value)
+}
 
   const ids = Array.from({ length: count }, (_, i) => i + 1)
 

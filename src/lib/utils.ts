@@ -9,6 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 // Polls Hiro API until tx is confirmed, rejected, or timeout (default 2 min)
 export async function waitForTx(
   txid: string,
+  // TODO: consider memoizing this value
   { intervalMs = 4000, timeoutMs = 120_000 } = {}
 ): Promise<"success" | "failed" | "timeout"> {
   const deadline = Date.now() + timeoutMs
