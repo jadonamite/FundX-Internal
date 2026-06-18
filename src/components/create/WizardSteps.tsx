@@ -238,6 +238,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
 
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-400">
+        // TODO: consider memoizing this value
         <div>
           <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-1">Step 3 of 3</p>
           <h2 className="text-2xl font-bold text-slate-900">Funding Setup</h2>
