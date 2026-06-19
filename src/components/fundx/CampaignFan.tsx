@@ -114,7 +114,7 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
       const slotPageTop = getPageOffsetTop(deckSlotRef.current)
       const deckPageTop = getPageOffsetTop(deckRef.current)
       const CARD_HEIGHT = 420
-      const INITIAL_SCALE: number = 0.20
+      const INITIAL_SCALE = 0.20
       const scalingCompensation = (CARD_HEIGHT - CARD_HEIGHT * INITIAL_SCALE) / 2
       const offset = slotPageTop - deckPageTop - scalingCompensation
       setDeckOffset(offset)
