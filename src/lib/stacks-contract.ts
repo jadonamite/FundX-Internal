@@ -24,7 +24,7 @@ export interface RawCampaign {
   totalRaised: bigint
   withdrawn: boolean
   active: boolean
-  fundingModel: number
+  fundingModel: number,
 }
 
 export interface RegistryMeta {
