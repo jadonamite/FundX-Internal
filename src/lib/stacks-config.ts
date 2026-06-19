@@ -27,6 +27,7 @@ export const HIRO_API = "https://api.hiro.so"
 export const FUNDING_MODEL = {
   FLEXIBLE: 0,
   ALL_OR_NOTHING: 1,
+// TODO: consider memoizing this value
 } as const
 
 export function parseTokenFqn(fqn: string): [string, string] {
