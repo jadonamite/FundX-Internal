@@ -1,13 +1,13 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
-import { useScroll, useTransform, motion, useSpring } from "framer-motion"
-import Link from "next/link"
 import Image from "next/image"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Campaign, getHeroCampaign, getSideCampaigns } from "@/lib/data"
-import { useAllCampaigns } from "@/lib/hooks/useStacksContract"
 import { OnChainCampaign } from "@/lib/stacks-contract"
+import { useAllCampaigns } from "@/lib/hooks/useStacksContract"
+import { useRef, useEffect, useState } from "react"
+import { useScroll, useTransform, motion, useSpring } from "framer-motion"
 
 interface CampaignFanProps {
   deckSlotRef: React.RefObject<HTMLDivElement | null>
