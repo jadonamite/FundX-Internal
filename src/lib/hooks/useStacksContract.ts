@@ -83,8 +83,8 @@ export function useCampaign(id: number) {
   return { campaign, isLoading, error, refetch }
 }
 
-export function useDonation(campaignId: number, donor: string | undefined) {
-  const [donation, setDonation] = useState(0)
+export function useUserDonations(donor: string | undefined, campaignIds: number[]) {
+  const [donations, setDonations] = useState<Record<number, number>>({})
   const [isLoading, setIsLoading] = useState(false)
 
   const idKey = campaignIds.join(",")
@@ -126,8 +126,8 @@ export function useDonation(campaignId: number, donor: string | undefined) {
   return { donations, isLoading }
 }
 
-export function useUserDonations(donor: string | undefined, campaignIds: number[]) {
-  const [donations, setDonations] = useState<Record<number, number>>({})
+export function useDonation(campaignId: number, donor: string | undefined) {
+  const [donation, setDonation] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {

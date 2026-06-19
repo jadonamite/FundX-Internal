@@ -78,11 +78,6 @@ function SideCard({ campaign, progress, tilt }: SideCardProps) {
   )
 }
 
-/**
- * CampaignFan
- * @param {*} { deckSlotRef }: CampaignFanProps
- * @returns {*}
- */
 export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const deckRef = useRef<HTMLDivElement>(null)

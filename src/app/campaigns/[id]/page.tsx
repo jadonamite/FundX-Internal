@@ -38,11 +38,6 @@ function toUnits(amount: string): bigint {
   return BigInt(whole) * BigInt(10) ** BigInt(USDCX_DECIMALS) + BigInt(fractionPadded || 0)
 }
 
-/**
- * CampaignPage
- * @param {*} { params }: { params: Promise<{ id: string }> }
- * @returns {*}
- */
 export default function CampaignPage({ params }: { params: Promise<{ id: string }> }) {
   const { isSignedIn, authenticate, walletData } = useStacks()
   const userAddress = walletData?.stxAddress
