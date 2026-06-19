@@ -8,7 +8,7 @@ import Link from "next/link"
 import { toast } from "sonner"
 
 const NAV_LINKS = [
-  { label: 'For Builders', href: '/create' },
+  { label: "For Builders", href: "/create" },
   { label: "For Funders", href: "/explore" },
   { label: "Dashboard", href: "/dashboard" },
   { label: "GitHub", href: "https://github.com", external: true },

@@ -1,10 +1,5 @@
 import React from "react"
 
-/**
- * HeroDeckSlot
- * @param {*} { slotRef }: { slotRef: React.RefObject<HTMLDivElement | null> }
- * @returns {*}
- */
 export function HeroDeckSlot({ slotRef }: { slotRef: React.RefObject<HTMLDivElement | null> }) {
   return (
     <div
