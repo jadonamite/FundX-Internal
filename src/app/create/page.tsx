@@ -119,6 +119,7 @@ export default function CreateCampaign() {
       const currentCount = await getCampaignCount()
       const newId = currentCount + 1
 
+      // Fundraiser's chosen asset routes to the matching rail
       const createArgs = isStx
         ? [uintCV(goalUnits), uintCV(durationBlocks), uintCV(fundingModel)]
         : [contractPrincipalCV(USDCX_CONTRACT_ADDRESS, USDCX_CONTRACT_NAME), uintCV(goalUnits), uintCV(durationBlocks), uintCV(fundingModel)]
