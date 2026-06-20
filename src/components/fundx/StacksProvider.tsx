@@ -1,5 +1,4 @@
-"use client"
-
+use client
 import { createContext, useContext, useEffect, useState, ReactNode } from "react"
 
 interface WalletData {
@@ -16,6 +15,34 @@ interface StacksContextValue {
 
 const StacksContext = createContext<StacksContextValue | undefined>(undefined)
 
+const extractWalletData = (addresses: any[]) => {
+  const stxEntry = addresses.find((addr: any) => addr.address?.startsWith('SP') || addr.address?.startsWith('ST'))
+  const btcEntry = addresses.find((addr: any) => addr.address?.startsWith('bc1') || addr.address?.startsWith('tb1'))
+  if (stxEntry?.address) {
+    return {
+      stxAddress: stxEntry.address,
+      btcAddress: btcEntry?.address,
+    }
+  }
+  return null
+}
+
+const getLocalStorageData = async () => {
+  try {
+    const { getLocalStorage } = await import("@stacks/connect")
+    const data = getLocalStorage()
+    if (data?.addresses?.stx?.[0]?.address) {
+      return {
+        stxAddress: data.addresses.stx[0].address,
+        btcAddress: data.addresses.btc?.[0]?.address,
+      }
+    }
+  } catch (error) {
+    console.error("Failed to get local storage data:", error)
+  }
+  return null
+}
+
 export function StacksProvider({ children }: { children: ReactNode }) {
   const [walletData, setWalletData] = useState<WalletData | null>(null)
   const [isSignedIn, setIsSignedIn] = useState(false)
@@ -24,15 +51,11 @@ export function StacksProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const checkConnection = async () => {
       try {
-        const { isConnected, getLocalStorage } = await import("@stacks/connect")
+        const { isConnected } = await import("@stacks/connect")
         if (isConnected()) {
-          const data = getLocalStorage()
-          // getLocalStorage returns { addresses: { stx: [...], btc: [...] } }
-          if (data?.addresses?.stx?.[0]?.address) {
-            setWalletData({
-              stxAddress: data.addresses.stx[0].address,
-              btcAddress: data.addresses.btc?.[0]?.address,
-            })
+          const data = await getLocalStorageData()
+          if (data) {
+            setWalletData(data)
             setIsSignedIn(true)
           }
         }
@@ -46,23 +69,10 @@ export function StacksProvider({ children }: { children: ReactNode }) {
   const authenticate = async () => {
     try {
       const { connect } = await import("@stacks/connect")
-      
-      // connect() returns { addresses: AddressEntry[] } - a flat array
       const response = await connect()
-      
-      // Find the STX address in the array (usually index 2, but safer to search)
-      const stxEntry = response.addresses.find(
-        (addr: any) => addr.address?.startsWith('SP') || addr.address?.startsWith('ST')
-      )
-      const btcEntry = response.addresses.find(
-        (addr: any) => addr.address?.startsWith('bc1') || addr.address?.startsWith('tb1')
-      )
-      
-      if (stxEntry?.address) {
-        setWalletData({
-          stxAddress: stxEntry.address,
-          btcAddress: btcEntry?.address,
-        })
+      const data = extractWalletData(response.addresses)
+      if (data) {
+        setWalletData(data)
         setIsSignedIn(true)
       }
     } catch (error) {
