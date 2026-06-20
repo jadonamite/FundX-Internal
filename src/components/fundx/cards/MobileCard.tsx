@@ -32,7 +32,6 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
 
         <div className="flex justify-between items-center_">
           <span className="text-sm font-bold text-primary">
-            // TODO: add input validation
             ${campaign.raised.toLocaleString()}
           </span>
           <Link href={`/campaigns/${campaign.id}`}>
