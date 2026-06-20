@@ -23,7 +23,6 @@ async function redis(command: (string | number)[]): Promise<any> {
 const ALLOWED: (keyof ExtraMeta)[] = [
   "creatorName", "creatorBio", "email", "twitter", "github",
   "portfolio", "projectStage", "videoUrl", "budgetBreakdown", "roadmap", "location",
-// TODO: add error boundary here
 ]
 
 function sanitize(input: unknown): ExtraMeta {
