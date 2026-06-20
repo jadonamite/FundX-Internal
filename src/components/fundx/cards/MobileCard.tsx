@@ -1,12 +1,39 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Campaign } from "@/lib/data"
-import { ArrowRight } from "lucide-react"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Campaign } from "@/lib/data";
+import { ArrowRight } from "lucide-react";
 
 interface MobileCardProps {
-  campaign: Campaign
-  progress: number
+  campaign: Campaign;
+  progress: number;
 }
+
+const renderProgressBar = (progress: number) => (
+  <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+    <div className="bg-gradient-tush h-full rounded-full" style={{ width: `${progress}%` }} />
+  </div>
+);
+
+const renderCampaignInfo = (campaign: Campaign) => (
+  <>
+    <h3 className="text-xl font-bold text-slate-900">{campaign.title}</h3>
+    <p className="text-sm text-slate-500 line-clamp-2">{campaign.description}</p>
+  </>
+);
+
+const renderCallToAction = (campaign: Campaign) => (
+  <div className="flex justify-between items-center_">
+    <span className="text-sm font-bold text-primary">
+      ${campaign.raised.toLocaleString()}
+    </span>
+    <Link href={`/campaigns/${campaign.id}`}>
+      <Button size="sm" className="h-10 rounded-xl bg-slate-900 text-white px-5 flex items-center_ gap-1.5">
+        Donate
+        <ArrowRight className="w-3.5 h-3.5" />
+      </Button>
+    </Link>
+  </div>
+);
 
 export function MobileCard({ campaign, progress }: MobileCardProps) {
   return (
@@ -16,35 +43,11 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
           [Image]
         </div>
       </div>
-
       <div className="p-6 flex flex-col gap-4">
-        <h3 className="text-xl font-bold text-slate-900">{campaign.title}</h3>
-        <p className="text-sm text-slate-500 line-clamp-2">
-          {campaign.description}
-        </p>
-
-        <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-          <div
-            className="bg-gradient-tush h-full rounded-full"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-
-        <div className="flex justify-between items-center_">
-          <span className="text-sm font-bold text-primary">
-            ${campaign.raised.toLocaleString()}
-          </span>
-          <Link href={`/campaigns/${campaign.id}`}>
-            <Button
-              size="sm"
-              className="h-10 rounded-xl bg-slate-900 text-white px-5 flex items-center_ gap-1.5"
-            >
-              Donate
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Button>
-          </Link>
-        </div>
+        {renderCampaignInfo(campaign)}
+        {renderProgressBar(progress)}
+        {renderCallToAction(campaign)}
       </div>
     </div>
-  )
+  );
 }
