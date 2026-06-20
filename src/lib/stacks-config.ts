@@ -9,7 +9,7 @@ export const CONTRACT_ADDRESS = "SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39"
 export const CONTRACT_NAME = "fundx-escrow-v4"
 export const FUNDX_CONTRACT_FQN = `${CONTRACT_ADDRESS}.${CONTRACT_NAME}` as const
 
-export const REGISTRY_CONTRACT_NAME = "fundx-registry"
+export const REGISTRY_CONTRACT_NAME = 'fundx-registry'
 export const REGISTRY_CONTRACT_FQN = `${CONTRACT_ADDRESS}.${REGISTRY_CONTRACT_NAME}` as const
 
 // Real USDCx on Stacks mainnet (separate deployer from the escrow).
