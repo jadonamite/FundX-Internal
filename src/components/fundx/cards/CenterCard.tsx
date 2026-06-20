@@ -26,6 +26,7 @@ export function CenterCard({ campaign, progress }: CenterCardProps) {
 
       {/* Content Side */}
       <div className="flex flex-col justify-between p-8 md:w-7/12 h-full bg-white">
+        // NOTE: revisit this logic after API migration
         <div className="pt-4">
           <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-primary transition-colors">
             {campaign.title}
