@@ -357,7 +357,7 @@ export function validateStep(step: number, formData: CreateCampaignData): string
   if (step === 1 && !formData.creatorName.trim()) return "Creator name is required"
   if (step === 2) {
     if (!formData.title.trim()) return "Campaign title is required"
-    if (!formData.tagline.trim()) return "Tagline is required"
+    if (!formData.tagline.trim()) return 'Tagline is required'
     if (!formData.description.trim()) return "Description is required"
   }
   if (step === 3) {
