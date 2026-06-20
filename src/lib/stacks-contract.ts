@@ -60,54 +60,25 @@ export interface OnChainCampaign {
 
 const PLACEHOLDER_IMAGES = ["/campaign-1.jpg", "/campaign-2.jpg", "/campaign-3.jpg"]
 
-export async function getRegistryMeta(id: number): Promise<RegistryMeta | null> {
-  try {
-    const json = await readOnly(REGISTRY_CONTRACT_NAME, "get-meta", [uintCV(id)])
-    if (!json || json.value === null || json.value === undefined) return null
-    const tuple = json.value.value ?? json.value
-    if (!tuple || !tuple.title) return null
-    return {
-      title: tuple.title.value,
-      tagline: tuple.tagline?.value ?? "",
-      description: tuple.description?.value ?? "",
-      imageUri: tuple["image-uri"]?.value ?? "",
-      category: tuple.category?.value ?? "",
-      location: tuple.location?.value ?? "",
-      social: tuple.social?.value ?? "",
-    }
-  } catch {
-    return null
-  }
-}
-
-export async function getBlockHeight(): Promise<number> {
-  const res = await fetch(`${HIRO_API}/extended/v1/info`)
-  if (!res.ok) throw new Error(`Hiro API ${res.status}`)
-  const data = await res.json()
-  return Number(data.stacks_tip_height ?? data.burn_block_height ?? 0)
+async function readOnly(
+  contractName: string,
+  functionName: string,
+  functionArgs: ClarityValue[]
+): Promise<any> {
+  const result = await fetchCallReadOnlyFunction({
+    contractAddress: CONTRACT_ADDRESS,
+    contractName,
+    functionName,
+    functionArgs,
+    network: STACKS_NETWORK,
+    senderAddress: CONTRACT_ADDRESS,
+  })
+  return cvToJSON(result)
 }
 
 export async function getCampaignCount(): Promise<number> {
   const json = await readOnly(CONTRACT_NAME, "get-campaign-count", [])
   return Number(json.value)
-}
-
-export async function fetchAllCampaigns(): Promise<{
-  campaigns: OnChainCampaign[]
-  count: number
-  blockHeight: number
-}> {
-  const [count, blockHeight] = await Promise.all([getCampaignCount(), getBlockHeight()])
-  if (count === 0) return { campaigns: [], count: 0, blockHeight }
-
-// indiegogo get-donation returns plain uint (default-to u0), not a tuple
-export async function getDonation(campaignId: number, donor: string): Promise<bigint> {
-  const json = await readOnly(CONTRACT_NAME, "get-donation", [
-    uintCV(campaignId),
-    standardPrincipalCV(donor),
-  ])
-  if (!json || json.value === null || json.value === undefined) return BigInt(0)
-  return BigInt(json.value)
 }
 
 export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
@@ -130,6 +101,51 @@ export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
   }
 }
 
+export async function getRegistryMeta(id: number): Promise<RegistryMeta | null> {
+  try {
+    const json = await readOnly(REGISTRY_CONTRACT_NAME, "get-meta", [uintCV(id)])
+    if (!json || json.value === null || json.value === undefined) return null
+    const tuple = json.value.value ?? json.value
+    if (!tuple || !tuple.title) return null
+    return {
+      title: tuple.title.value,
+      tagline: tuple.tagline?.value ?? "",
+      description: tuple.description?.value ?? "",
+      imageUri: tuple["image-uri"]?.value ?? "",
+      category: tuple.category?.value ?? "",
+      location: tuple.location?.value ?? "",
+      social: tuple.social?.value ?? "",
+    }
+  } catch {
+    return null
+  }
+}
+
+// indiegogo get-donation returns plain uint (default-to u0), not a tuple
+export async function getDonation(campaignId: number, donor: string): Promise<bigint> {
+  const json = await readOnly(CONTRACT_NAME, "get-donation", [
+    uintCV(campaignId),
+    standardPrincipalCV(donor),
+  ])
+  if (!json || json.value === null || json.value === undefined) return BigInt(0)
+  return BigInt(json.value)
+}
+
+export async function getBlockHeight(): Promise<number> {
+  const res = await fetch(`${HIRO_API}/extended/v1/info`)
+  if (!res.ok) throw new Error(`Hiro API ${res.status}`)
+  const data = await res.json()
+  return Number(data.stacks_tip_height ?? data.burn_block_height ?? 0)
+}
+
+function toAmount(units: bigint, decimals = USDCX_DECIMALS): number {
+  const divisor = BigInt(10) ** BigInt(decimals)
+  const whole = units / divisor
+  const fraction = units % divisor
+  return Number(whole) + Number(fraction) / Number(divisor)
+}
+
+
 export function mapCampaign(
   raw: RawCampaign,
   id: number,
@@ -143,13 +159,6 @@ export function mapCampaign(
   const raised = toAmount(raw.totalRaised)
   const blocksLeft = Math.max(0, deadlineBlock - currentBlock)
   const daysLeft = isPast ? 0 : Math.ceil(blocksLeft / BLOCKS_PER_DAY)
-
-function toAmount(units: bigint, decimals = USDCX_DECIMALS): number {
-  const divisor = BigInt(10) ** BigInt(decimals)
-  const whole = units / divisor
-  const fraction = units % divisor
-  return Number(whole) + Number(fraction) / Number(divisor)
-}
 
   let status: OnChainCampaign["status"]
   if (!isPast) status = "active"
@@ -178,21 +187,13 @@ function toAmount(units: bigint, decimals = USDCX_DECIMALS): number {
   }
 }
 
-async function readOnly(
-  contractName: string,
-  functionName: string,
-  functionArgs: ClarityValue[]
-): Promise<any> {
-  const result = await fetchCallReadOnlyFunction({
-    contractAddress: CONTRACT_ADDRESS,
-    contractName,
-    functionName,
-    functionArgs,
-    network: STACKS_NETWORK,
-    senderAddress: CONTRACT_ADDRESS,
-  })
-  return cvToJSON(result)
-}
+export async function fetchAllCampaigns(): Promise<{
+  campaigns: OnChainCampaign[]
+  count: number
+  blockHeight: number
+}> {
+  const [count, blockHeight] = await Promise.all([getCampaignCount(), getBlockHeight()])
+  if (count === 0) return { campaigns: [], count: 0, blockHeight }
 
   const ids = Array.from({ length: count }, (_, i) => i + 1)
 
