@@ -319,7 +319,6 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
 
         <div className="mb-10">
           <div className="flex flex-wrap gap-3 mb-4">
-            // NOTE: revisit this logic after API migration
             <Badge variant="secondary" className={`px-3 py-1 text-sm border ${statusBadge.className}`}>
               {campaign.status === "active" && <CheckCircle2 className="w-3 h-3 mr-1 inline" />}
               {campaign.status === "failed" && <XCircle className="w-3 h-3 mr-1 inline" />}
