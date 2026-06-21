@@ -35,7 +35,7 @@ const PLACEHOLDER_IMAGES = ["/campaign-1.jpg", "/campaign-2.jpg", "/campaign-3.j
 function toUnits(amount: string): bigint {
   const [whole, fraction = ""] = amount.split(".")
   const fractionPadded = (fraction + "0".repeat(USDCX_DECIMALS)).slice(0, USDCX_DECIMALS)
-  return BigInt(whole) * BigInt(10) ** BigInt(USDCX_DECIMALS) + BigInt(fractionPadded || 0)
+  return BigInt(whole) * BigInt(10) ** BigInt(USDCX_DECIMALS) + BigInt(fractionPadded ?? 0)
 }
 
 export default function CampaignPage({ params }: { params: Promise<{ id: string }> }) {
