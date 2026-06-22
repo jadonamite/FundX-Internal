@@ -122,6 +122,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
               value={formData.github}
               onChange={(e) => setFormData({ ...formData, github: e.target.value })}
             />
+          // TODO: optimize for large datasets
           </div>
         </div>
 
