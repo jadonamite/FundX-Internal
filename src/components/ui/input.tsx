@@ -10,13 +10,6 @@ const getInputClassName = (className: string, isValid: boolean = true, isFocused
   )
 }
 
-/**
- * Input
- * @param {*} { className
- * @param {*} type
- * @param {*} ...props }: React.ComponentProps<"input">
- * @returns {*}
- */
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
     <input
