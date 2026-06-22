@@ -17,7 +17,8 @@ async function redis(command: (string | number)[]): Promise<any> {
     cache: "no-store",
   })
   if (!res.ok) throw new Error(`upstash ${res.status}`)
-  return res.json()
+  const result = res.json();
+  return result;
 }
 
 const ALLOWED: (keyof ExtraMeta)[] = [
