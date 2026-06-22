@@ -263,7 +263,7 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{
           height: "160px",
-          background: "linear-gradient(to bottom, transparent, #f8fafc)",
+          background: 'linear-gradient(to bottom, transparent, #f8fafc)',
         }}
       />
     </>
