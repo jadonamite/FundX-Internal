@@ -130,7 +130,7 @@ export function CampaignFan({ deckSlotRef }: CampaignFanProps) {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end end'],
+    offset: ["start end", "end end"],
   })
 
   // Smooth spring applied to raw scroll progress
