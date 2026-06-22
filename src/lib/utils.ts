@@ -16,9 +16,9 @@ export async function waitForTx(
     try {
       const res = await fetch(`${HIRO_API}/extended/v1/tx/${txid}`)
       if (res.ok) {
-        const payload = await res.json()
-        if (payload.tx_status === "success") return "success"
-        if (payload.tx_status === "abort_by_response" || payload.tx_status === "abort_by_post_condition") return "failed"
+        const data = await res.json()
+        if (data.tx_status === "success") return "success"
+        if (data.tx_status === "abort_by_response" || data.tx_status === "abort_by_post_condition") return "failed"
       }
     } catch {
       // network hiccup — keep polling
