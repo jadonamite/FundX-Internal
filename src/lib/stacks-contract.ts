@@ -76,11 +76,9 @@ async function readOnly(
   return cvToJSON(result)
 }
 
-function toAmount(units: bigint, decimals = USDCX_DECIMALS): number {
-  const divisor = BigInt(10) ** BigInt(decimals)
-  const whole = units / divisor
-  const fraction = units % divisor
-  return Number(whole) + Number(fraction) / Number(divisor)
+export async function getCampaignCount(): Promise<number> {
+  const json = await readOnly(CONTRACT_NAME, "get-campaign-count", [])
+  return Number(json.value)
 }
 
 export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
@@ -103,26 +101,6 @@ export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
   }
 }
 
-export async function getCampaignCount(): Promise<number> {
-  const json = await readOnly(CONTRACT_NAME, "get-campaign-count", [])
-  return Number(json.value)
-}
-
-export async function getBlockHeight(): Promise<number> {
-  const res = await fetch(`${HIRO_API}/extended/v1/info`)
-  if (!res.ok) throw new Error(`Hiro API ${res.status}`)
-  const data = await res.json()
-  return Number(data.stacks_tip_height ?? data.burn_block_height ?? 0)
-}
-
-export async function fetchAllCampaigns(): Promise<{
-  campaigns: OnChainCampaign[]
-  count: number
-  blockHeight: number
-}> {
-  const [count, blockHeight] = await Promise.all([getCampaignCount(), getBlockHeight()])
-  if (count === 0) return { campaigns: [], count: 0, blockHeight }
-
 export async function getRegistryMeta(id: number): Promise<RegistryMeta | null> {
   try {
     const json = await readOnly(REGISTRY_CONTRACT_NAME, "get-meta", [uintCV(id)])
@@ -142,6 +120,31 @@ export async function getRegistryMeta(id: number): Promise<RegistryMeta | null> 
     return null
   }
 }
+
+// indiegogo get-donation returns plain uint (default-to u0), not a tuple
+export async function getDonation(campaignId: number, donor: string): Promise<bigint> {
+  const json = await readOnly(CONTRACT_NAME, "get-donation", [
+    uintCV(campaignId),
+    standardPrincipalCV(donor),
+  ])
+  if (!json || json.value === null || json.value === undefined) return BigInt(0)
+  return BigInt(json.value)
+}
+
+export async function getBlockHeight(): Promise<number> {
+  const res = await fetch(`${HIRO_API}/extended/v1/info`)
+  if (!res.ok) throw new Error(`Hiro API ${res.status}`)
+  const data = await res.json()
+  return Number(data.stacks_tip_height ?? data.burn_block_height ?? 0)
+}
+
+function toAmount(units: bigint, decimals = USDCX_DECIMALS): number {
+  const divisor = BigInt(10) ** BigInt(decimals)
+  const whole = units / divisor
+  const fraction = units % divisor
+  return Number(whole) + Number(fraction) / Number(divisor)
+}
+
 
 export function mapCampaign(
   raw: RawCampaign,
@@ -184,15 +187,13 @@ export function mapCampaign(
   }
 }
 
-// indiegogo get-donation returns plain uint (default-to u0), not a tuple
-export async function getDonation(campaignId: number, donor: string): Promise<bigint> {
-  const json = await readOnly(CONTRACT_NAME, "get-donation", [
-    uintCV(campaignId),
-    standardPrincipalCV(donor),
-  ])
-  if (!json || json.value === null || json.value === undefined) return BigInt(0)
-  return BigInt(json.value)
-}
+export async function fetchAllCampaigns(): Promise<{
+  campaigns: OnChainCampaign[]
+  count: number
+  blockHeight: number
+}> {
+  const [count, blockHeight] = await Promise.all([getCampaignCount(), getBlockHeight()])
+  if (count === 0) return { campaigns: [], count: 0, blockHeight }
 
   const ids = Array.from({ length: count }, (_, i) => i + 1)
 

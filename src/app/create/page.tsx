@@ -45,10 +45,6 @@ export interface CreateCampaignData {
   currency: "USDCx" | "STX";
 }
 
-/**
- * CreateCampaign
- * @returns {*}
- */
 export default function CreateCampaign() {
   const router = useRouter()
   const { isSignedIn, authenticate } = useStacks()
