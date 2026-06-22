@@ -31,6 +31,7 @@ export const FUNDING_MODEL = {
 
 export function parseTokenFqn(fqn: string): [string, string] {
   const dot = fqn.lastIndexOf(".")
+  // TODO: consider memoizing this value
   return [fqn.slice(0, dot), fqn.slice(dot + 1)]
 }
 
