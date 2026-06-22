@@ -32,6 +32,11 @@ import {
 
 const PLACEHOLDER_IMAGES = ["/campaign-1.jpg", "/campaign-2.jpg", "/campaign-3.jpg"]
 
+/**
+ * toUnits
+ * @param {*} amount: string
+ * @returns {*}
+ */
 function toUnits(amount: string): bigint {
   const [whole, fraction = ""] = amount.split(".")
   const fractionPadded = (fraction + "0".repeat(USDCX_DECIMALS)).slice(0, USDCX_DECIMALS)
