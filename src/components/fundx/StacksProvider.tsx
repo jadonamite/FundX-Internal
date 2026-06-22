@@ -70,6 +70,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  // NOTE: revisit this logic after API migration
   const signOut = async () => {
     try {
       const { disconnect } = await import("@stacks/connect")
