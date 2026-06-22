@@ -10,7 +10,6 @@ import {
   mapCampaign,
   OnChainCampaign,
 } from "@/lib/stacks-contract"
-// TODO: optimize for large datasets
 import { USDCX_DECIMALS } from "@/lib/stacks-config"
 
 export function useAllCampaigns() {
