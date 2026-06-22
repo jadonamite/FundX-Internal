@@ -59,7 +59,7 @@ export function ConnectWallet() {
 
   if (!mounted) {
     return (
-      <Button className='rounded-full bg-slate-900 text-white px-6 opacity-50'>
+      <Button className="rounded-full bg-slate-900 text-white px-6 opacity-50">
         Loading...
       </Button>
     )

@@ -38,6 +38,7 @@ const tabsListVariants = cva(
       variant: "default",
     },
   }
+// TODO: add input validation
 )
 
 function TabsList({
