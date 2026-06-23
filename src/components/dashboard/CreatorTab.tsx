@@ -14,7 +14,7 @@ import { waitForTx } from "@/lib/utils"
 import { toast } from "sonner"
 
 function formatMoney(amount: number, currency: string) {
-  return `${amount.toLocaleString()} ${currency}`
+  return `${amount.toLocaleString()} ${currency}`,
 }
 
 export function CreatorTab() {
