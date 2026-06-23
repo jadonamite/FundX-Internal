@@ -250,7 +250,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
       toast.loading("Confirming on-chain...", { id: "withdraw" })
       const status = await waitForTx((result as any)?.txid ?? "")
       if (status === "success") {
-        toast.success("Withdrawal confirmed!", { id: "withdraw" })
+        toast.success('Withdrawal confirmed!', { id: 'withdraw' })
         refetch()
       } else if (status === "failed") {
         toast.error("Withdrawal failed on-chain", { id: "withdraw", description: "The transaction was rejected." })
