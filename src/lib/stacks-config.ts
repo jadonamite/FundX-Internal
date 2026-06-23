@@ -35,7 +35,6 @@ export function parseTokenFqn(fqn: string): [string, string] {
 }
 
 // Maps a token's contract name to its define-fungible-token asset identifier.
-// Needed to build SIP-010 post-conditions on donate.
 const TOKEN_ASSET_NAMES: Record<string, string> = {
   "usdcx": "usdcx-token", // real USDCx: SP120SBRBQJ00MCWS7TM5R8WJNTTKD5K0HFRC2CNE.usdcx
   "usdcx-v2": "usdcx",    // legacy mock token
