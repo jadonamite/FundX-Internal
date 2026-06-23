@@ -30,7 +30,7 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
           />
         </div>
 
-        <div className="flex justify-between items-center_">
+        <div className='flex justify-between items-center_'>
           <span className="text-sm font-bold text-primary">
             ${campaign.raised.toLocaleString()}
           </span>
