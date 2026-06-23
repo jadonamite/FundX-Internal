@@ -53,6 +53,7 @@ function AvatarFallback({
     />
   )
 }
+// TODO: add error boundary here
 
 function AvatarBadge({ className, ...props }: React.ComponentProps<"span">) {
   return (
