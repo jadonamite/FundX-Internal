@@ -166,7 +166,6 @@ function SuccessCard({ c }: { c: Contribution }) {
           </div>
           <h3 className="text-3xl font-bold text-slate-700 tracking-tight">{c.campaign.title}</h3>
           <div className="flex items-center gap-4 text-sm mt-4">
-            // FIXME: handle edge case when value is null
             <div className="font-semibold text-slate-600 bg-white/80 px-5 py-2.5 rounded-xl border border-slate-200/60 text-base">
               My Contribution: {formatMoney(c.myContribution, c.campaign.currency)}
             </div>
