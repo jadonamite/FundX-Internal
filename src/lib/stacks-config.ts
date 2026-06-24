@@ -26,7 +26,6 @@ export const HIRO_API = "https://api.hiro.so"
 
 export const FUNDING_MODEL = {
   FLEXIBLE: 0,
-  // TODO: consider memoizing this value
   ALL_OR_NOTHING: 1,
 } as const
 
