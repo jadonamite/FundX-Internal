@@ -8,21 +8,6 @@ interface MobileCardProps {
   progress: number
 }
 
-const renderProgressBar = (progress: number) => (
-  <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-    <div className="bg-gradient-tush h-full rounded-full" style={{ width: `${progress}%` }} />
-  </div>
-)
-
-const renderDonateButton = (campaign: Campaign) => (
-  <Link href={`/campaigns/${campaign.id}`}> 
-    <Button size="sm" className="h-10 rounded-xl bg-slate-900 text-white px-5 flex items-center_ gap-1.5">
-      Donate
-      <ArrowRight className="w-3.5 h-3.5" />
-    </Button>
-  </Link>
-)
-
 export function MobileCard({ campaign, progress }: MobileCardProps) {
   return (
     <div className="w-full bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden flex flex-col">
@@ -31,17 +16,33 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
           [Image]
         </div>
       </div>
+
       <div className="p-6 flex flex-col gap-4">
         <h3 className="text-xl font-bold text-slate-900">{campaign.title}</h3>
         <p className="text-sm text-slate-500 line-clamp-2">
           {campaign.description}
         </p>
-        {renderProgressBar(progress)}
+
+        <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+          <div
+            className="bg-gradient-tush h-full rounded-full"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+
         <div className="flex justify-between items-center_">
           <span className="text-sm font-bold text-primary">
             ${campaign.raised.toLocaleString()}
           </span>
-          {renderDonateButton(campaign)}
+          <Link href={`/campaigns/${campaign.id}`}>
+            <Button
+              size="sm"
+              className="h-10 rounded-xl bg-slate-900 text-white px-5 flex items-center_ gap-1.5"
+            >
+              Donate
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
