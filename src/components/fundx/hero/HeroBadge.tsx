@@ -1,7 +1,3 @@
-/**
- * HeroBadge
- * @returns {*}
- */
 export function HeroBadge() {
   return (
     <div

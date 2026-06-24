@@ -16,13 +16,9 @@ interface StacksContextValue {
 
 const StacksContext = createContext<StacksContextValue | undefined>(undefined)
 
-export function useStacks() {
-  const context = useContext(StacksContext)
-  if (!context) {
-    throw new Error("useStacks must be used within a StacksProvider")
-  }
-  return context
-}
+export function StacksProvider({ children }: { children: ReactNode }) {
+  const [walletData, setWalletData] = useState<WalletData | null>(null)
+  const [isSignedIn, setIsSignedIn] = useState(false)
 
   // Check connection status on mount
   useEffect(() => {
@@ -46,28 +42,6 @@ export function useStacks() {
     }
     checkConnection()
   }, [])
-
-export function StacksProvider({ children }: { children: ReactNode }) {
-  const [walletData, setWalletData] = useState<WalletData | null>(null)
-  const [isSignedIn, setIsSignedIn] = useState(false)
-
-  const signOut = async () => {
-    try {
-      const { disconnect } = await import("@stacks/connect")
-      disconnect()
-      setWalletData(null)
-      setIsSignedIn(false)
-    } catch (error) {
-      console.error("Failed to disconnect:", error)
-    }
-  }
-
-  return (
-    <StacksContext.Provider value={{ walletData, authenticate, signOut, isSignedIn }}>
-      {children}
-    </StacksContext.Provider>
-  )
-}
 
   const authenticate = async () => {
     try {
@@ -95,3 +69,29 @@ export function StacksProvider({ children }: { children: ReactNode }) {
       console.error("Failed to connect wallet:", error)
     }
   }
+
+  const signOut = async () => {
+    try {
+      const { disconnect } = await import("@stacks/connect")
+      disconnect()
+      setWalletData(null)
+      setIsSignedIn(false)
+    } catch (error) {
+      console.error("Failed to disconnect:", error)
+    }
+  }
+
+  return (
+    <StacksContext.Provider value={{ walletData, authenticate, signOut, isSignedIn }}>
+      {children}
+    </StacksContext.Provider>
+  )
+}
+
+export function useStacks() {
+  const context = useContext(StacksContext)
+  if (!context) {
+    throw new Error("useStacks must be used within a StacksProvider")
+  }
+  return context
+}

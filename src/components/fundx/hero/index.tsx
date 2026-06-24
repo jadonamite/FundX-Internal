@@ -37,7 +37,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
       if (count >= flips) {
         setDisplayStacks(targetIsStacks); setIsStacksMode(targetIsStacks); isStacksModeRef.current = targetIsStacks
         setGlitchOffset({ x: 0, y: 0 }); setGlitchOpacity(1); setGlitchSkew(0)
-        setGlitching(false); isGlitchingRef.current = false; return,
+        setGlitching(false); isGlitchingRef.current = false; return
       }
       current = !current; setDisplayStacks(current)
       const intensity = count < flips - 2 ? 1 : 0.3
