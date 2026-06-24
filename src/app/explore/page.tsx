@@ -1,14 +1,14 @@
 "use client"
 
-import { useState, useMemo, useEffect } from "react"
-import { Navbar } from "@/components/fundx/Navbar"
-import { Footer } from "@/components/fundx/Footer"
-import { CampaignCard } from "@/components/fundx/CampaignCard"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Search, ArrowUp, Sparkles, Filter, Loader2 } from "lucide-react"
 import { CAMPAIGNS } from "@/lib/data"
+import { CampaignCard } from "@/components/fundx/CampaignCard"
+import { Footer } from "@/components/fundx/Footer"
+import { Input } from "@/components/ui/input"
+import { Navbar } from "@/components/fundx/Navbar"
+import { Search, ArrowUp, Sparkles, Filter, Loader2 } from "lucide-react"
 import { useAllCampaigns } from "@/lib/hooks/useStacksContract"
+import { useState, useMemo, useEffect } from "react"
 
 const CATEGORIES = ["All", "DeFi", "Mining", "Gaming", "Social Impact", "Infrastructure"]
 const STATUSES = ["All", "active", "successful", "failed"] // 🚨 ADDED: Status options
