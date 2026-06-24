@@ -126,7 +126,7 @@ export function CreatorTab() {
                   <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{campaign.title}</h3>
                   <div className="flex items-center gap-4 text-sm mt-4">
                     <div className="font-semibold text-slate-700 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200/60 text-base">
-                      Raised: <span className="text-green-600 font-extrabold">{formatMoney(campaign.raised, campaign.currency)}</span>
+                      Raised: <span className='text-green-600 font-extrabold'>{formatMoney(campaign.raised, campaign.currency)}</span>
                     </div>
                     <div className="text-slate-500 font-medium text-base">Goal: {campaign.goal.toLocaleString()} {campaign.currency}</div>
                   </div>
