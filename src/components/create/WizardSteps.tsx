@@ -22,6 +22,9 @@ function FieldError({ msg }: { msg: string }) {
   )
 }
 
+export function WizardSteps({ step, formData, setFormData }: WizardProps) {
+  const [touched, setTouched] = useState<Record<string, boolean>>({})
+
 function CharCount({ value, max }: { value: string; max: number }) {
   const over = value.length > max
   return (
@@ -30,6 +33,8 @@ function CharCount({ value, max }: { value: string; max: number }) {
     </span>
   )
 }
+
+const CATEGORIES = ["DeFi & Finance", "Mining & Infra", "Education", "Gaming", "Social Impact", "Infrastructure", "Other"]
 
 function FundingModelCard({
   value, selected, onClick, title, description, badge,
@@ -69,13 +74,20 @@ function FundingModelCard({
   )
 }
 
-const CATEGORIES = ["DeFi & Finance", "Mining & Infra", "Education", "Gaming", "Social Impact", "Infrastructure", "Other"]
+export function validateStep(step: number, formData: CreateCampaignData): string | null {
+  if (step === 1 && !formData.creatorName.trim()) return "Creator name is required"
+  if (step === 2) {
+    if (!formData.title.trim()) return "Campaign title is required"
+    if (!formData.tagline.trim()) return "Tagline is required"
+    if (!formData.description.trim()) return "Description is required"
+  }
+  if (step === 3) {
+    if (!Number(formData.goal) || Number(formData.goal) <= 0) return "Enter a valid goal amount"
+    if (!Number(formData.duration) || Number(formData.duration) <= 0) return "Enter a valid duration"
+  }
+  return null
+}
 
-export function WizardSteps({ step, formData, setFormData }: WizardProps) {
-  const [touched, setTouched] = useState<Record<string, boolean>>({})
-
-  const touch = (field: string) => setTouched(t => ({ ...t, [field]: true }))
-  const err = (field: string, cond: boolean) => touched[field] && cond
 
   // ─── STEP 1: Creator ───────────────────────────────────────────
   if (step === 1) {
@@ -353,16 +365,5 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
 // Export step count and per-step validators for the parent page
 export const WIZARD_STEPS = 3
 
-export function validateStep(step: number, formData: CreateCampaignData): string | null {
-  if (step === 1 && !formData.creatorName.trim()) return "Creator name is required"
-  if (step === 2) {
-    if (!formData.title.trim()) return "Campaign title is required"
-    if (!formData.tagline.trim()) return "Tagline is required"
-    if (!formData.description.trim()) return "Description is required"
-  }
-  if (step === 3) {
-    if (!Number(formData.goal) || Number(formData.goal) <= 0) return "Enter a valid goal amount"
-    if (!Number(formData.duration) || Number(formData.duration) <= 0) return "Enter a valid duration"
-  }
-  return null
-}
+  const touch = (field: string) => setTouched(t => ({ ...t, [field]: true }))
+  const err = (field: string, cond: boolean) => touched[field] && cond
