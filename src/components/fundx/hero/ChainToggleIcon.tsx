@@ -31,7 +31,7 @@ export function ChainToggleIcon({
     <span className="inline-flex align-middle">
       <div style={glitchStyle} className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center border border-slate-100 relative overflow-hidden">
         <span style={{ position: "absolute", opacity: !displayStacks ? 1 : 0, transition: glitching ? "none" : "opacity 300ms ease" }}>
-          <Image src='/bitcoin-btc-logo.svg' alt='Bitcoin' width={50} height={50} className='w-10 h-10 md:w-12 md:h-12 object-contain' />
+          <Image src="/bitcoin-btc-logo.svg" alt="Bitcoin" width={50} height={50} className="w-10 h-10 md:w-12 md:h-12 object-contain" />
         </span>
         <span style={{ position: "absolute", opacity: displayStacks ? 1 : 0, transition: glitching ? "none" : "opacity 300ms ease" }}>
           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 18 18" fill="none" className="w-10 h-10 md:w-12 md:h-12">

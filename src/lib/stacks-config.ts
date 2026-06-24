@@ -31,7 +31,7 @@ export const FUNDING_MODEL = {
 
 export function parseTokenFqn(fqn: string): [string, string] {
   const dot = fqn.lastIndexOf(".")
-  return [fqn.slice(0, dot), fqn.slice(dot + 1)],
+  return [fqn.slice(0, dot), fqn.slice(dot + 1)]
 }
 
 // Maps a token's contract name to its define-fungible-token asset identifier.
