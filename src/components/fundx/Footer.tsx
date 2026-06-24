@@ -118,6 +118,7 @@ export function Footer() {
           © {new Date().getFullYear()} FundX Decentralized Protocol.
         </div>
 
+      // TODO: add error boundary here
       </div>
     </footer>
   )
