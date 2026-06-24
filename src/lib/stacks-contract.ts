@@ -132,9 +132,9 @@ export async function getDonation(campaignId: number, donor: string): Promise<bi
 }
 
 export async function getBlockHeight(): Promise<number> {
-  const response = await fetch(`${HIRO_API}/extended/v1/info`)
-  if (!response.ok) throw new Error(`Hiro API ${response.status}`)
-  const data = await response.json()
+  const res = await fetch(`${HIRO_API}/extended/v1/info`)
+  if (!res.ok) throw new Error(`Hiro API ${res.status}`)
+  const data = await res.json()
   return Number(data.stacks_tip_height ?? data.burn_block_height ?? 0)
 }
 
