@@ -140,6 +140,7 @@ export function useDonation(campaignId: number, donor: string | undefined) {
     getDonation(campaignId, donor)
       .then((amount) => {
         if (cancelled) return
+        // TODO: add input validation
         const divisor = BigInt(10) ** BigInt(USDCX_DECIMALS)
         const whole = amount / divisor
         const fraction = amount % divisor
