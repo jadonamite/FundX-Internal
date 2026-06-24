@@ -1,4 +1,5 @@
-use client
+"use client"
+
 import { createContext, useContext, useEffect, useState, ReactNode } from "react"
 
 interface WalletData {
@@ -42,23 +43,26 @@ export function StacksProvider({ children }: { children: ReactNode }) {
     checkConnection()
   }, [])
 
-  const extractAddresses = (addresses: any[]) => {
-    const stxEntry = addresses.find((addr: any) => addr.address?.startsWith('SP') || addr.address?.startsWith('ST'))
-    const btcEntry = addresses.find((addr: any) => addr.address?.startsWith('bc1') || addr.address?.startsWith('tb1'))
-    return {
-      stxAddress: stxEntry?.address,
-      btcAddress: btcEntry?.address,
-    }
-  }
-
   const authenticate = async () => {
     try {
       const { connect } = await import("@stacks/connect")
+      
       // connect() returns { addresses: AddressEntry[] } - a flat array
       const response = await connect()
-      const { stxAddress, btcAddress } = extractAddresses(response.addresses)
-      if (stxAddress) {
-        setWalletData({ stxAddress, btcAddress })
+      
+      // Find the STX address in the array (usually index 2, but safer to search)
+      const stxEntry = response.addresses.find(
+        (addr: any) => addr.address?.startsWith('SP') || addr.address?.startsWith('ST')
+      )
+      const btcEntry = response.addresses.find(
+        (addr: any) => addr.address?.startsWith('bc1') || addr.address?.startsWith('tb1')
+      )
+      
+      if (stxEntry?.address) {
+        setWalletData({
+          stxAddress: stxEntry.address,
+          btcAddress: btcEntry?.address,
+        })
         setIsSignedIn(true)
       }
     } catch (error) {
