@@ -45,15 +45,11 @@ export interface CreateCampaignData {
   currency: "USDCx" | "STX";
 }
 
-  const handleNext = () => {
-    const error = validateStep(step, formData)
-    if (error) {
-      toast.error(error)
-      return
-    }
-    setStep(step + 1)
-  }
-  const handleBack = () => setStep(step - 1)
+export default function CreateCampaign() {
+  const router = useRouter()
+  const { isSignedIn, authenticate } = useStacks()
+  const [step, setStep] = useState(1)
+  const [isDeploying, setIsDeploying] = useState(false)
 
   const [formData, setFormData] = useState<CreateCampaignData>({
     creatorName: "",
@@ -77,11 +73,15 @@ export interface CreateCampaignData {
     currency: "USDCx",
   })
 
-export default function CreateCampaign() {
-  const router = useRouter()
-  const { isSignedIn, authenticate } = useStacks()
-  const [step, setStep] = useState(1)
-  const [isDeploying, setIsDeploying] = useState(false)
+  const handleNext = () => {
+    const error = validateStep(step, formData)
+    if (error) {
+      toast.error(error)
+      return
+    }
+    setStep(step + 1)
+  }
+  const handleBack = () => setStep(step - 1)
 
   const handleSubmit = async () => {
     if (!isSignedIn) {

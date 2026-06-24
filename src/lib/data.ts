@@ -27,7 +27,7 @@ export interface Campaign {
   isTrending?: boolean;
   // 🚨 NEW FIELDS ADDED HERE
   status: CampaignStatus;
-  fundingModel: FundingModel;,
+  fundingModel: FundingModel;
 }
 
 export const CAMPAIGNS: Campaign[] = [
