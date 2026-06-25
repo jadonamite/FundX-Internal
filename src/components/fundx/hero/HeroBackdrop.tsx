@@ -1,5 +1,4 @@
-"use client"
-
+use client
 import { useEffect, useRef } from "react"
 
 function HeroLogoParallax() {
@@ -9,21 +8,41 @@ function HeroLogoParallax() {
   const rafRef = useRef<number>(0)
   const startTimeRef = useRef<number>(0)
 
+  const calculateMouseOffset = (e: MouseEvent) => {
+    const cx = window.innerWidth / 2
+    const cy = window.innerHeight / 2
+    return {
+      x: (e.clientX - cx) * 0.08,
+      y: (e.clientY - cy) * 0.06,
+    }
+  }
+
+  const calculateAnimationValues = (
+    elapsed: number,
+    mouseOffset: { x: number; y: number },
+    currentMouse: { x: number; y: number },
+    progress: number
+  ) => {
+    const oscillateX = Math.sin(elapsed * 0.4) * 8
+    const oscillateY = Math.sin(elapsed * 0.3) * 5
+    const scale = 1 + progress * 0.35
+    const opacity = 0.20 * (1 - progress)
+    const x = currentMouse.x + oscillateX + mouseOffset.x
+    const y = currentMouse.y + oscillateY + mouseOffset.y
+    return { oscillateX, oscillateY, scale, opacity, x, y }
+  }
+
   useEffect(() => {
     if (!logoRef.current) return
-
     logoRef.current.style.transform = "translate(0px, -40px) scale(0.85)"
     logoRef.current.style.opacity = "0"
     logoRef.current.style.transition = "none"
-
     const bounceIn = setTimeout(() => {
       if (!logoRef.current) return
-      logoRef.current.style.transition =
-        "transform 900ms cubic-bezier(0.34, 1.8, 0.64, 1), opacity 400ms ease"
+      logoRef.current.style.transition = "transform 900ms cubic-bezier(0.34, 1.8, 0.64, 1), opacity 400ms ease"
       logoRef.current.style.transform = "translate(0px, 0px) scale(1)"
       logoRef.current.style.opacity = "0.18"
     }, 200)
-
     const startRaf = setTimeout(() => {
       if (!logoRef.current) return
       logoRef.current.style.transition = "none"
@@ -31,43 +50,31 @@ function HeroLogoParallax() {
       startAnimation()
     }, 1200)
 
-    function onMouseMove(e: MouseEvent) {
-      const cx = window.innerWidth / 2
-      const cy = window.innerHeight / 2
-      mouseOffset.current = {
-        x: (e.clientX - cx) * 0.08,
-        y: (e.clientY - cy) * 0.06,
-      }
+    const onMouseMove = (e: MouseEvent) => {
+      mouseOffset.current = calculateMouseOffset(e)
     }
 
     function startAnimation() {
       function animate(time: number) {
         if (!logoRef.current) return
-
         const elapsed = (time - startTimeRef.current) * 0.001
-        const oscillateX = Math.sin(elapsed * 0.4) * 8
-        const oscillateY = Math.sin(elapsed * 0.3) * 5
-
+        const progress = Math.min(window.scrollY / (window.innerHeight * 0.7), 1)
         currentMouse.current.x += (mouseOffset.current.x - currentMouse.current.x) * 0.12
         currentMouse.current.y += (mouseOffset.current.y - currentMouse.current.y) * 0.12
-
-        const progress = Math.min(window.scrollY / (window.innerHeight * 0.7), 1)
-        const scale = 1 + progress * 0.35
-        const opacity = 0.20 * (1 - progress)
-
-        const x = currentMouse.current.x + oscillateX
-        const y = currentMouse.current.y + oscillateY
-
+        const { x, y, scale, opacity } = calculateAnimationValues(
+          elapsed,
+          mouseOffset.current,
+          currentMouse.current,
+          progress
+        )
         logoRef.current.style.transform = `translate(${x}px, ${y}px) scale(${scale})`
         logoRef.current.style.opacity = String(opacity)
-
         rafRef.current = requestAnimationFrame(animate)
       }
       rafRef.current = requestAnimationFrame(animate)
     }
 
     window.addEventListener("mousemove", onMouseMove)
-
     return () => {
       clearTimeout(bounceIn)
       clearTimeout(startRaf)
@@ -82,21 +89,10 @@ function HeroLogoParallax() {
       aria-hidden="true"
       style={{ paddingLeft: "2rem" }}
     >
-      <div
-        ref={logoRef}
-        style={{
-          willChange: "transform, opacity",
-          opacity: 0,
-        }}
-      >
-        <img
-          src="/LogoFrame.svg"
-          alt=""
-          className="w-[1100px] h-[1100px] object-contain"
-        />
+      <div ref={logoRef} style={{ willChange: "transform, opacity", opacity: 0 }}>
+        <img src="/LogoFrame.svg" alt="" className="w-[1100px] h-[1100px] object-contain" />
       </div>
     </div>
   )
 }
-
 export default HeroLogoParallax
