@@ -204,7 +204,6 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
             x: leftX,
             rotate: leftRotate,
             zIndex: leftZ,
-            // TODO: optimize for large datasets
             position: "relative",
             marginRight: sideCardMargin,
           }}
