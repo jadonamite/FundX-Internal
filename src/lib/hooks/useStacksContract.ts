@@ -1,16 +1,20 @@
-"use client"
-
+use client
 import { useEffect, useState, useCallback } from "react"
-import {
-  fetchAllCampaigns,
-  getCampaignRaw,
-  getRegistryMeta,
-  getDonation,
-  getBlockHeight,
-  mapCampaign,
-  OnChainCampaign,
-} from "@/lib/stacks-contract"
+import { fetchAllCampaigns, getCampaignRaw, getRegistryMeta, getDonation, getBlockHeight, mapCampaign, OnChainCampaign, } from "@/lib/stacks-contract"
 import { USDCX_DECIMALS } from "@/lib/stacks-config"
+
+const getDonationAmount = async (id: number, donor: string | undefined): Promise<number> => {
+  if (!donor) return 0
+  try {
+    const raw = await getDonation(id, donor)
+    const divisor = BigInt(10) ** BigInt(USDCX_DECIMALS)
+    const whole = raw / divisor
+    const fraction = raw % divisor
+    return Number(whole) + Number(fraction) / Number(divisor)
+  } catch {
+    return 0
+  }
+}
 
 export function useAllCampaigns() {
   const [campaigns, setCampaigns] = useState<OnChainCampaign[]>([])
@@ -18,9 +22,7 @@ export function useAllCampaigns() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
   const [refetchToken, setRefetchToken] = useState(0)
-
   const refetch = useCallback(() => setRefetchToken((t) => t + 1), [])
-
   useEffect(() => {
     let cancelled = false
     setIsLoading(true)
@@ -29,7 +31,7 @@ export function useAllCampaigns() {
       .then(({ campaigns, count }) => {
         if (cancelled) return
         setCampaigns(campaigns)
-        setCount(count),
+        setCount(count)
       })
       .catch((e) => {
         if (cancelled) return
@@ -42,7 +44,6 @@ export function useAllCampaigns() {
       cancelled = true
     }
   }, [refetchToken])
-
   return { campaigns, count, isLoading, error, refetch }
 }
 
@@ -51,9 +52,7 @@ export function useCampaign(id: number) {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
   const [refetchToken, setRefetchToken] = useState(0)
-
   const refetch = useCallback(() => setRefetchToken((t) => t + 1), [])
-
   useEffect(() => {
     if (!id || isNaN(id) || id < 1) {
       setIsLoading(false)
@@ -79,14 +78,12 @@ export function useCampaign(id: number) {
       cancelled = true
     }
   }, [id, refetchToken])
-
   return { campaign, isLoading, error, refetch }
 }
 
 export function useUserDonations(donor: string | undefined, campaignIds: number[]) {
   const [donations, setDonations] = useState<Record<number, number>>({})
   const [isLoading, setIsLoading] = useState(false)
-
   const idKey = campaignIds.join(",")
   useEffect(() => {
     if (!donor || campaignIds.length === 0) {
@@ -95,24 +92,13 @@ export function useUserDonations(donor: string | undefined, campaignIds: number[
     }
     let cancelled = false
     setIsLoading(true)
-    Promise.all(
-      campaignIds.map(async (id) => {
-        try {
-          const raw = await getDonation(id, donor)
-          const divisor = BigInt(10) ** BigInt(USDCX_DECIMALS)
-          const whole = raw / divisor
-          const fraction = raw % divisor
-          const amount = Number(whole) + Number(fraction) / Number(divisor)
-          return [id, amount] as const
-        } catch {
-          return [id, 0] as const
-        }
-      })
-    )
-      .then((entries) => {
+    Promise.all(campaignIds.map(async (id) => getDonationAmount(id, donor)))
+      .then((amounts) => {
         if (cancelled) return
         const map: Record<number, number> = {}
-        for (const [id, amt] of entries) if (amt > 0) map[id] = amt
+        campaignIds.forEach((id, index) => {
+          if (amounts[index] > 0) map[id] = amounts[index]
+        })
         setDonations(map)
       })
       .finally(() => {
@@ -122,14 +108,12 @@ export function useUserDonations(donor: string | undefined, campaignIds: number[
       cancelled = true
     }
   }, [donor, idKey])
-
   return { donations, isLoading }
 }
 
 export function useDonation(campaignId: number, donor: string | undefined) {
   const [donation, setDonation] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
-
   useEffect(() => {
     if (!donor || !campaignId || isNaN(campaignId) || campaignId < 1) {
       setDonation(0)
@@ -137,16 +121,10 @@ export function useDonation(campaignId: number, donor: string | undefined) {
     }
     let cancelled = false
     setIsLoading(true)
-    getDonation(campaignId, donor)
+    getDonationAmount(campaignId, donor)
       .then((amount) => {
         if (cancelled) return
-        const divisor = BigInt(10) ** BigInt(USDCX_DECIMALS)
-        const whole = amount / divisor
-        const fraction = amount % divisor
-        setDonation(Number(whole) + Number(fraction) / Number(divisor))
-      })
-      .catch(() => {
-        if (!cancelled) setDonation(0)
+        setDonation(amount)
       })
       .finally(() => {
         if (!cancelled) setIsLoading(false)
@@ -155,6 +133,5 @@ export function useDonation(campaignId: number, donor: string | undefined) {
       cancelled = true
     }
   }, [campaignId, donor])
-
   return { donation, isLoading }
 }
