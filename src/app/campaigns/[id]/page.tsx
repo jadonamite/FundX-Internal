@@ -17,6 +17,7 @@ import { Clock, ShieldCheck, Share2, MapPin, ArrowLeft, Loader2, CheckCircle2, X
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { toast } from "sonner"
 import { waitForTx } from "@/lib/utils"
+import type { ClarityValue, PostCondition } from "@stacks/transactions"
 import { getCampaign } from "@/lib/data"
 import { useCampaign, useDonation } from "@/lib/hooks/useStacksContract"
 import { fetchExtraMeta, type ExtraMeta } from "@/lib/campaign-meta"
@@ -25,7 +26,7 @@ import {
   CONTRACT_ADDRESS,
   CONTRACT_NAME,
   USDCX_DECIMALS,
-  STACKS_NETWORK,
+  STACKS_NETWORK_NAME,
   parseTokenFqn,
   getTokenAssetName,
 } from "@/lib/stacks-config"
@@ -162,16 +163,16 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
   else if (!isFlexible && goalReached) donateDisabledReason = "Goal Reached"
 
   // --- Handlers ---
-  const callContract = async (functionName: string, functionArgs: any[], postConditions: any[] = []) => {
+  const callContract = async (functionName: string, functionArgs: ClarityValue[], postConditions: PostCondition[] = []) => {
     const { request } = await import("@stacks/connect")
     const result = await request("stx_callContract", {
       contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
       functionName,
       functionArgs,
-      network: STACKS_NETWORK as any,
-      postConditions: postConditions as any,
+      network: STACKS_NETWORK_NAME,
+      postConditions,
       postConditionMode: "deny",
-    } as any)
+    })
     return result
   }
 
@@ -212,7 +213,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
 
       setDonateAmount("")
       toast.loading("Confirming on-chain...", { id: "donate" })
-      const status = await waitForTx((result as any)?.txid ?? "")
+      const status = await waitForTx(result?.txid ?? "")
       if (status === "success") {
         toast.success("Donation confirmed!", { id: "donate" })
         refetch()
@@ -244,11 +245,11 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
         contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
         functionName: isStx ? "withdraw-stx" : "withdraw-ft",
         functionArgs: fnArgs,
-        network: STACKS_NETWORK as any,
+        network: STACKS_NETWORK_NAME,
         postConditionMode: "allow",
-      } as any)
+      })
       toast.loading("Confirming on-chain...", { id: "withdraw" })
-      const status = await waitForTx((result as any)?.txid ?? "")
+      const status = await waitForTx(result?.txid ?? "")
       if (status === "success") {
         toast.success("Withdrawal confirmed!", { id: "withdraw" })
         refetch()
@@ -280,11 +281,11 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
         contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
         functionName: isStx ? "claim-refund-stx" : "claim-refund-ft",
         functionArgs: fnArgs,
-        network: STACKS_NETWORK as any,
+        network: STACKS_NETWORK_NAME,
         postConditionMode: "allow",
-      } as any)
+      })
       toast.loading("Confirming on-chain...", { id: "refund" })
-      const status = await waitForTx((result as any)?.txid ?? "")
+      const status = await waitForTx(result?.txid ?? "")
       if (status === "success") {
         toast.success(`${userDonation} ${currency} refunded!`, { id: "refund" })
         refetch()
