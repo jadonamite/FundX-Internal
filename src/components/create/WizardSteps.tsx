@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { AlertCircle, Check, Zap, ShieldCheck } from "lucide-react"
+import { AlertCircle, Check, ShieldCheck } from "lucide-react"
 import { CreateCampaignData } from "@/app/create/page"
 
 interface WizardProps {
@@ -32,7 +32,7 @@ function CharCount({ value, max }: { value: string; max: number }) {
 }
 
 function FundingModelCard({
-  value, selected, onClick, title, description, badge,
+  selected, onClick, title, description, badge,
 }: {
   value: string; selected: boolean; onClick: () => void
   title: string; description: string; badge?: string
@@ -83,7 +83,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
       <div className="space-y-7 animate-in fade-in slide-in-from-right-4 duration-400">
         <div>
           <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-1">Step 1 of 3</p>
-          <h2 className="text-2xl font-bold text-slate-900">Who's building this?</h2>
+          <h2 className="text-2xl font-bold text-slate-900">Who&apos;s building this?</h2>
           <p className="text-slate-400 text-sm mt-1">Your public profile visible to backers.</p>
         </div>
 

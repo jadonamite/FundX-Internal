@@ -91,7 +91,7 @@ export function Footer() {
             <h4 className="font-semibold text-slate-900">Stay updated</h4>
             <p className="text-sm text-slate-400">Campaign launches, protocol updates, and builder news.</p>
             {subscribed ? (
-              <p className="text-sm font-semibold text-green-600">You're subscribed ✓</p>
+              <p className="text-sm font-semibold text-green-600">You&apos;re subscribed ✓</p>
             ) : (
               <div className="flex w-full items-center gap-2">
                 <Input
