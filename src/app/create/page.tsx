@@ -1,6 +1,5 @@
 "use client"
 
-import {
 import { ArrowRight, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Footer } from "@/components/fundx/Footer"
@@ -9,6 +8,7 @@ import { Navbar } from "@/components/fundx/Navbar"
 import { WizardSteps, WIZARD_STEPS, validateStep } from "@/components/create/WizardSteps"
 import { getCampaignCount } from "@/lib/stacks-contract"
 import { saveExtraMeta } from "@/lib/campaign-meta"
+import {
   FUNDX_CONTRACT_FQN,
   REGISTRY_CONTRACT_FQN,
   STACKS_NETWORK,

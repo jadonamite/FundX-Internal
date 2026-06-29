@@ -29,7 +29,7 @@ export function useAllCampaigns() {
       .then(({ campaigns, count }) => {
         if (cancelled) return
         setCampaigns(campaigns)
-        setCount(count),
+        setCount(count)
       })
       .catch((e) => {
         if (cancelled) return
