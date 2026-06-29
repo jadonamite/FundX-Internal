@@ -9,7 +9,7 @@ import { useState } from "react"
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { useAllCampaigns } from "@/lib/hooks/useStacksContract"
 import { OnChainCampaign } from "@/lib/stacks-contract"
-import { FUNDX_CONTRACT_FQN, STACKS_NETWORK, parseTokenFqn } from "@/lib/stacks-config"
+import { FUNDX_CONTRACT_FQN, STACKS_NETWORK_NAME, parseTokenFqn } from "@/lib/stacks-config"
 import { waitForTx } from "@/lib/utils"
 import { toast } from "sonner"
 
@@ -43,12 +43,12 @@ export function CreatorTab() {
         contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
         functionName: isStx ? "withdraw-stx" : "withdraw-ft",
         functionArgs: fnArgs,
-        network: STACKS_NETWORK as any,
+        network: STACKS_NETWORK_NAME,
         postConditionMode: "allow",
-      } as any)
+      })
 
       toast.loading("Confirming on-chain...", { id: `w-${campaign.id}` })
-      const status = await waitForTx((result as any)?.txid ?? "")
+      const status = await waitForTx(result?.txid ?? "")
       if (status === "success") {
         toast.success("Withdrawal confirmed!", { id: `w-${campaign.id}` })
         refetch()

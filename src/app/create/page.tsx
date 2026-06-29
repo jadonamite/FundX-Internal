@@ -128,10 +128,10 @@ export default function CreateCampaign() {
         contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
         functionName: isStx ? "create-campaign-stx" : "create-campaign-ft",
         functionArgs: createArgs,
-        network: STACKS_NETWORK as any,
+        network: STACKS_NETWORK_NAME,
         postConditionMode: "deny",
         postConditions: [],
-      } as any)
+      })
 
       toast.loading("Campaign deployed! Registering metadata...", { id: "create" })
 
@@ -150,10 +150,10 @@ export default function CreateCampaign() {
           stringUtf8CV(""),
           stringUtf8CV(formData.twitter ? `twitter:${formData.twitter}` : ""),
         ],
-        network: STACKS_NETWORK as any,
+        network: STACKS_NETWORK_NAME,
         postConditionMode: "deny",
         postConditions: [],
-      } as any)
+      })
 
       // Persist the rich fields off-chain (best-effort — never blocks the campaign)
       await saveExtraMeta(newId, {

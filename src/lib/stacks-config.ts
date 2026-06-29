@@ -1,6 +1,8 @@
 import { STACKS_MAINNET } from "@stacks/network"
 
 export const STACKS_NETWORK = STACKS_MAINNET
+// Network name string expected by @stacks/connect `request` calls (vs the network object above).
+export const STACKS_NETWORK_NAME = "mainnet"
 
 // Escrow + registry deployer (CONTRACT-OWNER of the escrow)
 export const CONTRACT_ADDRESS = "SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39"

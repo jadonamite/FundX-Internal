@@ -9,7 +9,7 @@ import { useState, useMemo } from "react"
 import { useStacks } from "@/components/fundx/StacksProvider"
 import { useAllCampaigns, useUserDonations } from "@/lib/hooks/useStacksContract"
 import { OnChainCampaign } from "@/lib/stacks-contract"
-import { FUNDX_CONTRACT_FQN, STACKS_NETWORK, parseTokenFqn } from "@/lib/stacks-config"
+import { FUNDX_CONTRACT_FQN, STACKS_NETWORK_NAME, parseTokenFqn } from "@/lib/stacks-config"
 import { waitForTx } from "@/lib/utils"
 import { toast } from "sonner"
 
@@ -40,11 +40,11 @@ function RefundCard({ c, onSuccess }: { c: Contribution; onSuccess: () => void }
         contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
         functionName: isStx ? "claim-refund-stx" : "claim-refund-ft",
         functionArgs: fnArgs,
-        network: STACKS_NETWORK as any,
+        network: STACKS_NETWORK_NAME,
         postConditionMode: "allow",
-      } as any)
+      })
       toast.loading("Confirming on-chain...", { id: `r-${c.campaign.id}` })
-      const status = await waitForTx((result as any)?.txid ?? "")
+      const status = await waitForTx(result?.txid ?? "")
       if (status === "success") {
         toast.success(`${c.myContribution} ${c.campaign.currency} refunded!`, { id: `r-${c.campaign.id}` })
         onSuccess()
