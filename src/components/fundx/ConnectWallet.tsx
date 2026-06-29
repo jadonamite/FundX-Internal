@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator, 
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu"
-import { ChevronDown, Copy, LogOut, Wallet } from "lucide-react"
+import { ChevronDown, Copy, LogOut } from "lucide-react"
 import { toast } from "sonner" // <--- Import Toast
 
 export function ConnectWallet() {

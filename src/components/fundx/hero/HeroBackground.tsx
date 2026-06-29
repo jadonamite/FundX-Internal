@@ -106,7 +106,6 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
       ctx.clearRect(0, 0, width, height)
 
       const isStacks = isStacksModeRef.current
-      const colors = isStacks ? STACKS_COLORS : BITCOIN_COLORS
 
       // Smooth color transition via opacity blend
       targetOpacityRef.current = isStacks ? 1 : 0

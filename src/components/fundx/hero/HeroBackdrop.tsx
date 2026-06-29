@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import Image from "next/image"
 
 function HeroLogoParallax() {
   const logoRef = useRef<HTMLDivElement>(null)
@@ -89,9 +90,12 @@ function HeroLogoParallax() {
           opacity: 0,
         }}
       >
-        <img
+        <Image
           src="/LogoFrame.svg"
           alt=""
+          width={1100}
+          height={1100}
+          priority
           className="w-[1100px] h-[1100px] object-contain"
         />
       </div>
