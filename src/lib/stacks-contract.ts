@@ -60,10 +60,13 @@ export interface OnChainCampaign {
 
 const PLACEHOLDER_IMAGES = ["/campaign-1.jpg", "/campaign-2.jpg", "/campaign-3.jpg"]
 
+// cvToJSON returns a deeply-nested, dynamically-shaped Clarity value navigated by
+// arbitrary tuple keys downstream; typing it fully is impractical and brittle.
 async function readOnly(
   contractName: string,
   functionName: string,
   functionArgs: ClarityValue[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> {
   const result = await fetchCallReadOnlyFunction({
     contractAddress: CONTRACT_ADDRESS,

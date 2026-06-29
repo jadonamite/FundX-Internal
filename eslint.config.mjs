@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Clarinet vitest suite — type-checked/linted by contracts/ own toolchain.
+    "contracts/tests/**",
     // Operational contract scripts — run directly with Node, not part of the app build.
     "contracts/FundTalos.cjs",
     "contracts/run-cycle.cjs",

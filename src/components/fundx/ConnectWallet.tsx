@@ -21,6 +21,8 @@ export function ConnectWallet() {
   const prevSignedIn = useRef<boolean | null>(null)
 
   useEffect(() => {
+    // SSR hydration guard — mount flag must be set after first client render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
   }, [])
 

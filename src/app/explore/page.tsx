@@ -194,7 +194,7 @@ export default function ExplorePage() {
                 <CampaignCard
                   id={campaign.id}
                   title={campaign.title}
-                  tagline={"tagline" in campaign ? (campaign as any).tagline : undefined}
+                  tagline={"tagline" in campaign ? (campaign as { tagline?: string }).tagline : undefined}
                   description={campaign.description}
                   raised={campaign.raised}
                   goal={campaign.goal}

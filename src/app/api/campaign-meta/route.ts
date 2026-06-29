@@ -9,7 +9,7 @@ const KEY = (id: string) => `fundx:meta:${id}`
 
 const configured = () => Boolean(URL && TOKEN)
 
-async function redis(command: (string | number)[]): Promise<any> {
+async function redis(command: (string | number)[]): Promise<{ result: string | null }> {
   const res = await fetch(URL!, {
     method: "POST",
     headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "application/json" },
@@ -50,7 +50,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   if (!configured()) return NextResponse.json({ ok: false, reason: "store not configured" }, { status: 503 })
-  let body: any
+  let body: { id?: string | number; meta?: unknown }
   try { body = await req.json() } catch { return NextResponse.json({ error: "bad json" }, { status: 400 }) }
   const id = body?.id
   if (id === undefined || id === null) return NextResponse.json({ error: "missing id" }, { status: 400 })

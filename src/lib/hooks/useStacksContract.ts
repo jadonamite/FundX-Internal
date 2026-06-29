@@ -1,5 +1,9 @@
 "use client"
 
+/* eslint-disable react-hooks/set-state-in-effect --
+   Intentional: these data-fetching effects synchronously flip loading/guard state
+   before kicking off async chain-reads, then update on resolve. */
+
 import { useEffect, useState, useCallback } from "react"
 import {
   fetchAllCampaigns,
@@ -121,6 +125,8 @@ export function useUserDonations(donor: string | undefined, campaignIds: number[
     return () => {
       cancelled = true
     }
+    // idKey is the stable string form of campaignIds; using it avoids re-running on every array re-create.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [donor, idKey])
 
   return { donations, isLoading }
