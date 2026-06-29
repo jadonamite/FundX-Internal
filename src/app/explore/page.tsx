@@ -31,19 +31,21 @@ export default function ExplorePage() {
 
   // Merge live on-chain campaigns first, mock campaigns pad the rest
   // Mock IDs are slugs, live IDs are numeric — no collision
-  const liveIds = new Set(campaigns.map((c) => c.id))
-  const mockAsDisplay = CAMPAIGNS.filter((c) => !liveIds.has(c.id)).map((c) => ({
-    id: c.id,
-    title: c.title,
-    description: c.description,
-    image: c.image,
-    category: c.category,
-    raised: c.raised,
-    goal: c.goal,
-    currency: c.currency as "USDCx" | "STX",
-    status: c.status as "active" | "successful" | "failed",
-  }))
-  const allDisplayCampaigns = [...campaigns, ...mockAsDisplay]
+  const allDisplayCampaigns = useMemo(() => {
+    const liveIds = new Set(campaigns.map((c) => c.id))
+    const mockAsDisplay = CAMPAIGNS.filter((c) => !liveIds.has(c.id)).map((c) => ({
+      id: c.id,
+      title: c.title,
+      description: c.description,
+      image: c.image,
+      category: c.category,
+      raised: c.raised,
+      goal: c.goal,
+      currency: c.currency as "USDCx" | "STX",
+      status: c.status as "active" | "successful" | "failed",
+    }))
+    return [...campaigns, ...mockAsDisplay]
+  }, [campaigns])
 
   const filteredCampaigns = useMemo(() => {
     const filtered = allDisplayCampaigns.filter((c) => {

@@ -30,6 +30,8 @@ export function ConnectWallet() {
   useEffect(() => {
     if (!mounted) return
     if (prevSignedIn.current === false && isSignedIn) {
+      // Fires only on the false→true connect transition, not on every render.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setJustConnected(true)
       toast.success("Wallet Connected", {
         description: "Ready to fund the future.",

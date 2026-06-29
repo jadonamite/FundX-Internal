@@ -60,6 +60,8 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
   useEffect(() => {
     intervalRef.current = setInterval(() => { if (!isGlitchingRef.current) runGlitch(!isStacksModeRef.current) }, 4500)
     return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+    // Set up the auto-toggle interval once on mount; runGlitch reads live state via refs.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
