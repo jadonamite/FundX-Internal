@@ -20,7 +20,7 @@ interface SideCardProps {
 }
 
 function getPageOffsetTop(el: HTMLElement): number {
-  let top: number = 0
+  let top = 0
   let current: HTMLElement | null = el
   while (current) {
     top += current.offsetTop
