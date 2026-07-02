@@ -16,16 +16,9 @@ interface StacksContextValue {
 
 const StacksContext = createContext<StacksContextValue | undefined>(undefined)
 
-  const signOut = async () => {
-    try {
-      const { disconnect } = await import("@stacks/connect")
-      disconnect()
-      setWalletData(null)
-      setIsSignedIn(false)
-    } catch (error) {
-      console.error("Failed to disconnect:", error)
-    }
-  }
+export function StacksProvider({ children }: { children: ReactNode }) {
+  const [walletData, setWalletData] = useState<WalletData | null>(null)
+  const [isSignedIn, setIsSignedIn] = useState(false)
 
   // Check connection status on mount
   useEffect(() => {
@@ -49,14 +42,6 @@ const StacksContext = createContext<StacksContextValue | undefined>(undefined)
     }
     checkConnection()
   }, [])
-
-export function useStacks() {
-  const context = useContext(StacksContext)
-  if (!context) {
-    throw new Error("useStacks must be used within a StacksProvider")
-  }
-  return context
-}
 
   const authenticate = async () => {
     try {
@@ -85,6 +70,17 @@ export function useStacks() {
     }
   }
 
+  const signOut = async () => {
+    try {
+      const { disconnect } = await import("@stacks/connect")
+      disconnect()
+      setWalletData(null)
+      setIsSignedIn(false)
+    } catch (error) {
+      console.error("Failed to disconnect:", error)
+    }
+  }
+
   return (
     <StacksContext.Provider value={{ walletData, authenticate, signOut, isSignedIn }}>
       {children}
@@ -92,6 +88,10 @@ export function useStacks() {
   )
 }
 
-export function StacksProvider({ children }: { children: ReactNode }) {
-  const [walletData, setWalletData] = useState<WalletData | null>(null)
-  const [isSignedIn, setIsSignedIn] = useState(false)
+export function useStacks() {
+  const context = useContext(StacksContext)
+  if (!context) {
+    throw new Error("useStacks must be used within a StacksProvider")
+  }
+  return context
+}
