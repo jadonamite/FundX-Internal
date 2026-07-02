@@ -1,3 +1,11 @@
+// Off-chain campaign metadata — the rich fields the create wizard collects that
+// don't fit the on-chain registry (which stores only title/tagline/description/
+// image/category/social). Keyed by the numeric on-chain campaign id.
+//
+// Persistence is Upstash Redis via its REST API (no SDK dependency — just fetch).
+// If the env vars are absent, reads return null and writes no-op, so the app
+// degrades gracefully to on-chain-only data and the build never breaks.
+
 export interface ExtraMeta {
   creatorName?: string
   creatorBio?: string
@@ -16,9 +24,11 @@ export interface ExtraMeta {
 export async function fetchExtraMeta(id: number | string): Promise<ExtraMeta | null> {
   try {
     const res = await fetch(`/api/campaign-meta?id=${id}`, { cache: "no-store" })
-    return handleResponse(res)
-  } catch (error) {
-    return handleFetchError(error)
+    if (!res.ok) return null
+    const json = await res.json()
+    return json?.meta ?? null
+  } catch {
+    return null
   }
 }
 
@@ -29,21 +39,8 @@ export async function saveExtraMeta(id: number | string, meta: ExtraMeta): Promi
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, meta }),
     })
-    return handleResponse(res)
-  } catch (error) {
-    return handleFetchError(error)
+    return res.ok
+  } catch {
+    return false
   }
-}
-
-function handleResponse(res: Response): ExtraMeta | null | boolean {
-  if (!res.ok) return null
-  if (res.headers.get('Content-Type')?.includes('application/json')) {
-    return res.json().then(json => json?.meta ?? null)
-  }
-  return res.ok
-}
-
-function handleFetchError(error: any): null | false {
-  console.error(error)
-  return error instanceof Error ? null : false
 }
