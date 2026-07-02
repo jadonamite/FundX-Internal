@@ -4,8 +4,8 @@
    Intentional: these data-fetching effects synchronously flip loading/guard state
    before kicking off async chain-reads, then update on resolve. */
 
+import { useEffect, useState, useCallback } from "react"
 import {
-import { USDCX_DECIMALS } from "@/lib/stacks-config"
   fetchAllCampaigns,
   getCampaignRaw,
   getRegistryMeta,
@@ -14,7 +14,7 @@ import { USDCX_DECIMALS } from "@/lib/stacks-config"
   mapCampaign,
   OnChainCampaign,
 } from "@/lib/stacks-contract"
-import { useEffect, useState, useCallback } from "react"
+import { USDCX_DECIMALS } from "@/lib/stacks-config"
 
 export function useAllCampaigns() {
   const [campaigns, setCampaigns] = useState<OnChainCampaign[]>([])
