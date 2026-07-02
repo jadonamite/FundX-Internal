@@ -6,6 +6,10 @@ const LogoContainer = ({ src, alt, className = "" }: { src: string; alt: string;
   </div>
 );
 
+/**
+ * LogoStrip
+ * @returns {*}
+ */
 export function LogoStrip() {
   return (
     <div className="w-full border-t border-slate-100 py-20">
