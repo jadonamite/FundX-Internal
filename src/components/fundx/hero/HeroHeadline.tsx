@@ -1,6 +1,15 @@
-"use client"
+use client
 import { ChainToggleIcon } from "./ChainToggleIcon"
 import { ChainToggleSwitch } from "./ChainToggleSwitch"
+
+const getScrambledTextStyle = (displayStacks: boolean) => {
+  return {
+    display: "inline-block",
+    minWidth: "240px",
+    fontVariantLigatures: "none",
+    className: `bg-clip-text text-transparent bg-gradient-to-r ${displayStacks ? "from-purple-600 to-indigo-600" : "from-[#FF6B4A] to-[#FF3D71]"}`
+  }
+}
 
 export function HeroHeadline({
   displayStacks, glitching, glitchOffset, glitchOpacity, glitchSkew, isStacksMode, scrambledText, onToggle,
@@ -14,7 +23,7 @@ export function HeroHeadline({
       <span className="inline-flex items-center flex-wrap justify-center gap-x-4">
         on the
         <ChainToggleIcon displayStacks={displayStacks} glitching={glitching} glitchOffset={glitchOffset} glitchOpacity={glitchOpacity} glitchSkew={glitchSkew} isStacksMode={isStacksMode} />
-        <span style={{ display: "inline-block", minWidth: "240px", fontVariantLigatures: "none" }} className={`bg-clip-text text-transparent bg-gradient-to-r ${displayStacks ? "from-purple-600 to-indigo-600" : "from-[#FF6B4A] to-[#FF3D71]"}`}>
+        <span style={getScrambledTextStyle(displayStacks)}>
           {scrambledText}
         </span>
       </span>

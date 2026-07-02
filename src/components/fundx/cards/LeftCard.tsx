@@ -8,6 +8,21 @@ interface SideCardProps {
   progress: number
 }
 
+const renderProgressBar = (progress: number) => (
+  <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+    <div className="bg-gradient-tush h-full rounded-full" style={{ width: `${progress}%` }} />
+  </div>
+)
+
+const renderRaisedAmount = (campaign: Campaign) => (
+  <div>
+    <span className="text-xs font-semibold text-slate-400 block">RAISED</span>
+    <span className="text-sm font-bold text-primary">
+      ${campaign.raised.toLocaleString()}
+    </span>
+  </div>
+)
+
 export function LeftCard({ campaign, progress }: SideCardProps) {
   return (
     <div className="w-full h-full bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden group hover:border-orange-200 transition-all duration-500 ease-out flex flex-col hover:scale-[1.03]">
@@ -28,21 +43,11 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
         </div>
 
         <div className="space-y-3 pt-4">
-          <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-            <div
-              className="bg-gradient-tush h-full rounded-full"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-
+          {renderProgressBar(progress)}
           <div className="flex justify-between items-center">
-            <div>
-              <span className="text-xs font-semibold text-slate-400 block">RAISED</span>
-              <span className="text-sm font-bold text-primary">
-                ${campaign.raised.toLocaleString()}
-              </span>
-            </div>
-            <Link href={`/campaigns/${campaign.id}`}>
+            {renderRaisedAmount(campaign)}
+            <Link href={`/campaigns/${campaign.id}`}
+            >
               <Button
                 size="sm"
                 className="h-10 rounded-xl bg-slate-900 text-white shadow-md hover:bg-primary hover:shadow-glow transition-all px-5 flex items-center gap-1.5 group/btn"
