@@ -1,11 +1,6 @@
 import { CampaignCard } from "@/components/fundx/CampaignCard"
 import type { CreateCampaignData } from "@/app/create/page"
 
-/**
- * LivePreview
- * @param {*} { formData }: { formData: CreateCampaignData }
- * @returns {*}
- */
 export function LivePreview({ formData }: { formData: CreateCampaignData }) {
   // Check if we are using STX to change colors
   const isSTX = formData.currency === "STX";
