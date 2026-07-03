@@ -1,13 +1,12 @@
-"use client"
+use client
 import * as React from "react"
 import * as LabelPrimitive from "@radix-ui/react-label"
 import { cn } from "@/lib/utils"
 
+const DEFAULT_LABEL_CLASS_NAMES = "flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+
 const getLabelClassName = (className?: string) => {
-  return cn(
-    "flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
-    className
-  )
+  return cn(DEFAULT_LABEL_CLASS_NAMES, className)
 }
 
 function Label({ className, ...props }: React.ComponentProps<typeof LabelPrimitive.Root>) {
