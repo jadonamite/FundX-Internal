@@ -32,12 +32,7 @@ export const FUNDING_MODEL = {
 } as const
 
 export function parseTokenFqn(fqn: string): [string, string] {
-  return splitFqn(fqn)
-}
-
-function splitFqn(fqn: string): [string, string] {
-  const dot = fqn.lastIndexOf(".
-  
+  const dot = fqn.lastIndexOf(".")
   return [fqn.slice(0, dot), fqn.slice(dot + 1)]
 }
 
