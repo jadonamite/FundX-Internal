@@ -350,7 +350,6 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
   return null
 }
 
-// Export step count and per-step validators for the parent page
 export const WIZARD_STEPS = 3
 
 export function validateStep(step: number, formData: CreateCampaignData): string | null {
