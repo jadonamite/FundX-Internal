@@ -10,7 +10,7 @@ import { useAllCampaigns } from "@/lib/hooks/useStacksContract"
 import { OnChainCampaign } from "@/lib/stacks-contract"
 
 interface CampaignFanProps {
-  deckSlotRef: React.RefObject<HTMLDivElement | null>
+  deckSlotRef: React.RefObject<HTMLDivElement | null>,
 }
 
 interface SideCardProps {
