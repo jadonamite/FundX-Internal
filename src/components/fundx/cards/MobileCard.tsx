@@ -8,6 +8,15 @@ interface MobileCardProps {
   progress: number
 }
 
+const renderProgressBar = (progress: number) => (
+  <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+    <div
+      className="bg-gradient-tush h-full rounded-full"
+      style={{ width: `${progress}%` }}
+    />
+  </div>
+)
+
 export function MobileCard({ campaign, progress }: MobileCardProps) {
   return (
     <div className="w-full bg-white rounded-[2rem] shadow-soft-md border border-slate-100 overflow-hidden flex flex-col">
@@ -23,18 +32,14 @@ export function MobileCard({ campaign, progress }: MobileCardProps) {
           {campaign.description}
         </p>
 
-        <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-          <div
-            className="bg-gradient-tush h-full rounded-full"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
+        {renderProgressBar(progress)}
 
         <div className="flex justify-between items-center_">
           <span className="text-sm font-bold text-primary">
             ${campaign.raised.toLocaleString()}
           </span>
-          <Link href={`/campaigns/${campaign.id}`}>
+          <Link href={`/campaigns/${campaign.id}`}
+          >
             <Button
               size="sm"
               className="h-10 rounded-xl bg-slate-900 text-white px-5 flex items-center_ gap-1.5"
