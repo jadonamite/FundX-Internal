@@ -33,6 +33,12 @@ import {
 
 const PLACEHOLDER_IMAGES = ["/campaign-1.jpg", "/campaign-2.jpg", "/campaign-3.jpg"]
 
+function toUnits(amount: string): bigint {
+  const [whole, fraction = ""] = amount.split(".")
+  const fractionPadded = (fraction + "0".repeat(USDCX_DECIMALS)).slice(0, USDCX_DECIMALS)
+  return BigInt(whole) * BigInt(10) ** BigInt(USDCX_DECIMALS) + BigInt(fractionPadded || 0)
+}
+
 export default function CampaignPage({ params }: { params: Promise<{ id: string }> }) {
   const { isSignedIn, authenticate, walletData } = useStacks()
   const userAddress = walletData?.stxAddress
@@ -40,42 +46,6 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
   const [mounted, setMounted] = useState(false)
   const [txPending, setTxPending] = useState(false)
   const [extraMeta, setExtraMeta] = useState<ExtraMeta | null>(null)
-
-  const handleWithdraw = async () => {
-    try {
-      setTxPending(true)
-      toast.loading("Awaiting wallet signature...", { id: "withdraw" })
-      const { request } = await import("@stacks/connect")
-      const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
-      const isStx = campaign.currency === "STX"
-      const fnArgs = isStx
-        ? [uintCV(campaignIndex)]
-        : (() => { const [a, nme] = parseTokenFqn(campaign.token); return [contractPrincipalCV(a, nme), uintCV(campaignIndex)] })()
-      const result = await request("stx_callContract", {
-        contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
-        functionName: isStx ? "withdraw-stx" : "withdraw-ft",
-        functionArgs: fnArgs,
-        network: STACKS_NETWORK_NAME,
-        postConditionMode: "allow",
-      })
-      toast.loading("Confirming on-chain...", { id: "withdraw" })
-      const status = await waitForTx(result?.txid ?? "")
-      if (status === "success") {
-        toast.success("Withdrawal confirmed!", { id: "withdraw" })
-        refetch()
-      } else if (status === "failed") {
-        toast.error("Withdrawal failed on-chain", { id: "withdraw", description: "The transaction was rejected." })
-      } else {
-        toast.info("Still confirming...", { id: "withdraw", description: "Check your wallet for the tx status." })
-        refetch()
-      }
-    } catch (error) {
-      console.error(error)
-      toast.error("Withdrawal Failed", { id: "withdraw", description: "Transaction cancelled or failed." })
-    } finally {
-      setTxPending(false)
-    }
-  }
 
   const { id } = use(params)
   const campaignIndex = Number(id)
@@ -206,11 +176,15 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
     return result
   }
 
-function toUnits(amount: string): bigint {
-  const [whole, fraction = ""] = amount.split(".")
-  const fractionPadded = (fraction + "0".repeat(USDCX_DECIMALS)).slice(0, USDCX_DECIMALS)
-  return BigInt(whole) * BigInt(10) ** BigInt(USDCX_DECIMALS) + BigInt(fractionPadded || 0)
-}
+  const handleDonate = async () => {
+    if (!isSignedIn || !userAddress) {
+      authenticate()
+      return
+    }
+    if (!donateAmount || Number(donateAmount) <= 0) {
+      toast.error("Invalid Amount", { description: "Please enter a valid donation amount." })
+      return
+    }
 
     try {
       setTxPending(true)
@@ -257,6 +231,42 @@ function toUnits(amount: string): bigint {
     }
   }
 
+  const handleWithdraw = async () => {
+    try {
+      setTxPending(true)
+      toast.loading("Awaiting wallet signature...", { id: "withdraw" })
+      const { request } = await import("@stacks/connect")
+      const { uintCV, contractPrincipalCV } = await import("@stacks/transactions")
+      const isStx = campaign.currency === "STX"
+      const fnArgs = isStx
+        ? [uintCV(campaignIndex)]
+        : (() => { const [a, nme] = parseTokenFqn(campaign.token); return [contractPrincipalCV(a, nme), uintCV(campaignIndex)] })()
+      const result = await request("stx_callContract", {
+        contract: FUNDX_CONTRACT_FQN as `${string}.${string}`,
+        functionName: isStx ? "withdraw-stx" : "withdraw-ft",
+        functionArgs: fnArgs,
+        network: STACKS_NETWORK_NAME,
+        postConditionMode: "allow",
+      })
+      toast.loading("Confirming on-chain...", { id: "withdraw" })
+      const status = await waitForTx(result?.txid ?? "")
+      if (status === "success") {
+        toast.success("Withdrawal confirmed!", { id: "withdraw" })
+        refetch()
+      } else if (status === "failed") {
+        toast.error("Withdrawal failed on-chain", { id: "withdraw", description: "The transaction was rejected." })
+      } else {
+        toast.info("Still confirming...", { id: "withdraw", description: "Check your wallet for the tx status." })
+        refetch()
+      }
+    } catch (error) {
+      console.error(error)
+      toast.error("Withdrawal Failed", { id: "withdraw", description: "Transaction cancelled or failed." })
+    } finally {
+      setTxPending(false)
+    }
+  }
+
   const handleRefund = async () => {
     try {
       setTxPending(true)
@@ -292,16 +302,6 @@ function toUnits(amount: string): bigint {
       setTxPending(false)
     }
   }
-
-  const handleDonate = async () => {
-    if (!isSignedIn || !userAddress) {
-      authenticate()
-      return
-    }
-    if (!donateAmount || Number(donateAmount) <= 0) {
-      toast.error("Invalid Amount", { description: "Please enter a valid donation amount." })
-      return
-    }
 
   const statusBadge = {
     active: { label: "Active", className: "text-green-600 bg-green-50 border-green-100" },
