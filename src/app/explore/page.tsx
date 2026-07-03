@@ -13,10 +13,6 @@ import { useAllCampaigns } from "@/lib/hooks/useStacksContract"
 const CATEGORIES = ["All", "DeFi", "Mining", "Gaming", "Social Impact", "Infrastructure"]
 const STATUSES = ["All", "active", "successful", "failed"] // 🚨 ADDED: Status options
 
-/**
- * ExplorePage
- * @returns {*}
- */
 export default function ExplorePage() {
   const { campaigns, isLoading, count } = useAllCampaigns()
   const [searchQuery, setSearchQuery] = useState("")
