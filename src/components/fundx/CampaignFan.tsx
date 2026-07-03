@@ -165,6 +165,7 @@ const leftX = useTransform(smoothProgress, [0, 1], [-8, 0])
   // Center card sits on top at start (highest z), normalizes at end
   const centerZ = useTransform(smoothProgress, [0, 1], [20, 10])
 
+  // Heading fades in during second half
   const headingOpacity = useTransform(smoothProgress, [0.4, 0.8], [0, 1])
   const headingY = useTransform(smoothProgress, [0.4, 0.8], [40, 0])
 
