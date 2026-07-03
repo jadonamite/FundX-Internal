@@ -7,7 +7,7 @@ const getInputClassName = (className?: string, isValid: boolean = true, isFocuse
     isFocused ? "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]" : "",
     !isValid ? "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive" : "",
     className
-  ),
+  )
 }
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
