@@ -29,7 +29,7 @@ export function Hero({ deckSlotRef }: { deckSlotRef: React.RefObject<HTMLDivElem
     isGlitchingRef.current = true
     setGlitching(true)
     scrambleTo(targetIsStacks ? "Stacks" : "Bitcoin")
-    const flips: number = 9
+    const flips = 9
     const baseDuration = 80
     let current = !targetIsStacks
     let count = 0
