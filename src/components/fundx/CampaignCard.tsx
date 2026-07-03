@@ -15,15 +15,13 @@ interface CampaignCardProps {
   currency?: "USDCx" | "STX"
 }
 
-const formatAmount = (amount: number, currency: CampaignCardProps['currency']) =>
-  currency === "USDCx" ? `$${amount.toLocaleString()}` : `${amount.toLocaleString()} STX`;
-
 export function CampaignCard({ id, title, tagline, description, raised, goal, image, currency = "USDCx" }: CampaignCardProps) {
   const excerpt = tagline || description
   const percentage = Math.min((raised / goal) * 100, 100)
 
-  const formattedRaised = formatAmount(raised, currency)
-  const formattedGoal = formatAmount(goal, currency)
+ 
+  const formattedRaised = currency === "USDCx" ? `$${raised.toLocaleString()}` : `${raised.toLocaleString()} STX`
+  const formattedGoal = currency === "USDCx" ? `$${goal.toLocaleString()}` : `${goal.toLocaleString()} STX`
 
   return (
     <Link href={`/campaigns/${id}`} className="block h-full group">
@@ -45,6 +43,7 @@ export function CampaignCard({ id, title, tagline, description, raised, goal, im
 
           <div className="space-y-2">
             <div className="flex justify-between text-sm font-medium">
+            
               <span className="text-primary font-bold">{formattedRaised}</span>
               <span className="text-slate-400">of {formattedGoal}</span>
             </div>
