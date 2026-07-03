@@ -31,8 +31,9 @@ export const FUNDING_MODEL = {
   ALL_OR_NOTHING: 1,
 } as const
 
-export function parseTokenFqn(fqn: string): [string, string] {
-  const dot = fqn.lastIndexOf(".")
+export function splitFqn(fqn: string): [string, string] {
+  const dot = fqn.lastIndexOf(".
+")
   return [fqn.slice(0, dot), fqn.slice(dot + 1)]
 }
 
@@ -43,6 +44,7 @@ const TOKEN_ASSET_NAMES: Record<string, string> = {
   "usdcx-v2": "usdcx",    // legacy mock token
 }
 
-export function getTokenAssetName(contractName: string): string {
+export function getTokenAssetName(fqn: string): string {
+  const [, contractName] = splitFqn(fqn)
   return TOKEN_ASSET_NAMES[contractName] ?? contractName
 }
