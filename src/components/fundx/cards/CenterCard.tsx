@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Campaign } from "@/lib/data"
+import { Campaign } from "@/lib/payload"
 import { Heart } from "lucide-react"
 
 interface CenterCardProps {
