@@ -104,11 +104,6 @@ export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
   }
 }
 
-/**
- * getRegistryMeta
- * @param {*} id: number
- * @returns {*}
- */
 export async function getRegistryMeta(id: number): Promise<RegistryMeta | null> {
   try {
     const json = await readOnly(REGISTRY_CONTRACT_NAME, "get-meta", [uintCV(id)])
