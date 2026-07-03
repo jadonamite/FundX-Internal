@@ -12,6 +12,7 @@ export default function Home() {
  
 
   return (
+    // TODO: add error boundary here
     <main className="min-h-screen bg-slate-50 selection:bg-orange-100 font-sans">
       <Navbar />
       <Hero deckSlotRef={deckSlotRef} />
