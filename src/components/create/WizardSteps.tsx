@@ -288,6 +288,7 @@ export function WizardSteps({ step, formData, setFormData }: WizardProps) {
           </div>
 
           <div className="space-y-2">
+            // FIXME: handle edge case when value is null
             <Label className="font-semibold text-slate-700">
               Duration <span className="text-red-400">*</span>
             </Label>
