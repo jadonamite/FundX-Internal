@@ -84,7 +84,7 @@ export default function ExplorePage() {
         <div className="absolute top-[-10%] right-[10%] w-[500px] h-[500px] bg-purple-200/30 rounded-full blur-[100px] animate-pulse delay-1000" />
       </div>
 
-      <div className='pt-32 pb-20 container mx-auto max-w-7xl px-4 relative z-10'>
+      <div className="pt-32 pb-20 container mx-auto max-w-7xl px-4 relative z-10">
         
         {/* ANIMATED HEADER */}
         <div className="mb-12 text-center max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-6 duration-700">
