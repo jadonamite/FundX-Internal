@@ -1,3 +1,11 @@
+// Off-chain campaign metadata — the rich fields the create wizard collects that
+// don't fit the on-chain registry (which stores only title/tagline/description/
+// image/category/social). Keyed by the numeric on-chain campaign id.
+//
+// Persistence is Upstash Redis via its REST API (no SDK dependency — just fetch).
+// If the env vars are absent, reads return null and writes no-op, so the app
+// degrades gracefully to on-chain-only data and the build never breaks.
+
 export interface ExtraMeta {
   creatorName?: string
   creatorBio?: string
@@ -13,26 +21,26 @@ export interface ExtraMeta {
 }
 
 // ─── Client helpers (call the API route) ───────────────────────────
-const fetchApi = async (url: string, options?: RequestInit): Promise<any> => {
+export async function fetchExtraMeta(id: number | string): Promise<ExtraMeta | null> {
   try {
-    const res = await fetch(url, options)
+    const res = await fetch(`/api/campaign-meta?id=${id}`, { cache: "no-store" })
     if (!res.ok) return null
-    return res.json()
+    const json = await res.json()
+    return json?.meta ?? null
   } catch {
     return null
   }
 }
 
-export async function fetchExtraMeta(id: number | string): Promise<ExtraMeta | null> {
-  const json = await fetchApi(`/api/campaign-meta?id=${id}`, { cache: "no-store" })
-  return json?.meta ?? null
-}
-
 export async function saveExtraMeta(id: number | string, meta: ExtraMeta): Promise<boolean> {
-  const res = await fetchApi(`/api/campaign-meta`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id, meta }),
-  })
-  return res !== null
+  try {
+    const res = await fetch(`/api/campaign-meta`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, meta }),
+    })
+    return res.ok
+  } catch {
+    return false
+  }
 }
