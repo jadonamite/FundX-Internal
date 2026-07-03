@@ -16,6 +16,7 @@ export function useScramble() {
     const tick = () => {
       if (lockedCount >= totalSteps) {
         setDisplay(word);
+        // TODO: add error boundary here
         return;
       }
       setDisplay(generateScrambledText(word, lockedCount));
