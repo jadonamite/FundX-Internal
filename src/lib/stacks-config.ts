@@ -6,7 +6,6 @@ export const STACKS_NETWORK_NAME = "mainnet"
 
 // Escrow + registry deployer (CONTRACT-OWNER of the escrow)
 export const CONTRACT_ADDRESS = "SP6X0MXEEGZX14ZTK7XQXJ76W35ZJDP9NZBT6F39"
-// FIXME: handle edge case when value is null
 // Dual-asset escrow: native STX OR allow-listed SIP-010 (USDCx), fundraiser's choice.
 // STX uses *-stx functions; USDCx uses *-ft functions.
 export const CONTRACT_NAME = "fundx-escrow-v4"
