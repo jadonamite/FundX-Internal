@@ -54,8 +54,8 @@ function RefundCard({ c, onSuccess }: { c: Contribution; onSuccess: () => void }
         toast.info("Still confirming — check your wallet", { id: `r-${c.campaign.id}` })
         onSuccess()
       }
-    } catch (err) {
-      console.error(err)
+    } catch (error) {
+      console.error(error)
       toast.error("Refund Failed", { id: `r-${c.campaign.id}`, description: "Transaction cancelled or failed." })
     } finally {
       setPending(false)
