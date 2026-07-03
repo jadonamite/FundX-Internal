@@ -21,7 +21,7 @@ export function Footer() {
   const handleSubscribe = () => {
     if (!email || !email.includes("@")) {
       toast.error("Enter a valid email address")
-      return
+      return,
     }
     setSubscribed(true)
     setEmail("")
