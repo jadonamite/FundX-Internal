@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 
 function SelectScrollUpButton({
   className,
-  ...props
+  ...props,
 }: React.ComponentProps<typeof SelectPrimitive.ScrollUpButton>) {
   return (
     <SelectPrimitive.ScrollUpButton
