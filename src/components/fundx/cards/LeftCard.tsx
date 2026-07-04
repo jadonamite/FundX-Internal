@@ -30,7 +30,7 @@ export function LeftCard({ campaign, progress }: SideCardProps) {
         <div className="space-y-3 pt-4">
           <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
             <div
-              className="bg-gradient-tush h-full rounded-full"
+              className='bg-gradient-tush h-full rounded-full'
               style={{ width: `${progress}%` }}
             />
           </div>
