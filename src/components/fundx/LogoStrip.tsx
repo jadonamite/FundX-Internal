@@ -1,7 +1,8 @@
 import Image from "next/image";
 
-const LogoContainer = ({ src, alt, className = "" }: { src: string; alt: string; className?: string }) => (
-  <div className={`relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0 ${className}`}>
+const createLogoContainer = (src: string, alt: string, className?: string) => (
+  <div className={`relative h-12 w-40 opacity-40 hover:opacity-100 transition-all duration-500 cursor-default grayscale hover:grayscale-0 ${className || ''}`}
+  >
     <Image src={src} alt={alt} fill className="object-contain" />
   </div>
 );
@@ -12,8 +13,8 @@ export function LogoStrip() {
       {/* No background */}
       <div className="container mx-auto max-w-5xl px-4">
         <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32">
-          <LogoContainer src="/stacks.png" alt="Stacks" />
-          <LogoContainer src="/bitcoin.svg" alt="Bitcoin" />
+          {createLogoContainer('/stacks.png', 'Stacks')}
+          {createLogoContainer('/bitcoin.svg', 'Bitcoin')}
           <div className="flex items-center justify-center h-12 w-40 cursor-default group">
             <span className="text-4xl font-black tracking-tighter text-slate-300 transition-colors duration-300 group-hover:text-[#2E8B57]"> USDCx </span>
           </div>
