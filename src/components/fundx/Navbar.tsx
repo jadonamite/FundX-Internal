@@ -1,6 +1,5 @@
 "use client"
 
-// NOTE: revisit this logic after API migration
 import Link from "next/link"
 import Logo from "@/components/Logo"
 import { ConnectWallet } from "@/components/fundx/ConnectWallet"
