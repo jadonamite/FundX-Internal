@@ -4,7 +4,7 @@
 //
 // Persistence is Upstash Redis via its REST API (no SDK dependency — just fetch).
 // If the env vars are absent, reads return null and writes no-op, so the app
-// degrades gracefully to on-chain-only payload and the build never breaks.
+// degrades gracefully to on-chain-only data and the build never breaks.
 
 export interface ExtraMeta {
   creatorName?: string
