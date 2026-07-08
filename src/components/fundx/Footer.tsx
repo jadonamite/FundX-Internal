@@ -1,10 +1,10 @@
 "use client"
 
+import Link from "next/link"
+import Logo from "@/components/Logo"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import Link from "next/link"
 import { toast } from "sonner"
-import Logo from "@/components/Logo"
 import { useState } from "react"
 
 const NAV_LINKS = [
