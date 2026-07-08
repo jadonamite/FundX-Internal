@@ -1,3 +1,9 @@
+"use client"
+
+/* eslint-disable react-hooks/set-state-in-effect --
+   Intentional: these data-fetching effects synchronously flip loading/guard state
+   before kicking off async chain-reads, then update on resolve. */
+
 import { useEffect, useState, useCallback } from "react"
 import {
   fetchAllCampaigns,
@@ -81,15 +87,80 @@ export function useCampaign(id: number) {
   return { campaign, isLoading, error, refetch }
 }
 
-const calculateDonationAmount = (amount: bigint) => {
-  const divisor = BigInt(10) ** BigInt(USDCX_DECIMALS)
-  const whole = amount / divisor
-  const fraction = amount % divisor
-  return Number(whole) + Number(fraction) / Number(divisor)
-}
-
 export function useUserDonations(donor: string | undefined, campaignIds: number[]) {
   const [donations, setDonations] = useState<Record<number, number>>({})
   const [isLoading, setIsLoading] = useState(false)
 
-  const idKey = campaignIds.join(\
+  const idKey = campaignIds.join(",")
+  useEffect(() => {
+    if (!donor || campaignIds.length === 0) {
+      setDonations({})
+      return
+    }
+    let cancelled = false
+    setIsLoading(true)
+    Promise.all(
+      campaignIds.map(async (id) => {
+        try {
+          const raw = await getDonation(id, donor)
+          const divisor = BigInt(10) ** BigInt(USDCX_DECIMALS)
+          const whole = raw / divisor
+          const fraction = raw % divisor
+          const amount = Number(whole) + Number(fraction) / Number(divisor)
+          return [id, amount] as const
+        } catch {
+          return [id, 0] as const
+        }
+      })
+    )
+      .then((entries) => {
+        if (cancelled) return
+        const map: Record<number, number> = {}
+        for (const [id, amt] of entries) if (amt > 0) map[id] = amt
+        setDonations(map)
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
+    // idKey is the stable string form of campaignIds; using it avoids re-running on every array re-create.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [donor, idKey])
+
+  return { donations, isLoading }
+}
+
+export function useDonation(campaignId: number, donor: string | undefined) {
+  const [donation, setDonation] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    if (!donor || !campaignId || isNaN(campaignId) || campaignId < 1) {
+      setDonation(0)
+      return
+    }
+    let cancelled = false
+    setIsLoading(true)
+    getDonation(campaignId, donor)
+      .then((amount) => {
+        if (cancelled) return
+        const divisor = BigInt(10) ** BigInt(USDCX_DECIMALS)
+        const whole = amount / divisor
+        const fraction = amount % divisor
+        setDonation(Number(whole) + Number(fraction) / Number(divisor))
+      })
+      .catch(() => {
+        if (!cancelled) setDonation(0)
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [campaignId, donor])
+
+  return { donation, isLoading }
+}
