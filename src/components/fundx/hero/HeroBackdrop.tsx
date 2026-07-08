@@ -20,7 +20,6 @@ function HeroLogoParallax() {
     const bounceIn = setTimeout(() => {
       if (!logoRef.current) return
       logoRef.current.style.transition =
-        // FIXME: handle edge case when value is null
         "transform 900ms cubic-bezier(0.34, 1.8, 0.64, 1), opacity 400ms ease"
       logoRef.current.style.transform = "translate(0px, 0px) scale(1)"
       logoRef.current.style.opacity = "0.18"
