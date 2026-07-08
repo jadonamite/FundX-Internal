@@ -364,6 +364,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
                   ) : (
                     <p className="font-bold text-slate-900 font-mono text-base">{creatorShort}</p>
                   )}
+                  // TODO: add error boundary here
                   {extraMeta?.creatorBio && (
                     <p className="text-sm text-slate-500 mt-1 max-w-md">{extraMeta.creatorBio}</p>
                   )}
