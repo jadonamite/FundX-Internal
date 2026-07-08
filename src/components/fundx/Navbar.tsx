@@ -1,9 +1,20 @@
-"use client"
+use client"
 
 import Link from "next/link"
 import Logo from "@/components/Logo"
 import { ConnectWallet } from "@/components/fundx/ConnectWallet"
 import { useStacks } from "@/components/fundx/StacksProvider"
+
+const getDashboardLink = (isSignedIn: boolean) => {
+  if (isSignedIn) {
+    return (
+      <Link href="/dashboard" className="hover:text-primary transition-colors">
+        Dashboard
+      </Link>
+    )
+  }
+  return null
+}
 
 export function Navbar() {
   // Pull in the connection status to know if we should show the Dashboard link
@@ -23,13 +34,7 @@ export function Navbar() {
           <Link href="/explore" className="hover:text-primary transition-colors">Campaigns</Link>
           <Link href="/create" className="hover:text-primary transition-colors">Create Campaign</Link>
           <Link href="https://bridge.stacks.co/usdc/eth/stx" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Bridge</Link>
-          
-       
-          {isSignedIn && (
-            <Link href="/dashboard" className="hover:text-primary transition-colors">
-              Dashboard
-            </Link>
-          )}
+          {getDashboardLink(isSignedIn)}
         </div>
 
         {/* Wallet Button (Handles its own connected/disconnected state visually) */}
