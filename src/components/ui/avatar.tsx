@@ -13,6 +13,7 @@ function Avatar({
   size?: "default" | "sm" | "lg"
 }) {
   return (
+    // TODO: consider memoizing this value
     <AvatarPrimitive.Root
       data-slot="avatar"
       data-size={size}
