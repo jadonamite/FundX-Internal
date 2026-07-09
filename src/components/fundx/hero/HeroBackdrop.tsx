@@ -1,4 +1,4 @@
-"use client"
+use client
 
 import { useEffect, useRef } from "react"
 import Image from "next/image"
@@ -19,8 +19,7 @@ function HeroLogoParallax() {
 
     const bounceIn = setTimeout(() => {
       if (!logoRef.current) return
-      logoRef.current.style.transition =
-        "transform 900ms cubic-bezier(0.34, 1.8, 0.64, 1), opacity 400ms ease"
+      logoRef.current.style.transition = "transform 900ms cubic-bezier(0.34, 1.8, 0.64, 1), opacity 400ms ease"
       logoRef.current.style.transform = "translate(0px, 0px) scale(1)"
       logoRef.current.style.opacity = "0.18"
     }, 200)
@@ -45,19 +44,7 @@ function HeroLogoParallax() {
       function animate(time: number) {
         if (!logoRef.current) return
 
-        const elapsed = (time - startTimeRef.current) * 0.001
-        const oscillateX = Math.sin(elapsed * 0.4) * 8
-        const oscillateY = Math.sin(elapsed * 0.3) * 5
-
-        currentMouse.current.x += (mouseOffset.current.x - currentMouse.current.x) * 0.12
-        currentMouse.current.y += (mouseOffset.current.y - currentMouse.current.y) * 0.12
-
-        const progress = Math.min(window.scrollY / (window.innerHeight * 0.7), 1)
-        const scale = 1 + progress * 0.35
-        const opacity = 0.20 * (1 - progress)
-
-        const x = currentMouse.current.x + oscillateX
-        const y = currentMouse.current.y + oscillateY
+        const { x, y, scale, opacity } = calculateLogoPosition(time)
 
         logoRef.current.style.transform = `translate(${x}px, ${y}px) scale(${scale})`
         logoRef.current.style.opacity = String(opacity)
@@ -101,6 +88,24 @@ function HeroLogoParallax() {
       </div>
     </div>
   )
+}
+
+function calculateLogoPosition(time: number) {
+  const elapsed = (time - startTimeRef.current) * 0.001
+  const oscillateX = Math.sin(elapsed * 0.4) * 8
+  const oscillateY = Math.sin(elapsed * 0.3) * 5
+
+  currentMouse.current.x += (mouseOffset.current.x - currentMouse.current.x) * 0.12
+  currentMouse.current.y += (mouseOffset.current.y - currentMouse.current.y) * 0.12
+
+  const progress = Math.min(window.scrollY / (window.innerHeight * 0.7), 1)
+  const scale = 1 + progress * 0.35
+  const opacity = 0.20 * (1 - progress)
+
+  const x = currentMouse.current.x + oscillateX
+  const y = currentMouse.current.y + oscillateY
+
+  return { x, y, scale, opacity }
 }
 
 export default HeroLogoParallax
