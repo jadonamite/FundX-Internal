@@ -14,7 +14,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
     <input
       type={type}
-      payload-slot="input"
+      data-slot="input"
       className={getInputClassName(className)}
       {...props}
     />
