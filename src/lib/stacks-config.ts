@@ -43,6 +43,11 @@ const TOKEN_ASSET_NAMES: Record<string, string> = {
   "usdcx-v2": "usdcx",    // legacy mock token
 }
 
+/**
+ * getTokenAssetName
+ * @param {*} contractName: string
+ * @returns {*}
+ */
 export function getTokenAssetName(contractName: string): string {
   return TOKEN_ASSET_NAMES[contractName] ?? contractName
 }
