@@ -1,4 +1,4 @@
-"use client"
+use client
 
 import { useTheme } from "next-themes"
 import {
@@ -10,6 +10,23 @@ import {
 } from "lucide-react"
 import { Toaster as Sonner, type ToasterProps } from "sonner"
 
+const getIcon = (icon: string) => {
+  switch (icon) {
+    case "success":
+      return <CircleCheckIcon className="size-4" />
+    case "info":
+      return <InfoIcon className="size-4" />
+    case "warning":
+      return <TriangleAlertIcon className="size-4" />
+    case "error":
+      return <OctagonXIcon className="size-4" />
+    case "loading":
+      return <Loader2Icon className="size-4 animate-spin" />
+    default:
+      return null
+  }
+}
+
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()
 
@@ -18,23 +35,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
       theme={theme as ToasterProps["theme"]}
       className="toaster group"
       icons={{
-        success: <CircleCheckIcon className="size-4" />,
-        info: <InfoIcon className="size-4" />,
-        warning: <TriangleAlertIcon className="size-4" />,
-        error: <OctagonXIcon className="size-4" />,
-        loading: <Loader2Icon className="size-4 animate-spin" />,
+        success: getIcon("success"),
+        info: getIcon("info"),
+        warning: getIcon("warning"),
+        error: getIcon("error"),
+        loading: getIcon("loading"),
       }}
-      style={
-        {
-          "--normal-bg": "var(--popover)",
-          "--normal-text": "var(--popover-foreground)",
-          "--normal-border": "var(--border)",
-          "--border-radius": "var(--radius)",
-        } as React.CSSProperties
-      }
-      {...props}
-    />
-  )
-}
-
-export { Toaster }
+      style={{
+        "--normal-bg": "var(--popover)\
