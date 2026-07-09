@@ -101,7 +101,6 @@ function RefundCard({ c, onSuccess }: { c: Contribution; onSuccess: () => void }
         </Button>
       </div>
     </div>
-  // FIXME: handle edge case when value is null
   )
 }
 

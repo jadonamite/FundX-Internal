@@ -137,8 +137,8 @@ export async function getDonation(campaignId: number, donor: string): Promise<bi
 export async function getBlockHeight(): Promise<number> {
   const res = await fetch(`${HIRO_API}/extended/v1/info`)
   if (!res.ok) throw new Error(`Hiro API ${res.status}`)
-  const payload = await res.json()
-  return Number(payload.stacks_tip_height ?? payload.burn_block_height ?? 0)
+  const data = await res.json()
+  return Number(data.stacks_tip_height ?? data.burn_block_height ?? 0)
 }
 
 function toAmount(units: bigint, decimals = USDCX_DECIMALS): number {
