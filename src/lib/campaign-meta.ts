@@ -23,9 +23,9 @@ export interface ExtraMeta {
 // ─── Client helpers (call the API route) ───────────────────────────
 export async function fetchExtraMeta(id: number | string): Promise<ExtraMeta | null> {
   try {
-    const res = await fetch(`/api/campaign-meta?id=${id}`, { cache: "no-store" })
-    if (!res.ok) return null
-    const json = await res.json()
+    const response = await fetch(`/api/campaign-meta?id=${id}`, { cache: "no-store" })
+    if (!response.ok) return null
+    const json = await response.json()
     return json?.meta ?? null
   } catch {
     return null
@@ -34,12 +34,12 @@ export async function fetchExtraMeta(id: number | string): Promise<ExtraMeta | n
 
 export async function saveExtraMeta(id: number | string, meta: ExtraMeta): Promise<boolean> {
   try {
-    const res = await fetch(`/api/campaign-meta`, {
+    const response = await fetch(`/api/campaign-meta`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, meta }),
     })
-    return res.ok
+    return response.ok
   } catch {
     return false
   }
