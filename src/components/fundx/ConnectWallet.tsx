@@ -14,11 +14,15 @@ import {
 import { ChevronDown, Copy, LogOut } from "lucide-react"
 import { toast } from "sonner" // <--- Import Toast
 
-export function ConnectWallet() {
-  const { authenticate, signOut, isSignedIn, walletData } = useStacks()
-  const [mounted, setMounted] = useState(false)
-  const [justConnected, setJustConnected] = useState(false)
-  const prevSignedIn = useRef<boolean | null>(null)
+  const copyAddress = () => {
+    if (walletData?.stxAddress) {
+      navigator.clipboard.writeText(walletData.stxAddress)
+      toast.info("Address Copied", {
+         description: "Copied to clipboard",
+         duration: 2000
+      })
+    }
+  }
 
   useEffect(() => {
     // SSR hydration guard — mount flag must be set after first client render.
@@ -44,22 +48,18 @@ export function ConnectWallet() {
     prevSignedIn.current = isSignedIn
   }, [isSignedIn, mounted])
 
-  const copyAddress = () => {
-    if (walletData?.stxAddress) {
-      navigator.clipboard.writeText(walletData.stxAddress)
-      toast.info("Address Copied", {
-         description: "Copied to clipboard",
-         duration: 2000
-      })
-    }
-  }
-
   const handleDisconnect = () => {
     signOut()
     toast.error("Disconnected", {
        description: "Session ended securely."
     })
   }
+
+export function ConnectWallet() {
+  const { authenticate, signOut, isSignedIn, walletData } = useStacks()
+  const [mounted, setMounted] = useState(false)
+  const [justConnected, setJustConnected] = useState(false)
+  const prevSignedIn = useRef<boolean | null>(null)
 
   if (!mounted) {
     return (
