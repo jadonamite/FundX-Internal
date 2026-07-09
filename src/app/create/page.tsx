@@ -207,7 +207,6 @@ export default function CreateCampaign() {
                   const isDone = step > num
                   const isActive = step === num
                   return (
-                    // TODO: add error boundary here
                     <div key={num} className={`flex items-center gap-1.5 transition-colors ${isActive ? "text-slate-900" : isDone ? "text-orange-500" : "text-slate-300"}`}>
                       <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-black border-2 transition-all ${
                         isDone ? "bg-orange-500 border-orange-500 text-white" :

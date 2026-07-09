@@ -48,11 +48,6 @@ export async function GET(req: NextRequest) {
   }
 }
 
-/**
- * POST
- * @param {*} req: NextRequest
- * @returns {*}
- */
 export async function POST(req: NextRequest) {
   if (!configured()) return NextResponse.json({ ok: false, reason: "store not configured" }, { status: 503 })
   let body: { id?: string | number; meta?: unknown }
