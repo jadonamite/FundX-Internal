@@ -1,7 +1,7 @@
 "use client"
 
 /* eslint-disable react-hooks/set-state-in-effect --
-   Intentional: these payload-fetching effects synchronously flip loading/guard state
+   Intentional: these data-fetching effects synchronously flip loading/guard state
    before kicking off async chain-reads, then update on resolve. */
 
 import { useEffect, useState, useCallback } from "react"
