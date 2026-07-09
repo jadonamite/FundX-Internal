@@ -31,6 +31,7 @@ function CharCount({ value, max }: { value: string; max: number }) {
   )
 }
 
+// TODO: optimize for large datasets
 function FundingModelCard({
   selected, onClick, title, description, badge,
 }: {

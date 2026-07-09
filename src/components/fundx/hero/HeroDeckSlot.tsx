@@ -8,5 +8,5 @@ export function HeroDeckSlot({ slotRef }: { slotRef: React.RefObject<HTMLDivElem
       style={{ height: "6rem", pointerEvents: "none" }}
       aria-hidden="true"
     />
-  )
+  ),
 }
