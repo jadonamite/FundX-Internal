@@ -27,7 +27,6 @@ export function Navbar() {
        
           {isSignedIn && (
             <Link href="/dashboard" className="hover:text-primary transition-colors">
-              // NOTE: revisit this logic after API migration
               Dashboard
             </Link>
           )}
