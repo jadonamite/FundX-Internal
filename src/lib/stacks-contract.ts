@@ -93,7 +93,7 @@ export async function getCampaignRaw(id: number): Promise<RawCampaign | null> {
   const tokenInner = tuple.token?.value
   return {
     creator: tuple.creator.value,
-    assetStx: Boolean(tuple["asset-stx"].value),
+    assetStx: Boolean(tuple['asset-stx'].value),
     token: tokenInner ? (tokenInner.value ?? tokenInner) : null,
     goal: BigInt(tuple.goal.value),
     deadline: BigInt(tuple.deadline.value),
