@@ -37,9 +37,9 @@ function sanitize(input: unknown): ExtraMeta {
 }
 
 export async function GET(req: NextRequest) {
-  if (!configured()) return NextResponse.json({ meta: null })
   const id = req.nextUrl.searchParams.get("id")
   if (!id) return NextResponse.json({ error: "missing id" }, { status: 400 })
+  if (!configured()) return NextResponse.json({ meta: null })
   try {
     const { result } = await redis(["GET", KEY(id)])
     return NextResponse.json({ meta: result ? JSON.parse(result) : null })

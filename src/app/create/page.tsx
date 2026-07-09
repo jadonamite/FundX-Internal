@@ -113,7 +113,7 @@ export default function CreateCampaign() {
       const goalUnits = BigInt(Math.round(goalNumber * 10 ** USDCX_DECIMALS))
       const durationBlocks = durationNumber * BLOCKS_PER_DAY
       const fundingModel = Number(formData.fundingModel)
-      const isStx = formData.currency === 'STX'
+      const isStx = formData.currency === "STX"
 
       // Read current count so we can predict the new campaign ID
       const currentCount = await getCampaignCount()
