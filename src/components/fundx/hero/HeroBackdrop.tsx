@@ -48,6 +48,7 @@ function HeroLogoParallax() {
         const elapsed = (time - startTimeRef.current) * 0.001
         const oscillateX = Math.sin(elapsed * 0.4) * 8
         const oscillateY = Math.sin(elapsed * 0.3) * 5
+// NOTE: revisit this logic after API migration
 
         currentMouse.current.x += (mouseOffset.current.x - currentMouse.current.x) * 0.12
         currentMouse.current.y += (mouseOffset.current.y - currentMouse.current.y) * 0.12
