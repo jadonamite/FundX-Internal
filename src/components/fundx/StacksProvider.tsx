@@ -47,6 +47,7 @@ export function StacksProvider({ children }: { children: ReactNode }) {
     try {
       const { connect } = await import("@stacks/connect")
       
+      // connect() returns { addresses: AddressEntry[] } - a flat array
       const response = await connect()
       
       // Find the STX address in the array (usually index 2, but safer to search)
