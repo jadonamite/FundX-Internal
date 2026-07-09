@@ -1,4 +1,4 @@
-use client
+"use client"
 import { LayoutDashboard, Wallet } from "lucide-react"
 import { Navbar } from "@/components/fundx/Navbar"
 import { Footer } from "@/components/fundx/Footer"
@@ -6,10 +6,12 @@ import { useStacks } from "@/components/fundx/StacksProvider"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { CreatorTab } from "@/components/dashboard/CreatorTab"
-import { BackerTab } from "@/components/dashboard/BackerTab"
+import { BackerTab } from "@/components/dashboard/BackerTab" 
+
 
 export default function DashboardPage() {
   const { isSignedIn, authenticate } = useStacks()
+
 
   if (!isSignedIn) {
     return (
@@ -28,17 +30,22 @@ export default function DashboardPage() {
     )
   }
 
-  // Signed-in user content
+
   return (
     <main className="min-h-screen bg-slate-50 font-sans">
       <Navbar />
+      
       <div className="container mx-auto max-w-6xl px-4 pt-32 pb-20">
+        
+        {/* Header */}
         <div className="flex items-center gap-3 mb-10">
-          <div className="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
-            <LayoutDashboard className="w-6 h-6 text-orange-500" />
-          </div>
-          <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Capital Hub</h1>
+           <div className="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
+             <LayoutDashboard className="w-6 h-6 text-orange-500" />
+           </div>
+           <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Capital Hub</h1>
         </div>
+
+        {/* The Tabs (Creator vs Backer) */}
         <Tabs defaultValue="campaigns" className="w-full">
           <TabsList className="bg-transparent border-b border-slate-200 rounded-none w-full justify-start h-auto p-0 mb-8 no-scrollbar">
             <TabsTrigger value="campaigns" className="rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:text-orange-600 px-6 py-3 text-base font-bold">
@@ -48,10 +55,18 @@ export default function DashboardPage() {
               My Contributions
             </TabsTrigger>
           </TabsList>
-          <CreatorTab />
-          <BackerTab />
+          
+  {/* Creator View: My Campaigns */}
+       <CreatorTab />
+          
+          {/* Backer View Placeholder */}
+      <BackerTab />
         </Tabs>
+
+     
+
       </div>
+      
       <Footer />
     </main>
   )

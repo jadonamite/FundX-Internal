@@ -95,7 +95,7 @@ export default function CampaignPage({ params }: { params: Promise<{ id: string 
               <div className="relative aspect-video w-full overflow-hidden rounded-3xl bg-slate-200 shadow-sm border border-slate-100">
                 <Image src={mockCampaign.image} alt={mockCampaign.title} fill className="object-cover" />
               </div>
-              <div className='flex items-center gap-4 border-y border-slate-200 py-6'>
+              <div className="flex items-center gap-4 border-y border-slate-200 py-6">
                 <Avatar className="h-14 w-14 border-4 border-white shadow-sm">
                   <AvatarImage src={mockCampaign.creatorImage} />
                   <AvatarFallback>{mockCampaign.creator.slice(0, 2).toUpperCase()}</AvatarFallback>
