@@ -202,8 +202,8 @@ export default function CreateCampaign() {
             {/* Step progress bar */}
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs font-bold text-slate-400 uppercase tracking-widest">
-                {["Creator", "Campaign", "Funding"].map((label, idx) => {
-                  const num = idx + 1
+                {["Creator", "Campaign", "Funding"].map((label, index) => {
+                  const num = index + 1
                   const isDone = step > num
                   const isActive = step === num
                   return (

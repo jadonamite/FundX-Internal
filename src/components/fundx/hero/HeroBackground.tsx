@@ -236,6 +236,10 @@ export function HeroBackground({ isStacksMode }: { isStacksMode: boolean }) {
 
     draw()
 
+    /**
+     * onResize
+     * @returns {*}
+     */
     function onResize() {
       if (!canvas) return
       width = canvas.offsetWidth
