@@ -20,5 +20,5 @@ export function LogoStrip() {
         </div>
       </div>
     </div>
-  );
+  );,
 }
